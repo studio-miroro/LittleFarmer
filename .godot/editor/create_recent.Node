@@ -1,0 +1,14 @@
+Sprite2D
+CollisionShape2D
+Area2D
+AnimationPlayer
+MarginContainer
+Container
+Panel
+VBoxContainer
+Label
+Control
+Node2D
+Timer
+ColorRect
+ParallaxLayer

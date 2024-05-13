@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://b8eteio2464wo"]
+
+[ext_resource type="Script" path="res://Player/Scripts/player_movement.gd" id="1_6ghsa"]
+[ext_resource type="Texture2D" uid="uid://s3fpvd6mntkk" path="res://player/animations/idle/Idle-down_0.png" id="2_3ojln"]
+[ext_resource type="Texture2D" uid="uid://c57jhciboi876" path="res://player/animations/idle/Idle-down_1.png" id="3_oedy0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aj6il"]
+size = Vector2(128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p8d8c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3ojln")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_oedy0")
+}],
+"loop": true,
+"name": &"Idle-down",
+"speed": 4.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle-left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle-right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Idle-up",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Run-down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Run-left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Run-right",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Run-up",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(494, 255)
+script = ExtResource("1_6ghsa")
+speed = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_aj6il")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_p8d8c")
+animation = &"Idle-down"
+frame_progress = 0.748977
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
+position_smoothing_enabled = true

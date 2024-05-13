@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddp2h6ryjofvt"]
+
+[ext_resource type="Script" path="res://levels/world/ui/cursor/cursor.gd" id="1_h13cq"]
+[ext_resource type="Shader" path="res://global/shaders/pixel_perfect.gdshader" id="1_w1kjs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_prqq6"]
+shader = ExtResource("1_w1kjs")
+
+[node name="Cursor" type="Node2D"]
+material = SubResource("ShaderMaterial_prqq6")
+script = ExtResource("1_h13cq")

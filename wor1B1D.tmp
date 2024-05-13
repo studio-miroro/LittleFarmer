@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://4vypwfxar3e"]
+
+[ext_resource type="PackedScene" uid="uid://b8eteio2464wo" path="res://player.tscn" id="2_4nvmq"]
+
+[sub_resource type="TileSet" id="TileSet_5ut5s"]
+tile_size = Vector2i(64, 64)
+
+[node name="World" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_5ut5s")
+format = 2
+
+[node name="Player" parent="." instance=ExtResource("2_4nvmq")]
+position = Vector2(813, 426)

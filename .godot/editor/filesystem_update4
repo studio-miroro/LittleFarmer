@@ -1,0 +1,10 @@
+res://levels/world/world.tscn
+res://levels/world/cycle/daynightcycle-gradient-texture.tres
+res://global/game_variables.gd
+res://levels/world/tilesets/building/mailbox/mailbox.tscn
+res://levels/world/ui/hud/interface.gd
+res://levels/world/world.gd
+res://levels/world/ui/hud/interface.tscn
+res://levels/world/tilesets/building/house/house.gd
+res://levels/world/tilesets/building/stock/stock.gd
+res://levels/world/tilesets/building/mailbox/mailbox.gd
