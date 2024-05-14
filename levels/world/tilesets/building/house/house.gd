@@ -5,7 +5,7 @@ extends Node2D
 @onready var player = get_node("/root/World/Player")
 var max_distance:int = 250
 
-var object = preload("res://levels/world/ui/object info/object_info.tscn")
+var object = preload("res://levels/world/ui//object_info.tscn")
 var object_name:String = "Домик"
 var object_description:String = "Очень уютный домик"
 var object_level:int = 1

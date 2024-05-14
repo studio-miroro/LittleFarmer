@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dkff5xvqcxcdu" path="res://levels/world/tilesets/building/house/house.tscn" id="11_cs7my"]
 [ext_resource type="Script" path="res://levels/world/tilesets/building/buildings.gd" id="11_khbur"]
 [ext_resource type="Texture2D" uid="uid://bf8an67t7ykhk" path="res://levels/world/tilesets/dirt.png" id="11_vcfun"]
-[ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://levels/world/ui/hud/object info/object_info.tscn" id="12_ib6io"]
+[ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://levels/world/ui/object_info.tscn" id="12_ib6io"]
 [ext_resource type="Texture2D" uid="uid://b0pyequa6wol7" path="res://levels/world/tilesets/watering_dirt.png" id="12_ukkk5"]
 [ext_resource type="Texture2D" uid="uid://dj1b5aexd5fug" path="res://levels/world/tilesets/seeds.png" id="13_5fdea"]
 [ext_resource type="PackedScene" uid="uid://b6yctk4o25kkc" path="res://levels/world/tilesets/building/mailbox/mailbox.tscn" id="13_axsnf"]

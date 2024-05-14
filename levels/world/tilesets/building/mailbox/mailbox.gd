@@ -15,18 +15,18 @@ func _input(event):
 	if get_node("/root/World/UI/Pause").paused or game_variables.mode != game_variables.gamemode.NOTHING:
 		object_sprite.texture = sprite_default
 	
-func _on_area_2d_mouse_entered():
-	var distance = round(global_position.distance_to(player.global_position))
-	if !get_node("/root/World/UI/Pause").paused\
-	and game_variables.mode == game_variables.gamemode.NOTHING\
-	and distance < max_distance:
-		object_sprite.texture = sprite_hover
-		get_node("/root/World/UI/ObjectInfo").object(get_global_mouse_position(), object_name, object_description, object_level, 0, true)
-
-func _on_area_2d_mouse_exited():
-	if !get_node("/root/World/UI/Pause").paused:
-		object_sprite.texture = sprite_default
-		get_node("/root/World/UI/ObjectInfo").object(Vector2(0,0), "", "", 0, -1, false)
-	else:
-		object_sprite.texture = sprite_default
-		get_node("/root/World/UI/ObjectInfo").object(Vector2(0,0), "", "", 0, -1, false)
+#func _on_area_2d_mouse_entered():
+	#var distance = round(global_position.distance_to(player.global_position))
+	#if !get_node("/root/World/UI/Pause").paused\
+	#and game_variables.mode == game_variables.gamemode.NOTHING\
+	#and distance < max_distance:
+		#object_sprite.texture = sprite_hover
+		#get_node("/root/World/UI/ObjectInfo").object(get_global_mouse_position(), object_name, object_description, object_level, 0, true)
+#
+#func _on_area_2d_mouse_exited():
+	#if !get_node("/root/World/UI/Pause").paused:
+		#object_sprite.texture = sprite_default
+		#get_node("/root/World/UI/ObjectInfo").object(Vector2(0,0), "", "", 0, -1, false)
+	#else:
+		#object_sprite.texture = sprite_default
+		#get_node("/root/World/UI/ObjectInfo").object(Vector2(0,0), "", "", 0, -1, false)

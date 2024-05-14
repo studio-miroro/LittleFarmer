@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eqwryqhmkfgu"
-path="res://.godot/imported/button_0.png-5f7e37943f5ea5783fd9e8b771bec051.ctex"
+uid="uid://bmm3sn5q3j181"
+path="res://.godot/imported/2d_lights_and_shadows_neutral_point_light.webp-65502514064ef8af4bce05336c6482e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/world/ui/hud/button_0.png"
-dest_files=["res://.godot/imported/button_0.png-5f7e37943f5ea5783fd9e8b771bec051.ctex"]
+source_file="res://2d_lights_and_shadows_neutral_point_light.webp"
+dest_files=["res://.godot/imported/2d_lights_and_shadows_neutral_point_light.webp-65502514064ef8af4bce05336c6482e4.ctex"]
 
 [params]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://dmrj3nbdfyut"]
 
-[ext_resource type="Script" path="res://levels/world/ui/object info/object_info.gd" id="1_sb5xd"]
+[ext_resource type="Script" path="res://levels/world/ui/hud/scripts/object_info.gd" id="1_sb5xd"]
 
 [sub_resource type="Animation" id="Animation_bdxlu"]
 length = 0.001

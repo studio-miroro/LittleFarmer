@@ -1,3 +1,6 @@
+Node
+Node2D
+PointLight2D
 Sprite2D
 CollisionShape2D
 Area2D
@@ -8,7 +11,5 @@ Panel
 VBoxContainer
 Label
 Control
-Node2D
 Timer
 ColorRect
-ParallaxLayer

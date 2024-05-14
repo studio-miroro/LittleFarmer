@@ -1254,6 +1254,8 @@ position = Vector2(168, -29)
 z_index = 4
 z_as_relative = false
 position = Vector2(264, 3)
+default = null
+hover = null
 
 [node name="Tilemap" type="TileMap" parent="."]
 material = SubResource("ShaderMaterial_xicbh")

@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://c50737uagx074"]
 
 [ext_resource type="Shader" path="res://global/shaders/pixel_perfect.gdshader" id="1_8w4wf"]
-[ext_resource type="Script" path="res://levels/world/ui/hud/time.gd" id="1_yg1lx"]
-[ext_resource type="Script" path="res://levels/world/ui/hud/interface.gd" id="2_jm0bh"]
-[ext_resource type="Script" path="res://levels/world/ui/hud/balance.gd" id="3_6dsjl"]
-[ext_resource type="Texture2D" uid="uid://eqwryqhmkfgu" path="res://levels/world/ui/hud/button_0.png" id="5_sytnb"]
+[ext_resource type="Script" path="res://levels/world/ui/hud/scripts/time.gd" id="1_yg1lx"]
+[ext_resource type="Script" path="res://levels/world/ui/hud/scripts/interface.gd" id="2_jm0bh"]
+[ext_resource type="Script" path="res://levels/world/ui/hud/scripts/balance.gd" id="3_6dsjl"]
+[ext_resource type="Texture2D" uid="uid://eqwryqhmkfgu" path="res://levels/world/ui/hud/img/button_0.png" id="5_sytnb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lbeot"]
 shader = ExtResource("1_8w4wf")

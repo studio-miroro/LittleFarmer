@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Farmer Game"
-config/version="1.0.0"
+config/version="0.0.1"
 config/tags=PackedStringArray("survival")
 run/main_scene="res://levels/world/world.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
