@@ -13,7 +13,7 @@ config_version=5
 config/name="Farmer Game"
 config/version="0.0.1"
 config/tags=PackedStringArray("survival")
-run/main_scene="res://levels/world/world.tscn"
+run/main_scene="res://levels/farm.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/fullsize=false
@@ -22,7 +22,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-game_variables="*res://global/game_variables.gd"
+game_variables="*res://assets/singletons/variables.gd"
 
 [display]
 
@@ -31,7 +31,7 @@ window/size/viewport_height=720
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
+enabled=PackedStringArray()
 
 [importer_defaults]
 

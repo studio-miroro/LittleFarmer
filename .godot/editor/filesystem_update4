@@ -1,10 +1,2 @@
-res://levels/world/world.tscn
-res://levels/world/cycle/daynightcycle-gradient-texture.tres
-res://levels/world/player/zoom/zoom.gd
-res://levels/world/player/player.tscn
-res://levels/debugger/debugger.gd
-res://levels/world/tilesets/building/mailbox/mailbox.gd
-res://levels/world/ui/pause/pause.tscn
-res://levels/world/ui/cursor/cursor.tscn
-res://levels/world/ui/popup menu/object/mailbox/menu.tscn
-res://levels/world/tilesets/building/house/house.gd
+res://levels/farm.tscn
+res://assets/resources/nature/cycle-gradient.tres
