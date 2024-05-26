@@ -118,16 +118,12 @@ layout_mode = 2
 
 [node name="Name" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Name object"
 
 [node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Description"
 
 [node name="Level" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Level"
 
 [node name="Slots" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Level"

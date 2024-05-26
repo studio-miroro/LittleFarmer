@@ -10,19 +10,18 @@ config_version=5
 
 [application]
 
-config/name="Farmer Game"
-config/version="0.0.1"
-config/tags=PackedStringArray("survival")
+config/name="Little Farmer"
+config/version="1.0.0"
+config/tags=PackedStringArray("sumilator")
 run/main_scene="res://levels/farm.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-boot_splash/show_image=false
-boot_splash/fullsize=false
-boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [autoload]
 
-game_variables="*res://assets/singletons/variables.gd"
+data="*res://assets/singletons/data.gd"
+crops="*res://assets/singletons/crops.gd"
+items="*res://assets/singletons/items.gd"
 
 [display]
 

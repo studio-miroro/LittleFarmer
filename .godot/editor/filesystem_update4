@@ -1,2 +1,17 @@
 res://levels/farm.tscn
 res://assets/resources/nature/cycle-gradient.tres
+res://assets/nodes/buildings/grid/Area2D.gd
+res://assets/scripts/farm.gd
+res://assets/nodes/farming/plant.tscn
+res://assets/nodes/buildings/grid/grid.tscn
+res://assets/nodes/buildings/house/house.tscn
+res://assets/nodes/buildings/stock/storage.tscn
+res://assets/nodes/buildings/mailbox/mailbox.tscn
+res://assets/nodes/ui/hud.tscn
+res://assets/nodes/ui/pause.tscn
+res://assets/nodes/camera.tscn
+res://assets/scripts/buildings system/grid/grid.gd
+res://assets/scripts/ui/tools/tools.gd
+res://assets/nodes/farming/plant.gd
+res://assets/nodes/farming/Sprite2D.gd
+res://assets/singletons/data.gd

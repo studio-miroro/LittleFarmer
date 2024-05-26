@@ -9,6 +9,7 @@ func _ready():
 		Input.CURSOR_ARROW, 
 		Vector2(0,0)
 		)
+		
 func _input(_event):
 		if Input.is_action_just_pressed("click left"):
 			Input.set_custom_mouse_cursor(

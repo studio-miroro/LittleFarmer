@@ -1,6 +1,12 @@
 extends Node
 
-var json = JSON.new()
-var path = "user://data.json"
+var money:int = 100
 
-var data = {}
+var hour:int = 9
+var minutes:int = 0
+var day:int = 1
+var week:int = 1
+var month:int = 1
+var year:int = 1
+
+var game_speed:int = 8

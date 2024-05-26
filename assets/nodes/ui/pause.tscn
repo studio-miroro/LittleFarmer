@@ -139,13 +139,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -44.5
-offset_top = -68.0
-offset_right = 44.5
-offset_bottom = 68.0
+offset_left = -100.5
+offset_top = -73.5
+offset_right = 101.5
+offset_bottom = 56.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
+
+[node name="CheckButton3" type="CheckButton" parent="settings menu/container"]
+layout_mode = 2
+text = "Полный экран         "
+flat = true
 
 [node name="FullScreen" type="CheckButton" parent="settings menu/container"]
 layout_mode = 2
@@ -218,7 +223,6 @@ text = "Продолжить"
 icon_alignment = 1
 
 [node name="settings" type="Button" parent="menu/container"]
-visible = false
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2al7j")
 text = "Настройки"

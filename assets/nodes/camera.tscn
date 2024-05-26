@@ -203,7 +203,6 @@ position = Vector2(494, 255)
 script = ExtResource("1_6ghsa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 ignore_rotation = false
 zoom = Vector2(3, 3)
 limit_smoothed = true
@@ -211,6 +210,7 @@ position_smoothing_enabled = true
 script = ExtResource("3_kqeun")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_aj6il")
 

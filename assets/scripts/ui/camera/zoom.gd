@@ -1,6 +1,6 @@
 extends Camera2D
 
-@onready var pause_menu = get_node("/root/World/UI/Pause")
+@onready var pause = get_node("/root/World/UI/Pause")
 
 var zoom_min:float = 2.5
 var zoom_max:float = 6
@@ -13,7 +13,7 @@ var speed:int = 6
 var switch:bool = false
 
 func _process(delta):
-	if !pause_menu.paused:
+	if !pause.paused:
 		if Input.is_action_just_released("zoom_in") && switch:
 			if current <= zoom_max:
 				target = current + increment

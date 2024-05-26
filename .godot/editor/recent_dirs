@@ -1,8 +1,5 @@
 res://
-res://levels/world/tilesets/building/house
-res://global
-res://levels/world/ui/hud
-res://levels/world/ui/cursor
-res://levels/world/ui
-res://levels/world/ui/pause
+res://assets/resources
+res://assets/singletons
+res://assets/tilesets
 E:/Game Development/Carpenter Oliver/player/scripts

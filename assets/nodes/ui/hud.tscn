@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c50737uagx074"]
+[gd_scene load_steps=9 format=3 uid="uid://c50737uagx074"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_8w4wf"]
 [ext_resource type="Script" path="res://assets/scripts/ui/tools/tools.gd" id="2_txfwe"]
@@ -12,15 +12,6 @@ shader = ExtResource("1_8w4wf")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kyg1e"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6fyro"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_8ngss"]
-font_size = 22
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_goy3d"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nxhln"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8ym3d"]
 
 [node name="Interface" type="Control"]
 material = SubResource("ShaderMaterial_lbeot")
@@ -93,6 +84,7 @@ offset_left = -40.0
 offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_force_pass_scroll_events = false
 
 [node name="Tools Hud" type="Panel" parent="Tools Menu"]
 layout_mode = 1
@@ -139,68 +131,46 @@ layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6fyro")
 icon = ExtResource("5_sytnb")
 
-[node name="Building Menu" type="Panel" parent="Tools Menu"]
+[node name="BuildingMenu" type="Control" parent="."]
 visible = false
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = -0.025
-anchor_right = 1.0
-anchor_bottom = -0.025
-offset_left = -253.0
-offset_top = -326.0
-offset_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="menu pause text" type="Label" parent="Tools Menu/Building Menu"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 28.0
-offset_bottom = 93.0
-grow_horizontal = 2
-text = "Pause"
-label_settings = SubResource("LabelSettings_8ngss")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="container" type="VBoxContainer" parent="Tools Menu/Building Menu"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -44.5
-offset_top = -68.0
-offset_right = 44.5
-offset_bottom = 68.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
-[node name="countinue" type="Button" parent="Tools Menu/Building Menu/container"]
-layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_goy3d")
-text = "Продолжить"
-icon_alignment = 1
-
-[node name="settings" type="Button" parent="Tools Menu/Building Menu/container"]
-visible = false
-layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_nxhln")
-text = "Настройки"
-
-[node name="quit the game" type="Button" parent="Tools Menu/Building Menu/container"]
-layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_8ym3d")
-text = "Выйти из игры"
-icon_alignment = 1
+[node name="Panel" type="Panel" parent="BuildingMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -110.5
+offset_right = 110.5
+offset_bottom = 110.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="timeout" from="Time/Timer" to="Time" method="_on_timer_timeout"]
+[connection signal="mouse_entered" from="Tools Menu/Tools Hud/Container/Destroy" to="." method="_on_destroy_mouse_entered"]
+[connection signal="mouse_exited" from="Tools Menu/Tools Hud/Container/Destroy" to="." method="_on_destroy_mouse_exited"]
 [connection signal="pressed" from="Tools Menu/Tools Hud/Container/Destroy" to="." method="_on_destroy_pressed"]
+[connection signal="mouse_entered" from="Tools Menu/Tools Hud/Container/Watering" to="." method="_on_watering_mouse_entered"]
+[connection signal="mouse_exited" from="Tools Menu/Tools Hud/Container/Watering" to="." method="_on_watering_mouse_exited"]
 [connection signal="pressed" from="Tools Menu/Tools Hud/Container/Watering" to="." method="_on_watering_pressed"]
+[connection signal="mouse_entered" from="Tools Menu/Tools Hud/Container/Farm" to="." method="_on_farm_mouse_entered"]
+[connection signal="mouse_exited" from="Tools Menu/Tools Hud/Container/Farm" to="." method="_on_farm_mouse_exited"]
 [connection signal="pressed" from="Tools Menu/Tools Hud/Container/Farm" to="." method="_on_farm_pressed"]
 [connection signal="toggled" from="Tools Menu/Tools Hud/Container/Farm" to="." method="_on_farm_toggled"]
+[connection signal="mouse_entered" from="Tools Menu/Tools Hud/Container/Building" to="." method="_on_building_mouse_entered"]
+[connection signal="mouse_exited" from="Tools Menu/Tools Hud/Container/Building" to="." method="_on_building_mouse_exited"]
 [connection signal="pressed" from="Tools Menu/Tools Hud/Container/Building" to="." method="_on_building_pressed"]

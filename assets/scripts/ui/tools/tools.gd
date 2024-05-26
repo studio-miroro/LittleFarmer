@@ -7,6 +7,7 @@ extends Control
 @onready var building_button = $"Tools Menu/Tools Hud/Container/Building"
 
 @onready var pause = get_node("/root/World/UI/Pause")
+@onready var grid = get_node("/root/World/Buildings/Grid")
 
 var destroy:bool
 var farming:bool
@@ -14,11 +15,15 @@ var plant:bool
 var watering:bool
 var building:bool
 
+func _ready():
+	get_node("/root/World/Buildings/Grid").visible = false
+
 func _input(event):
-	if game_variables.mode != game_variables.gamemode.NOTHING\
+	if grid.mode != grid.gridmode.nothing\
 	and !pause.paused:
 		if Input.is_action_just_pressed("click right"):
-			game_variables.mode = game_variables.gamemode.NOTHING
+			grid.mode = grid.gridmode.nothing
+			get_node("/root/World/Buildings/Grid").visible = false
 			destroy_button.release_focus()
 			watering_button.release_focus()
 			farming_button.release_focus()
@@ -28,48 +33,93 @@ func _input(event):
 			plant = false
 			watering = false
 			building = false
-# Tools
+
+# --- Destroy ---
 func _on_destroy_pressed():
 	if !destroy:
 		if !pause.paused:
-			game_variables.mode = game_variables.gamemode.DESTROY
+			grid.mode = grid.gridmode.destroy
 			destroy_button.grab_focus()
+			get_node("/root/World/Buildings/Grid").visible = true
 			destroy = true
 			farming = false
 			plant = false
 			watering = false
 			building = false
 
+func _on_destroy_mouse_entered():
+	if grid.mode != grid.gridmode.nothing:
+		get_node("/root/World/Buildings/Grid").visible = false
+
+func _on_destroy_mouse_exited():
+	if grid.mode != grid.gridmode.nothing:
+		get_node("/root/World/Buildings/Grid").visible = true
+
+# --- Watering ---
 func _on_watering_pressed():
 	if !watering:
-		if !get_node("/root/World/UI/Pause").paused:
-			game_variables.mode = game_variables.gamemode.WATERING
+		if !pause.paused:
+			grid.mode = grid.gridmode.watering
 			watering_button.grab_focus()
+			get_node("/root/World/Buildings/Grid").visible = true
 			destroy = false
 			farming = false
 			plant = false
 			watering = true
 			building = false
+			
+func _on_watering_mouse_entered():
+	if grid.mode != grid.gridmode.nothing:
+		get_node("/root/World/Buildings/Grid").visible = false
 
+func _on_watering_mouse_exited():
+	if grid.mode != grid.gridmode.nothing:
+		get_node("/root/World/Buildings/Grid").visible = true
+	
+# --- Farming ---
 func _on_farm_pressed():
 	if !farming:
 		if !pause.paused:
-			game_variables.mode = game_variables.gamemode.FARMING
+			grid.mode = grid.gridmode.farming
 			farming_button.grab_focus()
+			get_node("/root/World/Buildings/Grid").visible = true
 			destroy = false
 			farming = true
 			plant = false
 			watering = false
 			building = false
+			
+func _on_farm_mouse_entered():
+	if grid.mode != grid.gridmode.nothing:
+		get_node("/root/World/Buildings/Grid").visible = false
 
+func _on_farm_mouse_exited():
+	if grid.mode != grid.gridmode.nothing:
+		get_node("/root/World/Buildings/Grid").visible = true
+	
+# --- Building ---
 func _on_building_pressed():
-	if !plant:
-		if !get_node("/root/World/UI/Pause").paused:
-			game_variables.mode = game_variables.gamemode.SEEDS
+	if !building:
+		if !pause.paused:
+			grid.mode = grid.gridmode.seeds
 			building_button.grab_focus()
+			get_node("/root/World/Buildings/Grid").visible = true
 			destroy = false
 			farming = false
 			plant = true
 			watering = false
 			building = false
-		
+
+func _on_building_mouse_entered():
+	if grid.mode != grid.gridmode.nothing:
+		get_node("/root/World/Buildings/Grid").visible = false
+
+func _on_building_mouse_exited():
+	if grid.mode != grid.gridmode.nothing:
+		get_node("/root/World/Buildings/Grid").visible = true
+
+
+
+
+
+
