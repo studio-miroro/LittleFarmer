@@ -93,7 +93,7 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -304.0
+offset_left = -380.0
 offset_top = -71.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -125,6 +125,10 @@ text = "Watering"
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_6fyro")
 text = "Farming"
+
+[node name="Button" type="Button" parent="Tools Menu/Tools Hud/Container"]
+layout_mode = 2
+text = "Planting"
 
 [node name="Building" type="Button" parent="Tools Menu/Tools Hud/Container"]
 layout_mode = 2
@@ -171,6 +175,9 @@ grow_vertical = 2
 [connection signal="mouse_exited" from="Tools Menu/Tools Hud/Container/Farm" to="." method="_on_farm_mouse_exited"]
 [connection signal="pressed" from="Tools Menu/Tools Hud/Container/Farm" to="." method="_on_farm_pressed"]
 [connection signal="toggled" from="Tools Menu/Tools Hud/Container/Farm" to="." method="_on_farm_toggled"]
+[connection signal="mouse_entered" from="Tools Menu/Tools Hud/Container/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Tools Menu/Tools Hud/Container/Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Tools Menu/Tools Hud/Container/Button" to="." method="_on_button_pressed"]
 [connection signal="mouse_entered" from="Tools Menu/Tools Hud/Container/Building" to="." method="_on_building_mouse_entered"]
 [connection signal="mouse_exited" from="Tools Menu/Tools Hud/Container/Building" to="." method="_on_building_mouse_exited"]
 [connection signal="pressed" from="Tools Menu/Tools Hud/Container/Building" to="." method="_on_building_pressed"]

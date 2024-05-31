@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://763kkvsba8hk"]
 
 [ext_resource type="Script" path="res://assets/nodes/farming/plant.gd" id="1_2e4c5"]
-[ext_resource type="Texture2D" uid="uid://dj1b5aexd5fug" path="res://assets/tilesets/crops.png" id="1_7jdwg"]
 [ext_resource type="Script" path="res://assets/nodes/farming/Sprite2D.gd" id="2_0klt4"]
+[ext_resource type="Texture2D" uid="uid://dj1b5aexd5fug" path="res://assets/resources/farming/crops.png" id="2_l557j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gu1o"]
 size = Vector2(14, 14)
@@ -10,18 +10,20 @@ size = Vector2(14, 14)
 [node name="Plant" type="Node2D"]
 script = ExtResource("1_2e4c5")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Collision" type="Area2D" parent="."]
 visible = false
 z_index = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
 shape = SubResource("RectangleShape2D_0gu1o")
-
-[node name="Timer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
-texture = ExtResource("1_7jdwg")
+texture = ExtResource("2_l557j")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("2_0klt4")
+
+[connection signal="timeout" from="Timer" to="Sprite2D" method="_on_timer_timeout"]

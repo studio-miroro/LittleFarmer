@@ -12,12 +12,3 @@ func _process(delta):
 func grid_movement():
 	var current:Vector2 = local_to_map(get_global_mouse_position())
 	grid.set_position(map_to_local(current))
-
-func plant(seed_id):
-	if grid.mode == grid.gridmode.seeds:
-		var mouse_position = local_to_map(get_global_mouse_position())
-		var plant = node.instantiate()
-		plant.z_index = 4
-		plant.get_plant(seed_id)
-		plant.set_position(map_to_local(mouse_position))
-		add_child(plant)

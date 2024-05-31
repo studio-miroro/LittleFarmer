@@ -101,14 +101,12 @@ func _on_farm_mouse_exited():
 func _on_building_pressed():
 	if !building:
 		if !pause.paused:
-			grid.mode = grid.gridmode.seeds
 			building_button.grab_focus()
-			get_node("/root/World/Buildings/Grid").visible = true
 			destroy = false
 			farming = false
-			plant = true
+			plant = false
 			watering = false
-			building = false
+			building = true
 
 func _on_building_mouse_entered():
 	if grid.mode != grid.gridmode.nothing:
@@ -118,8 +116,23 @@ func _on_building_mouse_exited():
 	if grid.mode != grid.gridmode.nothing:
 		get_node("/root/World/Buildings/Grid").visible = true
 
+# --- Planting ---
+func _on_button_pressed():
+	if !plant:
+		if !pause.paused:
+			grid.mode = grid.gridmode.seeds
+			building_button.grab_focus()
+			get_node("/root/World/Buildings/Grid").visible = true
+			destroy = false
+			farming = false
+			plant = true
+			watering = false
+			building = false
 
+func _on_button_mouse_entered():
+	if grid.mode != grid.gridmode.nothing:
+		get_node("/root/World/Buildings/Grid").visible = false
 
-
-
-
+func _on_button_mouse_exited():
+	if grid.mode != grid.gridmode.nothing:
+		get_node("/root/World/Buildings/Grid").visible = true

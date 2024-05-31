@@ -3,6 +3,7 @@ extends Control
 var paused: bool
 
 func _ready():
+	get_node("/root/World/UI").visible = true
 	$".".z_index = 1
 	$menu/version.text = "Версия: " + ProjectSettings.get_setting("application/config/version")
 	paused = false

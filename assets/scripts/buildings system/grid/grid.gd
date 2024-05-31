@@ -4,6 +4,7 @@ extends Node2D
 @onready var hud = get_node("/root/World/UI/Interface")
 @onready var tilemap = get_node("/root/World/Tilemap")
 @onready var grid_object = get_node("/root/World/Buildings/Grid")
+@onready var farming = get_node("/root/World/Farming")
 @onready var farm = get_node("/root/World/")
 @onready var node = preload("res://assets/nodes/farming/plant.tscn")
 @onready var grid = $Sprite2D
@@ -14,6 +15,8 @@ extends Node2D
 
 enum gridmode {nothing, destroy, farming, seeds, watering, building}
 var mode = gridmode.nothing
+
+var seed = 1
 
 var need_check = false
 
@@ -26,39 +29,80 @@ func _input(event):
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			need_check = true
 
+
 func _process(delta):
-	if !pause.paused and mode != gridmode.nothing and grid_object.visible:
-		if mode == gridmode.destroy:
-			collision.BuildingCollisionCheck()
-			if collision.BuildingCollisionCheck():
-				change_texture(true)
-			else:change_texture(false)
-			need_check = false
-			
-		if mode == gridmode.farming:
-			collision.FarmingCollisionCheck()
-			if need_check:
-				var seed = farm.seed_id
-				if !collision.FarmingCollisionCheck():
-					pass
-				else:pass
-			need_check = false
-			
-		if mode == gridmode.watering:
-			collision.WateringCollisionCheck()
-			if need_check:
-				if !collision.WateringCollisionCheck():
-					pass
-				else:pass
-			need_check = false
-			
-		if mode == gridmode.seeds:
-			collision.PlantingCollisionCheck()
-			if need_check:
-				if !collision.PlantingCollisionCheck():
-					pass
-				else:pass
-			need_check = false
+	if !pause.paused and grid_object.visible:
+		var mouse_pos: Vector2 = get_global_mouse_position()
+		var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
+		var farming_tile_position = []
+		var watering_tile_position = []
+		match mode:
+			gridmode.destroy:
+				collision.DestroyCollisionCheck()
+				if need_check:
+					if collision.DestroyCollisionCheck():
+						# Destroy...
+						pass
+						#tilemap.set_cells_terrain_connect(
+							#collision.watering_layer,
+							#[tile_mouse_pos],
+							#collision.watering_terrain_set,
+							#-1)
+					else:pass
+				need_check = false
+				
+			gridmode.farming:
+				collision.FarmingCollisionCheck()
+				if need_check:
+					if collision.FarmingCollisionCheck():
+						farming_tile_position.append(tile_mouse_pos)
+						tilemap.set_cells_terrain_connect(
+							collision.farming_layer,
+							farming_tile_position,
+							collision.farming_terrain_set,
+							collision.farming_terrain
+							)
+					else:pass
+				need_check = false
+				
+			gridmode.watering:
+				collision.WateringCollisionCheck()
+				if need_check:
+					if collision.WateringCollisionCheck():
+						watering_tile_position.append(tile_mouse_pos)
+						tilemap.set_cells_terrain_connect(
+							collision.watering_layer,
+							watering_tile_position,
+							collision.watering_terrain_set,
+							collision.watering_terrain
+							)
+					else:pass
+				need_check = false
+				
+			gridmode.seeds:
+				collision.PlantingCollisionCheck()
+				if need_check:
+					var ID = randi_range(1,2)
+					if collision.PlantingCollisionCheck():
+						farming.crop(ID, tile_mouse_pos)
+					else:pass
+				need_check = false
+
+			#gridmode.building:
+				#collision.BuildingCollisionCheck()
+				#if need_check:
+					#if collision.BuildingCollisionCheck():
+						#var source_id = 0
+						#var atlas_coords = Vector2i(0,3)
+						#tilemap.set_cell(
+							#collision.seeds_layer,
+							#tile_mouse_pos,
+							#source_id,
+							#atlas_coords
+						#)
+						#farming.plant(seed)
+					#else:pass
+				#need_check = false
 
 func change_texture(collision):
 	if collision:
