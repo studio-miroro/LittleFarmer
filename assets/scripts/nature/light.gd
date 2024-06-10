@@ -13,9 +13,9 @@ var light:bool = true
 
 func _process(delta):
 	if !pause.paused:
-		if data.hour >= off and data.hour < on:
+		if gamedata.hour >= off and gamedata.hour < on:
 			check_light(false)
-		if data.hour >= on:
+		if gamedata.hour >= on:
 			check_light(true)
 		if light:
 			if energy < energy_max:

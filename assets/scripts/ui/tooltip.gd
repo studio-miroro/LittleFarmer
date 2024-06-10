@@ -9,27 +9,59 @@ extends Control
 @onready var level = $MarginContainer/VBoxContainer/Level
 @onready var slots = $MarginContainer/VBoxContainer/Slots
 var offset:int = -125
-var label = Label.new()
 
 func _process(delta):
 	if object_1.visible && object_2.visible:
 		position = get_global_mouse_position()
 
 func tooltip(
-	object_position:Vector2, 
+	mouse_position:Vector2, 
 	object_name:String, 
 	object_description:String, 
 	object_level:int,
 	object_slots:int, 
 	object_visible:bool):
 	if object_visible:
-		$AnimationPlayer.play("transform")
-		position = object_position
-		get_data(object_name, object_description, object_level, object_slots)
-	if !object_visible:
-		$AnimationPlayer.play("transoform_rest")
+		object_visible()
+		position = mouse_position
+		object(object_name, object_description, object_level, object_slots)
+	else:
+		object_invisible()
+func tooltip_plant(
+	mouse_position:Vector2,
+	plant_id:int,
+	plant_position:Vector2,
+	condition:int,
+	object_visible:bool
+	):
+	if object_visible:
+		object_visible()
+		position = mouse_position
+		set_plant_info(plant_id,plant_position,condition)
+	else:
+		object_invisible()
 		
-func get_data(object_name:String, object_description:String, object_level:int, object_slots:int):
+func set_plant_info(id, pos, condition):
+	header.text = crops.crops[id]["caption"]
+	description.text = "Состояние: " + str(plant_condition(condition))
+	level.visible = false
+	slots.visible = false
+	margin.offset_top = offset + 25
+	margin.offset_bottom = offset + 25
+	
+func plant_condition(condition):
+	match condition:
+		0:
+			return "Посажено"
+		1:
+			return "Растет"
+		2:
+			return "Выросло"
+		3:
+			return "Погибло"
+
+
+func object(object_name:String, object_description:String, object_level:int, object_slots:int):
 	if object_slots > 0:
 		slots.visible = true
 		margin.offset_top = offset - 25

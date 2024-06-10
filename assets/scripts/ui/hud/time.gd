@@ -4,7 +4,7 @@ extends Control
 @onready var timer = $Timer
 @onready var label = $Label
 
-var speed = data.game_speed
+var speed = gamedata.game_speed
 		
 func _ready():
 	timer.wait_time = speed
@@ -12,16 +12,16 @@ func _ready():
 	timer.start()
 	
 func _process(_delta):
-	label.text = str(data.hour) + ":" + str(data.minutes) + "0"
+	label.text = str(gamedata.hour) + ":" + str(gamedata.minute) + "0"
 		
 func _on_timer_timeout():
-	if data.minutes >= 0 && !pause.paused:
-		data.minutes = data.minutes + 1
-	if data.minutes > 5 && !pause.paused:
-		data.minutes = 0
-		data.hour = data.hour + 1
-	if data.hour > 23 && !pause.paused:
-		data.hour = 0
+	if gamedata.minute >= 0 && !pause.paused:
+		gamedata.minute = gamedata.minute + 1
+	if gamedata.minute > 5 && !pause.paused:
+		gamedata.minute = 0
+		gamedata.hour = gamedata.hour + 1
+	if gamedata.hour > 23 && !pause.paused:
+		gamedata.hour = 0
 		
 func timerupdate():
 	if !pause.paused:

@@ -66,11 +66,11 @@ func _on_countinue_pressed():
 		pass
 
 func _on_settings_pressed():
-	if paused:
-		if !$"settings menu".visible:
-			$"settings menu".visible = true
-		else:
-			$"settings menu".visible = false
+	if paused:pass
+		#if !$"settings menu".visible:
+			#$"settings menu".visible = true
+		#else:
+			#$"settings menu".visible = false
 	else:
 		pass
 		
@@ -82,3 +82,20 @@ func _on_quit_the_game_pressed():
 		get_node("/root/World/UI/Blackout").key_parameter("quit")
 	else:
 		pass
+
+
+func _on_save_data_pressed():
+	if paused:
+		json.gamesave()
+		pausemenu()
+		get_node("/root/World/Player").menu()
+	else:
+		pass
+
+func _on_load_data_pressed():
+	if paused:
+		json.gameload()
+		pausemenu()
+		get_node("/root/World/Player").menu()
+	else:pass
+

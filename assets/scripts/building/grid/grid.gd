@@ -13,12 +13,17 @@ extends Node2D
 @export var default = preload("res://assets/resources/buildings/grid/default.png")
 @export var error = preload("res://assets/resources/buildings/grid/error.png")
 
-enum gridmode {nothing, destroy, farming, seeds, watering, building}
-var mode = gridmode.nothing
-
-var seed = 1
-
 var need_check = false
+enum gridmode {
+	nothing, 
+	destroy, 
+	farming, 
+	seeds, 
+	watering, 
+	building
+	}
+var mode = gridmode.nothing
+var seed = 1
 
 func _ready():
 	grid.z_index = 10
@@ -28,7 +33,8 @@ func _input(event):
 	if !pause.paused and mode != gridmode.nothing:
 		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 			need_check = true
-
+		if Input.is_action_just_pressed("nothing"):
+			get_used_cells(collision.farming_layer)
 
 func _process(delta):
 	if !pause.paused and grid_object.visible:
@@ -40,15 +46,45 @@ func _process(delta):
 			gridmode.destroy:
 				collision.DestroyCollisionCheck()
 				if need_check:
-					if collision.DestroyCollisionCheck():
-						# Destroy...
-						pass
-						#tilemap.set_cells_terrain_connect(
-							#collision.watering_layer,
-							#[tile_mouse_pos],
-							#collision.watering_terrain_set,
-							#-1)
-					else:pass
+					match collision.DestroyCollisionCheck():
+						0:
+							tilemap.set_cells_terrain_connect(
+							collision.ground_layer,
+							[tile_mouse_pos],
+							collision.ground_terrain_set,
+							-1)
+						1:
+							tilemap.set_cells_terrain_connect(
+							collision.farming_layer,
+							[tile_mouse_pos],
+							collision.farming_terrain_set,
+							-1)
+						2:
+							tilemap.set_cells_terrain_connect(
+							collision.watering_layer,
+							[tile_mouse_pos],
+							collision.watering_terrain_set,
+							-1)
+						3:
+							tilemap.erase_cell(
+								collision.seeds_layer,
+								tile_mouse_pos
+							)
+							farming.destroy(
+								tilemap.map_to_local(
+									tile_mouse_pos
+									)
+								)
+						4:
+							tilemap.erase_cell(
+								collision.seeds_layer,
+								tile_mouse_pos
+							)
+							farming.destroy(
+								tilemap.map_to_local(
+									tile_mouse_pos
+									)
+								)
 				need_check = false
 				
 			gridmode.farming:
@@ -103,6 +139,9 @@ func _process(delta):
 						#farming.plant(seed)
 					#else:pass
 				#need_check = false
+
+func get_used_cells(layer):
+	return tilemap.get_used_cells(layer)
 
 func change_texture(collision):
 	if collision:

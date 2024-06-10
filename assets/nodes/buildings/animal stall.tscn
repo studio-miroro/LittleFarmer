@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://c06vvkgkvvlfq"]
 
-[ext_resource type="Script" path="res://assets/scripts/buildings system/animal stall.gd" id="1_317gt"]
+[ext_resource type="Script" path="res://assets/scripts/building/animal stall.gd" id="1_317gt"]
 [ext_resource type="Texture2D" uid="uid://dwbqo6itkhbxi" path="res://assets/resources/buildings/animal stall/object_0.png" id="2_rxfgc"]
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="3_djl4m"]
 

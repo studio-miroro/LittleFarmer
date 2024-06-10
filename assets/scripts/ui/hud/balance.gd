@@ -1,8 +1,8 @@
 extends Control
-var money = data.money
+var money = gamedata.money
 
 func _ready():
-	$Label.text = str(data.money)
+	$Label.text = str(gamedata.money)
 	
 func _process(delta):
 	if money < 0:

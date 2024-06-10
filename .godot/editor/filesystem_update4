@@ -1,25 +1,12 @@
 res://levels/farm.tscn
 res://assets/resources/nature/cycle-gradient.tres
-res://assets/nodes/farming/plant.tscn
-res://assets/nodes/buildings/grid/grid.tscn
-res://assets/nodes/camera.tscn
-res://assets/nodes/ui/hud.tscn
-res://assets/scripts/farming system/farming.gd
-res://assets/nodes/farming/plant.gd
-res://assets/singletons/crops.gd
-res://assets/nodes/farming/Sprite2D.gd
-res://assets/scripts/buildings system/stock.gd
-res://storage.gd
-res://assets/nodes/buildings/stock/storage.tscn
-res://assets/scripts/buildings system/animalstall.gd
-res://assets/scripts/buildings system/animal stall.gd
-res://silo.gd
-res://assets/nodes/buildings/silo.tscn
-res://assets/nodes/buildings/storage/storage.tscn
-res://assets/nodes/buildings/animal stall/animal stall.tscn
-res://assets/nodes/buildings/silo/silo.tscn
-res://assets/nodes/house.tscn
-res://assets/scripts/buildings system/grid/grid.gd
+res://assets/singletons/json.gd
 res://assets/nodes/buildings/grid.tscn
-res://assets/scripts/buildings system/storage.gd
-res://assets/scripts/buildings system/house.gd
+res://assets/nodes/farming/plant.tscn
+res://assets/nodes/ui/pause.tscn
+res://assets/nodes/ui/tooltip.tscn
+res://assets/scripts/ui/tooltip.gd
+res://assets/scripts/farming/growth.gd
+res://assets/scripts/farming/farming.gd
+res://assets/scripts/farming/crops.gd
+res://assets/scripts/farming/plant.gd

@@ -222,7 +222,16 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_ehicp")
 text = "Продолжить"
 icon_alignment = 1
 
+[node name="SaveData" type="Button" parent="menu/container"]
+layout_mode = 2
+text = "Сохранить"
+
+[node name="LoadData" type="Button" parent="menu/container"]
+layout_mode = 2
+text = "Загрузить"
+
 [node name="settings" type="Button" parent="menu/container"]
+visible = false
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_2al7j")
 text = "Настройки"
@@ -234,5 +243,7 @@ text = "Выйти из игры"
 icon_alignment = 1
 
 [connection signal="pressed" from="menu/container/countinue" to="." method="_on_countinue_pressed"]
+[connection signal="pressed" from="menu/container/SaveData" to="." method="_on_save_data_pressed"]
+[connection signal="pressed" from="menu/container/LoadData" to="." method="_on_load_data_pressed"]
 [connection signal="pressed" from="menu/container/settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="menu/container/quit the game" to="." method="_on_quit_the_game_pressed"]

@@ -11,17 +11,19 @@ config_version=5
 [application]
 
 config/name="Little Farmer"
-config/version="1.0.0"
+config/version="0.0.0"
 config/tags=PackedStringArray("sumilator")
 run/main_scene="res://levels/farm.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://icon.png"
 
 [autoload]
 
-data="*res://assets/singletons/data.gd"
-crops="*res://assets/singletons/crops.gd"
+gamedata="*res://assets/singletons/gamedata.gd"
+crops="*res://assets/scripts/farming/crops.gd"
 items="*res://assets/singletons/items.gd"
+json="*res://assets/singletons/json.gd"
 
 [display]
 
@@ -144,6 +146,10 @@ array={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":88,"key_label":0,"unicode":120,"echo":false,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translation_remaps={}
 
 [rendering]
 

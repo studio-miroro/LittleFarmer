@@ -5,8 +5,8 @@ extends Node2D
 @onready var node = preload("res://assets/nodes/farming/plant.tscn")
 
 func crop(id:int, pos:Vector2):
-	var mouse_position = tilemap.local_to_map(get_global_mouse_position())
 	var plant = node.instantiate()
+	var mouse_position = tilemap.local_to_map(get_global_mouse_position())
 	var atlas_coords = Vector2i(0,3)
 	var source_id = 0
 	
@@ -21,6 +21,7 @@ func crop(id:int, pos:Vector2):
 		plant.set_position(tilemap.map_to_local(mouse_position))
 		add_child(plant)
 		plant.z_index = 6
+		plant.name = "Plant_1"
 		plant.plant(id)
 		plant.check(id,pos)
 	else:
@@ -33,5 +34,11 @@ func crop(id:int, pos:Vector2):
 		plant.set_position(tilemap.map_to_local(mouse_position))
 		add_child(plant)
 		plant.z_index = 6
+		plant.name = "Plant_1"
 		plant.plant(id)
 		plant.check(id,pos)
+
+func destroy(target_position: Vector2):
+	for child in get_children():
+		if child.position == target_position:
+			child.queue_free()

@@ -1,19 +1,16 @@
 extends CanvasModulate
 
-var time:float= 0.0
-var past_minute:int= -1
-var minutes_in_day = (data.game_speed * 1440) 
-var minutes_in_hour = (data.game_speed * 60)
+var time:float = 0.0
+var past_minute:int = -1
+var minutes_in_day = (gamedata.game_speed * 1440) 
+var minutes_in_hour = (gamedata.game_speed * 60)
 var sin_speed = (2 * PI) / minutes_in_day
 signal time_tick(day:int, hour:int, minute:int) 
 @export var gradient_texture:GradientTexture1D
-@onready var time_speed = data.game_speed
-@onready var initial_hour = data.hour:
-	set(h):
-		initial_hour = h
-		time = sin_speed * minutes_in_hour * initial_hour
+var time_speed = gamedata.game_speed
 
-func _ready() -> void:
+func timeset():
+	var initial_hour = gamedata.hour
 	time = sin_speed * minutes_in_hour * initial_hour
 
 func _process(delta: float) -> void:
