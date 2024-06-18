@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cyl6jw0huwvk6"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/pause.gd" id="1_vopsb"]
+[ext_resource type="Script" path="res://assets/scripts/UI/pause.gd" id="1_vopsb"]
 [ext_resource type="Shader" path="res://assets/shaders/blur.gdshader" id="2_o6k34"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8dhub"]

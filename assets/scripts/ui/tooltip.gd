@@ -10,6 +10,9 @@ extends Control
 @onready var slots = $MarginContainer/VBoxContainer/Slots
 var offset:int = -125
 
+func _ready():
+	object_invisible()
+
 func _process(delta):
 	if object_1.visible && object_2.visible:
 		position = get_global_mouse_position()
@@ -59,7 +62,6 @@ func plant_condition(condition):
 			return "Выросло"
 		3:
 			return "Погибло"
-
 
 func object(object_name:String, object_description:String, object_level:int, object_slots:int):
 	if object_slots > 0:

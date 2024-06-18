@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cdkkhvt00yv8f"
-path="res://.godot/imported/object_1.png-dc52ecc7643e1862947cdf0d78f218ad.ctex"
+path="res://.godot/imported/object_1.png-0e35a4e0eddadd1b0eca806fbdc1ed6f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/resources/buildings/mailbox/object_1.png"
-dest_files=["res://.godot/imported/object_1.png-dc52ecc7643e1862947cdf0d78f218ad.ctex"]
+source_file="res://assets/resources/buildings/Mailbox/object_1.png"
+dest_files=["res://.godot/imported/object_1.png-0e35a4e0eddadd1b0eca806fbdc1ed6f.ctex"]
 
 [params]
 

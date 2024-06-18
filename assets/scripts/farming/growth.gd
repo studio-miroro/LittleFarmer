@@ -7,7 +7,7 @@ var level:int
 func _ready():
 	if crops.crops.has("atlas"):
 		if typeof(crops.crops["atlas"]) == TYPE_OBJECT and texture is CompressedTexture2D:
-			$".".texture = texture
+			texture = texture
 		else:
 			push_error("Atlas is not a CompressedTexture2D.")
 	else:
@@ -16,11 +16,12 @@ func _ready():
 func _process(delta):
 	if plant.plantID != 0:
 		if level == crops.crops[plant.plantID]["growthLevel"]\
-		and plant.condition != plant.phases.increased:
-			plant.condition = plant.phases.increased
-			timer.stop()
+		and plant.condition != plant.phases.INCREASED:
+			plant_increased()
 	else:
 		push_error("Invalid variable index: " + str(plant.plantID))
+		remove_child(plant)
+		queue_free()
 		
 func rect(id):
 	if crops.crops[id].has("X")\
@@ -30,9 +31,13 @@ func rect(id):
 	else:
 		push_error("The X and Y coordinates cannot be determined.")
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	if level < crops.crops[plant.plantID]["growthLevel"]:
 		region_rect.position.x += 16
 		level += 1
 	else:
-		push_error("An unknown error has occurred.")
+		plant_increased()
+
+func plant_increased():
+	plant.condition = plant.phases.INCREASED
+	timer.stop()

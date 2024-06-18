@@ -1,6 +1,6 @@
 extends Node
 
-var lang:Dictionary = {
+var langDictionary = {
 	"ISO": {
 		key = "content"
 	}

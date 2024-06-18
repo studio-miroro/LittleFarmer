@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkff5xvqcxcdu"]
+
+[ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_hinp5"]
+[ext_resource type="Script" path="res://assets/scripts/buildings/house.gd" id="2_xfd4e"]
+[ext_resource type="Texture2D" uid="uid://exdd2rlucmpx" path="res://assets/resources/buildings/house/level-1/object_0.png" id="3_g5uuc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dobrp"]
+shader = ExtResource("1_hinp5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dnuuj"]
+shader = ExtResource("1_hinp5")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lj4nn"]
+size = Vector2(383.362, 479.202)
+
+[node name="House" type="Node2D"]
+material = SubResource("ShaderMaterial_dobrp")
+script = ExtResource("2_xfd4e")
+
+[node name="Area2D" type="Area2D" parent="."]
+z_as_relative = false
+material = SubResource("ShaderMaterial_dnuuj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(6.77626e-21, 7)
+scale = Vector2(0.0939061, 0.0939061)
+shape = SubResource("RectangleShape2D_lj4nn")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 4
+z_as_relative = false
+texture = ExtResource("3_g5uuc")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

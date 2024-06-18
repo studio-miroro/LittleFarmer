@@ -8,22 +8,18 @@ extends Node2D
 @onready var sprite = $Sprite2D
 @onready var timer = $Timer
 
-enum phases {planted,growing,increased,dead}
-enum fertilizers {nothing}
+enum phases {PLANTED,GROWING,INCREASED,DEAD}
+enum fertilizers {NOTHING}
 var plantID:int = 0
-var condition:int = phases.planted
-var fertilizer:int = fertilizers.nothing
+var condition:int = phases.PLANTED
+var fertilizer:int = fertilizers.NOTHING
 var degree:int = 0
 
 func _process(delta):
-	if Input.is_action_just_pressed("toggle_dirt"):
-		print(str(plantID) + " " + str(condition) + " " + str(degree))
 	if pause.paused:
-		if !timer.paused:
-			timer.set_paused(true)
+		timer.set_paused(true)
 	else:
-		if timer.paused:
-			timer.set_paused(false)
+		timer.set_paused(false)
 
 func plant(id):
 	self.plantID = id
@@ -35,63 +31,45 @@ func check(id,pos):
 	var source_id = 0
 	if collision.cell_check(pos, collision.farming_layer)\
 	and !collision.cell_check(pos, collision.watering_layer)\
-	and condition != phases.dead:
-		self.condition = phases.planted
+	and condition != phases.DEAD:
+		self.condition = phases.PLANTED
 		await get_tree().create_timer(
 				crops.crops["checkWatering"]
 			).timeout
 		if degree < crops.crops[plantID]["mortality"]:
 			degree += 1
 		else:
-			self.condition = phases.dead
+			self.condition = phases.DEAD
 		check(id,pos)
 
 	elif collision.cell_check(pos, collision.farming_layer)\
 	and collision.cell_check(pos, collision.watering_layer)\
-	and condition != phases.dead:
-		self.condition = phases.growing
+	and condition != phases.DEAD:
+		self.condition = phases.GROWING
 		time()
 	else:pass
 		
 func time():
 	match condition:
-		phases.growing:
+		phases.GROWING:
 			timer.wait_time = randf_range(
 				crops.crops[plantID]["growthRate"] * 0.43,
 				crops.crops[plantID]["growthRate"]
 			)
 			timer.start()
-		phases.increased:
+		phases.INCREASED:
 			timer.stop()
-#
+			
 func _on_collision_mouse_entered():
 	if !pause.paused:
-		if grid.mode == grid.gridmode.nothing:
-			ui.tooltip_plant(
-				get_global_mouse_position(),
-				plantID,
-				position,
-				condition,
-				true
-			)
+		if grid.mode == grid.gridmode.NOTHING:
+			ui.tooltip_plant(get_global_mouse_position(), plantID, position, condition, true)
 	else:
-		ui.tooltip_plant(
-			Vector2(0,0),
-			0,
-			Vector2(0,0),
-			0,
-			false
-		)
+		ui.tooltip_plant(Vector2(0,0), 0, Vector2(0,0), 0, false)
 func _on_collision_mouse_exited():
 	if !pause.paused:
-		if grid.mode == grid.gridmode.nothing:
-			ui.tooltip_plant(
-				Vector2(0,0),
-				0,
-				Vector2(0,0),
-				0,
-				false
-			)
+		if grid.mode == grid.gridmode.NOTHING:
+			ui.tooltip_plant(Vector2(0,0), 0, Vector2(0,0), 0, false)
 
 func get_data():
 	return {
@@ -105,27 +83,18 @@ func get_data():
 		"position": tilemap.local_to_map(global_position),
 	}
 
-func set_data(ID, condition, degree, region_rect_x, region_rect_y, level, obj_position):
-	self.plantID = ID
+func set_data(id:int, condition:int, degree:int, region_rect_x:int, region_rect_y:int, level:int, obj_position:Vector2i):
+	self.plantID = id
 	self.condition = condition
 	self.degree = degree
 	sprite.region_rect.position.x = region_rect_x
 	sprite.region_rect.position.y = region_rect_y
 	sprite.level = level
-	print(
-		"plantID: " 
-		+ str(plantID) + 
-		", condition: " 
-		+ str(condition) + 
-		", degree: " 
-		+ str(degree) + 
-		", rect_x: " 
-		+ str(region_rect_x) + 
-		", rect_y: " 
-		+ str(region_rect_y) +
-		", level: " 
-		+ str(level)
-		)
+	timer.wait_time = randf_range(
+		crops.crops[plantID]["growthRate"] * 0.43,
+		crops.crops[plantID]["growthRate"]
+	)
+	timer.start()
 	check(plantID, obj_position)
 
 func check_node():

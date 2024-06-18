@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dgmow3vhiqfk8"]
 
 [ext_resource type="Texture2D" uid="uid://bkhp6g63k4272" path="res://assets/resources/nature/clouds/cloud_0.png" id="1_1ep74"]
-[ext_resource type="Script" path="res://assets/scripts/ui/camera/movement.gd" id="2_t2wku"]
+[ext_resource type="Script" path="res://assets/scripts/UI/camera/movement.gd" id="2_t2wku"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o217l"]
 

@@ -41,4 +41,5 @@ func crop(id:int, pos:Vector2):
 func destroy(target_position: Vector2):
 	for child in get_children():
 		if child.position == target_position:
+			remove_child(child)
 			child.queue_free()

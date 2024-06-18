@@ -1,10 +1,11 @@
 extends Control
 
 @onready var pause = get_node("/root/World/UI/Pause")
+@onready var cycle = TimeWorld.new()
 @onready var timer = $Timer
 @onready var label = $Label
 
-var speed = gamedata.game_speed
+@onready var speed = cycle.game_speed
 		
 func _ready():
 	timer.wait_time = speed
@@ -12,16 +13,17 @@ func _ready():
 	timer.start()
 	
 func _process(_delta):
-	label.text = str(gamedata.hour) + ":" + str(gamedata.minute) + "0"
+	label.text = str(cycle.hour) + ":" + str(cycle.minute) + "0"
 		
 func _on_timer_timeout():
-	if gamedata.minute >= 0 && !pause.paused:
-		gamedata.minute = gamedata.minute + 1
-	if gamedata.minute > 5 && !pause.paused:
-		gamedata.minute = 0
-		gamedata.hour = gamedata.hour + 1
-	if gamedata.hour > 23 && !pause.paused:
-		gamedata.hour = 0
+	if !pause.paused:
+		if cycle.minute >= 0:
+			cycle.minute += 1
+		if cycle.minute > 5:
+			cycle.minute = 0
+			cycle.hour = cycle.hour + 1
+		if cycle.hour > 23:
+			cycle.hour = 0
 		
 func timerupdate():
 	if !pause.paused:

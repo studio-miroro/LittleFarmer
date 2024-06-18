@@ -1,9 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://dmrj3nbdfyut"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/tooltip.gd" id="1_sb5xd"]
+[ext_resource type="Script" path="res://assets/scripts/UI/tooltip.gd" id="1_sb5xd"]
 
 [node name="ObjectInfo" type="Control"]
-modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 100.0

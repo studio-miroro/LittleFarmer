@@ -1,21 +1,30 @@
 extends Control
 
+class_name PauseMenu
+
+@onready var ui = get_node("/root/World/UI")
+@onready var interface = get_node("/root/World/UI/Interface")
+@onready var player = Camera.new()
+@onready var camera = get_node("/root/World/Player/Camera2D")
+@onready var time = get_node("/root/World/UI/Interface/Time")
+@onready var blackout = get_node("/root/World/UI/Blackout")
+@onready var version:Label = $menu/version
 var paused: bool
 
 func _ready():
 	get_node("/root/World/UI").visible = true
-	$".".z_index = 1
-	$menu/version.text = "Версия: " + ProjectSettings.get_setting("application/config/version")
+	z_index = 1
+	version.text = "Версия: " + ProjectSettings.get_setting("application/config/version")
 	paused = false
-	get_node("/root/World/Player").swing = true
+	player.swing = true
 	await get_tree().create_timer(0.75).timeout
-	get_node("/root/World/Player").swing = false
-	get_node("/root/World/UI/Blackout").blackout_reset(4)
-	get_node("/root/World/UI/Blackout").key_parameter("gameload")
-	get_node("/root/World/UI/Interface/Time").timerstop(false)
-	get_node("/root/World/UI/Interface/Time").timerupdate()
+	player.swing = false
+	blackout.blackout_reset(4)
+	blackout.key_parameter("gameload")
+	time.timerstop(false)
+	time.timerupdate()
 	await get_tree().create_timer(0.25).timeout
-	get_node("/root/World/Player/Camera2D").switch = true
+	camera.switch = true
 
 func _process(_delta):
 	if Input.is_action_just_pressed("menu"):
@@ -43,7 +52,7 @@ func pausemenu():
 		get_node("/root/World/UI/Interface/Tools Menu/Tools Hud/Container/Building").release_focus()
 		get_node("/root/World/UI/Debugger").visible = false
 		get_node("/root/World/UI/Interface").visible = false
-		get_node("/root/World/Buildings/Grid").mode = get_node("/root/World/Buildings/Grid").gridmode.nothing
+		get_node("/root/World/Buildings/Grid").mode = get_node("/root/World/Buildings/Grid").gridmode.NOTHING
 		get_node("/root/World/Buildings/Grid").visible = false
 	else:
 		paused = false

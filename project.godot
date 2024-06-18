@@ -20,9 +20,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-gamedata="*res://assets/singletons/gamedata.gd"
 crops="*res://assets/scripts/farming/crops.gd"
-items="*res://assets/singletons/items.gd"
+items="*res://assets/scripts/UI/inventory/items.gd"
 json="*res://assets/singletons/json.gd"
 
 [display]
