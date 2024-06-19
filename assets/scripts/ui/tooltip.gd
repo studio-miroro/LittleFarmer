@@ -10,6 +10,8 @@ extends Control
 @onready var slots = $MarginContainer/VBoxContainer/Slots
 var offset:int = -125
 
+var crops = Crops.new()
+
 func _ready():
 	object_invisible()
 
@@ -35,22 +37,24 @@ func tooltip_plant(
 	plant_id:int,
 	plant_position:Vector2,
 	condition:int,
+	fertilizer:int,
 	object_visible:bool
 	):
 	if object_visible:
 		object_visible()
 		position = mouse_position
-		set_plant_info(plant_id,plant_position,condition)
+		set_plant_info(plant_id,plant_position,condition,fertilizer)
 	else:
 		object_invisible()
 		
-func set_plant_info(id, pos, condition):
+func set_plant_info(id, pos, condition, fertilizer):
 	header.text = crops.crops[id]["caption"]
 	description.text = "Состояние: " + str(plant_condition(condition))
-	level.visible = false
+	level.visible = true
+	level.text = "Удобрено: " + str(plant_fertilizer(fertilizer))
 	slots.visible = false
-	margin.offset_top = offset + 25
-	margin.offset_bottom = offset + 25
+	margin.offset_top = offset
+	margin.offset_bottom = offset
 	
 func plant_condition(condition):
 	match condition:
@@ -62,7 +66,18 @@ func plant_condition(condition):
 			return "Выросло"
 		3:
 			return "Погибло"
-
+			
+func plant_fertilizer(fertilizer):
+	match fertilizer:
+		0:
+			return "Отсутствует"
+		1:
+			return "Компост"
+		2:
+			return "Перегной"
+		3:
+			return "Навоз"
+		
 func object(object_name:String, object_description:String, object_level:int, object_slots:int):
 	if object_slots > 0:
 		slots.visible = true

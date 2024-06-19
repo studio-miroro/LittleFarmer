@@ -1,5 +1,6 @@
 extends Node2D
 
+class_name Crops
 var crops:Dictionary = {
 	"atlas": load("res://assets/resources/farming/crops.png"),
 	"width": 16,

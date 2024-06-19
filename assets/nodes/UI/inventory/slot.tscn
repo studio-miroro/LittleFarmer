@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://do4e681e4p00n"]
+
+[ext_resource type="Script" path="res://assets/nodes/UI/inventory/slot.gd" id="1_drkq0"]
+[ext_resource type="Texture2D" uid="uid://cfxeyh4ehrx5n" path="res://assets/resources/UI/inventory/items/seeds packets/seeds_1.png" id="2_xengw"]
+
+[node name="Slot" type="Panel"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_drkq0")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterContainer/Panel"]
+texture = ExtResource("2_xengw")

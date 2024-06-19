@@ -154,11 +154,11 @@ func get_content(group:String):
 		"Plants":
 			return get_children_data(farming)
 		"Builds":
-			return {
-				"House": {
-					"Level": house.get_datat(),
-				}
-			}
+			return {}
+				#"House": {
+					#"Level": house.get_data(),
+				#}
+			#}
 
 func get_position_children(parent:Node2D) -> Array:
 	var children = parent.get_children()

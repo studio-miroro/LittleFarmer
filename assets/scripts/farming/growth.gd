@@ -2,6 +2,7 @@ extends Sprite2D
 
 @onready var plant = $".."
 @onready var timer = $"../Timer"
+var crops = Crops.new()
 var level:int
 
 func _ready():

@@ -38,7 +38,7 @@ func crop(id:int, pos:Vector2):
 		plant.plant(id)
 		plant.check(id,pos)
 
-func destroy(target_position: Vector2):
+func plant_destroy(target_position: Vector2):
 	for child in get_children():
 		if child.position == target_position:
 			remove_child(child)

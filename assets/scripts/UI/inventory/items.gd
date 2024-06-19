@@ -1,4 +1,6 @@
 extends Node
+
+class_name InventoryItems
 var items:Dictionary = {
 	# Семена
 	"seeds": {

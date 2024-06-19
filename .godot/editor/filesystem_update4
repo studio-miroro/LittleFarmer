@@ -1,16 +1,7 @@
-res://Levels/farm.tscn
-res://Assets/Resources/Nature/cycle-gradient.tres
-res://Assets/Nodes/Farming/plant.tscn
-res://Assets/Scripts/Buildings/animal stall.gd
-res://levels/farm.tscn
-res://assets/Resources/Nature/cycle-gradient.tres
 res://assets/nodes/farming/plant.tscn
-res://assets/Resources/nature/cycle-gradient.tres
-res://assets/resources/nature/cycle-gradient.tres
 res://assets/shaders/pixel.gdshader
 res://assets/shaders/blur.gdshader
-res://assets/singletons/json.gd
-res://licence.txt
-res://assets/scripts/UI/HUD/tools.gd
-res://assets/scripts/buildings/animal stall.gd
-res://assets/singletons/language.gd
+res://assets/resources/nature/cycle-gradient.tres
+res://assets/scripts/buildings/grid/grid.gd
+res://levels/farm.tscn
+res://assets/scripts/farming/plant.gd

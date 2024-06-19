@@ -1,6 +1,9 @@
+GridContainer
+Sprite2D
+Panel
+CenterContainer
 Node
 Button
-Sprite2D
 CollisionShape2D
 Area2D
 Timer
@@ -9,6 +12,3 @@ GPUParticles2D
 CPUParticles2D
 RichTextLabel
 TextEdit
-Panel
-Control
-RayCast2D

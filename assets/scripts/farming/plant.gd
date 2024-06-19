@@ -8,8 +8,9 @@ extends Node2D
 @onready var sprite = $Sprite2D
 @onready var timer = $Timer
 
+var crops = Crops.new()
 enum phases {PLANTED,GROWING,INCREASED,DEAD}
-enum fertilizers {NOTHING}
+enum fertilizers {NOTHING, COMPOST, HUMUS, MANURE}
 var plantID:int = 0
 var condition:int = phases.PLANTED
 var fertilizer:int = fertilizers.NOTHING
@@ -24,6 +25,21 @@ func _process(delta):
 func plant(id):
 	self.plantID = id
 	sprite.rect(id)
+	
+func set_fertilizer(a):
+	match a:
+		0:
+			self.fertilizer = fertilizers.NOTHING
+			print("Fertilizer equal nothing")
+		1:
+			self.fertilizer = fertilizers.COMPOST
+			print("Fertilizer equal compost")
+		2:
+			self.fertilizer = fertilizers.HUMUS
+			print("Fertilizer equal humus")
+		3:
+			self.fertilizer = fertilizers.MANURE
+			print("Fertilizer equal manure")
 	
 func check(id,pos):
 	var mouse_position = tilemap.local_to_map(get_global_mouse_position())
@@ -46,30 +62,51 @@ func check(id,pos):
 	and collision.cell_check(pos, collision.watering_layer)\
 	and condition != phases.DEAD:
 		self.condition = phases.GROWING
-		time()
+		set_fertilizer(randi_range(0,3))
+		growth()
 	else:pass
 		
-func time():
-	match condition:
-		phases.GROWING:
-			timer.wait_time = randf_range(
-				crops.crops[plantID]["growthRate"] * 0.43,
-				crops.crops[plantID]["growthRate"]
-			)
-			timer.start()
-		phases.INCREASED:
-			timer.stop()
+func growth():
+	if condition == phases.GROWING:
+		match fertilizer:
+			fertilizers.NOTHING:
+				timer.wait_time = randi_range(
+					crops.crops[plantID]["growthRate"] * 0.849,
+					crops.crops[plantID]["growthRate"]
+				)
+				timer.start()
+			fertilizers.COMPOST:
+				timer.wait_time = randi_range(
+					crops.crops[plantID]["growthRate"] * 0.621,
+					crops.crops[plantID]["growthRate"] * 0.995
+				)
+				timer.start()
+			fertilizers.HUMUS:
+				timer.wait_time = randi_range(
+					crops.crops[plantID]["growthRate"] * 0.431,
+					crops.crops[plantID]["growthRate"] * 0.894
+				)
+				timer.start()
+			fertilizers.MANURE:
+				timer.wait_time = randi_range(
+					crops.crops[plantID]["growthRate"] * 0.332,
+					crops.crops[plantID]["growthRate"] * 0.792
+				)
+				timer.start()
+		print(timer.wait_time)
+	if condition == phases.INCREASED:
+		timer.stop()
 			
 func _on_collision_mouse_entered():
 	if !pause.paused:
 		if grid.mode == grid.gridmode.NOTHING:
-			ui.tooltip_plant(get_global_mouse_position(), plantID, position, condition, true)
+			ui.tooltip_plant(get_global_mouse_position(), plantID, position, condition, fertilizer, true)
 	else:
-		ui.tooltip_plant(Vector2(0,0), 0, Vector2(0,0), 0, false)
+		ui.tooltip_plant(Vector2(0,0), 0, Vector2(0,0), 0, -1, false)
 func _on_collision_mouse_exited():
 	if !pause.paused:
 		if grid.mode == grid.gridmode.NOTHING:
-			ui.tooltip_plant(Vector2(0,0), 0, Vector2(0,0), 0, false)
+			ui.tooltip_plant(Vector2(0,0), 0, Vector2(0,0), 0, -1, false)
 
 func get_data():
 	return {
@@ -90,11 +127,7 @@ func set_data(id:int, condition:int, degree:int, region_rect_x:int, region_rect_
 	sprite.region_rect.position.x = region_rect_x
 	sprite.region_rect.position.y = region_rect_y
 	sprite.level = level
-	timer.wait_time = randf_range(
-		crops.crops[plantID]["growthRate"] * 0.43,
-		crops.crops[plantID]["growthRate"]
-	)
-	timer.start()
+	growth()
 	check(plantID, obj_position)
 
 func check_node():

@@ -68,7 +68,7 @@ func _process(delta):
 								collision.seeds_layer,
 								tile_mouse_pos
 							)
-							farming.destroy(
+							farming.plant_destroy(
 								tilemap.map_to_local(
 									tile_mouse_pos
 									)
@@ -78,7 +78,7 @@ func _process(delta):
 								collision.seeds_layer,
 								tile_mouse_pos
 							)
-							farming.destroy(
+							farming.plant_destroy(
 								tilemap.map_to_local(
 									tile_mouse_pos
 									)
@@ -114,7 +114,7 @@ func _process(delta):
 			gridmode.SEEDS:
 				collision.PlantingCollisionCheck()
 				if need_check:
-					var ID = randi_range(1,4)
+					var ID = 4
 					if collision.PlantingCollisionCheck():
 						farming.crop(ID, tile_mouse_pos)
 				need_check = false
