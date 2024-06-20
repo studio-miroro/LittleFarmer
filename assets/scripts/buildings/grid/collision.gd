@@ -23,92 +23,92 @@ var ground_terrain = 0
 var watering_terrain = 0
 var farming_terrain = 0
 
-func DestroyCollisionCheck():
+func destroy_collision_check():
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
-	if cell_check(tile_mouse_pos, ground_layer)\
-	and !cell_check(tile_mouse_pos, farming_layer)\
-	and !cell_check(tile_mouse_pos, watering_layer)\
-	and !cell_check(tile_mouse_pos, seeds_layer):
+	if check_cell(tile_mouse_pos, ground_layer)\
+	and !check_cell(tile_mouse_pos, farming_layer)\
+	and !check_cell(tile_mouse_pos, watering_layer)\
+	and !check_cell(tile_mouse_pos, seeds_layer):
 		grid.change_texture(false)
 		return 0
-	elif cell_check(tile_mouse_pos, farming_layer)\
-	and !cell_check(tile_mouse_pos, watering_layer)\
-	and !cell_check(tile_mouse_pos, seeds_layer):
+	elif check_cell(tile_mouse_pos, farming_layer)\
+	and !check_cell(tile_mouse_pos, watering_layer)\
+	and !check_cell(tile_mouse_pos, seeds_layer):
 		grid.change_texture(false)
 		return 1
-	elif cell_check(tile_mouse_pos, farming_layer)\
-	and cell_check(tile_mouse_pos, watering_layer)\
-	and !cell_check(tile_mouse_pos, seeds_layer):
+	elif check_cell(tile_mouse_pos, farming_layer)\
+	and check_cell(tile_mouse_pos, watering_layer)\
+	and !check_cell(tile_mouse_pos, seeds_layer):
 		grid.change_texture(false)
 		return 2
-	elif cell_check(tile_mouse_pos, farming_layer)\
-	and cell_check(tile_mouse_pos, watering_layer)\
-	and cell_check(tile_mouse_pos, seeds_layer):
+	elif check_cell(tile_mouse_pos, farming_layer)\
+	and check_cell(tile_mouse_pos, watering_layer)\
+	and check_cell(tile_mouse_pos, seeds_layer):
 		grid.change_texture(false)
 		return 3
-	elif cell_check(tile_mouse_pos, farming_layer)\
-	and !cell_check(tile_mouse_pos, watering_layer)\
-	and cell_check(tile_mouse_pos, seeds_layer):
+	elif check_cell(tile_mouse_pos, farming_layer)\
+	and !check_cell(tile_mouse_pos, watering_layer)\
+	and check_cell(tile_mouse_pos, seeds_layer):
 		grid.change_texture(false)
 		return 4
 	else:
 		grid.change_texture(true)
 		return -1
 		
-func FarmingCollisionCheck():
+func farming_collision_check():
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
-	if check_custom_data(tile_mouse_pos, can_place_dirt_custom_data, ground_layer) and !cell_check(tile_mouse_pos, farming_layer):
+	if check_custom_data(tile_mouse_pos, can_place_dirt_custom_data, ground_layer) and !check_cell(tile_mouse_pos, farming_layer):
 		grid.change_texture(false)
 		return true
 	else:
 		grid.change_texture(true)
 		return false
 		
-func WateringCollisionCheck():
+func watering_collision_check():
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 	if check_custom_data(tile_mouse_pos, can_place_seed_custom_data, farming_layer)\
-	and !cell_check(tile_mouse_pos, watering_layer):
+	and !check_cell(tile_mouse_pos, watering_layer):
 		grid.change_texture(false)
 		return true
 	else:
 		grid.change_texture(true)
 		return false
 
-func PlantingCollisionCheck():
+func planting_collision_check():
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
-	if cell_check(tile_mouse_pos, farming_layer)\
-	and !cell_check(tile_mouse_pos, watering_layer)\
-	and !cell_check(tile_mouse_pos, seeds_layer):
+	if check_cell(tile_mouse_pos, farming_layer)\
+	and !check_cell(tile_mouse_pos, watering_layer)\
+	and !check_cell(tile_mouse_pos, seeds_layer):
 		grid.change_texture(false)
 		return true
-	elif cell_check(tile_mouse_pos, farming_layer)\
-	and cell_check(tile_mouse_pos, watering_layer)\
-	and !cell_check(tile_mouse_pos, seeds_layer):
+	elif check_cell(tile_mouse_pos, farming_layer)\
+	and check_cell(tile_mouse_pos, watering_layer)\
+	and !check_cell(tile_mouse_pos, seeds_layer):
 		grid.change_texture(false)
 		return true
 	else:
 		grid.change_texture(true)
 		return false
 	
-func BuildingCollisionCheck():
+func building_collision_check():
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 	grid.change_texture(false)
 	return true
 	
-func check_custom_data(tile_mouse,custom_data_layer,layer):
+func check_custom_data(tile_mouse, custom_data_layer, layer):
 	var tiledata: TileData = tilemap.get_cell_tile_data(layer,tile_mouse)
 	if tiledata:
 		return tiledata.get_custom_data(custom_data_layer)
 	else:
 		return false
 
-func cell_check(mouse, current_tile):
-	if tilemap.get_cell_source_id(current_tile,mouse) == -1:
+func check_cell(mouse, current_tile):
+	if tilemap.get_cell_source_id(current_tile, mouse) == -1:
 		return false
 	else:
 		return true

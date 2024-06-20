@@ -30,7 +30,10 @@ func _ready():
 	
 func _input(event):
 	if !pause.paused and mode != gridmode.NOTHING:
-		if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed() and grid_object.visible:
+		if event is InputEventMouseButton\
+		and event.button_index == MOUSE_BUTTON_LEFT\
+		and event.is_pressed()\
+		and grid_object.visible:
 			need_check = true
 
 func _process(delta):
@@ -42,9 +45,9 @@ func _process(delta):
 		var watering_tile_position = []
 		match mode:
 			gridmode.DESTROY:
-				collision.DestroyCollisionCheck()
+				collision.destroy_collision_check()
 				if need_check:
-					match collision.DestroyCollisionCheck():
+					match collision.destroy_collision_check():
 						0:
 							tilemap.set_cells_terrain_connect(
 							collision.ground_layer,
@@ -84,11 +87,11 @@ func _process(delta):
 									)
 								)
 				need_check = false
-				
+
 			gridmode.FARMING:
-				collision.FarmingCollisionCheck()
+				collision.farming_collision_check()
 				if need_check:
-					if collision.FarmingCollisionCheck():
+					if collision.farming_collision_check():
 						farming_tile_position.append(tile_mouse_pos)
 						tilemap.set_cells_terrain_connect(
 							collision.farming_layer,
@@ -97,11 +100,11 @@ func _process(delta):
 							collision.farming_terrain
 							)
 				need_check = false
-				
+
 			gridmode.WATERING:
-				collision.WateringCollisionCheck()
+				collision.watering_collision_check()
 				if need_check:
-					if collision.WateringCollisionCheck():
+					if collision.watering_collision_check():
 						watering_tile_position.append(tile_mouse_pos)
 						tilemap.set_cells_terrain_connect(
 							collision.watering_layer,
@@ -110,19 +113,19 @@ func _process(delta):
 							collision.watering_terrain
 							)
 				need_check = false
-				
+
 			gridmode.SEEDS:
-				collision.PlantingCollisionCheck()
+				collision.planting_collision_check()
 				if need_check:
-					var ID = 4
-					if collision.PlantingCollisionCheck():
+					var ID = randi_range(1,4)
+					if collision.planting_collision_check():
 						farming.crop(ID, tile_mouse_pos)
 				need_check = false
 
 			gridmode.BUILDING:
-				collision.BuildingCollisionCheck()
+				collision.building_collision_check()
 				if need_check:
-					if collision.BuildingCollisionCheck():
+					if collision.building_collision_check():
 						ground_tile_position.append(tile_mouse_pos)
 						tilemap.set_cells_terrain_connect(
 							collision.ground_layer,

@@ -8,7 +8,7 @@ extends Node2D
 @onready var sprite = $Sprite2D
 
 var max_distance:int = 250
-var level:int = 1
+var level:int = 2
 var object: Dictionary = {
 	1: {
 		"name" = "Дом",
@@ -41,6 +41,12 @@ func _ready():
 			push_error("There is no key at index " + str(level) + ".")
 	else:
 		push_error("Index " + str(level) + " is not in the dictionary.")
+
+func get_data() -> Dictionary:
+	return {
+		"level": level,
+		"fume": object[level].get("fume")
+	}
 
 func _on_area_2d_mouse_entered():
 	var distance = round(global_position.distance_to(player.global_position))

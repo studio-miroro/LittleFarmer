@@ -154,11 +154,11 @@ func get_content(group:String):
 		"Plants":
 			return get_children_data(farming)
 		"Builds":
-			return {}
-				#"House": {
-					#"Level": house.get_data(),
-				#}
-			#}
+			return {
+				"House": {
+					"Level": house.get_data(),
+				}
+			}
 
 func get_position_children(parent:Node2D) -> Array:
 	var children = parent.get_children()
@@ -210,6 +210,7 @@ func plant_load(object:Node2D, object_name:String, position):
 	var plant_id		= get_key(path.plants, object_name, "plantID")
 	var condition		= get_key(path.plants, object_name, "condition")
 	var degree			= get_key(path.plants, object_name, "degree")
+	var fertilizer		= get_key(path.plants, object_name, "fertilizer")
 	var region_rect_x 	= get_key(path.plants, object_name, "region_rect.x")
 	var region_rect_y 	= get_key(path.plants, object_name, "region_rect.y")
 	var level 			= get_key(path.plants, object_name, "level_growth")
@@ -217,10 +218,11 @@ func plant_load(object:Node2D, object_name:String, position):
 	if plant_id != null\
 	and condition != null\
 	and degree != null\
+	and fertilizer != null\
 	and region_rect_x != null\
 	and region_rect_y != null\
 	and level != null:
-		object.set_data(plant_id, condition, degree, region_rect_x, region_rect_y, level, position)
+		object.set_data(plant_id, condition, degree, fertilizer, region_rect_x, region_rect_y, level, position)
 	else:
 		push_error("Data missing for node: " + object_name)
 

@@ -10,8 +10,8 @@ func crop(id:int, pos:Vector2):
 	var atlas_coords = Vector2i(0,3)
 	var source_id = 0
 	
-	if collision.cell_check(pos, collision.farming_layer)\
-	and !collision.cell_check(pos, collision.watering_layer):
+	if collision.check_cell(pos, collision.farming_layer)\
+	and !collision.check_cell(pos, collision.watering_layer):
 		tilemap.set_cell(
 			collision.seeds_layer,
 			pos,

@@ -6,15 +6,27 @@ var items:Dictionary = {
 	"seeds": {
 		1: {
 			"caption": "Семена моркови",
-			"description": "Короткое описание",
+			"description": "",
 			"price": 5,
-			"icon": 0#load("res://assets/resources/ui/items/seeds packets/carrot.png"),
+			"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
 		},
 		2: {
 			"caption": "Семена картофеля",
-			"description": "Короткое описание",
+			"description": "",
 			"price": 25,
-			"icon": 0#load("res://assets/resources/ui/items/seeds packets/potato.png"),
+			"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_2.png"),
+		},
+		3: {
+			"caption": "Семена редиса",
+			"description": "",
+			"price": 25,
+			"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_2.png"),
+		},
+		4: {
+			"caption": "Семена капусты",
+			"description": "",
+			"price": 25,
+			"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_2.png"),
 		},
 	},
 }
