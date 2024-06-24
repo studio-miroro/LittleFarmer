@@ -156,7 +156,7 @@ func get_content(group:String):
 		"Builds":
 			return {
 				"House": {
-					"Level": house.get_data(),
+					"Level": house.get_data("level"),
 				}
 			}
 

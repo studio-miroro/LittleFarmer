@@ -56,28 +56,6 @@ func set_plant_info(id, pos, condition, fertilizer):
 	margin.offset_top = offset
 	margin.offset_bottom = offset
 	
-func plant_condition(condition):
-	match condition:
-		0:
-			return "Посажено"
-		1:
-			return "Растет"
-		2:
-			return "Выросло"
-		3:
-			return "Погибло"
-			
-func plant_fertilizer(fertilizer):
-	match fertilizer:
-		0:
-			return "Отсутствует"
-		1:
-			return "Компост"
-		2:
-			return "Перегной"
-		3:
-			return "Навоз"
-		
 func object(object_name:String, object_description:String, object_level:int, object_slots:int):
 	if object_slots > 0:
 		slots.visible = true
@@ -98,6 +76,28 @@ func object(object_name:String, object_description:String, object_level:int, obj
 	description.text = object_description
 	level.text = "Уровень: "+str(object_level)
 	slots.text = "Вместимость: "+str(object_slots)
+	
+func plant_condition(condition):
+	match condition:
+		0:
+			return "Посажено"
+		1:
+			return "Растет"
+		2:
+			return "Выросло"
+		3:
+			return "Погибло"
+			
+func plant_fertilizer(fertilizer):
+	match fertilizer:
+		0:
+			return "Нет"
+		1:
+			return "Компост"
+		2:
+			return "Перегной"
+		3:
+			return "Навоз"
 	
 func object_visible():
 	object_1.visible = true

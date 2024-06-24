@@ -9,6 +9,7 @@ class_name PauseMenu
 @onready var time = get_node("/root/World/UI/Interface/Time")
 @onready var blackout = get_node("/root/World/UI/Blackout")
 @onready var version:Label = $menu/version
+
 var paused: bool
 
 func _ready():
@@ -54,6 +55,8 @@ func pausemenu():
 		get_node("/root/World/UI/Interface").visible = false
 		get_node("/root/World/Buildings/Grid").mode = get_node("/root/World/Buildings/Grid").gridmode.NOTHING
 		get_node("/root/World/Buildings/Grid").visible = false
+		get_node("/root/World/UI/Tooltip").tooltip(Vector2(0,0), "", "", 0, -1, false)
+		get_node("/root/World/Buildings/House").change_sprite(false)
 	else:
 		paused = false
 		get_node("/root/World/Player").swing = false

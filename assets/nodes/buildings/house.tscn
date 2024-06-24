@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_hinp5"]
 [ext_resource type="Script" path="res://assets/scripts/buildings/house.gd" id="2_xfd4e"]
 [ext_resource type="Texture2D" uid="uid://exdd2rlucmpx" path="res://assets/resources/buildings/house/level-1/object_0.png" id="3_g5uuc"]
-[ext_resource type="Texture2D" uid="uid://dn152kwo8skbk" path="res://assets/resources/buildings/house/level-2/-.png" id="4_a8jl5"]
+[ext_resource type="Texture2D" uid="uid://cepxwjna6bihx" path="res://assets/resources/buildings/house/level-2/ext_0.png" id="4_8kqi4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dobrp"]
 shader = ExtResource("1_hinp5")
@@ -33,9 +33,10 @@ z_index = 4
 z_as_relative = false
 texture = ExtResource("3_g5uuc")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D_2" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(32, 8)
-texture = ExtResource("4_a8jl5")
+texture = ExtResource("4_8kqi4")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

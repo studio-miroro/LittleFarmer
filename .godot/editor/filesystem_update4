@@ -3,5 +3,5 @@ res://assets/shaders/pixel.gdshader
 res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
 res://assets/nodes/buildings/house.tscn
-res://assets/singletons/json.gd
-res://assets/scripts/farming/plant.gd
+res://assets/scripts/buildings/house.gd
+res://assets/scripts/UI/pause.gd
