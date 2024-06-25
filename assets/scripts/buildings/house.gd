@@ -10,7 +10,7 @@ extends Node2D
 
 var max_distance:int = 250
 var level:int = 1
-var object: Dictionary = {
+var object:Dictionary = {
 	1: {
 		"caption" 		= "Дом",
 		"description" 	= "Простой домик.",
@@ -93,9 +93,7 @@ func get_data(keys:String):
 			return level
 
 func _on_area_2d_mouse_entered():
-	if !pause.paused:
-		change_sprite(true)
+	change_sprite(true)
 
 func _on_area_2d_mouse_exited():
-	if !pause.paused:
-		change_sprite(false)
+	change_sprite(false)

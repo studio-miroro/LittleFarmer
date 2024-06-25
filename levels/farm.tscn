@@ -1795,7 +1795,7 @@ texture = ExtResource("27_p6cot")
 z_index = 4
 position = Vector2(258, 37)
 
-[node name="Animal stall" parent="Buildings" instance=ExtResource("29_1mqwf")]
+[node name="Animal Stall" parent="Buildings" instance=ExtResource("29_1mqwf")]
 z_index = 4
 position = Vector2(200, 3)
 

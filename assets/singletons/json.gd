@@ -9,7 +9,7 @@ extends Node
 @onready var farming:Node2D 		= get_node("/root/World/Farming")
 @onready var house:Node2D			= get_node("/root/World/Buildings/House")
 @onready var storage:Node2D			= get_node("/root/World/Buildings/Storage")
-@onready var animal_stall:Node2D	= get_node("/root/World/Buildings/Animal stall")
+@onready var animal_stall:Node2D	= get_node("/root/World/Buildings/Animal Stall")
 @onready var silo:Node2D			= get_node("/root/World/Buildings/Silo")
 
 var object_created:int

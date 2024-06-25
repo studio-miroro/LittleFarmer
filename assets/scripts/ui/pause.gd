@@ -57,6 +57,10 @@ func pausemenu():
 		get_node("/root/World/Buildings/Grid").visible = false
 		get_node("/root/World/UI/Tooltip").tooltip(Vector2(0,0), "", "", 0, -1, false)
 		get_node("/root/World/Buildings/House").change_sprite(false)
+		get_node("/root/World/Buildings/Mailbox").change_sprite(false)
+		get_node("/root/World/Buildings/Storage").change_sprite(false)
+		get_node("/root/World/Buildings/Animal Stall").change_sprite(false)
+		get_node("/root/World/Buildings/Silo").change_sprite(false)
 	else:
 		paused = false
 		get_node("/root/World/Player").swing = false
