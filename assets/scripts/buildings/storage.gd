@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var ui = get_node("/root/World/UI/Tooltip")
+@onready var ui = get_node("/root/World/UI/HUD/Tooltip")
 @onready var pause = get_node("/root/World/UI/Pause")
 @onready var grid = get_node("/root/World/Buildings/Grid") 
 @onready var player = get_node("/root/World/Player")
@@ -13,6 +13,8 @@ var object: Dictionary = {
 	1: {
 		"caption" = "Старый склад",
 		"description" = "Для хранение чего-либо.",
+		"slots" = 10,
+		# Sprites
 		"default" = preload("res://Assets/Resources/Buildings/Storage/Level-1/object_0.png"),
 		"hover" = preload("res://Assets/Resources/Buildings/Storage/Level-1/object_1.png"),
 		"shadow" = preload("res://Assets/Resources/Buildings/Storage/Level-1/shadow.png"),
@@ -20,6 +22,8 @@ var object: Dictionary = {
 	2: {
 		"caption" = "Склад",
 		"description" = "Для хранение чего-либо.",
+		"slots" = 25,
+		# Sprites
 		"default" = preload("res://Assets/Resources/Buildings/Storage/Level-2/object_0.png"),
 		"hover" = preload("res://Assets/Resources/Buildings/Storage/Level-2/object_1.png"),
 		"shadow" = preload("res://Assets/Resources/Buildings/Storage/Level-2/shadow.png"),
@@ -43,10 +47,12 @@ func change_sprite(type:bool):
 	if type:
 		var distance = round(global_position.distance_to(player.global_position))
 		if grid.mode == grid.gridmode.NOTHING and distance < max_distance:
-			ui.tooltip(get_global_mouse_position(), object[level]["caption"], object[level]["description"], level, 0, true)
 			check_sprite("hover")
+			ui.tooltip(get_global_mouse_position(), object[level]["caption"], object[level]["description"], level, 0, true)
+			
 	else:
 		check_sprite("default")
+		ui.tooltip(Vector2(0,0), "", "", 0, -1, false)
 		
 func check_sprite(key:String):
 	if object.has(level):
@@ -60,8 +66,28 @@ func check_sprite(key:String):
 	else:
 		push_error("Index " + str(level) + " is not in the dictionary.")
 
+func get_data(key:String, inDictionary:bool):
+	if inDictionary:
+		if object.has(level):
+			if object[level].has(key):
+				return object[level].get(key)
+			else:
+				push_error("The " + str(key) + " key stores a type that is not an object.")
+				return null
+		else:
+			push_error("Index " + str(level) + " is not in the dictionary.")
+			return null
+	else:
+		match key:
+			"level":
+				return level
+			_:
+				return null
+				push_error("The specified key (" + str(key) + ") does not exist.")
+
 func _on_area_2d_mouse_entered():
-	change_sprite(true)
+	if !pause.paused:
+		change_sprite(true)
 
 func _on_area_2d_mouse_exited():
 	change_sprite(false)

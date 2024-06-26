@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://3w6lj8hrhrxx"]
 
-[ext_resource type="Script" path="res://assets/scripts/UI/blackout.gd" id="1_0rhck"]
+[ext_resource type="Script" path="res://assets/scripts/UI/HUD/blackout.gd" id="1_0rhck"]
 
 [sub_resource type="Animation" id="Animation_b8tbp"]
 resource_name = "Blackout"

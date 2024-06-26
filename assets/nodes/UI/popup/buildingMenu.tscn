@@ -1,0 +1,198 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpmceytvqnc7d"]
+
+[ext_resource type="PackedScene" uid="uid://cps3s5crjjsv1" path="res://assets/nodes/UI/popup/itemBuildingMenu.tscn" id="1_0tvh1"]
+[ext_resource type="Script" path="res://assets/scripts/UI/popup/buildingMenu/buildingMenu.gd" id="1_bnylh"]
+
+[sub_resource type="Animation" id="Animation_bduf1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p55vt"]
+resource_name = "transform"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_window"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1drgd"]
+resource_name = "transform_reset"
+length = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_window"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6ua4"]
+_data = {
+"RESET": SubResource("Animation_bduf1"),
+"transform": SubResource("Animation_p55vt"),
+"transform_reset": SubResource("Animation_1drgd")
+}
+
+[node name="BuildingMenu" type="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bnylh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -192.0
+offset_right = 320.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -172.0
+offset_right = 300.0
+offset_bottom = 172.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Items" type="ScrollContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/Items"]
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 2
+
+[node name="Item_BuildingMenu" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
+layout_mode = 2
+
+[node name="Item_BuildingMenu5" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
+layout_mode = 2
+
+[node name="Item_BuildingMenu2" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
+layout_mode = 2
+
+[node name="Item_BuildingMenu3" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
+layout_mode = 2
+
+[node name="Item_BuildingMenu4" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
+layout_mode = 2
+
+[node name="Item_BuildingMenu6" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
+layout_mode = 2
+
+[node name="Item_BuildingMenu7" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
+layout_mode = 2
+
+[node name="Item_BuildingMenu8" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
+layout_mode = 2
+
+[node name="Item_BuildingMenu9" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
+layout_mode = 2
+
+[node name="Info" type="ScrollContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(308, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Info"]
+custom_minimum_size = Vector2(308, 0)
+layout_mode = 2
+
+[node name="ObjectName" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "Object.name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="ObjectDescription" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Object.description "
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 631.0
+offset_top = -19.0
+offset_right = 649.0
+offset_bottom = 12.0
+text = "X"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k6ua4")
+}
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

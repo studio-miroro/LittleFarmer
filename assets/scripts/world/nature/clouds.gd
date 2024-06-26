@@ -13,10 +13,10 @@ extends CanvasGroup
 	preload("res://assets/resources/nature/clouds/cloud_9.png"),
 	preload("res://assets/resources/nature/clouds/cloud_10.png")
 ]
-@onready var pause = PauseMenu.new()
-@onready var timer = $CloudTimer
-var object = preload("res://assets/nodes/nature/clouds.tscn")
-var max_distance:float = 600
+@onready var pause 			= PauseMenu.new()
+@onready var timer:Timer	= $CloudTimer
+var object:PackedScene 		= preload("res://assets/nodes/nature/clouds.tscn")
+var max_distance:float 		= 600
 
 func cloud_spawn():
 	var distance = round(global_position.distance_to(get_node("/root/World/Player").global_position))
@@ -27,7 +27,7 @@ func cloud_spawn():
 		var choose_texture:Texture = sprites[texture_id]
 		
 		cloud.texture = choose_texture
-		cloud.animation()
+		cloud.animation(true)
 		cloud_pos(cloud, true)
 		add_child(cloud)
 	else:pass

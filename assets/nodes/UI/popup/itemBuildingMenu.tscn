@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://cps3s5crjjsv1"]
+
+[ext_resource type="Texture2D" uid="uid://luk26vkqeijd" path="res://assets/resources/buildings/well/icon.png" id="1_okoej"]
+
+[node name="Item_BuildingMenu" type="Control"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 64.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Button"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 167.0
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Button/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_okoej")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Button/HBoxContainer"]
+layout_mode = 2
+text = "Object.caption"
+vertical_alignment = 1

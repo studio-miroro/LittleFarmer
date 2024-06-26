@@ -3,7 +3,7 @@ extends Node
 @onready var plant_node:PackedScene = preload("res://assets/nodes/farming/plant.tscn")
 @onready var tilemap:TileMap 		= get_node("/root/World/Tilemap")
 @onready var cycle:Node2D 			= get_node("/root/World/Cycle")
-@onready var camera:Node2D 			= get_node("/root/World/Player")
+@onready var player:Node2D 			= get_node("/root/World/Player")
 @onready var grid:Node2D 			= get_node("/root/World/Buildings/Grid")
 @onready var gridCollision:Node2D 	= get_node("/root/World/Buildings/Grid/GridCollision")
 @onready var farming:Node2D 		= get_node("/root/World/Farming")
@@ -126,9 +126,9 @@ func get_content(group:String):
 		"Player":
 			return {
 				"Player": {
-					"X": round(camera.position.x),
-					"Y": round(camera.position.y),
-					"Balance": camera.money,
+					"X": round(player.position.x),
+					"Y": round(player.position.y),
+					"Balance": player.money,
 				}
 			}
 		"World":
@@ -156,8 +156,12 @@ func get_content(group:String):
 		"Builds":
 			return {
 				"House": {
-					"Level": house.get_data("level"),
-				}
+					"Level": house.get_data("level", false),
+				},
+				"Storage": {
+					"Level": storage.get_data("level", false),
+					"Slots": storage.get_data("slots", true),
+				},
 			}
 
 func get_position_children(parent:Node2D) -> Array:
@@ -256,6 +260,6 @@ func time_load() -> void:
 	cycle.timeset()
 
 func player_load() -> void:
-	camera.position.x 	= get_key(path.player, "Player", "X")
-	camera.position.y 	= get_key(path.player, "Player", "Y")
-	camera.money 		= get_key(path.player, "Player", "Balance")
+	player.position.x 	= get_key(path.player, "Player", "X")
+	player.position.y 	= get_key(path.player, "Player", "Y")
+	player.money 		= get_key(path.player, "Player", "Balance")

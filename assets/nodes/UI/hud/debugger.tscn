@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ugypr7xdq68w"]
 
-[ext_resource type="Script" path="res://assets/scripts/UI/debugger.gd" id="1_myb2b"]
+[ext_resource type="Script" path="res://assets/scripts/UI/HUD/debugger.gd" id="1_myb2b"]
 
 [node name="Debugger" type="Control"]
 layout_mode = 3

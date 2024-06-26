@@ -1,15 +1,16 @@
-[gd_scene load_steps=50 format=3 uid="uid://4vypwfxar3e"]
+[gd_scene load_steps=51 format=3 uid="uid://4vypwfxar3e"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_ieipv"]
-[ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/UI/tooltip.tscn" id="2_otbj1"]
-[ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/UI/blackout.tscn" id="3_1lalu"]
+[ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/UI/hud/tooltip.tscn" id="2_otbj1"]
+[ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/UI/hud/blackout.tscn" id="3_1lalu"]
 [ext_resource type="PackedScene" uid="uid://cyl6jw0huwvk6" path="res://assets/nodes/UI/pause.tscn" id="4_yubjk"]
-[ext_resource type="PackedScene" uid="uid://c50737uagx074" path="res://assets/nodes/UI/hud.tscn" id="5_wan5o"]
-[ext_resource type="PackedScene" uid="uid://ugypr7xdq68w" path="res://assets/nodes/UI/debugger.tscn" id="6_0i3q1"]
-[ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/UI/cursor.tscn" id="7_g3cy5"]
+[ext_resource type="PackedScene" uid="uid://bpmceytvqnc7d" path="res://assets/nodes/UI/popup/buildingMenu.tscn" id="5_v6eft"]
+[ext_resource type="PackedScene" uid="uid://c50737uagx074" path="res://assets/nodes/UI/hud/hud.tscn" id="5_wan5o"]
+[ext_resource type="PackedScene" uid="uid://ugypr7xdq68w" path="res://assets/nodes/UI/hud/debugger.tscn" id="6_0i3q1"]
+[ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/UI/hud/cursor.tscn" id="7_g3cy5"]
 [ext_resource type="Script" path="res://assets/scripts/world/nature/time.gd" id="8_yhpsj"]
 [ext_resource type="Texture2D" uid="uid://cxqw4nldap880" path="res://assets/resources/nature/cycle-gradient.tres" id="9_e2igt"]
-[ext_resource type="PackedScene" uid="uid://b8eteio2464wo" path="res://assets/nodes/UI/camera.tscn" id="10_cdmdm"]
+[ext_resource type="PackedScene" uid="uid://b8eteio2464wo" path="res://assets/nodes/UI/hud/camera.tscn" id="10_cdmdm"]
 [ext_resource type="Texture2D" uid="uid://b66gdyd27b6v8" path="res://assets/resources/nature/grass.png" id="11_f64k1"]
 [ext_resource type="Texture2D" uid="uid://bf8an67t7ykhk" path="res://assets/resources/farming/farmland.png" id="12_n5h5x"]
 [ext_resource type="Texture2D" uid="uid://b0pyequa6wol7" path="res://assets/resources/farming/watering.png" id="13_mqvhx"]
@@ -1660,7 +1661,27 @@ material = SubResource("ShaderMaterial_h27nr")
 [node name="UI" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Tooltip" parent="UI" instance=ExtResource("2_otbj1")]
+[node name="Blackout" parent="UI" instance=ExtResource("3_1lalu")]
+
+[node name="Pause" parent="UI" instance=ExtResource("4_yubjk")]
+z_index = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Debugger" parent="UI" instance=ExtResource("6_0i3q1")]
+z_index = 998
+z_as_relative = false
+mouse_filter = 2
+
+[node name="Pop-up Menu" type="Node" parent="UI"]
+
+[node name="BuildingMenu" parent="UI/Pop-up Menu" instance=ExtResource("5_v6eft")]
+
+[node name="HUD" type="Node" parent="UI"]
+
+[node name="Cursor" parent="UI/HUD" instance=ExtResource("7_g3cy5")]
+
+[node name="Tooltip" parent="UI/HUD" instance=ExtResource("2_otbj1")]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -1673,23 +1694,9 @@ offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Blackout" parent="UI" instance=ExtResource("3_1lalu")]
-
-[node name="Pause" parent="UI" instance=ExtResource("4_yubjk")]
-z_index = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Interface" parent="UI" instance=ExtResource("5_wan5o")]
+[node name="Interface" parent="UI/HUD" instance=ExtResource("5_wan5o")]
 z_as_relative = false
 mouse_filter = 2
-
-[node name="Debugger" parent="UI" instance=ExtResource("6_0i3q1")]
-z_index = 998
-z_as_relative = false
-mouse_filter = 2
-
-[node name="Cursor" parent="UI" instance=ExtResource("7_g3cy5")]
 
 [node name="Cycle" type="CanvasModulate" parent="."]
 script = ExtResource("8_yhpsj")
@@ -1828,7 +1835,5 @@ position = Vector2(344, 19)
 
 [node name="Farming" type="Node2D" parent="."]
 script = ExtResource("35_q8rfs")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="timeout" from="Shadow/CloudTimer" to="Shadow" method="_on_cloud_timer_timeout"]

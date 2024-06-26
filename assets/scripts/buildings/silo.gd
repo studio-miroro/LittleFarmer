@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var ui = get_node("/root/World/UI/Tooltip")
+@onready var ui = get_node("/root/World/UI/HUD/Tooltip")
 @onready var pause = get_node("/root/World/UI/Pause")
 @onready var grid = get_node("/root/World/Buildings/Grid") 
 @onready var player = get_node("/root/World/Player")
@@ -44,7 +44,8 @@ func check_sprite(key:String):
 		push_error("Index " + str(level) + " is not in the dictionary.")
 
 func _on_collision_mouse_entered():
-	change_sprite(true)
+	if !pause.paused:
+		change_sprite(true)
 
 func _on_collision_mouse_exited():
 	change_sprite(false)

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://assets/scripts/UI/HUD/tools.gd" id="2_txfwe"]
 [ext_resource type="Script" path="res://assets/scripts/UI/HUD/time.gd" id="3_162n2"]
 [ext_resource type="Script" path="res://assets/scripts/UI/HUD/balance.gd" id="4_kf5nc"]
-[ext_resource type="Texture2D" uid="uid://eqwryqhmkfgu" path="res://assets/resources/UI/HUD/button_0.png" id="5_sytnb"]
+[ext_resource type="Texture2D" uid="uid://eqwryqhmkfgu" path="res://assets/resources/UI/hud/button_0.png" id="5_sytnb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lbeot"]
 shader = ExtResource("1_8w4wf")

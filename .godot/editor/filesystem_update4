@@ -2,11 +2,7 @@ res://levels/farm.tscn
 res://assets/shaders/pixel.gdshader
 res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
-res://assets/scripts/buildings/silo.gd
-res://assets/nodes/buildings/house.tscn
-res://assets/scripts/buildings/mailbox.gd
-res://assets/scripts/buildings/animal stall.gd
-res://assets/scripts/buildings/house.gd
+res://assets/nodes/UI/popup/buildingMenu.tscn
+res://assets/nodes/UI/popup/itemBuildingMenu.tscn
+res://assets/nodes/UI/hud/hud.tscn
 res://assets/nodes/UI/pause.tscn
-res://assets/scripts/UI/pause.gd
-res://assets/scripts/buildings/storage.gd

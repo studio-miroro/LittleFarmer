@@ -1,7 +1,7 @@
 extends TileMap
 
 @onready var pause = get_node("/root/World/UI/Pause")
-@onready var hud = get_node("/root/World/UI/Interface")
+@onready var hud = get_node("/root/World/UI/HUD/Interface")
 @onready var grid = get_node("/root/World/Buildings/Grid")
 @onready var node = preload("res://assets/nodes/farming/plant.tscn")
 

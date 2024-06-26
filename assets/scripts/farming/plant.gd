@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var ui = get_node("/root/World/UI/Tooltip")
+@onready var ui = get_node("/root/World/UI/HUD/Tooltip")
 @onready var tilemap = get_node("/root/World/Tilemap")
 @onready var grid = get_node("/root/World/Buildings/Grid")
 @onready var collision = get_node("/root/World/Buildings/Grid/GridCollision")
@@ -42,58 +42,60 @@ func set_fertilizer(type:int) -> void:
 			self.fertilizer = fertilizers.MANURE
 			
 func check(id:int,pos:Vector2i) -> void:
-	var mouse_position = tilemap.local_to_map(get_global_mouse_position())
-	var atlas_coords = Vector2i(0,3)
-	var source_id = 0
-	if collision.check_cell(pos, collision.farming_layer)\
-	and !collision.check_cell(pos, collision.watering_layer)\
-	and condition != phases.DEAD:
-		self.condition = phases.PLANTED
-		await get_tree().create_timer(
-				crops.crops["checkWatering"]
-			).timeout
-		if degree < crops.crops[plantID]["mortality"]:
-			degree += 1
-		else:
-			self.condition = phases.DEAD
-		check(id,pos)
+	if !pause.paused:
+		var mouse_position = tilemap.local_to_map(get_global_mouse_position())
+		var atlas_coords = Vector2i(0,3)
+		var source_id = 0
+		if collision.check_cell(pos, collision.farming_layer)\
+		and !collision.check_cell(pos, collision.watering_layer)\
+		and condition != phases.DEAD:
+			self.condition = phases.PLANTED
+			await get_tree().create_timer(
+					crops.crops["checkWatering"]
+				).timeout
+			if degree < crops.crops[plantID]["mortality"]:
+				degree += 1
+			else:
+				self.condition = phases.DEAD
+			check(id,pos)
 
-	elif collision.check_cell(pos, collision.farming_layer)\
-	and collision.check_cell(pos, collision.watering_layer)\
-	and condition != phases.DEAD:
-		self.condition = phases.GROWING
-		set_fertilizer(randi_range(0,3))
-		growth()
+		elif collision.check_cell(pos, collision.farming_layer)\
+		and collision.check_cell(pos, collision.watering_layer)\
+		and condition != phases.DEAD:
+			self.condition = phases.GROWING
+			set_fertilizer(randi_range(0,3))
+			growth()
 
 func growth() -> void:
-	if condition == phases.GROWING:
-		match fertilizer:
-			fertilizers.NOTHING:
-				timer.wait_time = randi_range(
-					crops.crops[plantID]["growthRate"] * 0.849,
-					crops.crops[plantID]["growthRate"]
-				)
-				timer.start()
-			fertilizers.COMPOST:
-				timer.wait_time = randi_range(
-					crops.crops[plantID]["growthRate"] * 0.621,
-					crops.crops[plantID]["growthRate"] * 0.995
-				)
-				timer.start()
-			fertilizers.HUMUS:
-				timer.wait_time = randi_range(
-					crops.crops[plantID]["growthRate"] * 0.431,
-					crops.crops[plantID]["growthRate"] * 0.894
-				)
-				timer.start()
-			fertilizers.MANURE:
-				timer.wait_time = randi_range(
-					crops.crops[plantID]["growthRate"] * 0.332,
-					crops.crops[plantID]["growthRate"] * 0.792
-				)
-				timer.start()
-	if condition == phases.INCREASED:
-		timer.stop()
+	if !pause.paused:
+		if condition == phases.GROWING:
+			match fertilizer:
+				fertilizers.NOTHING:
+					timer.wait_time = randi_range(
+						crops.crops[plantID]["growthRate"] * 0.849,
+						crops.crops[plantID]["growthRate"]
+					)
+					timer.start()
+				fertilizers.COMPOST:
+					timer.wait_time = randi_range(
+						crops.crops[plantID]["growthRate"] * 0.621,
+						crops.crops[plantID]["growthRate"] * 0.995
+					)
+					timer.start()
+				fertilizers.HUMUS:
+					timer.wait_time = randi_range(
+						crops.crops[plantID]["growthRate"] * 0.431,
+						crops.crops[plantID]["growthRate"] * 0.894
+					)
+					timer.start()
+				fertilizers.MANURE:
+					timer.wait_time = randi_range(
+						crops.crops[plantID]["growthRate"] * 0.332,
+						crops.crops[plantID]["growthRate"] * 0.792
+					)
+					timer.start()
+		if condition == phases.INCREASED:
+			timer.stop()
 
 func get_data() -> Dictionary:
 	return {

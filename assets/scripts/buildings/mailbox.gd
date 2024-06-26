@@ -38,7 +38,8 @@ func check_sprite(key:String):
 		push_error("The specified key is missing.")
 	
 func _on_area_2d_mouse_entered():
-	change_sprite(true)
+	if !pause.paused:
+		change_sprite(true)
 
 func _on_area_2d_mouse_exited():
 	change_sprite(false)
