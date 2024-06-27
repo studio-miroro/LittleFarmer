@@ -1,12 +1,12 @@
 extends Control
 
-@onready var destroy_button = $"Tools Menu/Tools Hud/Container/Destroy"
-@onready var farming_button = $"Tools Menu/Tools Hud/Container/Farm"
-@onready var watering_button = $"Tools Menu/Tools Hud/Container/Watering"
-@onready var building_button = $"Tools Menu/Tools Hud/Container/Building"
+@onready var destroy_button 	= $"Tools Menu/Tools Hud/Container/Destroy"
+@onready var farming_button 	= $"Tools Menu/Tools Hud/Container/Farm"
+@onready var watering_button 	= $"Tools Menu/Tools Hud/Container/Watering"
+@onready var building_button 	= $"Tools Menu/Tools Hud/Container/Building"
 
-@onready var pause = get_node("/root/World/UI/Pause")
-@onready var grid = get_node("/root/World/Buildings/Grid")
+@onready var pause				= get_node("/root/World/UI/Pause")
+@onready var grid				= get_node("/root/World/Buildings/Grid")
 
 var destroy:bool
 var farming:bool

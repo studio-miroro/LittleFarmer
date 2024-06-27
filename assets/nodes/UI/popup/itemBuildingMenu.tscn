@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cps3s5crjjsv1"]
+[gd_scene load_steps=3 format=3 uid="uid://cps3s5crjjsv1"]
 
 [ext_resource type="Texture2D" uid="uid://luk26vkqeijd" path="res://assets/resources/buildings/well/icon.png" id="1_okoej"]
+[ext_resource type="Script" path="res://assets/scripts/UI/popup/buildingMenu/itemBuildingMenu.gd" id="1_yf12q"]
 
 [node name="Item_BuildingMenu" type="Control"]
 custom_minimum_size = Vector2(65, 65)
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_yf12q")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
@@ -32,3 +34,5 @@ expand_mode = 2
 layout_mode = 2
 text = "Object.caption"
 vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

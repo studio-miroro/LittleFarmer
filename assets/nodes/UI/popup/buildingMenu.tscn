@@ -77,6 +77,20 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_data"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k6ua4"]
 _data = {
@@ -134,30 +148,6 @@ layout_mode = 2
 [node name="Item_BuildingMenu" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
 layout_mode = 2
 
-[node name="Item_BuildingMenu5" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
-layout_mode = 2
-
-[node name="Item_BuildingMenu2" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
-layout_mode = 2
-
-[node name="Item_BuildingMenu3" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
-layout_mode = 2
-
-[node name="Item_BuildingMenu4" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
-layout_mode = 2
-
-[node name="Item_BuildingMenu6" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
-layout_mode = 2
-
-[node name="Item_BuildingMenu7" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
-layout_mode = 2
-
-[node name="Item_BuildingMenu8" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
-layout_mode = 2
-
-[node name="Item_BuildingMenu9" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
-layout_mode = 2
-
 [node name="Info" type="ScrollContainer" parent="Panel/HBoxContainer"]
 custom_minimum_size = Vector2(308, 0)
 layout_mode = 2
@@ -166,21 +156,26 @@ layout_mode = 2
 custom_minimum_size = Vector2(308, 0)
 layout_mode = 2
 
-[node name="ObjectName" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer"]
+[node name="ObjectCaption" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_font_sizes/font_size = 20
 text = "Object.name"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="ObjectDescription" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(30, 50)
 layout_mode = 2
-text = "Object.description "
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "Object.description"
 autowrap_mode = 3
+
+[node name="Button" type="Button" parent="Panel/HBoxContainer/Info/VBoxContainer"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Соорудить"
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 0

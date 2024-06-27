@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://4vypwfxar3e"]
+[gd_scene load_steps=52 format=3 uid="uid://4vypwfxar3e"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_ieipv"]
 [ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/UI/hud/tooltip.tscn" id="2_otbj1"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ugypr7xdq68w" path="res://assets/nodes/UI/hud/debugger.tscn" id="6_0i3q1"]
 [ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/UI/hud/cursor.tscn" id="7_g3cy5"]
 [ext_resource type="Script" path="res://assets/scripts/world/nature/time.gd" id="8_yhpsj"]
+[ext_resource type="PackedScene" uid="uid://c16oacn0qg214" path="res://assets/nodes/UI/blur.tscn" id="9_ccti6"]
 [ext_resource type="Texture2D" uid="uid://cxqw4nldap880" path="res://assets/resources/nature/cycle-gradient.tres" id="9_e2igt"]
 [ext_resource type="PackedScene" uid="uid://b8eteio2464wo" path="res://assets/nodes/UI/hud/camera.tscn" id="10_cdmdm"]
 [ext_resource type="Texture2D" uid="uid://b66gdyd27b6v8" path="res://assets/resources/nature/grass.png" id="11_f64k1"]
@@ -1672,6 +1673,8 @@ size_flags_vertical = 4
 z_index = 998
 z_as_relative = false
 mouse_filter = 2
+
+[node name="Blur" parent="UI" instance=ExtResource("9_ccti6")]
 
 [node name="Pop-up Menu" type="Node" parent="UI"]
 

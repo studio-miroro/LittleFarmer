@@ -1,11 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://cyl6jw0huwvk6"]
+[gd_scene load_steps=10 format=3 uid="uid://cyl6jw0huwvk6"]
 
 [ext_resource type="Script" path="res://assets/scripts/UI/pause.gd" id="1_vopsb"]
-[ext_resource type="Shader" path="res://assets/shaders/blur.gdshader" id="2_o6k34"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8dhub"]
-shader = ExtResource("2_o6k34")
-shader_parameter/lod = 1.0
 
 [sub_resource type="Animation" id="Animation_s30n0"]
 length = 0.001
@@ -16,18 +11,6 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -44,18 +27,6 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -94,17 +65,6 @@ mouse_filter = 2
 script = ExtResource("1_vopsb")
 metadata/paused = false
 metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect" type="ColorRect" parent="."]
-modulate = Color(1, 1, 1, 0)
-material = SubResource("ShaderMaterial_8dhub")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

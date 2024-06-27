@@ -4,7 +4,7 @@ class_name StoreBuilding
 var content: Dictionary = {
 	1: {
 		"caption" = "Компостер",
-		"description" = "<- super description -> ",
+		"description" = "Ящик для приготовления удобрения.",
 		"time" = 15,
 		"price" = 25,
 		# Config

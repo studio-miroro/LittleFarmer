@@ -1,3 +1,6 @@
+res://assets/scripts/UI
+res://assets/shaders
+res://assets/nodes/UI
 res://assets/scripts/UI/popup/buildingMenu
 res://assets/resources/buildings/well
 E:/gamedev/.github/godot_game/assets/singletons
