@@ -1,6 +1,6 @@
 extends Node
 
-@onready var plant_node:PackedScene = preload("res://assets/nodes/farming/plant.tscn")
+@onready var plant_node:PackedScene = load("res://assets/nodes/farming/plant.tscn")
 @onready var tilemap:TileMap 		= get_node("/root/World/Tilemap")
 @onready var cycle:Node2D 			= get_node("/root/World/Cycle")
 @onready var player:Node2D 			= get_node("/root/World/Player")

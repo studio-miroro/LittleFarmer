@@ -1,6 +1,5 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpmceytvqnc7d"]
+[gd_scene load_steps=6 format=3 uid="uid://bpmceytvqnc7d"]
 
-[ext_resource type="PackedScene" uid="uid://cps3s5crjjsv1" path="res://assets/nodes/UI/popup/itemBuildingMenu.tscn" id="1_0tvh1"]
 [ext_resource type="Script" path="res://assets/scripts/UI/popup/buildingMenu/buildingMenu.gd" id="1_bnylh"]
 
 [sub_resource type="Animation" id="Animation_bduf1"]
@@ -143,9 +142,6 @@ horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/Items"]
 custom_minimum_size = Vector2(275, 0)
-layout_mode = 2
-
-[node name="Item_BuildingMenu" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("1_0tvh1")]
 layout_mode = 2
 
 [node name="Info" type="ScrollContainer" parent="Panel/HBoxContainer"]
