@@ -1,5 +1,5 @@
 # Little Farmer
-Little Farmer — 2D симулятор фермы с видом сверху. 
+**Little Farmer** — 2D симулятор фермы с видом сверху. 
 
 ![screenshot_1](https://sun9-27.userapi.com/impg/HjB055o1TNRd57OW41KHD9tTzWEzRNiYFBdQZA/ztrHHfBGgyg.jpg?size=1127x722&quality=95&sign=6746e638f2d053bd343438c2cbd9c098&type=album)
 
