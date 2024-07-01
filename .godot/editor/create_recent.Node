@@ -1,3 +1,4 @@
+Label
 Button
 AnimationPlayer
 ColorRect
@@ -5,7 +6,6 @@ BoxContainer
 Control
 Panel
 VBoxContainer
-Label
 ScrollContainer
 AnimationTree
 GridContainer

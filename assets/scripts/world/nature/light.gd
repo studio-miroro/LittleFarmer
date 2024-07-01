@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var pause = PauseMenu.new()
 @onready var time = TimeWorld.new()
-@onready var lightgroup = get_node("/root/World/Light")
+@onready var parent = get_node("/root/World/Light")
 
 var energy:float = 1
 var energy_min:float = 0
@@ -10,7 +10,7 @@ var energy_max:float = 1
 var on:int = 20
 var off:int = 0
 var speed:float = 0.005
-var light:bool = true
+var light:bool
 
 func _process(delta):
 	if !pause.paused:
@@ -25,12 +25,12 @@ func _process(delta):
 			if energy > energy_min:
 				energy = energy - speed
 			if energy == energy_min:
-				lightgroup.visible = false
-				
+				parent.visible = false
+
 func check_light(switch:bool):
 	if switch:
 		light = true
-		lightgroup.visible = true
+		parent.visible = true
 	else:
 		light = false
-		lightgroup.visible = false
+		parent.visible = false

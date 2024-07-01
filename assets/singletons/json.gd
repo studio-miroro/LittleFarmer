@@ -35,12 +35,14 @@ func gameload() -> void:
 	terrains_remove()
 	time_load()
 	player_load()
-	create_nodes(farming, plant_node, create_terrain(2, gridCollision.seeds_layer, path.vectors, "Plants", -1, -1))
+	
 	create_terrain(0, gridCollision.ground_layer, path.vectors, "Grounds", gridCollision.ground_terrain_set, gridCollision.ground_terrain)
 	create_terrain(0, gridCollision.farming_layer, path.vectors, "Farmlands", gridCollision.farming_terrain_set, gridCollision.farming_terrain)
 	create_terrain(0, gridCollision.watering_layer, path.vectors, "Waterings", gridCollision.watering_terrain_set, gridCollision.watering_terrain)
 	create_terrain(1, gridCollision.seeds_layer, path.vectors, "Plants", 0, 0)
-
+	
+	create_nodes(farming, plant_node, create_terrain(2, gridCollision.seeds_layer, path.vectors, "Plants", -1, -1))
+	
 func file_save(path_file, content) -> void:
 	var json_string = JSON.stringify(get_content(content), "\t")
 	var file = FileAccess.open(path_file,FileAccess.WRITE)

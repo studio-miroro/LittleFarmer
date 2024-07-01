@@ -164,11 +164,14 @@ autowrap_mode = 3
 [node name="ObjectDescription" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 custom_minimum_size = Vector2(30, 50)
 layout_mode = 2
-text = "Object.description"
+text = "Object.description Object.description Object.description Object.description "
 autowrap_mode = 3
 
+[node name="Label" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer"]
+layout_mode = 2
+
 [node name="Button" type="Button" parent="Panel/HBoxContainer/Info/VBoxContainer"]
-custom_minimum_size = Vector2(25, 25)
+custom_minimum_size = Vector2(50, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Соорудить"

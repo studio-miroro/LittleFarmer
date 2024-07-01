@@ -1,3 +1,4 @@
+E:/gamedev/.github/godot_game
 res://assets/scripts/UI
 res://assets/shaders
 res://assets/nodes/UI
@@ -8,7 +9,6 @@ res://assets/resources/buildings/house/level-2
 res://assets/resources/UI/inventory/items/Seeds Packets
 res://
 res://assets/scripts/UI/inventory
-E:/gamedev/.github/godot_game
 res://assets/singletons
 res://assets/resources/buildings/storage
 res://assets/nodes/buildings
