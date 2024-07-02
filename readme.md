@@ -12,6 +12,3 @@
 - Telegram: [@levalyukov](https://t.me/levalyukov)
 - Twitter: [@levalyukov](https://twitter.com/levalyukov)
 - Почта: lev.alyukov@gmail.com
-
-## Лицензия
-[Лицензия](license.md) проекта.
