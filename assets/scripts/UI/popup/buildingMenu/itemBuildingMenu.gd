@@ -1,8 +1,9 @@
 extends Control
 
+@onready var node = load("res://assets/nodes/UI/popup/itemBuildingMenu.tscn")
 @onready var build = get_node("/root/World/UI/Pop-up Menu/BuildingMenu")
-@onready var icon:TextureRect = $Button/HBoxContainer/TextureRect
-@onready var caption:Label = $Button/HBoxContainer/Label
+@onready var icon:TextureRect = $Button/HBoxContainer/Icon
+@onready var caption:Label = $Button/HBoxContainer/Caption
 @onready var index:int = 1
 
 var store = StoreBuilding.new()
@@ -25,11 +26,13 @@ func set_data(id):
 				push_error("The key stores a non-Compressed 2D Texture. Variant.type: " + str(typeof(store.content[id]["icon"])))
 		else:
 			push_error("The object does not have the 'icon' key.")
+		visible = true
 	else:
 		push_error("Invalid object index: " + str(id))
-
-func _on_button_pressed():
-	build.get_data(index)
+		queue_free()
 
 func test():
 	return true
+
+func _on_button_pressed():
+	build.get_data(index)

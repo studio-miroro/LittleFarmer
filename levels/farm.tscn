@@ -1742,7 +1742,7 @@ layer_7/tile_data = PackedInt32Array()
 script = ExtResource("16_jqh5x")
 
 [node name="Shadow" type="CanvasGroup" parent="."]
-self_modulate = Color(0, 0, 0, 0.196078)
+self_modulate = Color(0, 0, 0, 0.192157)
 z_index = 10
 script = ExtResource("17_ubdm4")
 
@@ -1762,7 +1762,7 @@ position = Vector2(301, 59)
 texture = ExtResource("20_vd7ux")
 
 [node name="MailboxShadow" type="Sprite2D" parent="Shadow"]
-position = Vector2(266, 61)
+position = Vector2(263, 61)
 texture = ExtResource("21_d271e")
 
 [node name="Shadow3" type="Sprite2D" parent="Shadow"]
@@ -1774,6 +1774,7 @@ position = Vector2(249, 25)
 texture = ExtResource("23_geqd5")
 
 [node name="Light" type="Node2D" parent="."]
+visible = false
 z_index = 6
 script = ExtResource("24_ymcwy")
 
@@ -1801,7 +1802,7 @@ texture = ExtResource("27_p6cot")
 
 [node name="Mailbox" parent="Buildings" instance=ExtResource("28_pepi0")]
 z_index = 4
-position = Vector2(258, 37)
+position = Vector2(255, 37)
 
 [node name="Animal Stall" parent="Buildings" instance=ExtResource("29_1mqwf")]
 z_index = 4

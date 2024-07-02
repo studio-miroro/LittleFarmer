@@ -5,8 +5,8 @@ extends Control
 @onready var watering_button 	= $"Tools Menu/Tools Hud/Container/Watering"
 @onready var building_button 	= $"Tools Menu/Tools Hud/Container/Building"
 
-@onready var pause				= get_node("/root/World/UI/Pause")
-@onready var grid				= get_node("/root/World/Buildings/Grid")
+@onready var pause = get_node("/root/World/UI/Pause")
+@onready var grid = get_node("/root/World/Buildings/Grid")
 
 var destroy:bool
 var farming:bool

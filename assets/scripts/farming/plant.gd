@@ -9,6 +9,7 @@ extends Node2D
 @onready var timer = $Timer
 
 var crops = Crops.new()
+
 var plantID:int = 0
 var condition:int = phases.PLANTED
 var fertilizer:int = fertilizers.NOTHING
@@ -67,35 +68,31 @@ func check(id:int,pos:Vector2i) -> void:
 			growth()
 
 func growth() -> void:
-	if !pause.paused:
-		if condition == phases.GROWING:
-			match fertilizer:
-				fertilizers.NOTHING:
-					timer.wait_time = randi_range(
-						crops.crops[plantID]["growthRate"] * 0.849,
-						crops.crops[plantID]["growthRate"]
-					)
-					timer.start()
-				fertilizers.COMPOST:
-					timer.wait_time = randi_range(
-						crops.crops[plantID]["growthRate"] * 0.621,
-						crops.crops[plantID]["growthRate"] * 0.995
-					)
-					timer.start()
-				fertilizers.HUMUS:
-					timer.wait_time = randi_range(
-						crops.crops[plantID]["growthRate"] * 0.431,
-						crops.crops[plantID]["growthRate"] * 0.894
-					)
-					timer.start()
-				fertilizers.MANURE:
-					timer.wait_time = randi_range(
-						crops.crops[plantID]["growthRate"] * 0.332,
-						crops.crops[plantID]["growthRate"] * 0.792
-					)
-					timer.start()
-		if condition == phases.INCREASED:
-			timer.stop()
+	if condition == phases.GROWING:
+		match fertilizer:
+			fertilizers.NOTHING:
+				timer.wait_time = randi_range(
+					crops.crops[plantID]["growthRate"] * 0.849,
+					crops.crops[plantID]["growthRate"]
+				)
+			fertilizers.COMPOST:
+				timer.wait_time = randi_range(
+					crops.crops[plantID]["growthRate"] * 0.621,
+					crops.crops[plantID]["growthRate"] * 0.995
+				)
+			fertilizers.HUMUS:
+				timer.wait_time = randi_range(
+					crops.crops[plantID]["growthRate"] * 0.431,
+					crops.crops[plantID]["growthRate"] * 0.894
+				)
+			fertilizers.MANURE:
+				timer.wait_time = randi_range(
+					crops.crops[plantID]["growthRate"] * 0.332,
+					crops.crops[plantID]["growthRate"] * 0.792
+				)
+		timer.start()
+	if condition == phases.INCREASED:
+		timer.stop()
 
 func get_data() -> Dictionary:
 	return {

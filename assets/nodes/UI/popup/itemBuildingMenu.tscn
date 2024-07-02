@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cps3s5crjjsv1"]
 
-[ext_resource type="Texture2D" uid="uid://luk26vkqeijd" path="res://assets/resources/buildings/well/icon.png" id="1_okoej"]
 [ext_resource type="Script" path="res://assets/scripts/UI/popup/buildingMenu/itemBuildingMenu.gd" id="1_yf12q"]
+[ext_resource type="Texture2D" uid="uid://drwbxqpgt6lxf" path="res://assets/resources/UI/building menu/default.png" id="2_lkgn1"]
 
 [node name="Item_BuildingMenu" type="Control"]
 custom_minimum_size = Vector2(65, 65)
@@ -15,7 +15,7 @@ script = ExtResource("1_yf12q")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_right = 256.0
+offset_right = 288.0
 offset_bottom = 64.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Button"]
@@ -25,12 +25,12 @@ anchor_bottom = 1.0
 offset_right = 167.0
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="Button/HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="Button/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_okoej")
+texture = ExtResource("2_lkgn1")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="Button/HBoxContainer"]
+[node name="Caption" type="Label" parent="Button/HBoxContainer"]
 layout_mode = 2
 text = "Object.caption"
 vertical_alignment = 1
