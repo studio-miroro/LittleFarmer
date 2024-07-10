@@ -20,3 +20,10 @@ func blur(_bluring:bool):
 	self.bluring = _bluring
 	get_node("/root/World/Player/Camera2D").switch = _bluring
 	get_node("/root/World/Player").switch = _bluring
+	if bluring:
+		get_node("/root/World/UI/HUD/Tooltip").tooltip(Vector2(0,0), "", "", 0, -1, false)
+		get_node("/root/World/Buildings/House").change_sprite(false)
+		get_node("/root/World/Buildings/Mailbox").change_sprite(false)
+		get_node("/root/World/Buildings/Storage").change_sprite(false)
+		get_node("/root/World/Buildings/Animal Stall").change_sprite(false)
+		get_node("/root/World/Buildings/Silo").change_sprite(false)

@@ -2,56 +2,59 @@ extends Control
 
 class_name BuildingMenu
 
-@onready var node = load("res://assets/nodes/UI/popup/itemBuildingMenu.tscn")
-@onready var animation = $AnimationPlayer
-@onready var blur = get_node("/root/World/UI/Blur")
-@onready var pause = get_node("/root/World/UI/Pause")
+@onready var node:PackedScene = load("res://assets/nodes/UI/popup/itemBuildingMenu.tscn")
+@onready var anim:AnimationPlayer = $AnimationPlayer
+@onready var blur:Control = get_node("/root/World/UI/Blur")
+@onready var pause:Control = get_node("/root/World/UI/Pause")
 
 @onready var container:GridContainer = get_node("/root/World/UI/Pop-up Menu/BuildingMenu/Panel/HBoxContainer/Items/GridContainer")
 @onready var caption:Label = $Panel/HBoxContainer/Info/VBoxContainer/ObjectCaption
 @onready var description:Label = $Panel/HBoxContainer/Info/VBoxContainer/ObjectDescription
+@onready var resources:Label = $Panel/HBoxContainer/Info/VBoxContainer/ObjectResources
 @onready var timeCreate:Label = $Panel/HBoxContainer/Info/VBoxContainer/ObjectCreationTime
 @onready var button:Button = $Panel/HBoxContainer/Info/VBoxContainer/Button
 
+var items = InventoryItems.new()
 var store = StoreBuilding.new()
+var constructionMaterials = BuildingMaterials.new().resources
 
 var blueprints:int = 0
 var access:Array = [1,2,3,4,5]
-var isOpen:bool = false
+var menu:bool = false
 
 func _ready():
 	pause.lock = false
-	isOpen = false
+	menu = false
 	blur.blur(false)
-	animation.play("transform_reset")
+	anim.play("transform_reset")
 	check_blueprints(blueprints, access)
 
 func _process(delta):
 	if !pause.paused:
-		if Input.is_action_just_pressed("inventory"):
+		if Input.is_action_just_pressed("test"):
 			window()
-		if Input.is_action_just_pressed("menu") and isOpen:
+		if Input.is_action_just_pressed("menu") and menu:
 			close()
 
 func window():
-	if isOpen:
+	if menu:
 		close()
 	else:
 		open()
 
 func open():
 	pause.lock = true
-	isOpen = true
+	menu = true
 	blur.blur(true)
-	animation.play("transform")
+	anim.play("transform")
 	start_info()
 	check_blueprints(blueprints, access)
 	
 func close():
 	pause.lock = false
-	isOpen = false
+	menu = false
 	blur.blur(false)
-	animation.play("transform_reset")
+	anim.play("transform_reset")
 	check_blueprints(blueprints, access)
 
 func start_info():
@@ -61,7 +64,7 @@ func start_info():
 	button.visible = false
 
 func check_blueprints(item:int, array:Array):
-	if isOpen:
+	if menu:
 		for i in array:
 			create_item(i)
 	else:
@@ -69,11 +72,11 @@ func check_blueprints(item:int, array:Array):
 
 func create_item(i):
 	var item = node.instantiate()
-	if item.test():
+	if item.test(i):
 		container.add_child(item)
 		item.set_data(i)
 	else:
-		push_error("Cannot load node.")
+		push_error("Cannot load node. Invalid index: " + str(i))
 
 func delete_all_blueprints(parent):
 	for child in parent.get_children():
@@ -102,7 +105,21 @@ func get_data(index:int):
 		else:
 			push_error("The object does not have the 'description' key.")
 			description.visible = false
+		
+		if store.content[index].has("resource"):
+			resources.visible = true
+			resources.text = "Необходимые ресурсы:"
 			
+			if store.content[index].get("resource") != {}:
+				for i in store.content[index]["resource"]:
+					check_material(index, i)
+			else:
+				push_warning("The drawing does not have the necessary resources for construction.")
+				resources.visible = false
+		else:
+			push_error("The array of 'resources' does not exist in index: " + str(index))
+			resources.visible = false
+		
 		if store.content[index].has("time"):
 			if typeof(store.content[index]["time"]) == TYPE_INT and description.text is String:
 				if store.content[index]["time"] > 0:
@@ -111,22 +128,39 @@ func get_data(index:int):
 				else:
 					timeCreate.visible = false
 			else:
-				push_error("The 'time' key has a non-string type. Variant.type: " + str(typeof(store.content[index]["time"])))
+				push_error("The 'time' key has a non-integer type. Variant.type: " + str(typeof(store.content[index]["time"])))
 				timeCreate.visible = false
 		else:
 			push_error("The object does not have the 'time' key.")
 			timeCreate.visible = false
 			
 		button.visible = true
+	else:
+		button.visible = false
+
+func check_material(index, key):
+	if resource(key) != null:
+		if typeof(store.content[index]["resource"][key]) != TYPE_STRING:
+			resources.text = resources.text + str("\n• ") + str(resource(key)) + " (" + str(0) + "/" + str(round(store.content[index]["resource"][key])) + ")"
+		else:
+			push_error("The key '" + str(key) + "' does not store an integer or float: " + str(typeof(store.content[index]["resource"][key])))
+	else:
+		push_warning("The '" + str(key)+ "' material cannot be returned as a string. This material will not be taken into account.")
+		
+func resource(key):
+	if key in constructionMaterials:
+		return constructionMaterials[key]
+	return null
 
 func reset_data():
 	caption.text = ""
 	description.text = ""
-	timeCreate.text = ""
+	resources.visible = false
+	timeCreate.visible = false
 	button.visible = false
 
 func check_window():
-	visible = isOpen
+	visible = menu
 
 func _on_button_pressed():
 	window()

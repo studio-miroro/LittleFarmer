@@ -1,14 +1,18 @@
-res://assets/resources/UI/buildingMenu
+res://assets/resources/UI/building menu
+res://
+res://assets/resources/UI/inventory/items
+res://assets/nodes/UI
+res://levels
+res://assets/nodes/UI/popup
+res://assets/resources/buildings/storage/level-1
 E:/gamedev/.github/godot_game
 res://assets/scripts/UI
 res://assets/shaders
-res://assets/nodes/UI
 res://assets/scripts/UI/popup/buildingMenu
 res://assets/resources/buildings/well
 E:/gamedev/.github/godot_game/assets/singletons
 res://assets/resources/buildings/house/level-2
 res://assets/resources/UI/inventory/items/Seeds Packets
-res://
 res://assets/scripts/UI/inventory
 res://assets/singletons
 res://assets/resources/buildings/storage

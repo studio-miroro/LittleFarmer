@@ -49,7 +49,6 @@ func change_sprite(type:bool):
 		if grid.mode == grid.gridmode.NOTHING and distance < max_distance:
 			check_sprite("hover")
 			ui.tooltip(get_global_mouse_position(), object[level]["caption"], object[level]["description"], level, 0, true)
-			
 	else:
 		check_sprite("default")
 		ui.tooltip(Vector2(0,0), "", "", 0, -1, false)

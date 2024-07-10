@@ -1,10 +1,25 @@
-extends Panel
+extends Control
 
-@onready var itemSprite:Sprite2D = $CenterContainer/Panel/Sprite2D
+@onready var inventory:Control = get_node("/root/World/UI/HUD/Inventory")
+@onready var icon:TextureRect = $Button/Icon
+@onready var amount:Label = $Button/Amount
 
-func update(item):
-	if !item:
-		itemSprite.visible = false
+var item = InventoryItems.new()
+var id:int
+
+func _ready():
+	amount.visible = false
+
+func set_data(index) -> void:
+	if item.content.has(index):
+		self.id = index
 	else:
-		itemSprite.visible = true
-		itemSprite.texture = item.texture
+		push_error("Invalid index: " + str(index))
+
+func test(id) -> bool:
+	if item.content.has(id):
+		return true
+	return false
+
+func _on_button_pressed():
+	inventory.get_data(id)

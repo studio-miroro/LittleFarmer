@@ -7,8 +7,3 @@
 - Игровой движок: [Godot Engine v4.2.1](https://godotengine.org/download/archive/4.2.1-stable/)
 - Редактор спрайтов: [Aseprite v1.3.7](https://www.aseprite.org/)
 - Редактор звуков: [Fl Studio 12](https://www.image-line.com/fl-studio/)
-## Контакты
-
-- Telegram: [@levalyukov](https://t.me/levalyukov)
-- Twitter: [@levalyukov](https://twitter.com/levalyukov)
-- Почта: lev.alyukov@gmail.com

@@ -58,12 +58,7 @@ func pausemenu():
 		get_node("/root/World/UI/HUD/Interface").visible = false
 		get_node("/root/World/Buildings/Grid").mode = get_node("/root/World/Buildings/Grid").gridmode.NOTHING
 		get_node("/root/World/Buildings/Grid").visible = false
-		get_node("/root/World/UI/HUD/Tooltip").tooltip(Vector2(0,0), "", "", 0, -1, false)
-		get_node("/root/World/Buildings/House").change_sprite(false)
-		get_node("/root/World/Buildings/Mailbox").change_sprite(false)
-		get_node("/root/World/Buildings/Storage").change_sprite(false)
-		get_node("/root/World/Buildings/Animal Stall").change_sprite(false)
-		get_node("/root/World/Buildings/Silo").change_sprite(false)
+
 		blur.blur(true)
 	else:
 		paused = false

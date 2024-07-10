@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://d0hq20gmqku1b"]
 
 [ext_resource type="Script" path="res://assets/scripts/buildings/storage.gd" id="1_axu7x"]
-[ext_resource type="Texture2D" uid="uid://drjrayqgw876f" path="res://assets/resources/buildings/storage/level-2/object_0.png" id="2_sw5iq"]
+[ext_resource type="Texture2D" uid="uid://dqrqmtbev426d" path="res://assets/resources/buildings/storage/level-1/object_0.png" id="2_iq1k6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k60yw"]
-size = Vector2(32, 30.75)
+size = Vector2(20, 30.75)
 
 [node name="Storage" type="Node2D"]
 script = ExtResource("1_axu7x")
@@ -17,7 +17,7 @@ position = Vector2(0, -1.375)
 shape = SubResource("RectangleShape2D_k60yw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_sw5iq")
+texture = ExtResource("2_iq1k6")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

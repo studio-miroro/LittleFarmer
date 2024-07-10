@@ -4,8 +4,11 @@ class_name StoreBuilding
 var content: Dictionary = {
 	1: {
 		"caption" = "Деревянная дорожка",
-		"description" = "Деревянные дорожки для сада добавляют уют и красоту вашему пространству, создавая безопасный и стильный путь к вашим любимым зонам отдыха.",
-		"time" = 0,
+		"description" = "Деревянные дорожки для сада добавляют уют и красоту вашему пространству.",
+		"resource" = {
+			"wood" = 1,
+			},
+		"time" = 1,
 		# Config
 		"icon" = null,#load("res://assets/resources/UI/building menu/sprite_0.png")
 		"node" = null,#load(""),
@@ -13,6 +16,9 @@ var content: Dictionary = {
 	2: {
 		"caption" = "Компостер",
 		"description" = "Простой и недорогой компостер для разложения органического материала.",
+		"resource" = {
+			"wood" = 25,
+			},
 		"time" = 15,
 		# Config
 		"icon" = null,#load("res://assets/resources/UI/building menu/sprite_0.png"),
@@ -21,6 +27,9 @@ var content: Dictionary = {
 	3: {
 		"caption" = "Бочка",
 		"description" = "Ёмкость для сбора и хранения дождевой воды для полива растений, мытья автомобилей или других задач.",
+		"resource" = {
+			"wood" = 75,
+			},
 		"time" = 60,
 		# Config
 		"icon" = null,#load("res://assets/resources/UI/building menu/sprite_0.png"),
@@ -29,6 +38,10 @@ var content: Dictionary = {
 	4: {
 		"caption" = "Колодец",
 		"description" = "Глубокая яма с каменной обшивкой, используемая для доступа к подземным источникам воды.",
+		"resource" = {
+			"wood" = 100,
+			"stone" = 250,
+			},
 		"time" = 120,
 		# Config
 		"icon" = null,#load("res://assets/resources/UI/building menu/sprite_0.png"),

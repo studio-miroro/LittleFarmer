@@ -1,14 +1,13 @@
 extends Control
 
-@onready var node = load("res://assets/nodes/UI/popup/itemBuildingMenu.tscn")
 @onready var build = get_node("/root/World/UI/Pop-up Menu/BuildingMenu")
 @onready var icon:TextureRect = $Button/HBoxContainer/Icon
 @onready var caption:Label = $Button/HBoxContainer/Caption
-@onready var index:int = 1
+@onready var index:int
 
 var store = StoreBuilding.new()
 
-func set_data(id):
+func set_data(id) -> void:
 	if store.content.has(id):
 		self.index = id
 		if store.content[id].has("caption"):
@@ -31,8 +30,10 @@ func set_data(id):
 		push_error("Invalid object index: " + str(id))
 		queue_free()
 
-func test():
-	return true
+func test(id) -> bool:
+	if store.content.has(id):
+		return true
+	return false
 
-func _on_button_pressed():
+func _on_button_pressed() -> void:
 	build.get_data(index)
