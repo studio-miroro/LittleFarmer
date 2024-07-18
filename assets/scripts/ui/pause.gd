@@ -1,19 +1,18 @@
 extends Control
 
 class_name PauseMenu
+@onready var ui:CanvasLayer = get_node("/root/World/UI")
+@onready var interface:Control = get_node("/root/World/UI/HUD/Interface")
+@onready var blur:Control = get_node("/root/World/UI/Blur")
+@onready var camera:Camera2D = get_node("/root/World/MainCamera/Camera2D")
+@onready var time:Control = get_node("/root/World/UI/HUD/Interface/Time")
+@onready var blackout:Control = get_node("/root/World/UI/Blackout")
+@onready var player:Object = Camera.new()
+@onready var build:Object = BuildingMenu.new()
+@onready var version:Label = $menu/version
 
-@onready var ui 			= get_node("/root/World/UI")
-@onready var interface 		= get_node("/root/World/UI/HUD/Interface")
-@onready var blur			= get_node("/root/World/UI/Blur")
-@onready var camera 		= get_node("/root/World/Player/Camera2D")
-@onready var time 			= get_node("/root/World/UI/HUD/Interface/Time")
-@onready var blackout 		= get_node("/root/World/UI/Blackout")
-@onready var player 		= Camera.new()
-@onready var build			= BuildingMenu.new()
-@onready var version:Label 	= $menu/version
-
-var lock:bool = false
-var paused: bool
+var lock:bool
+var paused:bool
 
 func _ready():
 	get_node("/root/World/UI").visible = true
@@ -43,7 +42,7 @@ func pausemenu():
 		get_node("/root/World/UI/HUD/Interface/Time").timerupdate()
 		get_node("/root/World/UI/HUD/Interface").destroy = false
 		get_node("/root/World/UI/HUD/Interface").farming = false
-		get_node("/root/World/UI/HUD/Interface").plant = false
+		get_node("/root/World/UI/HUD/Interface").planting = false
 		get_node("/root/World/UI/HUD/Interface").watering = false
 		get_node("/root/World/UI/HUD/Interface").building = false
 		get_node("/root/World/UI/HUD/Interface/Tools Menu/Tools Hud/Container/Destroy").disabled = true
@@ -58,8 +57,8 @@ func pausemenu():
 		get_node("/root/World/UI/HUD/Interface").visible = false
 		get_node("/root/World/Buildings/Grid").mode = get_node("/root/World/Buildings/Grid").gridmode.NOTHING
 		get_node("/root/World/Buildings/Grid").visible = false
-
 		blur.blur(true)
+
 	else:
 		paused = false
 		$AnimationPlayer.play_backwards("blur_start")
@@ -76,7 +75,7 @@ func pausemenu():
 func _on_countinue_pressed():
 	if paused:
 		pausemenu()
-		get_node("/root/World/Player").menu()
+		get_node("/root/World/MainCamera").menu()
 
 func _on_settings_pressed():
 	if paused:pass
@@ -92,11 +91,11 @@ func _on_save_data_pressed():
 	if paused:
 		json.gamesave()
 		pausemenu()
-		get_node("/root/World/Player").menu()
+		get_node("/root/World/MainCamera").menu()
 
 func _on_load_data_pressed():
 	if paused:
 		json.gameload()
 		pausemenu()
-		get_node("/root/World/Player").menu()
+		get_node("/root/World/MainCamera").menu()
 

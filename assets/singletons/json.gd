@@ -1,16 +1,16 @@
 extends Node
 
 @onready var plant_node:PackedScene = load("res://assets/nodes/farming/plant.tscn")
-@onready var tilemap:TileMap 		= get_node("/root/World/Tilemap")
-@onready var cycle:Node2D 			= get_node("/root/World/Cycle")
-@onready var player:Node2D 			= get_node("/root/World/Player")
-@onready var grid:Node2D 			= get_node("/root/World/Buildings/Grid")
-@onready var gridCollision:Node2D 	= get_node("/root/World/Buildings/Grid/GridCollision")
-@onready var farming:Node2D 		= get_node("/root/World/Farming")
-@onready var house:Node2D			= get_node("/root/World/Buildings/House")
-@onready var storage:Node2D			= get_node("/root/World/Buildings/Storage")
-@onready var animal_stall:Node2D	= get_node("/root/World/Buildings/Animal Stall")
-@onready var silo:Node2D			= get_node("/root/World/Buildings/Silo")
+@onready var tilemap:TileMap = get_node("/root/World/Tilemap")
+@onready var cycle:Node2D = get_node("/root/World/Cycle")
+@onready var player:Node2D = get_node("/root/World/MainCamera")
+@onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
+@onready var gridCollision:Node2D = get_node("/root/World/Buildings/Grid/GridCollision")
+@onready var farming:Node2D = get_node("/root/World/Farming")
+@onready var house:Node2D = get_node("/root/World/Buildings/House")
+@onready var storage:Node2D = get_node("/root/World/Buildings/Storage")
+@onready var animal_stall:Node2D = get_node("/root/World/Buildings/Animal Stall")
+@onready var silo:Node2D = get_node("/root/World/Buildings/Silo")
 
 var object_created:int
 var path = {
@@ -213,13 +213,13 @@ func get_children_data(parent: Node) -> Dictionary:
 	return data_dict
 
 func plant_load(object:Node2D, object_name:String, position):
-	var plant_id		= get_key(path.plants, object_name, "plantID")
-	var condition		= get_key(path.plants, object_name, "condition")
-	var degree			= get_key(path.plants, object_name, "degree")
-	var fertilizer		= get_key(path.plants, object_name, "fertilizer")
-	var region_rect_x 	= get_key(path.plants, object_name, "region_rect.x")
-	var region_rect_y 	= get_key(path.plants, object_name, "region_rect.y")
-	var level 			= get_key(path.plants, object_name, "level_growth")
+	var plant_id = get_key(path.plants, object_name, "plantID")
+	var condition = get_key(path.plants, object_name, "condition")
+	var degree = get_key(path.plants, object_name, "degree")
+	var fertilizer = get_key(path.plants, object_name, "fertilizer")
+	var region_rect_x = get_key(path.plants, object_name, "region_rect.x")
+	var region_rect_y = get_key(path.plants, object_name, "region_rect.y")
+	var level = get_key(path.plants, object_name, "level_growth")
 
 	if plant_id != null\
 	and condition != null\
@@ -253,15 +253,15 @@ func terrains_remove() -> void:
 		-1)
 
 func time_load() -> void:
-	cycle.year		= get_key(path.world, "World", "Year")
-	cycle.month 	= get_key(path.world, "World", "Month")
-	cycle.week		= get_key(path.world, "World", "Week")
-	cycle.day		= get_key(path.world, "World", "Day")
-	cycle.hour		= get_key(path.world, "World", "Hour")
-	cycle.minute 	= get_key(path.world, "World", "Minute")
+	cycle.year = get_key(path.world, "World", "Year")
+	cycle.month = get_key(path.world, "World", "Month")
+	cycle.week = get_key(path.world, "World", "Week")
+	cycle.day = get_key(path.world, "World", "Day")
+	cycle.hour = get_key(path.world, "World", "Hour")
+	cycle.minute = get_key(path.world, "World", "Minute")
 	cycle.timeset()
 
 func player_load() -> void:
-	player.position.x 	= get_key(path.player, "Player", "X")
-	player.position.y 	= get_key(path.player, "Player", "Y")
-	player.money 		= get_key(path.player, "Player", "Balance")
+	player.position.x = get_key(path.player, "Player", "X")
+	player.position.y = get_key(path.player, "Player", "Y")
+	player.money = get_key(path.player, "Player", "Balance")

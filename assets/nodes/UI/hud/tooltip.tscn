@@ -1,40 +1,28 @@
 [gd_scene load_steps=2 format=3 uid="uid://dmrj3nbdfyut"]
 
-[ext_resource type="Script" path="res://assets/scripts/UI/HUD/tooltip.gd" id="1_sb5xd"]
+[ext_resource type="Script" path="res://assets/scripts/UI/HUD/tooltip.gd" id="1_qndc6"]
 
-[node name="ObjectInfo" type="Control"]
+[node name="Tooltip" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 100.0
-offset_bottom = 78.0
-size_flags_horizontal = 4
-size_flags_vertical = 8
-mouse_filter = 2
-script = ExtResource("1_sb5xd")
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -102.0
-offset_bottom = -25.0
-theme_override_constants/margin_left = 0
+grow_vertical = 0
+script = ExtResource("1_qndc6")
 
-[node name="Panel" type="Panel" parent="MarginContainer"]
+[node name="Container" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 1.0
+offset_bottom = -17.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Container"]
+z_index = 1
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="Name" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Level" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Slots" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Panel" type="Panel" parent="Container"]
 layout_mode = 2

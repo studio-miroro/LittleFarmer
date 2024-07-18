@@ -1,8 +1,8 @@
 extends Node
 
-class_name InventoryItems
+class_name Items
 var content:Dictionary = {
-	"max_items": 999,
+	"max": 9999,
 	1: {
 		"caption": "Доски",
 		"description": "Прочные деревянные плиты для строительства и ремонта. Подходят для стен, крыш и мебели.",
@@ -22,7 +22,7 @@ var content:Dictionary = {
 	3: {
 		"caption": "Семена моркови",
 		"description": "Маленькие семена для выращивания моркови. Посадите их на плодородной земле, поливайте и ждите урожая.",
-		"bonus": {
+		"specifications": {
 			"growth": "3 игровых дня",
 			"productivity": "5-10 морковок",
 			"conditions": "Регулярный полив и солнечный свет",
@@ -35,7 +35,7 @@ var content:Dictionary = {
 	4: {
 		"caption": "Семена картофеля",
 		"description": "Эти семена помогут вырастить питательный картофель. Посадите их в землю, поливайте и наблюдайте за ростом.",
-		"bonus": {
+		"specifications": {
 			"growth": "5 игровых дней",
 			"productivity": "3-6 картофелин",
 			"conditions": "Хороший дренаж и регулярный полив",
@@ -48,7 +48,7 @@ var content:Dictionary = {
 	5: {
 		"caption": "Семена редиса",
 		"description": "Маленькие семена для быстрого выращивания хрустящего редиса. Посадите их, поливайте и ждите урожая.",
-		"bonus": {
+		"specifications": {
 			"growth": "2 игровых дня",
 			"productivity": "8-12 редисок",
 			"conditions": "Регулярный полив и солнечный свет",
@@ -61,7 +61,7 @@ var content:Dictionary = {
 	6: {
 		"caption": "Семена капусты",
 		"description": "Семена для выращивания плотной и сочной капусты. Посадите их в землю, поливайте и ждите зрелости.",
-		"bonus": {
+		"specifications": {
 			"growth": "7 игровых дней",
 			"productivity": "1-2 кочана",
 			"conditions": "Регулярный полив и богатая почва",

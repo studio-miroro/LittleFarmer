@@ -1,26 +1,18 @@
 extends Node2D
 
-@onready var pause 			= get_node("/root/World/UI/Pause")
-@onready var hud 			= get_node("/root/World/UI/HUD/Interface")
-@onready var tilemap 		= get_node("/root/World/Tilemap")
-@onready var grid_object 	= get_node("/root/World/Buildings/Grid")
-@onready var farming 		= get_node("/root/World/Farming")
-@onready var farm 			= get_node("/root/World/")
-@onready var node 			= preload("res://assets/nodes/farming/plant.tscn")
-@onready var grid 			= $Sprite2D
-@onready var collision 		= $GridCollision
+@onready var pause:Control = get_node("/root/World/UI/Pause")
+@onready var hud:Control = get_node("/root/World/UI/HUD/Interface")
+@onready var tilemap:TileMap = get_node("/root/World/Tilemap")
+@onready var grid_object:Node2D = get_node("/root/World/Buildings/Grid")
+@onready var farming:Node2D = get_node("/root/World/Farming")
+@onready var farm:Node2D = get_node("/root/World/")
+@onready var node:PackedScene = load("res://assets/nodes/farming/plant.tscn")
+@export var default:CompressedTexture2D = load("res://assets/resources/buildings/grid/default.png")
+@export var error:CompressedTexture2D = load("res://assets/resources/buildings/grid/error.png")
+@onready var grid:Sprite2D = $Sprite2D
+@onready var collision:Area2D = $GridCollision
 
-@export var default 		= preload("res://assets/resources/buildings/grid/default.png")
-@export var error 			= preload("res://assets/resources/buildings/grid/error.png")
-
-enum gridmode {
-	NOTHING, 
-	DESTROY, 
-	FARMING, 
-	SEEDS, 
-	WATERING, 
-	BUILDING
-	}
+enum gridmode {NOTHING,DESTROY,FARMING,SEEDS,WATERING,BUILDING}
 var mode = gridmode.NOTHING
 var need_check = false
 

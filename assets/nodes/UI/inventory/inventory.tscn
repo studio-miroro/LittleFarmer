@@ -159,43 +159,56 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 
-[node name="ObjectSprite" type="TextureRect" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+[node name="Icon" type="TextureRect" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_2ovt8")
 
-[node name="ObjectCaption" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+[node name="Caption" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 text = "Object.name"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="ObjectDescription" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+[node name="Description" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+theme_override_font_sizes/font_size = 16
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Specifications" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Specifications"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Type" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Type"
+vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Slots" type="ScrollContainer" parent="Panel/HBoxContainer"]
-custom_minimum_size = Vector2(300, 30)
+custom_minimum_size = Vector2(270, 0)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 6
 
 [node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/Slots"]
 z_index = 1
-custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 2
-size_flags_vertical = 2
+size_flags_vertical = 3
 columns = 4
-
-[node name="Panel2" type="Panel" parent="Panel/HBoxContainer/Slots"]
-custom_minimum_size = Vector2(300, 344)
-layout_mode = 2
-mouse_filter = 2
 
 [node name="StorageItemList" type="Label" parent="Panel"]
 layout_mode = 1

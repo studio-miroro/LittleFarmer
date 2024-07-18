@@ -1,10 +1,10 @@
 extends Control
 
 class_name BuildingMenu
-
 @onready var node:PackedScene = load("res://assets/nodes/UI/popup/itemBuildingMenu.tscn")
 @onready var anim:AnimationPlayer = $AnimationPlayer
 @onready var blur:Control = get_node("/root/World/UI/Blur")
+@onready var inventory:Control = get_node("/root/World/UI/HUD/Inventory")
 @onready var pause:Control = get_node("/root/World/UI/Pause")
 
 @onready var container:GridContainer = get_node("/root/World/UI/Pop-up Menu/BuildingMenu/Panel/HBoxContainer/Items/GridContainer")
@@ -14,12 +14,11 @@ class_name BuildingMenu
 @onready var timeCreate:Label = $Panel/HBoxContainer/Info/VBoxContainer/ObjectCreationTime
 @onready var button:Button = $Panel/HBoxContainer/Info/VBoxContainer/Button
 
-var items = InventoryItems.new()
-var store = StoreBuilding.new()
-var constructionMaterials = BuildingMaterials.new().resources
+var items:Object = Items.new()
+var store:Object = StoreBuilding.new()
+var constructionMaterials:Object = BuildingMaterials.new()
 
-var blueprints:int = 0
-var access:Array = [1,2,3,4,5]
+var access:Array = [1,2,3,4,5,6,7,8,9,10]
 var menu:bool = false
 
 func _ready():
@@ -27,12 +26,11 @@ func _ready():
 	menu = false
 	blur.blur(false)
 	anim.play("transform_reset")
-	check_blueprints(blueprints, access)
+	check_blueprints(access)
 
 func _process(delta):
-	if !pause.paused:
-		if Input.is_action_just_pressed("test"):
-			window()
+	if !pause.paused\
+	and !inventory.menu:
 		if Input.is_action_just_pressed("menu") and menu:
 			close()
 
@@ -48,14 +46,14 @@ func open():
 	blur.blur(true)
 	anim.play("transform")
 	start_info()
-	check_blueprints(blueprints, access)
+	check_blueprints(access)
 	
 func close():
 	pause.lock = false
 	menu = false
 	blur.blur(false)
 	anim.play("transform_reset")
-	check_blueprints(blueprints, access)
+	check_blueprints(access)
 
 func start_info():
 	caption.text = "* Информация *"
@@ -63,7 +61,7 @@ func start_info():
 	timeCreate.text = ""
 	button.visible = false
 
-func check_blueprints(item:int, array:Array):
+func check_blueprints(array:Array):
 	if menu:
 		for i in array:
 			create_item(i)
@@ -97,7 +95,7 @@ func get_data(index:int):
 			
 		if store.content[index].has("description"):
 			if typeof(store.content[index]["description"]) == TYPE_STRING and description.text is String:
-				description.text = str(store.content[index]["description"])
+				description.text = store.content[index]["description"] + "\n"
 				description.visible = true
 			else:
 				push_error("The 'description' key has a non-string type. Variant.type: " + str(typeof(store.content[index]["description"])))
@@ -141,15 +139,15 @@ func get_data(index:int):
 func check_material(index, key):
 	if resource(key) != null:
 		if typeof(store.content[index]["resource"][key]) != TYPE_STRING:
-			resources.text = resources.text + str("\n• ") + str(resource(key)) + " (" + str(0) + "/" + str(round(store.content[index]["resource"][key])) + ")"
+			resources.text = resources.text + "\n• " + str(resource(key)) + " (" + str(0) + "/" + str(round(store.content[index]["resource"][key])) + ")"
 		else:
 			push_error("The key '" + str(key) + "' does not store an integer or float: " + str(typeof(store.content[index]["resource"][key])))
 	else:
 		push_warning("The '" + str(key)+ "' material cannot be returned as a string. This material will not be taken into account.")
 		
 func resource(key):
-	if key in constructionMaterials:
-		return constructionMaterials[key]
+	if key in constructionMaterials.resources:
+		return constructionMaterials.resources[key]
 	return null
 
 func reset_data():

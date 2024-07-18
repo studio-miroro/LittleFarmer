@@ -10,6 +10,11 @@ var money:int = 0
 var camera_speed:int = 5
 var speed:int = 150
 
+func _ready():
+	print(
+		Crops.new().crops[1]["productivity"][randi() % Crops.new().crops[1]["productivity"].size()]
+	)
+
 func _process(_delta):
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if direction != Vector2.ZERO and !switch:

@@ -27,10 +27,6 @@ json="*res://assets/singletons/json.gd"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 
-[editor_plugins]
-
-enabled=PackedStringArray()
-
 [importer_defaults]
 
 animation_library={

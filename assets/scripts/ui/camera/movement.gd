@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@onready var player:Node2D			= get_node("/root/World/Player")
+@onready var player:Node2D			= get_node("/root/World/MainCamera")
 @onready var pause:Control 			= get_node("/root/World/UI/Pause")
 @onready var max_distance:int 		= get_node("/root/World/Shadow").max_distance
 @onready var shadow_group:Node2D	= get_node("/root/World/Shadow")

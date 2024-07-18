@@ -12,7 +12,8 @@ var crops:Dictionary = {
 		"season" = "spring",
 		"growthRate" = 25,
 		"growthLevel" = 5,
-		"mortality" = 5, 
+		"mortality" = 5,
+		"productivity" = [5,10],
 		"X" = 0, "Y" = 0,
 	},
 	2: {
@@ -21,7 +22,8 @@ var crops:Dictionary = {
 		"season" = "spring",
 		"growthRate" = 50,
 		"growthLevel" = 6, 
-		"mortality" = 5, 
+		"mortality" = 5,
+		"productivity" = [5,10], 
 		"X" = 0, "Y" = 32,
 	},
 	3: {
@@ -30,7 +32,8 @@ var crops:Dictionary = {
 		"season" = "spring",
 		"growthRate" = 35,
 		"growthLevel" = 4, 
-		"mortality" = 5, 
+		"mortality" = 5,
+		"productivity" = [5,10], 
 		"X" = 0, "Y" = 64,
 	},
 	4: {
@@ -39,7 +42,8 @@ var crops:Dictionary = {
 		"season" = "spring",
 		"growthRate" = 75,
 		"growthLevel" = 4, 
-		"mortality" = 5, 
+		"mortality" = 5,
+		"productivity" = [5,10], 
 		"X" = 0, "Y" = 96,
 	},
 }

@@ -1683,20 +1683,9 @@ mouse_filter = 2
 
 [node name="HUD" type="Node" parent="UI"]
 
-[node name="Cursor" parent="UI/HUD" instance=ExtResource("7_g3cy5")]
-
 [node name="Tooltip" parent="UI/HUD" instance=ExtResource("2_otbj1")]
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = -39.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 0
-grow_vertical = 2
+
+[node name="Cursor" parent="UI/HUD" instance=ExtResource("7_g3cy5")]
 
 [node name="Interface" parent="UI/HUD" instance=ExtResource("5_wan5o")]
 z_as_relative = false
@@ -1704,14 +1693,14 @@ mouse_filter = 2
 
 [node name="Inventory" parent="UI/HUD" instance=ExtResource("7_8hp1e")]
 
-[node name="Cycle" type="CanvasModulate" parent="."]
-script = ExtResource("8_yhpsj")
-gradient_texture = ExtResource("9_e2igt")
-
-[node name="Player" parent="." instance=ExtResource("10_cdmdm")]
+[node name="MainCamera" parent="." instance=ExtResource("10_cdmdm")]
 z_index = 1
 z_as_relative = false
 position = Vector2(263, 86)
+
+[node name="Cycle" type="CanvasModulate" parent="."]
+script = ExtResource("8_yhpsj")
+gradient_texture = ExtResource("9_e2igt")
 
 [node name="Tilemap" type="TileMap" parent="."]
 material = SubResource("ShaderMaterial_xicbh")
@@ -1777,7 +1766,6 @@ position = Vector2(249, 25)
 texture = ExtResource("23_geqd5")
 
 [node name="Light" type="Node2D" parent="."]
-visible = false
 z_index = 6
 script = ExtResource("24_ymcwy")
 

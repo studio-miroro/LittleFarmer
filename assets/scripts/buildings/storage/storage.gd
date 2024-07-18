@@ -1,15 +1,20 @@
 extends Node2D
 
-@onready var ui = get_node("/root/World/UI/HUD/Tooltip")
-@onready var pause = get_node("/root/World/UI/Pause")
-@onready var grid = get_node("/root/World/Buildings/Grid") 
-@onready var player = get_node("/root/World/Player")
-@onready var shadow = get_node("/root/World/Shadow/StorageShadow")
-@onready var sprite = $Sprite2D
+class_name Storage
+@onready var pause:Control = get_node("/root/World/UI/Pause")
+@onready var tip:Control = get_node("/root/World/UI/HUD/Tooltip")
+@onready var inventory:Control = get_node("/root/World/UI/HUD/Inventory")
+@onready var blur:Control = get_node("/root/World/UI/Blur")
+@onready var grid:Node2D = get_node("/root/World/Buildings/Grid") 
+@onready var player:CharacterBody2D = get_node("/root/World/MainCamera")
+@onready var shadow:Sprite2D = get_node("/root/World/Shadow/StorageShadow")
+@onready var sprite:Sprite2D = $Sprite2D
+
+var _inventory:bool = false
 
 var max_distance:int = 250
 var level:int = 1
-var object: Dictionary = {
+var object:Dictionary = {
 	1: {
 		"caption" = "Старый склад",
 		"description" = "Для хранение чего-либо.",
@@ -30,6 +35,12 @@ var object: Dictionary = {
 	},
 }
 
+func _process(delta):
+	if Input.is_action_just_pressed("click left")\
+	and _inventory:
+		inventory.open()
+		_inventory = false
+
 func _ready():
 	if object.has(level):
 		if object[level].has("default"):
@@ -48,11 +59,17 @@ func change_sprite(type:bool):
 		var distance = round(global_position.distance_to(player.global_position))
 		if grid.mode == grid.gridmode.NOTHING and distance < max_distance:
 			check_sprite("hover")
-			ui.tooltip(get_global_mouse_position(), object[level]["caption"], object[level]["description"], level, 0, true)
+			tip.tooltip(
+				str(object[level]["caption"]) + "\n" +
+				str(object[level]["description"]) + "\n" +
+				"Уровень: " + str(level)
+				)
+			_inventory = true
 	else:
 		check_sprite("default")
-		ui.tooltip(Vector2(0,0), "", "", 0, -1, false)
-		
+		tip.tooltip("")
+		_inventory = false
+
 func check_sprite(key:String):
 	if object.has(level):
 		if object[level].has(key):
@@ -85,7 +102,7 @@ func get_data(key:String, inDictionary:bool):
 				push_error("The specified key (" + str(key) + ") does not exist.")
 
 func _on_area_2d_mouse_entered():
-	if !pause.paused:
+	if !blur.bluring:
 		change_sprite(true)
 
 func _on_area_2d_mouse_exited():

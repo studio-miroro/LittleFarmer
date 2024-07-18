@@ -1,11 +1,13 @@
 extends Control
 
-@onready var node		= $ColorRect
-var max_blur:float 		= 1.5
-var min_blur:float 		= 0.0
-var speed:float			= 0.1
-var value:float 		= 0
-var bluring:bool		= false
+@onready var tip:Control = get_node("/root/World/UI/HUD/Tooltip")
+@onready var node:ColorRect = $ColorRect
+
+var max_blur:float = 1.5
+var min_blur:float = 0.0
+var speed:float = 0.1
+var value:float = 0
+var bluring:bool = false
 
 func _process(delta):
 	if bluring:
@@ -18,10 +20,10 @@ func _process(delta):
 
 func blur(_bluring:bool):
 	self.bluring = _bluring
-	get_node("/root/World/Player/Camera2D").switch = _bluring
-	get_node("/root/World/Player").switch = _bluring
+	tip.tooltip("")
+	get_node("/root/World/MainCamera/Camera2D").switch = _bluring
+	get_node("/root/World/MainCamera").switch = _bluring
 	if bluring:
-		get_node("/root/World/UI/HUD/Tooltip").tooltip(Vector2(0,0), "", "", 0, -1, false)
 		get_node("/root/World/Buildings/House").change_sprite(false)
 		get_node("/root/World/Buildings/Mailbox").change_sprite(false)
 		get_node("/root/World/Buildings/Storage").change_sprite(false)

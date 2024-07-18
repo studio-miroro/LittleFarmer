@@ -5,18 +5,12 @@
 [ext_resource type="Script" path="res://assets/scripts/farming/growth.gd" id="3_2xp2i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0gu1o"]
-size = Vector2(14, 14)
+size = Vector2(12, 12)
 
 [node name="Plant" type="Node2D"]
 script = ExtResource("1_vh4nl")
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="Collision" type="Area2D" parent="."]
-z_as_relative = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
-shape = SubResource("RectangleShape2D_0gu1o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
@@ -24,6 +18,12 @@ texture = ExtResource("2_fqbqe")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 32)
 script = ExtResource("3_2xp2i")
+
+[node name="Collision" type="Area2D" parent="."]
+z_as_relative = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+shape = SubResource("RectangleShape2D_0gu1o")
 
 [connection signal="timeout" from="Timer" to="Sprite2D" method="_on_timer_timeout"]
 [connection signal="mouse_entered" from="Collision" to="." method="_on_collision_mouse_entered"]

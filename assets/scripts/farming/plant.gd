@@ -1,19 +1,18 @@
 extends Node2D
 
-@onready var ui = get_node("/root/World/UI/HUD/Tooltip")
-@onready var tilemap = get_node("/root/World/Tilemap")
-@onready var grid = get_node("/root/World/Buildings/Grid")
-@onready var collision = get_node("/root/World/Buildings/Grid/GridCollision")
-@onready var pause = get_node("/root/World/UI/Pause")
-@onready var sprite = $Sprite2D
-@onready var timer = $Timer
+@onready var tip:Control = get_node("/root/World/UI/HUD/Tooltip")
+@onready var tilemap:TileMap = get_node("/root/World/Tilemap")
+@onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
+@onready var collision:Area2D = get_node("/root/World/Buildings/Grid/GridCollision")
+@onready var pause:Control = get_node("/root/World/UI/Pause")
+@onready var sprite:Sprite2D = $Sprite2D
+@onready var timer:Timer = $Timer
 
-var crops = Crops.new()
-
-var plantID:int = 0
+var crops:Object = Crops.new()
+var plantID:int
 var condition:int = phases.PLANTED
 var fertilizer:int = fertilizers.NOTHING
-var degree:int = 0
+var degree:int
 
 enum phases {PLANTED,GROWING,INCREASED,DEAD}
 enum fertilizers {NOTHING, COMPOST, HUMUS, MANURE}
@@ -106,7 +105,16 @@ func get_data() -> Dictionary:
 		"position": tilemap.local_to_map(global_position),
 	}
 
-func set_data(id:int, condition:int, degree:int, fertilizer:int, region_rect_x:int, region_rect_y:int, level:int, obj_position:Vector2i) -> void:
+func set_data(
+	id:int,
+	condition:int,
+	degree:int,
+	fertilizer:int,
+	region_rect_x:int,
+	region_rect_y:int,
+	level:int,
+	pos:Vector2i
+	) -> void:
 	self.plantID = id
 	self.condition = condition
 	self.degree = degree
@@ -115,16 +123,56 @@ func set_data(id:int, condition:int, degree:int, fertilizer:int, region_rect_x:i
 	sprite.region_rect.position.y = region_rect_y
 	sprite.level = level
 	growth()
-	check(plantID, obj_position)
+	check(plantID, pos)
+
+func get_condition(condition:int) -> String:
+	match condition:
+		0:
+			return "Посажено"
+		1:
+			return "Процветает"
+		2:
+			return "Выросло"
+		3:
+			return "Погибло"
+		_:
+			return ""
+
+func get_fertilizer(fertilizer:int) -> String:
+	match fertilizer:
+		1:
+			return "Компост"
+		2:
+			return "Перегной"
+		3:
+			return "Навоз"
+		_:
+			return ""
 
 func _on_collision_mouse_entered() -> void:
-	if !pause.paused:
-		if grid.mode == grid.gridmode.NOTHING:
-			ui.tooltip_plant(get_global_mouse_position(), plantID, position, condition, fertilizer, true)
-	else:
-		ui.tooltip_plant(Vector2(0,0), 0, Vector2(0,0), 0, -1, false)
+	if !pause.paused\
+	and grid.mode == grid.gridmode.NOTHING:
+		if crops.crops.has(plantID):
+			if crops.crops[plantID].has("caption"):
+				if typeof(crops.crops[plantID]["caption"]) == TYPE_STRING:
+					if fertilizer != fertilizers.NOTHING:
+						tip.tooltip(
+							crops.crops[plantID]["caption"] +"\n"+
+							"Состояние: " + get_condition(condition) +"\n"+
+							"Удобрено: " + get_fertilizer(fertilizer)
+						)
+					else:
+						tip.tooltip(
+							crops.crops[plantID]["caption"] +"\n"+
+							"Состояние: " + get_condition(condition)
+						)
+				else:
+					push_error("The 'caption' element is not a string type. Variant.type: " + str(typeof(crops.crops[plantID]["caption"])))
+			else:
+				push_error("The 'caption' element is missing.")
+		else:
+			push_error("Invalid ID: " + str(plantID))
 		
 func _on_collision_mouse_exited() -> void:
 	if !pause.paused:
-		if grid.mode == grid.gridmode.NOTHING:
-			ui.tooltip_plant(Vector2(0,0), 0, Vector2(0,0), 0, -1, false)
+		tip.tooltip("")

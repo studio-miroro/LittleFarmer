@@ -181,7 +181,7 @@ layout_mode = 2
 [node name="ObjectCaption" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 text = "Object.name"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -190,13 +190,21 @@ autowrap_mode = 3
 [node name="ObjectDescription" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Object.description"
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
+layout_mode = 2
+
 [node name="ObjectResources" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Object.materials"
 vertical_alignment = 1
 autowrap_mode = 3
@@ -204,6 +212,7 @@ autowrap_mode = 3
 [node name="ObjectCreationTime" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Object.creation_time"
 vertical_alignment = 2
 

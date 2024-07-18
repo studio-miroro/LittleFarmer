@@ -1,16 +1,19 @@
 extends Control
 
-@onready var destroy_button 	= $"Tools Menu/Tools Hud/Container/Destroy"
-@onready var farming_button 	= $"Tools Menu/Tools Hud/Container/Farm"
-@onready var watering_button 	= $"Tools Menu/Tools Hud/Container/Watering"
-@onready var building_button 	= $"Tools Menu/Tools Hud/Container/Building"
+@onready var pause:Control = get_node("/root/World/UI/Pause")
+@onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
+@onready var blur:Control = get_node("/root/World/UI/Blur")
+@onready var inventory:Control = get_node("/root/World/UI/HUD/Inventory")
+@onready var build_menu:Control = get_node("/root/World/UI/Pop-up Menu/BuildingMenu")
 
-@onready var pause = get_node("/root/World/UI/Pause")
-@onready var grid = get_node("/root/World/Buildings/Grid")
+@onready var destroy_button:Button = $"Tools Menu/Tools Hud/Container/Destroy"
+@onready var farming_button:Button = $"Tools Menu/Tools Hud/Container/Farm"
+@onready var watering_button:Button = $"Tools Menu/Tools Hud/Container/Watering"
+@onready var building_button:Button = $"Tools Menu/Tools Hud/Container/Building"
 
 var destroy:bool
 var farming:bool
-var plant:bool
+var planting:bool
 var watering:bool
 var building:bool
 
@@ -29,7 +32,7 @@ func _input(event):
 			building_button.release_focus()
 			destroy = false
 			farming = false
-			plant = false
+			planting = false
 			watering = false
 			building = false
 
@@ -42,7 +45,7 @@ func _on_destroy_pressed():
 			get_node("/root/World/Buildings/Grid").visible = true
 			destroy = true
 			farming = false
-			plant = false
+			planting = false
 			watering = false
 			building = false
 
@@ -63,7 +66,7 @@ func _on_watering_pressed():
 			get_node("/root/World/Buildings/Grid").visible = true
 			destroy = false
 			farming = false
-			plant = false
+			planting = false
 			watering = true
 			building = false
 			
@@ -84,7 +87,7 @@ func _on_farm_pressed():
 			get_node("/root/World/Buildings/Grid").visible = true
 			destroy = false
 			farming = true
-			plant = false
+			planting = false
 			watering = false
 			building = false
 			
@@ -98,15 +101,16 @@ func _on_farm_mouse_exited():
 	
 # --- Building ---
 func _on_building_pressed():
-	if !building:
-		if !pause.paused:
-			grid.mode = grid.gridmode.BUILDING
+	if !building\
+	and !pause.paused\
+	and !inventory.menu:
+			build_menu.window()
 			building_button.grab_focus()
 			destroy = false
 			farming = false
-			plant = false
+			planting = false
 			watering = false
-			building = true
+			building = false
 
 func _on_building_mouse_entered():
 	if grid.mode != grid.gridmode.NOTHING:
@@ -116,16 +120,16 @@ func _on_building_mouse_exited():
 	if grid.mode != grid.gridmode.NOTHING:
 		get_node("/root/World/Buildings/Grid").visible = true
 
-# --- Planting ---
+# --- planting ---
 func _on_button_pressed():
-	if !plant:
+	if !planting:
 		if !pause.paused:
 			grid.mode = grid.gridmode.SEEDS
 			building_button.grab_focus()
 			get_node("/root/World/Buildings/Grid").visible = true
 			destroy = false
 			farming = false
-			plant = true
+			planting = true
 			watering = false
 			building = false
 
