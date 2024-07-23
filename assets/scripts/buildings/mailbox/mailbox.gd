@@ -3,10 +3,13 @@ extends Node2D
 @onready var pause:Control = get_node("/root/World/UI/Pause")
 @onready var tip:Control = get_node("/root/World/UI/HUD/Tooltip")
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
+@onready var blur:Control = get_node("/root/World/UI/Blur")
 @onready var player:CharacterBody2D = get_node("/root/World/MainCamera")
+@onready var mailbox:Control = get_node("/root/World/UI/Pop-up Menu/Mailbox")
 @onready var sprite:Sprite2D = $Sprite2D
 
 var max_distance:int = 250
+var _mailbox:bool
 var object:Dictionary = {
 	"caption" = "Почтовый ящик",
 	"description" = "Хранит письма от ваших соседей.",
@@ -22,7 +25,12 @@ func _ready():
 			push_error("The specified sprite cannot be installed.")
 	else:
 		push_error("The specified key is missing.")
-	
+
+func _process(delta):
+	if Input.is_action_just_pressed("click left")\
+	and _mailbox:
+		mailbox.open()
+
 func change_sprite(type:bool) -> void:
 	if type:
 		var distance = round(global_position.distance_to(player.global_position))
@@ -34,11 +42,13 @@ func change_sprite(type:bool) -> void:
 					object["caption"]+"\n"
 					+object["description"]
 				)
+				_mailbox = true
 			else:
 				push_error("Check the 'caption', 'description' elements.")
 	else:
 		check_sprite("default")
 		tip.tooltip("")
+		_mailbox = false
 	
 func check_sprite(key:String) -> void:
 	if object.has(key):
@@ -50,7 +60,7 @@ func check_sprite(key:String) -> void:
 		push_error("The specified key is missing.")
 
 func _on_area_2d_mouse_entered() -> void:
-	if !pause.paused:
+	if !blur.bluring:
 		change_sprite(true)
 
 func _on_area_2d_mouse_exited() -> void:

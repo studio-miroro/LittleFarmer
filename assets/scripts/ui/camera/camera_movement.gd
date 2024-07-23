@@ -6,7 +6,6 @@ class_name Camera
 @onready var switch:bool = false
 
 var direction:Vector2 = Vector2.ZERO
-var money:int = 0
 var camera_speed:int = 5
 var speed:int = 150
 

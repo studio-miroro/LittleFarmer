@@ -1,7 +1,7 @@
 extends Control
 
 @onready var container:MarginContainer = $Container
-@onready var label:Label = $Container/Label
+@onready var label:Label = $Container/MarginContainer/Label
 @onready var panel:Panel = $Container/Panel
 
 var tip:bool

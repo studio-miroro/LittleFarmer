@@ -152,21 +152,6 @@ layout_mode = 2
 [node name="Item_BuildingMenu" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("2_km2qd")]
 layout_mode = 2
 
-[node name="Item_BuildingMenu2" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("2_km2qd")]
-layout_mode = 2
-
-[node name="Item_BuildingMenu3" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("2_km2qd")]
-layout_mode = 2
-
-[node name="Item_BuildingMenu4" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("2_km2qd")]
-layout_mode = 2
-
-[node name="Item_BuildingMenu5" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("2_km2qd")]
-layout_mode = 2
-
-[node name="Item_BuildingMenu6" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("2_km2qd")]
-layout_mode = 2
-
 [node name="Info" type="ScrollContainer" parent="Panel/HBoxContainer"]
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
@@ -224,11 +209,12 @@ text = "Соорудить"
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 624.0
-offset_top = -16.0
-offset_right = 656.0
-offset_bottom = 16.0
+anchor_left = 0.975
+anchor_top = -0.0416667
+anchor_right = 1.025
+anchor_bottom = 0.0416667
 text = "X"
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -30,12 +30,12 @@ func _ready():
 func _process(delta):
 	if !pause.paused\
 	and !build.menu:
+		if Input.is_action_just_pressed("test2"):
+			print(_items)
 		if Input.is_action_just_pressed("inventory") and blur.blur:
 			window()
 		if Input.is_action_just_pressed("menu") and menu:
 			close()
-		if Input.is_action_just_pressed("test"):
-			_items[add(_items)] = {}
 
 func window() -> void:
 	if menu:
@@ -117,7 +117,6 @@ func get_data(index) -> void:
 				push_error("[ID: "+str(index)+"] The 'type' key has a non-string type. Variant.type: " + str(typeof(item.content[index]["type"])))
 		else:
 			push_error("[ID: "+str(index)+"] The object does not have the 'type' key.")
-			
 	else:
 		push_error("The object does not have the 'type' key.")
 
@@ -149,12 +148,12 @@ func delete_slots() -> void:
 
 func item_create(i) -> void:
 	var slot = node.instantiate()
-	if slot.test(i):
-		check_amount(i)
+	check_amount(i)
+	if _items[i]["amount"] > 0:
 		slots.add_child(slot)
 		slot.set_data(i, _items[i]["amount"])
 	else:
-		push_error("Cannot load node. Invalid index: " + str(i))
+		remove_item(i)
 
 func update_list() -> void:
 	if storage.object[storage.level].has("slots"):
@@ -175,11 +174,16 @@ func list_slots_return():
 	else:
 		push_error("Cannot load parent.")
 
-func add(cs): # delete
-	var item:int = 1
-	for i in cs:
-		item+=1
-	return item
+func add_item(id:int, amount:int):
+	if _items.has(id):
+		_items[id]["amount"] = _items[id]["amount"] + amount
+	else:
+		_items[id] = {"amount": amount}
+		
+func remove_item(id:int):
+	for key in _items:
+		if id == key:
+			_items.erase(key)
 
 func check_slots() -> bool:
 	if list_slots_return() <= storage.object[storage.level]["slots"]:
@@ -191,6 +195,8 @@ func check_amount(index) -> void:
 	if _items[index].has("amount"):
 		if _items[index]["amount"] > Items.new().content["max"]:
 			_items[index]["amount"] = Items.new().content["max"]
+		if _items[index]["amount"] < 0:
+			_items[index]["amount"] = 0
 	else:
 		push_warning("[ID: "+str(index)+"] The 'amount' element does not exist in the inventory dictionary (array).")
 		_items[index]["amount"] = 1
@@ -211,10 +217,10 @@ func get_tip(tip:String) -> String:
 			return "Условия"
 		_:
 			return ""
-			
 
 func check_window() -> void:
 	visible = menu
 
 func _on_button_pressed() -> void:
-	close()
+	if menu:
+		close()

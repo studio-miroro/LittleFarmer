@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://4vypwfxar3e"]
+[gd_scene load_steps=54 format=3 uid="uid://4vypwfxar3e"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_ieipv"]
 [ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/UI/hud/tooltip.tscn" id="2_otbj1"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bpmceytvqnc7d" path="res://assets/nodes/UI/popup/buildingMenu.tscn" id="5_v6eft"]
 [ext_resource type="PackedScene" uid="uid://c50737uagx074" path="res://assets/nodes/UI/hud/hud.tscn" id="5_wan5o"]
 [ext_resource type="PackedScene" uid="uid://ugypr7xdq68w" path="res://assets/nodes/UI/hud/debugger.tscn" id="6_0i3q1"]
+[ext_resource type="PackedScene" uid="uid://cwtsqme5qki8s" path="res://assets/nodes/UI/popup/mails/mails.tscn" id="7_5top8"]
 [ext_resource type="PackedScene" uid="uid://cjkwsdkyksvs3" path="res://assets/nodes/UI/inventory/inventory.tscn" id="7_8hp1e"]
 [ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/UI/hud/cursor.tscn" id="7_g3cy5"]
 [ext_resource type="Script" path="res://assets/scripts/world/nature/time.gd" id="8_yhpsj"]
@@ -1681,9 +1682,12 @@ mouse_filter = 2
 
 [node name="BuildingMenu" parent="UI/Pop-up Menu" instance=ExtResource("5_v6eft")]
 
+[node name="Mailbox" parent="UI/Pop-up Menu" instance=ExtResource("7_5top8")]
+
 [node name="HUD" type="Node" parent="UI"]
 
 [node name="Tooltip" parent="UI/HUD" instance=ExtResource("2_otbj1")]
+z_index = 1
 
 [node name="Cursor" parent="UI/HUD" instance=ExtResource("7_g3cy5")]
 

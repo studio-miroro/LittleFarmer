@@ -4,6 +4,7 @@ extends Node
 @onready var tilemap:TileMap = get_node("/root/World/Tilemap")
 @onready var cycle:Node2D = get_node("/root/World/Cycle")
 @onready var player:Node2D = get_node("/root/World/MainCamera")
+@onready var balance:Control = get_node("/root/World/UI/HUD/Interface/Money")
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
 @onready var gridCollision:Node2D = get_node("/root/World/Buildings/Grid/GridCollision")
 @onready var farming:Node2D = get_node("/root/World/Farming")
@@ -119,20 +120,23 @@ func create_terrain(index:int, layer:int, path, key:String, terrain_set:int, ter
 
 func get_content(group:String):
 	match group:
+		
 		"Game":
 			return {
 				"Game": {
 					"Version": ProjectSettings.get_setting("application/config/version"),
 				}
 			}
+			
 		"Player":
 			return {
 				"Player": {
 					"X": round(player.position.x),
 					"Y": round(player.position.y),
-					"Balance": player.money,
+					"Balance": balance.money,
 				}
 			}
+			
 		"World":
 			return {
 				"World": {
@@ -144,6 +148,7 @@ func get_content(group:String):
 					"Minute": cycle.minute,
 				}
 			}
+			
 		"Vectors":
 			return {
 				"Vectors": {
@@ -153,8 +158,10 @@ func get_content(group:String):
 					"Plants": get_position_children(farming),
 				}
 			}
+			
 		"Plants":
 			return get_children_data(farming)
+			
 		"Builds":
 			return {
 				"House": {
@@ -264,4 +271,4 @@ func time_load() -> void:
 func player_load() -> void:
 	player.position.x = get_key(path.player, "Player", "X")
 	player.position.y = get_key(path.player, "Player", "Y")
-	player.money = get_key(path.player, "Player", "Balance")
+	balance.money = get_key(path.player, "Player", "Balance")

@@ -1,0 +1,127 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwtsqme5qki8s"]
+
+[ext_resource type="Script" path="res://assets/scripts/buildings/mailbox/menu.gd" id="1_u66ny"]
+[ext_resource type="PackedScene" uid="uid://15vmrkth71wi" path="res://assets/nodes/UI/popup/mails/letter.tscn" id="2_5uh47"]
+
+[node name="Mailbox" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u66ny")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -192.0
+offset_right = 320.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 2
+offset_left = 324.0
+offset_top = 16.0
+offset_right = 624.0
+offset_bottom = 368.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.0
+offset_top = -176.0
+offset_right = 304.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Letters" type="ScrollContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Letters"]
+layout_mode = 2
+
+[node name="Letter" parent="Panel/HBoxContainer/Letters/VBoxContainer" instance=ExtResource("2_5uh47")]
+layout_mode = 2
+
+[node name="Content" type="ScrollContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Content"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="LetterHeader" type="MarginContainer" parent="Panel/HBoxContainer/Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="Title" type="Label" parent="Panel/HBoxContainer/Content/VBoxContainer/LetterHeader"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 20
+text = "Открытие нового рынка"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="MainContent" type="MarginContainer" parent="Panel/HBoxContainer/Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 20
+
+[node name="Text" type="Label" parent="Panel/HBoxContainer/Content/VBoxContainer/MainContent"]
+clip_contents = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 15
+text = "Уважаемый фермер!
+
+Возле главной площади открылся новый рынок. Вы можете арендовать лавку для продажи своего урожая. Также доступны товары для фермы: семена, удобрения, оборудование.
+
+Ждём Вас!"
+autowrap_mode = 3
+
+[node name="Author" type="MarginContainer" parent="Panel/HBoxContainer/Content/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="Author" type="Label" parent="Panel/HBoxContainer/Content/VBoxContainer/Author"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "- С уважением, Мэр
+"
+
+[node name="Close" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 2)
+layout_mode = 0
+offset_left = 944.0
+offset_top = 152.0
+offset_right = 976.0
+offset_bottom = 184.0
+text = "X"
+
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

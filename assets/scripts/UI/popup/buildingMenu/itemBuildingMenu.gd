@@ -1,7 +1,7 @@
 extends Control
 
 @onready var build = get_node("/root/World/UI/Pop-up Menu/BuildingMenu")
-@onready var icon:TextureRect = $Button/HBoxContainer/Icon
+@onready var icon:TextureRect = $Button/HBoxContainer/MarginContainer/Icon
 @onready var caption:Label = $Button/HBoxContainer/Caption
 @onready var index:int
 

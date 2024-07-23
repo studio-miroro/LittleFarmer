@@ -128,9 +128,9 @@ grow_vertical = 2
 [node name="Panel" type="Panel" parent="Panel"]
 custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
-offset_left = 31.0
+offset_left = 333.0
 offset_top = 20.0
-offset_right = 306.0
+offset_right = 608.0
 offset_bottom = 336.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
@@ -146,6 +146,18 @@ offset_right = 300.0
 offset_bottom = 144.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Slots" type="ScrollContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/Slots"]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+columns = 4
 
 [node name="ItemInfo" type="ScrollContainer" parent="Panel/HBoxContainer"]
 custom_minimum_size = Vector2(275, 0)
@@ -198,18 +210,6 @@ text = "Type"
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Slots" type="ScrollContainer" parent="Panel/HBoxContainer"]
-custom_minimum_size = Vector2(270, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-
-[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/Slots"]
-z_index = 1
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 3
-columns = 4
-
 [node name="StorageItemList" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
@@ -221,7 +221,7 @@ offset_right = -59.0
 text = "StorageItemList"
 metadata/_edit_use_anchors_ = true
 
-[node name="Button" type="Button" parent="."]
+[node name="Close" type="Button" parent="."]
 layout_mode = 0
 offset_left = 304.0
 offset_top = -200.0
@@ -235,4 +235,4 @@ libraries = {
 "": SubResource("AnimationLibrary_of6b4")
 }
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Close" to="." method="_on_button_pressed"]

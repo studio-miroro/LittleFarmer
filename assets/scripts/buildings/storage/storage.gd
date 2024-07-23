@@ -17,7 +17,7 @@ var level:int = 1
 var object:Dictionary = {
 	1: {
 		"caption" = "Старый склад",
-		"description" = "Для хранение чего-либо.",
+		"description" = "Для хранения чего-либо.",
 		"slots" = 10,
 		# Sprites
 		"default" = preload("res://Assets/Resources/Buildings/Storage/Level-1/object_0.png"),
@@ -26,7 +26,7 @@ var object:Dictionary = {
 	},
 	2: {
 		"caption" = "Склад",
-		"description" = "Для хранение чего-либо.",
+		"description" = "Для хранения чего-либо.",
 		"slots" = 25,
 		# Sprites
 		"default" = preload("res://Assets/Resources/Buildings/Storage/Level-2/object_0.png"),
@@ -100,6 +100,7 @@ func get_data(key:String, inDictionary:bool):
 			_:
 				return null
 				push_error("The specified key (" + str(key) + ") does not exist.")
+
 
 func _on_area_2d_mouse_entered():
 	if !blur.bluring:

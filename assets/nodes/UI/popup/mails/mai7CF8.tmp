@@ -1,0 +1,280 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwtsqme5qki8s"]
+
+[ext_resource type="Script" path="res://assets/scripts/buildings/mailbox/menu.gd" id="1_u66ny"]
+[ext_resource type="PackedScene" uid="uid://15vmrkth71wi" path="res://assets/nodes/UI/popup/mails/letter.tscn" id="2_5uh47"]
+
+[sub_resource type="Animation" id="Animation_c0gri"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fayjw"]
+resource_name = "close"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_window"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reset_data"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_12d1e"]
+resource_name = "open"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_window"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yx45"]
+_data = {
+"RESET": SubResource("Animation_c0gri"),
+"close": SubResource("Animation_fayjw"),
+"open": SubResource("Animation_12d1e")
+}
+
+[node name="Mailbox" type="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u66ny")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -192.0
+offset_right = 320.0
+offset_bottom = 192.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Panel"]
+layout_mode = 2
+offset_left = 324.0
+offset_top = 16.0
+offset_right = 624.0
+offset_bottom = 368.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -303.0
+offset_top = -176.0
+offset_right = 304.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LettersScroll" type="ScrollContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(275, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/LettersScroll"]
+layout_mode = 2
+
+[node name="Letter" parent="Panel/HBoxContainer/LettersScroll/VBoxContainer" instance=ExtResource("2_5uh47")]
+layout_mode = 2
+
+[node name="ContentScroll" type="ScrollContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/ContentScroll"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="LetterHeader" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="Title" type="Label" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterHeader"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 20
+text = "Header"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="MainContent" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 20
+
+[node name="Text" type="Label" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/MainContent"]
+clip_contents = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 15
+text = "description"
+autowrap_mode = 3
+
+[node name="Author" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="Author" type="Label" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Author"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "— Author"
+
+[node name="Items" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="Panel" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items"]
+layout_mode = 2
+
+[node name="LabelContainer" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/LabelContainer"]
+layout_mode = 2
+text = "Прикрепленные предметы:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Items" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer/Items"]
+layout_mode = 2
+columns = 4
+
+[node name="ButtonContainer" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GetItems" type="Button" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Забрать"
+text_overrun_behavior = 3
+
+[node name="Close" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 2)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.7375
+anchor_top = 0.211111
+anchor_right = 0.7625
+anchor_bottom = 0.254167
+grow_horizontal = 2
+grow_vertical = 2
+text = "X"
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2yx45")
+}
+
+[connection signal="pressed" from="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems" to="." method="_on_get_items_pressed"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
