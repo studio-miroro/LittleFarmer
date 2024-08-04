@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://do4e681e4p00n"]
 
-[ext_resource type="Script" path="res://assets/nodes/UI/inventory/slot.gd" id="1_4uk0b"]
-[ext_resource type="Texture2D" uid="uid://drwbxqpgt6lxf" path="res://assets/resources/UI/building menu/default.png" id="1_k2yqa"]
+[ext_resource type="Script" path="res://assets/scripts/ui/inventory/slot.gd" id="1_4uk0b"]
+[ext_resource type="Texture2D" uid="uid://drwbxqpgt6lxf" path="res://assets/resources/ui/craft/default.png" id="1_k2yqa"]
 
 [node name="Slot" type="Control"]
 custom_minimum_size = Vector2(64, 64)

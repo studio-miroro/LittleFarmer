@@ -1,6 +1,5 @@
 extends Control
 
-@onready var tip:Control = get_node("/root/World/UI/HUD/Tooltip")
 @onready var node:ColorRect = $ColorRect
 
 var max_blur:float = 1.5
@@ -20,9 +19,9 @@ func _process(delta):
 
 func blur(_bluring:bool):
 	self.bluring = _bluring
-	tip.tooltip("")
-	get_node("/root/World/MainCamera/Camera2D").switch = _bluring
-	get_node("/root/World/MainCamera").switch = _bluring
+	get_node("/root/World/User Interface/System/Tooltip").tooltip("")
+	get_node("/root/World/Camera/Camera2D").switch = _bluring
+	get_node("/root/World/Camera").switch = _bluring
 	if bluring:
 		get_node("/root/World/Buildings/House").change_sprite(false)
 		get_node("/root/World/Buildings/Mailbox").change_sprite(false)

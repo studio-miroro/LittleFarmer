@@ -1,20 +1,21 @@
-[gd_scene load_steps=54 format=3 uid="uid://4vypwfxar3e"]
+[gd_scene load_steps=55 format=3 uid="uid://4vypwfxar3e"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_ieipv"]
-[ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/UI/hud/tooltip.tscn" id="2_otbj1"]
-[ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/UI/hud/blackout.tscn" id="3_1lalu"]
-[ext_resource type="PackedScene" uid="uid://cyl6jw0huwvk6" path="res://assets/nodes/UI/pause.tscn" id="4_yubjk"]
-[ext_resource type="PackedScene" uid="uid://bpmceytvqnc7d" path="res://assets/nodes/UI/popup/buildingMenu.tscn" id="5_v6eft"]
-[ext_resource type="PackedScene" uid="uid://c50737uagx074" path="res://assets/nodes/UI/hud/hud.tscn" id="5_wan5o"]
-[ext_resource type="PackedScene" uid="uid://ugypr7xdq68w" path="res://assets/nodes/UI/hud/debugger.tscn" id="6_0i3q1"]
-[ext_resource type="PackedScene" uid="uid://cwtsqme5qki8s" path="res://assets/nodes/UI/popup/mails/mails.tscn" id="7_5top8"]
-[ext_resource type="PackedScene" uid="uid://cjkwsdkyksvs3" path="res://assets/nodes/UI/inventory/inventory.tscn" id="7_8hp1e"]
-[ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/UI/hud/cursor.tscn" id="7_g3cy5"]
+[ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/ui/system/tooltip/tooltip.tscn" id="2_otbj1"]
+[ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/hud/blackout.tscn" id="3_1lalu"]
+[ext_resource type="PackedScene" uid="uid://cyl6jw0huwvk6" path="res://assets/nodes/ui/pause.tscn" id="4_yubjk"]
+[ext_resource type="PackedScene" uid="uid://bpmceytvqnc7d" path="res://assets/nodes/ui/windows/craft/menu.tscn" id="5_v6eft"]
+[ext_resource type="PackedScene" uid="uid://c50737uagx074" path="res://assets/nodes/ui/hud/hud.tscn" id="5_wan5o"]
+[ext_resource type="PackedScene" uid="uid://ugypr7xdq68w" path="res://assets/nodes/ui/hud/debugger.tscn" id="6_0i3q1"]
+[ext_resource type="PackedScene" uid="uid://cwtsqme5qki8s" path="res://assets/nodes/ui/windows/mail/mail.tscn" id="7_5top8"]
+[ext_resource type="PackedScene" uid="uid://cjkwsdkyksvs3" path="res://assets/nodes/ui/inventory/inventory.tscn" id="7_8hp1e"]
+[ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/hud/cursor.tscn" id="7_g3cy5"]
 [ext_resource type="Script" path="res://assets/scripts/world/nature/time.gd" id="8_yhpsj"]
-[ext_resource type="PackedScene" uid="uid://c16oacn0qg214" path="res://assets/nodes/UI/blur.tscn" id="9_ccti6"]
+[ext_resource type="PackedScene" uid="uid://c16oacn0qg214" path="res://assets/nodes/ui/blur.tscn" id="9_ccti6"]
 [ext_resource type="Texture2D" uid="uid://cxqw4nldap880" path="res://assets/resources/nature/cycle-gradient.tres" id="9_e2igt"]
-[ext_resource type="PackedScene" uid="uid://b8eteio2464wo" path="res://assets/nodes/UI/hud/camera.tscn" id="10_cdmdm"]
+[ext_resource type="PackedScene" uid="uid://b8eteio2464wo" path="res://assets/nodes/ui/hud/camera.tscn" id="10_cdmdm"]
 [ext_resource type="Texture2D" uid="uid://b66gdyd27b6v8" path="res://assets/resources/nature/grass.png" id="11_f64k1"]
+[ext_resource type="PackedScene" uid="uid://cipgdxgpuslcv" path="res://assets/nodes/ui/system/notifications/notifications.tscn" id="12_034tr"]
 [ext_resource type="Texture2D" uid="uid://bf8an67t7ykhk" path="res://assets/resources/farming/farmland.png" id="12_n5h5x"]
 [ext_resource type="Texture2D" uid="uid://b0pyequa6wol7" path="res://assets/resources/farming/watering.png" id="13_mqvhx"]
 [ext_resource type="Texture2D" uid="uid://dj1b5aexd5fug" path="res://assets/resources/farming/crops.png" id="14_l5qkb"]
@@ -1661,43 +1662,52 @@ turbulence_influence_max = 0.719
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_h27nr")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="User Interface" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="Blackout" parent="UI" instance=ExtResource("3_1lalu")]
+[node name="Cursor" parent="User Interface" instance=ExtResource("7_g3cy5")]
 
-[node name="Pause" parent="UI" instance=ExtResource("4_yubjk")]
-z_index = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="Blackout" parent="User Interface" instance=ExtResource("3_1lalu")]
 
-[node name="Debugger" parent="UI" instance=ExtResource("6_0i3q1")]
+[node name="Blur" parent="User Interface" instance=ExtResource("9_ccti6")]
+
+[node name="HUD" parent="User Interface" instance=ExtResource("5_wan5o")]
+z_as_relative = false
+mouse_filter = 2
+
+[node name="Debugger" parent="User Interface" instance=ExtResource("6_0i3q1")]
 z_index = 998
 z_as_relative = false
 mouse_filter = 2
 
-[node name="Blur" parent="UI" instance=ExtResource("9_ccti6")]
+[node name="Windows" type="Node" parent="User Interface"]
 
-[node name="Pop-up Menu" type="Node" parent="UI"]
+[node name="Pause" parent="User Interface/Windows" instance=ExtResource("4_yubjk")]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="BuildingMenu" parent="UI/Pop-up Menu" instance=ExtResource("5_v6eft")]
+[node name="Inventory" parent="User Interface/Windows" instance=ExtResource("7_8hp1e")]
 
-[node name="Mailbox" parent="UI/Pop-up Menu" instance=ExtResource("7_5top8")]
+[node name="Crafting" parent="User Interface/Windows" instance=ExtResource("5_v6eft")]
 
-[node name="HUD" type="Node" parent="UI"]
+[node name="Mailbox" parent="User Interface/Windows" instance=ExtResource("7_5top8")]
 
-[node name="Tooltip" parent="UI/HUD" instance=ExtResource("2_otbj1")]
+[node name="System" type="Node" parent="User Interface"]
+
+[node name="Tooltip" parent="User Interface/System" instance=ExtResource("2_otbj1")]
 z_index = 1
+offset_top = 720.0
+offset_bottom = 720.0
 
-[node name="Cursor" parent="UI/HUD" instance=ExtResource("7_g3cy5")]
+[node name="Notifications" parent="User Interface/System" instance=ExtResource("12_034tr")]
 
-[node name="Interface" parent="UI/HUD" instance=ExtResource("5_wan5o")]
-z_as_relative = false
-mouse_filter = 2
-
-[node name="Inventory" parent="UI/HUD" instance=ExtResource("7_8hp1e")]
-
-[node name="MainCamera" parent="." instance=ExtResource("10_cdmdm")]
+[node name="Camera" parent="." instance=ExtResource("10_cdmdm")]
 z_index = 1
 z_as_relative = false
 position = Vector2(263, 86)

@@ -1,10 +1,10 @@
 extends Control
 
-@onready var pause:Control = get_node("/root/World/UI/Pause")
+@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
-@onready var blur:Control = get_node("/root/World/UI/Blur")
-@onready var inventory:Control = get_node("/root/World/UI/HUD/Inventory")
-@onready var build_menu:Control = get_node("/root/World/UI/Pop-up Menu/BuildingMenu")
+@onready var blur:Control = get_node("/root/World/User Interface/Blur")
+@onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
+@onready var build_menu:Control = get_node("/root/World/User Interface/Windows/Crafting")
 
 @onready var destroy_button:Button = $"Tools Menu/Tools Hud/Container/Destroy"
 @onready var farming_button:Button = $"Tools Menu/Tools Hud/Container/Farm"

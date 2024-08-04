@@ -1,8 +1,9 @@
 res://
+E:/gamedev/.github/godot_game/assets/scripts/UI/inventory
+res://assets/nodes/UI
+res://assets/resources
 res://assets/nodes/UI/popup/mails
 res://assets/resources/UI/inventory/items
-res://assets/resources/UI/building menu
-res://assets/nodes/UI
 res://levels
 res://assets/nodes/UI/popup
 res://assets/resources/buildings/storage/level-1
@@ -18,4 +19,3 @@ res://assets/scripts/UI/inventory
 res://assets/singletons
 res://assets/resources/buildings/storage
 res://assets/nodes/buildings
-res://assets/resources

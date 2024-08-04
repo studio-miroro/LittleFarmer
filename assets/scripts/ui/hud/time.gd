@@ -1,6 +1,6 @@
 extends Control
 
-@onready var pause = get_node("/root/World/UI/Pause")
+@onready var pause = get_node("/root/World/User Interface/Windows/Pause")
 @onready var cycle = TimeWorld.new()
 @onready var timer = $Timer
 @onready var label = $Label

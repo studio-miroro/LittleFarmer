@@ -1,9 +1,9 @@
 extends Node2D
 
-@onready var tip = get_node("/root/World/UI/HUD/Tooltip")
-@onready var pause = get_node("/root/World/UI/Pause")
+@onready var tip = get_node("/root/World/User Interface/System/Tooltip")
+@onready var pause = get_node("/root/World/User Interface/Windows/Pause")
 @onready var grid = get_node("/root/World/Buildings/Grid") 
-@onready var player = get_node("/root/World/MainCamera")
+@onready var player = get_node("/root/World/Camera")
 @onready var sprite = $Sprite2D
 
 var max_distance:int = 250

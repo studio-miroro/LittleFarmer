@@ -1,6 +1,6 @@
 extends Control
 
-@onready var mailbox:Control = get_node("/root/World/UI/Pop-up Menu/Mailbox")
+@onready var mailbox:Control = get_node("/root/World/User Interface/Windows/Mailbox")
 
 @onready var icon:TextureRect = $Button/HBoxContainer/MarginContainer/TextureRect
 @onready var label:Label = $Button/HBoxContainer/Label

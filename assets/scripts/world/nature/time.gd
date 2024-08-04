@@ -24,9 +24,8 @@ func _ready():
 	timeset()
 
 func timeset():
-	if !pause.paused:
-		var initial_hour = get_hour()
-		time = sin_speed * minutes_in_hour * initial_hour
+	var initial_hour = get_hour()
+	time = sin_speed * minutes_in_hour * initial_hour
 
 func _process(delta: float) -> void:
 	if !pause.paused:

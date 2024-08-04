@@ -1,10 +1,10 @@
 extends Node2D
 
-@onready var tip = get_node("/root/World/UI/HUD/Tooltip")
-@onready var pause = get_node("/root/World/UI/Pause")
-@onready var blur:Control = get_node("/root/World/UI/Blur")
+@onready var tip = get_node("/root/World/User Interface/System/Tooltip")
+@onready var pause = get_node("/root/World/User Interface/Windows/Pause")
+@onready var blur:Control = get_node("/root/World/User Interface/Blur")
 @onready var grid = get_node("/root/World/Buildings/Grid") 
-@onready var player = get_node("/root/World/MainCamera")
+@onready var player = get_node("/root/World/Camera")
 @onready var fume = get_node("/root/World/Buildings/House/Fume")
 @onready var ext:Sprite2D = $Sprite2D_2
 @onready var sprite:Sprite2D = $Sprite2D

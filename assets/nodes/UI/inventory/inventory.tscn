@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjkwsdkyksvs3"]
 
-[ext_resource type="Script" path="res://assets/scripts/UI/inventory/inventory.gd" id="1_ula8m"]
-[ext_resource type="Texture2D" uid="uid://bso14d0bn8kw1" path="res://assets/resources/UI/inventory/items/Sprite-0001.png" id="2_2ovt8"]
+[ext_resource type="Script" path="res://assets/scripts/ui/inventory/inventory.gd" id="1_ula8m"]
+[ext_resource type="Texture2D" uid="uid://bso14d0bn8kw1" path="res://assets/resources/ui/inventory/items/Sprite-0001.png" id="2_2ovt8"]
 
 [sub_resource type="Animation" id="Animation_ciguq"]
 length = 0.001
@@ -177,7 +177,10 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_2ovt8")
 
-[node name="Caption" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+[node name="Caption" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Caption" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Caption"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
@@ -186,7 +189,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Description" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+[node name="Description" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Description"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
@@ -194,7 +200,10 @@ text = "Lorem ipsum dolor sit amet, consectetur adipiscing."
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Specifications" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+[node name="Specifications" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Specifications" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Specifications"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
@@ -202,13 +211,27 @@ text = "Specifications"
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Type" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+[node name="Type" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Type" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Type"]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "Type"
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="Button" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+custom_minimum_size = Vector2(25, 40)
+layout_mode = 2
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Button" type="Button" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Button"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Посадить"
 
 [node name="StorageItemList" type="Label" parent="Panel"]
 layout_mode = 1
@@ -235,4 +258,5 @@ libraries = {
 "": SubResource("AnimationLibrary_of6b4")
 }
 
-[connection signal="pressed" from="Close" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/ItemInfo/VBoxContainer/Button/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

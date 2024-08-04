@@ -1,15 +1,15 @@
 extends Node2D
 
-@onready var pause:Control = get_node("/root/World/UI/Pause")
-@onready var tip:Control = get_node("/root/World/UI/HUD/Tooltip")
+@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
+@onready var tip:Control = get_node("/root/World/User Interface/System/Tooltip")
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
-@onready var blur:Control = get_node("/root/World/UI/Blur")
-@onready var player:CharacterBody2D = get_node("/root/World/MainCamera")
-@onready var mailbox:Control = get_node("/root/World/UI/Pop-up Menu/Mailbox")
+@onready var blur:Control = get_node("/root/World/User Interface/Blur")
+@onready var player:CharacterBody2D = get_node("/root/World/Camera")
+@onready var mailbox:Control = get_node("/root/World/User Interface/Windows/Mailbox")
 @onready var sprite:Sprite2D = $Sprite2D
 
 var max_distance:int = 250
-var _mailbox:bool
+var mailMenu:bool = false
 var object:Dictionary = {
 	"caption" = "Почтовый ящик",
 	"description" = "Хранит письма от ваших соседей.",
@@ -28,7 +28,7 @@ func _ready():
 
 func _process(delta):
 	if Input.is_action_just_pressed("click left")\
-	and _mailbox:
+	and mailMenu:
 		mailbox.open()
 
 func change_sprite(type:bool) -> void:
@@ -42,13 +42,13 @@ func change_sprite(type:bool) -> void:
 					object["caption"]+"\n"
 					+object["description"]
 				)
-				_mailbox = true
+				mailMenu = true
 			else:
 				push_error("Check the 'caption', 'description' elements.")
 	else:
 		check_sprite("default")
 		tip.tooltip("")
-		_mailbox = false
+		mailMenu = false
 	
 func check_sprite(key:String) -> void:
 	if object.has(key):

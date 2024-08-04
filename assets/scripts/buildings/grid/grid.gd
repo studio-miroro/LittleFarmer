@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var pause:Control = get_node("/root/World/UI/Pause")
-@onready var hud:Control = get_node("/root/World/UI/HUD/Interface")
+@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
+@onready var hud:Control = get_node("/root/World/User Interface/Interface")
 @onready var tilemap:TileMap = get_node("/root/World/Tilemap")
 @onready var grid_object:Node2D = get_node("/root/World/Buildings/Grid")
 @onready var farming:Node2D = get_node("/root/World/Farming")

@@ -1,10 +1,11 @@
 extends Control
 
 class_name Inventory
-@onready var pause:Control = get_node("/root/World/UI/Pause")
-@onready var blur:Control = get_node("/root/World/UI/Blur")
-@onready var build:Control = get_node("/root/World/UI/Pop-up Menu/BuildingMenu")
-@onready var node:PackedScene = load("res://assets/nodes/UI/inventory/slot.tscn")
+@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
+@onready var blur:Control = get_node("/root/World/User Interface/Blur")
+@onready var build:Control = get_node("/root/World/User Interface/Windows/Crafting")
+@onready var mailbox:Control = get_node("/root/World/User Interface/Windows/Mailbox")
+@onready var node:PackedScene = load("res://assets/nodes/UI/Inventory/slot.tscn")
 @onready var anim:AnimationPlayer = $Animation
 
 @onready var info:BoxContainer = $Panel/HBoxContainer/ItemInfo/VBoxContainer
@@ -13,10 +14,11 @@ class_name Inventory
 @onready var scroll_slots:ScrollContainer = $Panel/HBoxContainer/Slots
 
 @onready var icon:TextureRect = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Icon
-@onready var caption:Label = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Caption
-@onready var description:Label = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Description
-@onready var specifications:Label = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Specifications
-@onready var type:Label = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Type
+@onready var caption:Label = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Caption/Caption
+@onready var description:Label = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Description/Description
+@onready var specifications:Label = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Specifications/Specifications
+@onready var type:Label = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Type/Type
+@onready var button:Button = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Button/Button
 @onready var list:Label = $Panel/StorageItemList
 
 var storage:Object = Storage.new()
@@ -29,10 +31,9 @@ func _ready():
 
 func _process(delta):
 	if !pause.paused\
-	and !build.menu:
-		if Input.is_action_just_pressed("test2"):
-			print(_items)
-		if Input.is_action_just_pressed("inventory") and blur.blur:
+	and !build.menu\
+	and !mailbox.menu:
+		if Input.is_action_just_pressed("inventory"):
 			window()
 		if Input.is_action_just_pressed("menu") and menu:
 			close()
@@ -48,7 +49,7 @@ func open() -> void:
 	menu = true
 	blur.blur(true)
 	anim.play("open")
-	list_slots(0,_items)
+	list_slots(0, _items)
 	update_list()
 
 func close() -> void:
@@ -63,7 +64,7 @@ func get_data(index) -> void:
 	scroll_info.scroll_vertical = 0
 	if item.content.has(index):
 		if item.content[index].has("icon"):
-			if typeof(item.content[index]["icon"]) == TYPE_OBJECT and icon.texture is CompressedTexture2D:
+			if typeof(item.content[index]["icon"]) == TYPE_OBJECT:
 				icon.visible = true
 				icon.texture = item.content[index]["icon"]
 			else:
@@ -74,7 +75,7 @@ func get_data(index) -> void:
 			icon.visible = false
 
 		if item.content[index].has("caption"):
-			if typeof(item.content[index]["caption"]) == TYPE_STRING and caption.text is String:
+			if typeof(item.content[index]["caption"]) == TYPE_STRING:
 				caption.visible = true
 				caption.text = item.content[index]["caption"]
 			else:
@@ -85,7 +86,7 @@ func get_data(index) -> void:
 			caption.visible = false
 
 		if item.content[index].has("description"):
-			if typeof(item.content[index]["description"]) == TYPE_STRING and description.text is String:
+			if typeof(item.content[index]["description"]) == TYPE_STRING:
 				description.visible = true
 				description.text = item.content[index]["description"]
 			else:
@@ -109,9 +110,10 @@ func get_data(index) -> void:
 			push_error("[ID: "+str(index)+"] The 'specifications' key does not exist.")
 
 		if item.content[index].has("type"):
-			if typeof(item.content[index]["type"]) == TYPE_STRING and type.text is String:
+			if typeof(item.content[index]["type"]) == TYPE_STRING:
 				type.visible = true
-				type.text = "\nТип: " + item.content[index]["type"] + "\n\n"
+				type.text = "\nТип: " + item.content[index]["type"] + "\n"
+				item_type(item.content[index]["type"])
 			else:
 				type.visible = false
 				push_error("[ID: "+str(index)+"] The 'type' key has a non-string type. Variant.type: " + str(typeof(item.content[index]["type"])))
@@ -127,17 +129,13 @@ func reset_data() -> void:
 	specifications.visible = false
 	type.visible = false
 	list.visible = false
+	button.visible = false
 
 func list_slots(index:int, list:Dictionary):
 	match index:
 		0:
 			for i in list:
 				item_create(i)
-		1:
-			var t:int
-			for i in list:
-				t+=1
-			return t
 		_:
 			pass
 
@@ -169,12 +167,11 @@ func list_slots_return():
 		if slots.get_children() != []:
 			for child in slots.get_children():
 				item += 1
-			return item
 		return item
 	else:
 		push_error("Cannot load parent.")
 
-func add_item(id:int, amount:int):
+func add_item(id:int, amount:int) -> void:
 	if _items.has(id):
 		_items[id]["amount"] = _items[id]["amount"] + amount
 	else:
@@ -201,7 +198,7 @@ func check_amount(index) -> void:
 		push_warning("[ID: "+str(index)+"] The 'amount' element does not exist in the inventory dictionary (array).")
 		_items[index]["amount"] = 1
 
-func get_specifications(index, i):
+func get_specifications(index, i) -> void:
 	if typeof(Items.new().content[index]["specifications"][i]) == TYPE_STRING and specifications.text is String:
 		specifications.text = specifications.text + "\n• " + get_tip(i) + ": "+ Items.new().content[index]["specifications"][i]
 	else:
@@ -218,9 +215,20 @@ func get_tip(tip:String) -> String:
 		_:
 			return ""
 
+func item_type(type:String):
+	match type:
+		"Семена":
+			button.visible = true
+			button.text = "Посадить"
+		_:
+			button.visible = false
+
 func check_window() -> void:
 	visible = menu
 
-func _on_button_pressed() -> void:
+func _on_button_pressed():
+	print("Test")
+
+func _on_close_pressed():
 	if menu:
 		close()

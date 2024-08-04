@@ -30,7 +30,7 @@ var content:Dictionary = {
 		"type": "Семена",
 		"purchase": 1,
 		"sale": 0,
-		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
+		"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
 	},
 	4: {
 		"caption": "Семена картофеля",
@@ -43,7 +43,7 @@ var content:Dictionary = {
 		"type": "Семена",
 		"purchase": 1,
 		"sale": 0,
-		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_2.png"),
+		"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_2.png"),
 	},
 	5: {
 		"caption": "Семена редиса",
@@ -56,7 +56,7 @@ var content:Dictionary = {
 		"type": "Семена",
 		"purchase": 1,
 		"sale": 0,
-		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_2.png"),
+		"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_3.png"),
 	},
 	6: {
 		"caption": "Семена капусты",
@@ -69,6 +69,6 @@ var content:Dictionary = {
 		"type": "Семена",
 		"purchase": 1,
 		"sale": 0,
-		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_2.png"),
+		"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_4.png"),
 	},
 }

@@ -19,7 +19,7 @@ var object:PackedScene 		= preload("res://assets/nodes/nature/clouds.tscn")
 var max_distance:float 		= 600
 
 func cloud_spawn():
-	var distance = round(global_position.distance_to(get_node("/root/World/MainCamera").global_position))
+	var distance = round(global_position.distance_to(get_node("/root/World/Camera").global_position))
 	if !pause.paused\
 	and distance < max_distance:
 		var cloud = object.instantiate()

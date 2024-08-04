@@ -1,10 +1,10 @@
 extends Node2D
 
-@onready var tip:Control = get_node("/root/World/UI/HUD/Tooltip")
+@onready var tip:Control = get_node("/root/World/User Interface/System/Tooltip")
 @onready var tilemap:TileMap = get_node("/root/World/Tilemap")
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
 @onready var collision:Area2D = get_node("/root/World/Buildings/Grid/GridCollision")
-@onready var pause:Control = get_node("/root/World/UI/Pause")
+@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
 @onready var sprite:Sprite2D = $Sprite2D
 @onready var timer:Timer = $Timer
 
@@ -15,7 +15,12 @@ var fertilizer:int = fertilizers.NOTHING
 var degree:int
 
 enum phases {PLANTED,GROWING,INCREASED,DEAD}
-enum fertilizers {NOTHING, COMPOST, HUMUS, MANURE}
+enum fertilizers {
+	NOTHING,
+	COMPOST,
+	HUMUS,
+	MANURE
+	}
 
 func _process(delta):
 	if pause.paused:
