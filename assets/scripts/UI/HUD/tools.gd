@@ -4,7 +4,7 @@ extends Control
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
 @onready var blur:Control = get_node("/root/World/User Interface/Blur")
 @onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
-@onready var build_menu:Control = get_node("/root/World/User Interface/Windows/Crafting")
+@onready var crafting:Control = get_node("/root/World/User Interface/Windows/Crafting")
 
 @onready var destroy_button:Button = $"Tools Menu/Tools Hud/Container/Destroy"
 @onready var farming_button:Button = $"Tools Menu/Tools Hud/Container/Farm"
@@ -104,7 +104,7 @@ func _on_building_pressed():
 	if !building\
 	and !pause.paused\
 	and !inventory.menu:
-			build_menu.window()
+			crafting.window()
 			building_button.grab_focus()
 			destroy = false
 			farming = false

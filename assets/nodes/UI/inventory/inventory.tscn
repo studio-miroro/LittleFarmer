@@ -184,7 +184,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "Object.name"
+text = "object.name"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -196,7 +196,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing."
+text = "object.descripton"
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -207,7 +207,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Specifications"
+text = "object.specifications"
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -218,7 +218,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Type"
+text = "object.type"
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -231,7 +231,7 @@ theme_override_constants/margin_bottom = 15
 [node name="Button" type="Button" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Button"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Посадить"
+text = "object.button"
 
 [node name="StorageItemList" type="Label" parent="Panel"]
 layout_mode = 1

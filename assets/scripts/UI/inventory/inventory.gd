@@ -23,7 +23,10 @@ class_name Inventory
 
 var storage:Object = Storage.new()
 var menu:bool = false
-var _items:Dictionary = {}
+var inventory_items:Dictionary = {}
+enum item_type {
+	seed,
+	}
 
 func _ready():
 	close()
@@ -38,18 +41,12 @@ func _process(delta):
 		if Input.is_action_just_pressed("menu") and menu:
 			close()
 
-func window() -> void:
-	if menu:
-		close()
-	else:
-		open()
-
 func open() -> void:
 	pause.lock = true
 	menu = true
 	blur.blur(true)
 	anim.play("open")
-	list_slots(0, _items)
+	list_slots(0, inventory_items)
 	update_list()
 
 func close() -> void:
@@ -60,67 +57,68 @@ func close() -> void:
 	delete_slots()
 
 func get_data(index) -> void:
-	var item = Items.new()
-	scroll_info.scroll_vertical = 0
-	if item.content.has(index):
-		if item.content[index].has("icon"):
-			if typeof(item.content[index]["icon"]) == TYPE_OBJECT:
-				icon.visible = true
-				icon.texture = item.content[index]["icon"]
+	if menu:
+		var item = Items.new()
+		scroll_info.scroll_vertical = 0
+		if item.content.has(index):
+			if item.content[index].has("icon"):
+				if typeof(item.content[index]["icon"]) == TYPE_OBJECT:
+					icon.visible = true
+					icon.texture = item.content[index]["icon"]
+				else:
+					icon.visible = false
+					push_error("[ID: "+str(index)+"] The key stores a non-Compressed 2D Texture. Variant.type: " + str(typeof(item.content[index]["icon"])))
 			else:
+				push_error("[ID: "+str(index)+"] The object does not have the 'icon' key.")
 				icon.visible = false
-				push_error("[ID: "+str(index)+"] The key stores a non-Compressed 2D Texture. Variant.type: " + str(typeof(item.content[index]["icon"])))
-		else:
-			push_error("[ID: "+str(index)+"] The object does not have the 'icon' key.")
-			icon.visible = false
 
-		if item.content[index].has("caption"):
-			if typeof(item.content[index]["caption"]) == TYPE_STRING:
-				caption.visible = true
-				caption.text = item.content[index]["caption"]
+			if item.content[index].has("caption"):
+				if typeof(item.content[index]["caption"]) == TYPE_STRING:
+					caption.visible = true
+					caption.text = item.content[index]["caption"]
+				else:
+					caption.visible = false
+					push_error("[ID: "+str(index)+"] The 'caption' key has a non-string type. Variant.type: " + str(typeof(item.content[index]["caption"])))
 			else:
+				push_error("[ID: "+str(index)+"] The object does not have the 'caption' key.")
 				caption.visible = false
-				push_error("[ID: "+str(index)+"] The 'caption' key has a non-string type. Variant.type: " + str(typeof(item.content[index]["caption"])))
-		else:
-			push_error("[ID: "+str(index)+"] The object does not have the 'caption' key.")
-			caption.visible = false
 
-		if item.content[index].has("description"):
-			if typeof(item.content[index]["description"]) == TYPE_STRING:
-				description.visible = true
-				description.text = item.content[index]["description"]
+			if item.content[index].has("description"):
+				if typeof(item.content[index]["description"]) == TYPE_STRING:
+					description.visible = true
+					description.text = item.content[index]["description"]
+				else:
+					description.visible = false
+					push_error("[ID: "+str(index)+"] The 'description' key has a non-string type. Variant.type: " + str(typeof(item.content[index]["description"])))
 			else:
+				push_error("[ID: "+str(index)+"] The object does not have the 'description' key.")
 				description.visible = false
-				push_error("[ID: "+str(index)+"] The 'description' key has a non-string type. Variant.type: " + str(typeof(item.content[index]["description"])))
-		else:
-			push_error("[ID: "+str(index)+"] The object does not have the 'description' key.")
-			description.visible = false
 
-		if item.content[index].has("specifications"):
-			if item.content[index].get("specifications") != {}:
-				specifications.visible = true
-				specifications.text = ""
-				for i in item.content[index]["specifications"]:
-					get_specifications(index, i)
+			if item.content[index].has("specifications"):
+				if item.content[index].get("specifications") != {}:
+					specifications.visible = true
+					specifications.text = ""
+					for i in item.content[index]["specifications"]:
+						get_specifications(index, i)
+				else:
+					specifications.visible = false
+					push_error("[ID: "+str(index)+"] The 'specifications' key is empty.")
 			else:
 				specifications.visible = false
-				push_error("[ID: "+str(index)+"] The 'specifications' key is empty.")
-		else:
-			specifications.visible = false
-			push_error("[ID: "+str(index)+"] The 'specifications' key does not exist.")
+				push_error("[ID: "+str(index)+"] The 'specifications' key does not exist.")
 
-		if item.content[index].has("type"):
-			if typeof(item.content[index]["type"]) == TYPE_STRING:
-				type.visible = true
-				type.text = "\nТип: " + item.content[index]["type"] + "\n"
-				item_type(item.content[index]["type"])
+			if item.content[index].has("type"):
+				if typeof(item.content[index]["type"]) == TYPE_STRING:
+					type.visible = true
+					type.text = "\nТип: " + item.content[index]["type"] + "\n"
+					check_item_type(item.content[index]["type"])
+				else:
+					type.visible = false
+					push_error("[ID: "+str(index)+"] The 'type' key has a non-string type. Variant.type: " + str(typeof(item.content[index]["type"])))
 			else:
-				type.visible = false
-				push_error("[ID: "+str(index)+"] The 'type' key has a non-string type. Variant.type: " + str(typeof(item.content[index]["type"])))
+				push_error("[ID: "+str(index)+"] The object does not have the 'type' key.")
 		else:
-			push_error("[ID: "+str(index)+"] The object does not have the 'type' key.")
-	else:
-		push_error("The object does not have the 'type' key.")
+			push_error("The object does not have the 'type' key.")
 
 func reset_data() -> void:
 	icon.visible = false
@@ -147,9 +145,9 @@ func delete_slots() -> void:
 func item_create(i) -> void:
 	var slot = node.instantiate()
 	check_amount(i)
-	if _items[i]["amount"] > 0:
+	if inventory_items[i]["amount"] > 0:
 		slots.add_child(slot)
-		slot.set_data(i, _items[i]["amount"])
+		slot.set_data(i, inventory_items[i]["amount"])
 	else:
 		remove_item(i)
 
@@ -172,15 +170,15 @@ func list_slots_return():
 		push_error("Cannot load parent.")
 
 func add_item(id:int, amount:int) -> void:
-	if _items.has(id):
-		_items[id]["amount"] = _items[id]["amount"] + amount
+	if inventory_items.has(id):
+		inventory_items[id]["amount"] = inventory_items[id]["amount"] + amount
 	else:
-		_items[id] = {"amount": amount}
+		inventory_items[id] = {"amount": amount}
 		
 func remove_item(id:int):
-	for key in _items:
+	for key in inventory_items:
 		if id == key:
-			_items.erase(key)
+			inventory_items.erase(key)
 
 func check_slots() -> bool:
 	if list_slots_return() <= storage.object[storage.level]["slots"]:
@@ -189,14 +187,14 @@ func check_slots() -> bool:
 		return false
 
 func check_amount(index) -> void:
-	if _items[index].has("amount"):
-		if _items[index]["amount"] > Items.new().content["max"]:
-			_items[index]["amount"] = Items.new().content["max"]
-		if _items[index]["amount"] < 0:
-			_items[index]["amount"] = 0
+	if inventory_items[index].has("amount"):
+		if inventory_items[index]["amount"] > Items.new().content["max"]:
+			inventory_items[index]["amount"] = Items.new().content["max"]
+		if inventory_items[index]["amount"] < 0:
+			inventory_items[index]["amount"] = 0
 	else:
 		push_warning("[ID: "+str(index)+"] The 'amount' element does not exist in the inventory dictionary (array).")
-		_items[index]["amount"] = 1
+		inventory_items[index]["amount"] = 1
 
 func get_specifications(index, i) -> void:
 	if typeof(Items.new().content[index]["specifications"][i]) == TYPE_STRING and specifications.text is String:
@@ -215,13 +213,19 @@ func get_tip(tip:String) -> String:
 		_:
 			return ""
 
-func item_type(type:String):
+func check_item_type(type:String):
 	match type:
 		"Семена":
 			button.visible = true
 			button.text = "Посадить"
 		_:
 			button.visible = false
+
+func window() -> void:
+	if menu:
+		close()
+	else:
+		open()
 
 func check_window() -> void:
 	visible = menu

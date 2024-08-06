@@ -4,6 +4,22 @@ class_name Items
 var content:Dictionary = {
 	"max": 9999,
 	1: {
+		"caption": "Твёрдая древесина",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
+	},
+	2: {
+		"caption": "Древесина",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
+	},
+	3: {
 		"caption": "Доски",
 		"description": "Прочные деревянные плиты для строительства и ремонта. Подходят для стен, крыш и мебели.",
 		"type": "Стройматериалы",
@@ -11,7 +27,7 @@ var content:Dictionary = {
 		"sale": 0,
 		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
 	},
-	2: {
+	4: {
 		"caption": "Камень",
 		"description": "Твердый материал для прочных сооружений. Используется для фундаментов, стен и мостов.",
 		"type": "Стройматериалы",
@@ -19,7 +35,23 @@ var content:Dictionary = {
 		"sale": 0,
 		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
 	},
-	3: {
+	5: {
+		"caption": "Булыжник",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
+	},
+	6: {
+		"caption": "Глина",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
+	},
+	7: {
 		"caption": "Семена моркови",
 		"description": "Маленькие семена для выращивания моркови. Посадите их на плодородной земле, поливайте и ждите урожая.",
 		"specifications": {
@@ -32,7 +64,7 @@ var content:Dictionary = {
 		"sale": 0,
 		"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
 	},
-	4: {
+	8: {
 		"caption": "Семена картофеля",
 		"description": "Эти семена помогут вырастить питательный картофель. Посадите их в землю, поливайте и наблюдайте за ростом.",
 		"specifications": {
@@ -45,7 +77,7 @@ var content:Dictionary = {
 		"sale": 0,
 		"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_2.png"),
 	},
-	5: {
+	9: {
 		"caption": "Семена редиса",
 		"description": "Маленькие семена для быстрого выращивания хрустящего редиса. Посадите их, поливайте и ждите урожая.",
 		"specifications": {
@@ -58,7 +90,7 @@ var content:Dictionary = {
 		"sale": 0,
 		"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_3.png"),
 	},
-	6: {
+	10: {
 		"caption": "Семена капусты",
 		"description": "Семена для выращивания плотной и сочной капусты. Посадите их в землю, поливайте и ждите зрелости.",
 		"specifications": {

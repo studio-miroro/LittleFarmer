@@ -19,7 +19,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_p55vt"]
-resource_name = "transform"
+resource_name = "open"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -49,7 +49,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_1drgd"]
-resource_name = "transform_reset"
+resource_name = "close"
 length = 0.1
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -95,11 +95,11 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k6ua4"]
 _data = {
 "RESET": SubResource("Animation_bduf1"),
-"transform": SubResource("Animation_p55vt"),
-"transform_reset": SubResource("Animation_1drgd")
+"close": SubResource("Animation_1drgd"),
+"open": SubResource("Animation_p55vt")
 }
 
-[node name="BuildingMenu" type="Control"]
+[node name="Crafting" type="Control"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 8
@@ -201,7 +201,7 @@ theme_override_font_sizes/font_size = 16
 text = "Object.creation_time"
 vertical_alignment = 2
 
-[node name="Button" type="Button" parent="Panel/HBoxContainer/Info/VBoxContainer"]
+[node name="Craft" type="Button" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 4
@@ -221,4 +221,5 @@ libraries = {
 "": SubResource("AnimationLibrary_k6ua4")
 }
 
+[connection signal="pressed" from="Panel/HBoxContainer/Info/VBoxContainer/Craft" to="." method="_on_craft_pressed"]
 [connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

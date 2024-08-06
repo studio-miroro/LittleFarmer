@@ -1,13 +1,15 @@
 extends Node
 
-@onready var plant_node:PackedScene = load("res://assets/nodes/farming/plant.tscn")
-@onready var tilemap:TileMap = get_node("/root/World/Tilemap")
 @onready var cycle:Node2D = get_node("/root/World/Cycle")
+@onready var tilemap:TileMap = get_node("/root/World/Tilemap")
 @onready var player:Node2D = get_node("/root/World/Camera")
 @onready var balance:Control = get_node("/root/World/User Interface/HUD/Money")
+
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
 @onready var gridCollision:Node2D = get_node("/root/World/Buildings/Grid/GridCollision")
 @onready var farming:Node2D = get_node("/root/World/Farming")
+@onready var plant_node:PackedScene = load("res://assets/nodes/farming/plant.tscn")
+
 @onready var house:Node2D = get_node("/root/World/Buildings/House")
 @onready var storage:Node2D = get_node("/root/World/Buildings/Storage")
 @onready var animal_stall:Node2D = get_node("/root/World/Buildings/Animal Stall")

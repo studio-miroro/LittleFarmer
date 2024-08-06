@@ -1706,6 +1706,7 @@ offset_top = 720.0
 offset_bottom = 720.0
 
 [node name="Notifications" parent="User Interface/System" instance=ExtResource("12_034tr")]
+mouse_filter = 2
 
 [node name="Camera" parent="." instance=ExtResource("10_cdmdm")]
 z_index = 1
@@ -1790,7 +1791,7 @@ libraries = {
 
 [node name="PointLight2D" type="PointLight2D" parent="Light"]
 z_index = 5
-position = Vector2(296, 57)
+position = Vector2(293, 61)
 color = Color(0.85098, 0.34902, 0, 1)
 energy = 0.0
 texture = ExtResource("25_hw4t0")
