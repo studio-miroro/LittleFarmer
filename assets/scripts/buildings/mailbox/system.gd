@@ -2,7 +2,7 @@ extends Control
 
 @onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
 @onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
-@onready var balance:Control = get_node("/root/World/User Interface/HUD/Money")
+@onready var balance:Control = get_node("/root/World/User Interface/Hud/Money")
 @onready var blur:Control = get_node("/root/World/User Interface/Blur")
 @onready var animation:AnimationPlayer = $AnimationPlayer
 
@@ -26,11 +26,11 @@ var index:int
 var letters:Dictionary = {}
 
 func _process(delta):
-	if Input.is_action_just_pressed("menu")\
-	and !blur.blur:
+	if Input.is_action_just_pressed("pause")\
+	and menu:
 		close()
 	
-	if Input.is_action_just_pressed("test"):
+	if Input.is_action_just_pressed("click right"):
 		letter(
 			"Благодарность",
 			"
@@ -125,9 +125,9 @@ func get_data(_index:int) -> void:
 						fixedItems.text = "Вложение: " + str(letters[_index]["money"]) + " монет"
 					else:
 						push_error("The 'money' is not a integer. Variant.type: " + str(typeof(letters[_index]["money"])))
-						fixedItems.text = "Вложение: 0 монет"
+						fixedItems.text = "Прикрепленные предметы:"
 				else:
-					fixedItems.text = "Вложение: 0 монет"
+					fixedItems.text = "Прикрепленные предметы:"
 					
 				for i in letters[_index]["items"]:
 					var item = letters[_index]["items"][i]
@@ -204,15 +204,15 @@ func reset_data() -> void:
 
 func open() -> void:
 	menu = true
-	pause.lock = true
+	pause.other_menu = true
 	blur.blur(true)
 	animation.play("open")
 	create_letters(letters, letter_node, letters_container)
 	
 func close() -> void:
 	menu = false
+	pause.other_menu = false
 	self.index = 0
-	pause.lock = false
 	blur.blur(false)
 	animation.play("close")
 	delete_letters(letters, letter_node, letters_container)

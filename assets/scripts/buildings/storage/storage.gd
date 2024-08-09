@@ -10,16 +10,14 @@ class_name Storage
 @onready var shadow:Sprite2D = get_node("/root/World/Shadow/StorageShadow")
 @onready var sprite:Sprite2D = $Sprite2D
 
-var _inventory:bool = false
-
+var menu:bool = false
 var max_distance:int = 250
 var level:int = 1
 var object:Dictionary = {
 	1: {
 		"caption" = "Старый склад",
 		"description" = "Для хранения чего-либо.",
-		"slots" = 10,
-		# Sprites
+		"slots" = 12,
 		"default" = preload("res://Assets/Resources/Buildings/Storage/Level-1/object_0.png"),
 		"hover" = preload("res://Assets/Resources/Buildings/Storage/Level-1/object_1.png"),
 		"shadow" = preload("res://Assets/Resources/Buildings/Storage/Level-1/shadow.png"),
@@ -27,8 +25,7 @@ var object:Dictionary = {
 	2: {
 		"caption" = "Склад",
 		"description" = "Для хранения чего-либо.",
-		"slots" = 25,
-		# Sprites
+		"slots" = 24,
 		"default" = preload("res://Assets/Resources/Buildings/Storage/Level-2/object_0.png"),
 		"hover" = preload("res://Assets/Resources/Buildings/Storage/Level-2/object_1.png"),
 		"shadow" = preload("res://Assets/Resources/Buildings/Storage/Level-2/shadow.png"),
@@ -37,9 +34,9 @@ var object:Dictionary = {
 
 func _process(delta):
 	if Input.is_action_just_pressed("click left")\
-	and _inventory:
+	and menu:
 		inventory.open()
-		_inventory = false
+		menu = false
 
 func _ready():
 	if object.has(level):
@@ -64,11 +61,11 @@ func change_sprite(type:bool):
 				str(object[level]["description"]) + "\n" +
 				"Уровень: " + str(level)
 				)
-			_inventory = true
+			menu = true
 	else:
 		check_sprite("default")
 		tip.tooltip("")
-		_inventory = false
+		menu = false
 
 func check_sprite(key:String):
 	if object.has(level):
@@ -93,14 +90,6 @@ func get_data(key:String, inDictionary:bool):
 		else:
 			push_error("Index " + str(level) + " is not in the dictionary.")
 			return null
-	else:
-		match key:
-			"level":
-				return level
-			_:
-				return null
-				push_error("The specified key (" + str(key) + ") does not exist.")
-
 
 func _on_area_2d_mouse_entered():
 	if !blur.bluring:

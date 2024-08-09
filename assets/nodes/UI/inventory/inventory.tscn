@@ -178,47 +178,47 @@ size_flags_vertical = 4
 texture = ExtResource("2_2ovt8")
 
 [node name="Caption" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Caption" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Caption"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "object.name"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Description" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Description" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Description"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "object.descripton"
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Specifications" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Specifications" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Specifications"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "object.specifications"
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Type" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Type" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Type"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "object.type"
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -229,9 +229,9 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_bottom = 15
 
 [node name="Button" type="Button" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Button"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
-text = "object.button"
+text = "plant_seeds.button"
 
 [node name="StorageItemList" type="Label" parent="Panel"]
 layout_mode = 1
@@ -250,7 +250,6 @@ offset_left = 304.0
 offset_top = -200.0
 offset_right = 337.0
 offset_bottom = -168.0
-text = "X"
 metadata/_edit_use_anchors_ = true
 
 [node name="Animation" type="AnimationPlayer" parent="."]

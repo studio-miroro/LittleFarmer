@@ -1,6 +1,6 @@
 extends Camera2D
 
-@onready var pause = PauseMenu.new()
+@onready var pause = get_node("/root/World/User Interface/Windows/Pause")
 
 var zoom_min:float = 2.5
 var zoom_max:float = 6

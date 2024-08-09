@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwtsqme5qki8s"]
+[gd_scene load_steps=7 format=3 uid="uid://cwtsqme5qki8s"]
 
 [ext_resource type="Script" path="res://assets/scripts/buildings/mailbox/system.gd" id="1_u66ny"]
-[ext_resource type="PackedScene" uid="uid://15vmrkth71wi" path="res://assets/nodes/ui/windows/mail/letter.tscn" id="2_5uh47"]
 [ext_resource type="PackedScene" uid="uid://do4e681e4p00n" path="res://assets/nodes/ui/inventory/slot.tscn" id="3_qvooa"]
 
 [sub_resource type="Animation" id="Animation_c0gri"]
@@ -152,9 +151,6 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/LettersScroll"]
 layout_mode = 2
 
-[node name="Letter" parent="Panel/HBoxContainer/LettersScroll/VBoxContainer" instance=ExtResource("2_5uh47")]
-layout_mode = 2
-
 [node name="ContentScroll" type="ScrollContainer" parent="Panel/HBoxContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -177,7 +173,6 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 theme_override_constants/outline_size = 1
 theme_override_font_sizes/font_size = 20
-text = "Header"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -195,7 +190,6 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_constants/line_spacing = 0
 theme_override_font_sizes/font_size = 15
-text = "description"
 autowrap_mode = 3
 
 [node name="Author" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer"]
@@ -206,7 +200,6 @@ theme_override_constants/margin_right = 15
 [node name="Author" type="Label" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Author"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 15
-text = "— Author"
 
 [node name="Items" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer"]
 layout_mode = 2
@@ -229,7 +222,6 @@ theme_override_constants/margin_right = 10
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/LabelContainer"]
 layout_mode = 2
-text = "Прикрепленные предметы:"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer"]
 layout_mode = 2
@@ -259,7 +251,7 @@ theme_override_constants/margin_bottom = 10
 [node name="GetItems" type="Button" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Забрать"
+text = "get_items.mail"
 text_overrun_behavior = 3
 
 [node name="Close" type="Button" parent="."]
@@ -276,7 +268,6 @@ offset_right = 336.0
 offset_bottom = -176.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "X"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

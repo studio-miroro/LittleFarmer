@@ -1,6 +1,5 @@
 extends Control
 
-class_name BuildingMenu
 @onready var node:PackedScene = load("res://assets/nodes/ui/windows/craft/blueprint.tscn")
 @onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
 @onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
@@ -23,7 +22,6 @@ var menu:bool = false
 var access:Array = [1,2,3,4,5,6,7,8,9,10]
 
 func _ready():
-	pause.lock = false
 	menu = false
 	blur.blur(false)
 	anim.play("close")
@@ -32,7 +30,7 @@ func _ready():
 func _process(delta):
 	if !pause.paused\
 	and !inventory.menu:
-		if Input.is_action_just_pressed("menu") and menu:
+		if Input.is_action_just_pressed("pause") and menu:
 			close()
 
 func window() -> void:
@@ -42,16 +40,16 @@ func window() -> void:
 		open()
 
 func open() -> void:
-	pause.lock = true
 	menu = true
+	pause.other_menu = true
 	blur.blur(true)
 	anim.play("open")
 	start_info()
 	check_blueprints(access)
 	
 func close() -> void:
-	pause.lock = false
 	menu = false
+	pause.other_menu = false
 	blur.blur(false)
 	anim.play("close")
 	check_blueprints(access)

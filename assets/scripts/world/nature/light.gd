@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var pause = PauseMenu.new()
-@onready var time = TimeWorld.new()
-@onready var parent = get_node("/root/World/Light")
+@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
+@onready var time:Object = get_node("/root/World/Cycle")
+@onready var parent:Node2D = get_node("/root/World/Light")
 
 var energy:float = 1
 var energy_min:float = 0

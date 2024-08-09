@@ -1,15 +1,15 @@
-[gd_scene load_steps=55 format=3 uid="uid://4vypwfxar3e"]
+[gd_scene load_steps=56 format=3 uid="uid://4vypwfxar3e"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_ieipv"]
 [ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/ui/system/tooltip/tooltip.tscn" id="2_otbj1"]
 [ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/hud/blackout.tscn" id="3_1lalu"]
-[ext_resource type="PackedScene" uid="uid://cyl6jw0huwvk6" path="res://assets/nodes/ui/pause.tscn" id="4_yubjk"]
+[ext_resource type="PackedScene" uid="uid://cyl6jw0huwvk6" path="res://assets/nodes/ui/windows/pause/pause.tscn" id="4_yubjk"]
 [ext_resource type="PackedScene" uid="uid://bpmceytvqnc7d" path="res://assets/nodes/ui/windows/craft/menu.tscn" id="5_v6eft"]
 [ext_resource type="PackedScene" uid="uid://c50737uagx074" path="res://assets/nodes/ui/hud/hud.tscn" id="5_wan5o"]
-[ext_resource type="PackedScene" uid="uid://ugypr7xdq68w" path="res://assets/nodes/ui/hud/debugger.tscn" id="6_0i3q1"]
 [ext_resource type="PackedScene" uid="uid://cwtsqme5qki8s" path="res://assets/nodes/ui/windows/mail/mail.tscn" id="7_5top8"]
 [ext_resource type="PackedScene" uid="uid://cjkwsdkyksvs3" path="res://assets/nodes/ui/inventory/inventory.tscn" id="7_8hp1e"]
 [ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/hud/cursor.tscn" id="7_g3cy5"]
+[ext_resource type="PackedScene" uid="uid://bhadiamik4ev0" path="res://assets/nodes/ui/windows/pause/options/options.tscn" id="8_rn4ps"]
 [ext_resource type="Script" path="res://assets/scripts/world/nature/time.gd" id="8_yhpsj"]
 [ext_resource type="PackedScene" uid="uid://c16oacn0qg214" path="res://assets/nodes/ui/blur.tscn" id="9_ccti6"]
 [ext_resource type="Texture2D" uid="uid://cxqw4nldap880" path="res://assets/resources/nature/cycle-gradient.tres" id="9_e2igt"]
@@ -38,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://1r8kos7xjwxc" path="res://assets/resources/buildings/house/smoke.png" id="31_8anwe"]
 [ext_resource type="PackedScene" uid="uid://w1fmwa12i36k" path="res://assets/nodes/buildings/grid.tscn" id="32_nkvxm"]
 [ext_resource type="PackedScene" uid="uid://dj3jsnuixqgv8" path="res://assets/nodes/buildings/silo.tscn" id="33_8j4he"]
+[ext_resource type="Script" path="res://assets/scripts/buildings/buildings.gd" id="33_25htm"]
 [ext_resource type="PackedScene" uid="uid://d0hq20gmqku1b" path="res://assets/nodes/buildings/storage.tscn" id="34_67pno"]
 [ext_resource type="Script" path="res://assets/scripts/farming/farming.gd" id="35_q8rfs"]
 
@@ -1671,12 +1672,7 @@ visible = false
 
 [node name="Blur" parent="User Interface" instance=ExtResource("9_ccti6")]
 
-[node name="HUD" parent="User Interface" instance=ExtResource("5_wan5o")]
-z_as_relative = false
-mouse_filter = 2
-
-[node name="Debugger" parent="User Interface" instance=ExtResource("6_0i3q1")]
-z_index = 998
+[node name="Hud" parent="User Interface" instance=ExtResource("5_wan5o")]
 z_as_relative = false
 mouse_filter = 2
 
@@ -1691,6 +1687,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 size_flags_horizontal = 4
 size_flags_vertical = 4
+
+[node name="Options" parent="User Interface/Windows" instance=ExtResource("8_rn4ps")]
 
 [node name="Inventory" parent="User Interface/Windows" instance=ExtResource("7_8hp1e")]
 
@@ -1805,6 +1803,7 @@ position = Vector2(248, 0)
 texture = ExtResource("27_p6cot")
 
 [node name="Buildings" type="Node2D" parent="."]
+script = ExtResource("33_25htm")
 
 [node name="Mailbox" parent="Buildings" instance=ExtResource("28_pepi0")]
 z_index = 4

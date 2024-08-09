@@ -1,7 +1,7 @@
 extends Control
 
 @onready var text:Label = $Label
-@onready var player = Camera.new()
+@onready var player = get_node("/root/World/Camera")
 @onready var money:int = 0
 	
 func _process(delta):

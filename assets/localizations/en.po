@@ -1,0 +1,78 @@
+# LANGUAGE translation for Little Farmer for the following files:
+# res://assets/nodes/ui/windows/pause/options/ui items/buttons/language.tscn
+# res://assets/nodes/ui/windows/pause/options/ui items/buttons/exit.tscn
+# res://assets/nodes/ui/windows/pause/pause.tscn
+# res://assets/nodes/ui/windows/mail/mail.tscn
+# res://assets/nodes/ui/windows/pause/options/button_language.tscn
+# res://assets/nodes/ui/windows/pause/options/button_back.tscn
+# res://assets/nodes/ui/windows/pause/options/sections/button_control.tscn
+# res://assets/nodes/ui/windows/pause/options/sections/button_graphic.tscn
+# res://assets/nodes/ui/windows/pause/options/sections/button_sound.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Little Farmer\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#: assets/nodes/ui/windows/pause/pause.tscn
+msgid "version.game:"
+msgstr "v"
+
+#: assets/nodes/ui/windows/pause/pause.tscn
+msgid "countinue.game"
+msgstr "Return Game"
+
+#: assets/nodes/ui/windows/pause/pause.tscn
+msgid "options.game"
+msgstr "Options"
+
+#: assets/nodes/ui/windows/pause/pause.tscn
+msgid "save.load"
+msgstr ""
+
+#: assets/nodes/ui/windows/pause/pause.tscn
+msgid "load.game"
+msgstr ""
+
+#: assets/nodes/ui/windows/pause/pause.tscn
+msgid "exit.game"
+msgstr "Save & Exit"
+
+#: assets/nodes/ui/windows/mail/mail.tscn
+msgid "Прикрепленные предметы:"
+msgstr ""
+
+#: assets/nodes/ui/windows/mail/mail.tscn
+msgid "get_items.mail"
+msgstr ""
+
+#: assets/nodes/ui/windows/pause/options/button_language.tscn
+msgid "change_language.options"
+msgstr "Language: English"
+
+#: assets/nodes/ui/windows/pause/options/button_back.tscn
+msgid "back.options"
+msgstr "Back"
+
+#: assets/nodes/ui/windows/pause/options/sections/button_control.tscn
+msgid "control.options"
+msgstr "Control"
+
+#: assets/nodes/ui/windows/pause/options/sections/button_graphic.tscn
+msgid "graphic.options"
+msgstr "Graphic"
+
+#: assets/nodes/ui/windows/pause/options/sections/button_sound.tscn
+msgid "sound.options"
+msgstr "Sound"

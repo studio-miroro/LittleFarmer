@@ -3,48 +3,47 @@ extends Node
 @onready var cycle:Node2D = get_node("/root/World/Cycle")
 @onready var tilemap:TileMap = get_node("/root/World/Tilemap")
 @onready var player:Node2D = get_node("/root/World/Camera")
-@onready var balance:Control = get_node("/root/World/User Interface/HUD/Money")
+@onready var balance:Control = get_node("/root/World/User Interface/Hud/Money")
+@onready var language = get_node("/root/World/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
 
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
-@onready var gridCollision:Node2D = get_node("/root/World/Buildings/Grid/GridCollision")
+@onready var gridCollision:Area2D = get_node("/root/World/Buildings/Grid/GridCollision")
 @onready var farming:Node2D = get_node("/root/World/Farming")
-@onready var plant_node:PackedScene = load("res://assets/nodes/farming/plant.tscn")
+@onready var plant:PackedScene = load("res://assets/nodes/farming/plant.tscn")
 
+@onready var buildings:Node2D = get_node("/root/World/Buildings")
 @onready var house:Node2D = get_node("/root/World/Buildings/House")
 @onready var storage:Node2D = get_node("/root/World/Buildings/Storage")
-@onready var animal_stall:Node2D = get_node("/root/World/Buildings/Animal Stall")
+@onready var animaltall:Node2D = get_node("/root/World/Buildings/Animal Stall")
 @onready var silo:Node2D = get_node("/root/World/Buildings/Silo")
 
 var object_created:int
 var path = {
-	game	= "user://game.json",
-	world	= "user://world.json",
-	player	= "user://player.json",
-	builds	= "user://builds.json",
-	plants	= "user://plants.json",
-	vectors	= "user://vectors.json",
+	farm = "user://farm.json",
+	world = "user://world.json",
+	player = "user://player.json",
+	buildings = "user://buildings.json",
+	vectors = "user://vectors.json",
+	crafting = "user://crafting.json",
+	inventory = "user://inventory.json",
+	mailbox = "user://mailbox.json",
 }
 
 func gamesave() -> void:
-	file_save(path.game, "Game")
-	file_save(path.world, "World")
+	file_save(path.farm, "Farm")
+	file_save(path.world, "Nature")
 	file_save(path.player, "Player")
-	file_save(path.builds, "Builds")
-	file_save(path.plants, "Plants")
+	file_save(path.buildings, "Buildings")
 	file_save(path.vectors, "Vectors")
+	file_save(path.crafting, "Crafting")
+	file_save(path.inventory, "Inventory")
 
 func gameload() -> void:
 	remove_all_child(farming)
 	terrains_remove()
 	time_load()
 	player_load()
-	
-	create_terrain(0, gridCollision.ground_layer, path.vectors, "Grounds", gridCollision.ground_terrain_set, gridCollision.ground_terrain)
-	create_terrain(0, gridCollision.farming_layer, path.vectors, "Farmlands", gridCollision.farming_terrain_set, gridCollision.farming_terrain)
-	create_terrain(0, gridCollision.watering_layer, path.vectors, "Waterings", gridCollision.watering_terrain_set, gridCollision.watering_terrain)
-	create_terrain(1, gridCollision.seeds_layer, path.vectors, "Plants", 0, 0)
-	
-	create_nodes(farming, plant_node, create_terrain(2, gridCollision.seeds_layer, path.vectors, "Plants", -1, -1))
+	plant_load()
 	
 func file_save(path_file, content) -> void:
 	var json_string = JSON.stringify(get_content(content), "\t")
@@ -120,16 +119,14 @@ func create_terrain(index:int, layer:int, path, key:String, terrain_set:int, ter
 			for vector in vector_array:
 				return vector_array
 
-func get_content(group:String):
-	match group:
+func get_content(content:String):
+	match content:
 		
-		"Game":
+		"Game": 
 			return {
-				"Game": {
-					"Version": ProjectSettings.get_setting("application/config/version"),
-				}
+				"Version": 12,
+				"Language": language.next_language,
 			}
-			
 		"Player":
 			return {
 				"Player": {
@@ -139,41 +136,34 @@ func get_content(group:String):
 				}
 			}
 			
-		"World":
+		"Nature":
 			return {
-				"World": {
+				"Time": {
 					"Year": cycle.year,
 					"Month": cycle.month,
 					"Week": cycle.week,
 					"Day": cycle.day,
 					"Hour": cycle.hour,
 					"Minute": cycle.minute,
+					"Cycle": cycle.get_time()
 				}
 			}
 			
 		"Vectors":
 			return {
 				"Vectors": {
-					"Grounds": grid.get_used_cells(gridCollision.ground_layer),
+					"Road": grid.get_used_cells(gridCollision.ground_layer),
 					"Farmlands": grid.get_used_cells(gridCollision.farming_layer),
 					"Waterings": grid.get_used_cells(gridCollision.watering_layer),	
 					"Plants": get_position_children(farming),
 				}
 			}
 			
-		"Plants":
+		"Farm":
 			return get_children_data(farming)
 			
-		"Builds":
-			return {
-				"House": {
-					"Level": house.get_data("level", false),
-				},
-				"Storage": {
-					"Level": storage.get_data("level", false),
-					"Slots": storage.get_data("slots", true),
-				},
-			}
+		"Building":
+			return buildings.get_buildings()
 
 func get_position_children(parent:Node2D) -> Array:
 	var children = parent.get_children()
@@ -195,7 +185,7 @@ func create_nodes(parent:Node2D, node: PackedScene, positions) -> void:
 				object.z_index = 6
 				if object.has_method("check_node"):
 					parent.add_child(object)
-					plant_load(object, object_name, position)
+					farm_load(object, object_name, position)
 				else:
 					push_error("Cannot load node.")
 			else:
@@ -221,7 +211,14 @@ func get_children_data(parent: Node) -> Dictionary:
 			data_dict[child.name] = child_data
 	return data_dict
 
-func plant_load(object:Node2D, object_name:String, position):
+func plant_load():
+	create_terrain(0, gridCollision.ground_layer, path.vectors, "Road", gridCollision.ground_terrain_set, gridCollision.ground_terrain)
+	create_terrain(0, gridCollision.farming_layer, path.vectors, "Farmlands", gridCollision.farming_terrain_set, gridCollision.farming_terrain)
+	create_terrain(0, gridCollision.watering_layer, path.vectors, "Waterings", gridCollision.watering_terrain_set, gridCollision.watering_terrain)
+	create_terrain(1, gridCollision.seeds_layer, path.vectors, "Plants", 0, 0)
+	create_nodes(farming, plant, create_terrain(2, gridCollision.seeds_layer, path.vectors, "Plants", -1, -1))
+
+func farm_load(object:Node2D, object_name:String, position):
 	var plant_id = get_key(path.plants, object_name, "plantID")
 	var condition = get_key(path.plants, object_name, "condition")
 	var degree = get_key(path.plants, object_name, "degree")
@@ -248,12 +245,14 @@ func terrains_remove() -> void:
 		grid.get_used_cells(gridCollision.ground_layer),
 		gridCollision.ground_terrain_set,
 		-1)
+		
 	if grid.get_used_cells(gridCollision.farming_layer) != []:
 		tilemap.set_cells_terrain_connect(
 		gridCollision.farming_layer,
 		grid.get_used_cells(gridCollision.farming_layer),
 		gridCollision.farming_terrain_set,
 		-1)
+		
 	if grid.get_used_cells(gridCollision.watering_layer) != []:
 		tilemap.set_cells_terrain_connect(
 		gridCollision.watering_layer,
@@ -262,13 +261,13 @@ func terrains_remove() -> void:
 		-1)
 
 func time_load() -> void:
-	cycle.year = get_key(path.world, "World", "Year")
-	cycle.month = get_key(path.world, "World", "Month")
-	cycle.week = get_key(path.world, "World", "Week")
-	cycle.day = get_key(path.world, "World", "Day")
-	cycle.hour = get_key(path.world, "World", "Hour")
-	cycle.minute = get_key(path.world, "World", "Minute")
-	cycle.timeset()
+	cycle.year = get_key(path.world, "Time", "Year")
+	cycle.month = get_key(path.world, "Time", "Month")
+	cycle.week = get_key(path.world, "Time", "Week")
+	cycle.day = get_key(path.world, "Time", "Day")
+	cycle.hour = get_key(path.world, "Time", "Hour")
+	cycle.minute = get_key(path.world, "Time", "Minute")
+	cycle.timeload(get_key(path.world, "Time", "Cycle"))
 
 func player_load() -> void:
 	player.position.x = get_key(path.player, "Player", "X")

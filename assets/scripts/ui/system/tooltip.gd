@@ -14,7 +14,7 @@ func tooltip(text:String) -> void:
 	if text != "":
 		tip = true
 		label.text = text
-		$Container.visible = true
+		visible = true
 	else:
 		tip = false
-		$Container.visible = false
+		visible = false

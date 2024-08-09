@@ -1,16 +1,14 @@
 extends CanvasModulate
 
-class_name TimeWorld
-
-@onready var pause = PauseMenu.new()
+@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
 @export var gradient_texture:GradientTexture1D
 
-var year:int 	= 1
-var month:int 	= 1
-var week:int 	= 1
-var day:int 	= 1
-var hour:int 	= 8
-var minute:int	= 0
+var year:int = 1
+var month:int = 1
+var week:int = 1
+var day:int = 1
+var hour:int = 8
+var minute:int= 0
 
 var time:float = 0.0
 var game_speed:int = 8
@@ -23,18 +21,23 @@ signal time_tick(day:int, hour:int, minute:int)
 func _ready():
 	timeset()
 
-func timeset():
-	var initial_hour = get_hour()
-	time = sin_speed * minutes_in_hour * initial_hour
-
 func _process(delta: float) -> void:
 	if !pause.paused:
 		time += delta * sin_speed * game_speed
 		var value = (sin(time - PI / 2.0) + 1.10) / 2.00
 		self.color = gradient_texture.gradient.sample(value)
-		_recalculate_time()
+		recalculate_time()
 
-func _recalculate_time() -> void:
+func timeset():
+	var initial_hour = get_hour()
+	time = sin_speed * minutes_in_hour * initial_hour
+	recalculate_time()
+	
+func timeload(timeindex):
+	self.time = timeindex
+	recalculate_time()
+
+func recalculate_time() -> void:
 	var total_minutes = int(time / sin_speed)
 	var day = int(total_minutes / minutes_in_day)
 	var current_day_minutes = total_minutes % minutes_in_day
@@ -44,6 +47,9 @@ func _recalculate_time() -> void:
 	if past_minute != minute:
 		past_minute = minute
 		time_tick.emit(day, hour, minute)
+
+func get_time() -> float:
+	return time
 
 func get_hour():
 	return hour

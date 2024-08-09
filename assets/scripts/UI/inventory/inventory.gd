@@ -1,6 +1,5 @@
 extends Control
 
-class_name Inventory
 @onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
 @onready var blur:Control = get_node("/root/World/User Interface/Blur")
 @onready var build:Control = get_node("/root/World/User Interface/Windows/Crafting")
@@ -21,12 +20,12 @@ class_name Inventory
 @onready var button:Button = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Button/Button
 @onready var list:Label = $Panel/StorageItemList
 
-var storage:Object = Storage.new()
 var menu:bool = false
+var storage:Object = Storage.new()
 var inventory_items:Dictionary = {}
 enum item_type {
 	seed,
-	}
+}
 
 func _ready():
 	close()
@@ -38,20 +37,20 @@ func _process(delta):
 	and !mailbox.menu:
 		if Input.is_action_just_pressed("inventory"):
 			window()
-		if Input.is_action_just_pressed("menu") and menu:
+		if Input.is_action_just_pressed("pause") and menu:
 			close()
 
 func open() -> void:
-	pause.lock = true
 	menu = true
+	pause.other_menu = true
 	blur.blur(true)
 	anim.play("open")
 	list_slots(0, inventory_items)
 	update_list()
 
 func close() -> void:
-	pause.lock = false
 	menu = false
+	pause.other_menu = false
 	blur.blur(false)
 	anim.play("close")
 	delete_slots()
@@ -134,8 +133,7 @@ func list_slots(index:int, list:Dictionary):
 		0:
 			for i in list:
 				item_create(i)
-		_:
-			pass
+		_: pass
 
 func delete_slots() -> void:
 	for child in slots.get_children():
@@ -153,7 +151,7 @@ func item_create(i) -> void:
 
 func update_list() -> void:
 	if storage.object[storage.level].has("slots"):
-		list.text = "Вместимость: " + str(list_slots_return()) + "/" + str(storage.object[storage.level]["slots"])
+		list.text = list.text + " " + str(list_slots_return()) + "/" + str(storage.object[storage.level]["slots"])
 		list.visible = true
 	else:
 		push_error("The 'slots' element does not exist.")
@@ -213,11 +211,10 @@ func get_tip(tip:String) -> String:
 		_:
 			return ""
 
-func check_item_type(type:String):
+func check_item_type(type:String) -> void:
 	match type:
 		"Семена":
 			button.visible = true
-			button.text = "Посадить"
 		_:
 			button.visible = false
 
