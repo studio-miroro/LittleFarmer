@@ -20,7 +20,7 @@ func _process(delta):
 func blur(_bluring:bool):
 	self.bluring = _bluring
 	get_node("/root/World/User Interface/System/Tooltip").tooltip("")
-	get_node("/root/World/Camera/Camera2D").switch = _bluring
+	#get_node("/root/World/Camera/Camera2D").switch = _bluring
 	get_node("/root/World/Camera").switch = _bluring
 	if bluring:
 		get_node("/root/World/Buildings/House").change_sprite(false)

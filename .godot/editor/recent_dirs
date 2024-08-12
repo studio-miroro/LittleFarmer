@@ -1,3 +1,4 @@
+res://assets/nodes/ui/hud/hud
 res://assets/nodes/ui/windows/pause/options/sections/pages
 res://assets/localizations
 res://assets/nodes/ui/windows/pause/options/sections
@@ -10,7 +11,6 @@ res://assets/nodes/nature
 res://assets/scripts/ui/windows/pause/options
 res://assets/nodes/ui/windows/mail
 res://assets/nodes/ui/windows/pause
-res://assets/scripts/ui/windows/pause/instuments
 res://
 res://assets/nodes/ui
 E:/gamedev/.github/godot_game/assets/scripts/UI/inventory

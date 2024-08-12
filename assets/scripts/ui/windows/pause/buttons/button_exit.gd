@@ -7,7 +7,7 @@ extends Button
 
 func _on_pressed() -> void:
 	if pause.paused:
-		time.timerstop(true)
+		#time.timerstop(true)
 		blackout.blackout(4)
 		json.gamesave()
 		await get_tree().create_timer(1.25).timeout

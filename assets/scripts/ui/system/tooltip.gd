@@ -10,7 +10,7 @@ func _process(delta):
 	if tip:
 		position = get_global_mouse_position()
 
-func tooltip(text:String) -> void:
+func tooltip(text:String = "") -> void:
 	if text != "":
 		tip = true
 		label.text = text

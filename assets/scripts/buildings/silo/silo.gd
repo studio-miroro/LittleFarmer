@@ -3,6 +3,7 @@ extends Node2D
 @onready var tip:Control = get_node("/root/World/User Interface/System/Tooltip")
 @onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid") 
+@onready var blur:Control = get_node("/root/World/User Interface/Blur")
 @onready var player:CharacterBody2D = get_node("/root/World/Camera")
 @onready var sprite:Sprite2D = $Sprite2D
 
@@ -54,7 +55,7 @@ func check_sprite(key:String):
 		push_error("Index " + str(level) + " is not in the dictionary.")
 
 func _on_collision_mouse_entered():
-	if !pause.paused:
+	if !blur.bluring:
 		change_sprite(true)
 
 func _on_collision_mouse_exited():

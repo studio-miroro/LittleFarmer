@@ -4,7 +4,7 @@ extends Node
 @onready var tilemap:TileMap = get_node("/root/World/Tilemap")
 @onready var player:Node2D = get_node("/root/World/Camera")
 @onready var balance:Control = get_node("/root/World/User Interface/Hud/Money")
-@onready var language = get_node("/root/World/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
+@onready var language:Control = get_node("/root/World/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
 
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
 @onready var gridCollision:Area2D = get_node("/root/World/Buildings/Grid/GridCollision")
@@ -132,7 +132,7 @@ func get_content(content:String):
 				"Player": {
 					"X": round(player.position.x),
 					"Y": round(player.position.y),
-					"Balance": balance.money,
+					#"Balance": balance.money,
 				}
 			}
 			

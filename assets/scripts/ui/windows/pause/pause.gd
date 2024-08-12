@@ -5,13 +5,12 @@ extends Control
 
 @onready var options:Control = get_node("/root/World/User Interface/Windows/Options")
 @onready var hud:Control = get_node("/root/World/User Interface/Hud")
-@onready var time:Control = get_node("/root/World/User Interface/Hud/Time")
 @onready var debbuger:Control = get_node("/root/World/User Interface/Debugger")
 @onready var blackout:Control = get_node("/root/World/User Interface/Blackout")
 @onready var blur:Control = get_node("/root/World/User Interface/Blur")
 
 @onready var player:CharacterBody2D = get_node("/root/World/Camera")
-@onready var camera:Camera2D = get_node("/root/World/Camera/Camera2D")
+@onready var zoom:Camera2D = get_node("/root/World/Camera/Camera2D")
 
 @onready var anim:AnimationPlayer = $AnimationPlayer
 @onready var version:Label = $MarginContainer/MarginContainer/container/version/version
@@ -20,18 +19,18 @@ var paused:bool
 var other_menu:bool
 
 func _ready():
-	z_index = 1
-	paused = false
-	player.switch = true
 	ui.visible = true
+	player.switch = true
+	player.check_switch()
 	await get_tree().create_timer(0.75).timeout
 	player.switch = true
+	zoom.zooming = false
 	blackout.blackout_reset(4)
 	blackout.key_parameter("gameload")
-	time.timerstop(false)
-	time.timerupdate()
 	await get_tree().create_timer(0.25).timeout
-	camera.switch = false
+	hud._show()
+	player.switch = false
+	player.check_switch()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause")\
@@ -54,20 +53,14 @@ func open() -> void:
 	paused = true
 	anim.play("open")
 	blur.blur(true)
-	hud.reset_buttons()
-	time.timerupdate()
+	hud._hide()
 	player.check_switch()
-	hud.visible = false
 	grid.visible = false
-	debbuger.visible = false
 	update_string_version()
 
 func close() -> void:
 	paused = false
 	anim.play("close")
 	blur.blur(false)
-	hud.reset_buttons()
-	time.timerupdate()
+	hud._show()
 	player.check_switch()
-	hud.visible = true
-	debbuger.visible = true

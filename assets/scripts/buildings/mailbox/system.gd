@@ -2,7 +2,7 @@ extends Control
 
 @onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
 @onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
-@onready var balance:Control = get_node("/root/World/User Interface/Hud/Money")
+@onready var balance:Control = get_node("/root/World/User Interface/Hud/Main/Indicators/Balance")
 @onready var blur:Control = get_node("/root/World/User Interface/Blur")
 @onready var animation:AnimationPlayer = $AnimationPlayer
 

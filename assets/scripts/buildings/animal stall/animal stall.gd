@@ -1,8 +1,9 @@
 extends Node2D
 
-@onready var tip = get_node("/root/World/User Interface/System/Tooltip")
 @onready var pause = get_node("/root/World/User Interface/Windows/Pause")
+@onready var tip = get_node("/root/World/User Interface/System/Tooltip")
 @onready var grid = get_node("/root/World/Buildings/Grid") 
+@onready var blur:Control = get_node("/root/World/User Interface/Blur")
 @onready var player = get_node("/root/World/Camera")
 @onready var sprite = $Sprite2D
 
@@ -54,7 +55,7 @@ func check_sprite(key:String):
 
 
 func _on_area_2d_mouse_entered():
-	if !pause.paused:
+	if !blur.bluring:
 		change_sprite(true)
 
 func _on_area_2d_mouse_exited():

@@ -2,11 +2,8 @@ extends Control
 
 @onready var container:VBoxContainer = $MarginContainer/VBoxContainer
 @onready var node:PackedScene = load("res://assets/nodes/ui/system/notifications/notice.tscn")
-var max:int = 10
 
-func _process(delta):
-	if Input.is_action_just_pressed("click right"):
-		create_notice("info", "Склад полон!")
+const max:int = 8
 
 func create_notice(image, text:String) -> void:
 	var notice = node.instantiate()
