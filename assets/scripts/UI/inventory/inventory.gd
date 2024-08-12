@@ -28,7 +28,7 @@ enum item_type {
 }
 
 func _ready():
-	close()
+	check_window()
 	reset_data()
 
 func _process(delta):

@@ -22,10 +22,8 @@ var menu:bool = false
 var access:Array = [1,2,3,4,5,6,7,8,9,10]
 
 func _ready():
-	menu = false
-	blur.blur(false)
-	anim.play("close")
-	check_blueprints(access)
+	check_window()
+	reset_data()
 
 func _process(delta):
 	if !pause.paused\

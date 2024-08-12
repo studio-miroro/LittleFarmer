@@ -25,3 +25,10 @@ res://assets/nodes/buildings/silo.tscn
 res://assets/scripts/buildings/silo/silo.gd
 res://assets/nodes/ui/inventory/inventory.tscn
 res://assets/scripts/ui/inventory/inventory.gd
+res://assets/nodes/ui/windows/pause/pause.tscn
+res://assets/nodes/ui/hud/blackout.tscn
+res://assets/scripts/ui/blackout.gd
+res://assets/scripts/ui/windows/pause/buttons/button_exit.gd
+res://assets/nodes/ui/windows/craft/menu.tscn
+res://assets/scripts/ui/windows/craft/craft_menu.gd
+res://assets/nodes/ui/windows/mail/mail.tscn

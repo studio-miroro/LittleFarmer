@@ -100,6 +100,7 @@ _data = {
 }
 
 [node name="Inventory" type="Control"]
+visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 8

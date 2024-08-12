@@ -25,8 +25,7 @@ func _ready():
 	await get_tree().create_timer(0.75).timeout
 	player.switch = true
 	zoom.zooming = false
-	blackout.blackout_reset(4)
-	blackout.key_parameter("gameload")
+	blackout.blackout(false)
 	await get_tree().create_timer(0.25).timeout
 	hud._show()
 	player.switch = false

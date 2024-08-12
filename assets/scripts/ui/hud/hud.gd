@@ -20,6 +20,13 @@ func _hide():
 func _show():
 	anim.play("show")
 	hud = true
-	
+
+func _visible(state:bool):
+	match state:
+		true:
+			_hide()
+		false:
+			_show()
+
 func window():
 	visible = hud

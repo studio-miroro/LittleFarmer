@@ -5,16 +5,14 @@ extends Control
 func _ready():
 	z_index = 999
 
-func blackout(speed:int) -> void:
-	anim.play("Blackout")
-	anim.speed_scale = speed
+#func _process(delta):
+	#print(anim.is_playing())
 
-func blackout_reset(speed:int) -> void:
-	anim.play("Blackout_reset")
-	anim.speed_scale = speed
-
-func key_parameter(key):
-	if key == "gameload":
-		return null
-	else:
-		get_tree().quit()
+func blackout(state:bool, speed:int = 4):
+	match state:
+		true:
+			anim.play("Blackout")
+			anim.speed_scale = speed
+		false:
+			anim.play("Blackout_reset")
+			anim.speed_scale = speed

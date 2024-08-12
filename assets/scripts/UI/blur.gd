@@ -18,13 +18,13 @@ func _process(delta):
 	node.material.set_shader_parameter("lod", value)
 
 func blur(_bluring:bool):
-	self.bluring = _bluring
-	get_node("/root/World/User Interface/System/Tooltip").tooltip("")
-	#get_node("/root/World/Camera/Camera2D").switch = _bluring
-	get_node("/root/World/Camera").switch = _bluring
-	if bluring:
-		get_node("/root/World/Buildings/House").change_sprite(false)
-		get_node("/root/World/Buildings/Mailbox").change_sprite(false)
-		get_node("/root/World/Buildings/Storage").change_sprite(false)
-		get_node("/root/World/Buildings/Animal Stall").change_sprite(false)
-		get_node("/root/World/Buildings/Silo").change_sprite(false)
+		self.bluring = _bluring
+		get_node("/root/World/User Interface/Hud")._visible(_bluring)
+		get_node("/root/World/User Interface/System/Tooltip").tooltip()
+		get_node("/root/World/Camera").switch = _bluring
+		if bluring:
+			get_node("/root/World/Buildings/House").change_sprite(false)
+			get_node("/root/World/Buildings/Mailbox").change_sprite(false)
+			get_node("/root/World/Buildings/Storage").change_sprite(false)
+			get_node("/root/World/Buildings/Animal Stall").change_sprite(false)
+			get_node("/root/World/Buildings/Silo").change_sprite(false)
