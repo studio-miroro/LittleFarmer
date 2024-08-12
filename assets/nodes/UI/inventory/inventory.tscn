@@ -241,7 +241,7 @@ anchor_top = 0.895833
 anchor_right = 0.334375
 anchor_bottom = 0.958333
 offset_right = -59.0
-text = "StorageItemList"
+text = "all_items.storage"
 metadata/_edit_use_anchors_ = true
 
 [node name="Close" type="Button" parent="."]

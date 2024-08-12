@@ -151,7 +151,8 @@ func item_create(i) -> void:
 
 func update_list() -> void:
 	if storage.object[storage.level].has("slots"):
-		list.text = list.text + " " + str(list_slots_return()) + "/" + str(storage.object[storage.level]["slots"])
+		var text = "Вместимость:"
+		list.text = text + " " + str(list_slots_return()) + "/" + str(storage.object[storage.level]["slots"])
 		list.visible = true
 	else:
 		push_error("The 'slots' element does not exist.")
