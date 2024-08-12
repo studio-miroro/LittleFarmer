@@ -1,10 +1,10 @@
-Panel
+MarginContainer
+HBoxContainer
 Button
+Panel
 AnimationPlayer
 AnimationTree
-HBoxContainer
 Timer
-MarginContainer
 TextureRect
 Label
 Node

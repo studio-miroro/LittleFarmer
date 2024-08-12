@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlpc7fxunbs1g"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/hud/content/clock.gd" id="1_kunbj"]
+[ext_resource type="Script" path="res://assets/scripts/ui/hud/elements/clock.gd" id="1_kunbj"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_17403"]
 
 [node name="Clock" type="Control"]

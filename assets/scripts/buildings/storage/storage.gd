@@ -32,8 +32,9 @@ var object:Dictionary = {
 	},
 }
 
-func _process(delta):
-	if Input.is_action_just_pressed("click left")\
+func _input(event):
+	if event is InputEventMouseButton\
+	and event.button_index == MOUSE_BUTTON_LEFT\
 	and menu:
 		inventory.open()
 		menu = false

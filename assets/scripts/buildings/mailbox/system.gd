@@ -25,31 +25,10 @@ var menu:bool = false
 var index:int
 var letters:Dictionary = {}
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("pause")\
 	and menu:
 		close()
-	
-	if Input.is_action_just_pressed("click right"):
-		letter(
-			"Благодарность",
-			"
-			Уважаемый фермер, \n
-			Хочу выразить Вам искреннюю благодарность за Ваш труд и заботу о нашей земле. 
-			Благодаря Вам на нашем столе всегда свежие и качественные продукты. 
-			Ваш вклад в развитие сельского хозяйства неоценим.
-			",
-			"С уважением, Коровьев",
-			500,
-			{
-				1:{"amount":100},
-				2:{"amount":100},
-				3:{"amount":10},
-				4:{"amount":10},
-				5:{"amount":10},
-				6:{"amount":10},
-			}
-		)
 
 func _ready():
 	check_window()
@@ -60,13 +39,12 @@ func letter(_header:String, _description:String, _author:String, _money:int, _it
 	if _header != ""\
 	or _description != ""\
 	or _author != "": 
-		var index = letters.size() + 1
-		letters[index] = {}
-		letters[index]["header"] = _header
-		letters[index]["description"] = _description
-		letters[index]["author"] = _author
-		letters[index]["money"] = _money
-		letters[index]["items"] = {}
+		letters[letters.size() + 1] = {}
+		letters[letters.size() + 1]["header"] = _header
+		letters[letters.size() + 1]["description"] = _description
+		letters[letters.size() + 1]["author"] = _author
+		letters[letters.size() + 1]["money"] = _money
+		letters[letters.size() + 1]["items"] = {}
 		if _items != {}:
 			check_all_keys(index, _items)
 
@@ -130,8 +108,7 @@ func get_data(_index:int) -> void:
 					fixedItems.text = "Прикрепленные предметы:"
 					
 				for i in letters[_index]["items"]:
-					var item = letters[_index]["items"][i]
-					if typeof(item) == TYPE_DICTIONARY and item.has("amount"):
+					if typeof(item) == TYPE_DICTIONARY and letters[_index]["items"][i].has("amount"):
 						if typeof(item["amount"]) == TYPE_INT:
 							if item["amount"] > 0:
 								letter_create_items(i, item["amount"], items_container, item_node)
@@ -145,7 +122,7 @@ func get_data(_index:int) -> void:
 	else:
 		push_error("Invalid index: " + str(_index))
 
-func get_all_items(letter:int, dictionary:Dictionary) -> void:
+func get_all_items(_letter:int, dictionary:Dictionary) -> void:
 	if letter_items_check(0, index, dictionary) != {}:
 		if letter_items_check(2, index, dictionary):
 			letter_items_check(1, index, dictionary)

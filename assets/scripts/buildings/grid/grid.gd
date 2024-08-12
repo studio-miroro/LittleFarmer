@@ -1,44 +1,54 @@
 extends Node2D
 
 @onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
-@onready var hud:Control = get_node("/root/World/User Interface/Interface")
+@onready var blur:Control = get_node("/root/World/User Interface/Blur")
 @onready var tilemap:TileMap = get_node("/root/World/Tilemap")
-@onready var grid_object:Node2D = get_node("/root/World/Buildings/Grid")
+
 @onready var farming:Node2D = get_node("/root/World/Farming")
 @onready var farm:Node2D = get_node("/root/World/")
-@onready var node:PackedScene = load("res://assets/nodes/farming/plant.tscn")
-@export var default:CompressedTexture2D = load("res://assets/resources/buildings/grid/default.png")
-@export var error:CompressedTexture2D = load("res://assets/resources/buildings/grid/error.png")
+
 @onready var grid:Sprite2D = $Sprite2D
 @onready var collision:Area2D = $GridCollision
+@export var default:CompressedTexture2D = load("res://assets/resources/buildings/grid/default.png")
+@export var error:CompressedTexture2D = load("res://assets/resources/buildings/grid/error.png")
 
-enum gridmode {NOTHING,DESTROY,FARMING,SEEDS,WATERING,BUILDING}
-var mode = gridmode.NOTHING
-var need_check = false
+enum gridmode {NOTHING, DESTROY, FARMING, SEEDS, WATERING, BUILDING}
+var mode:int = gridmode.NOTHING
+var check:bool = false
 
 func _ready():
-	grid.z_index = 10
+	z_index = 10
 	grid.texture = default
 	
 func _input(event):
-	if !pause.paused and mode != gridmode.NOTHING:
+	if !blur.bluring and mode != gridmode.NOTHING:
 		if event is InputEventMouseButton\
 		and event.button_index == MOUSE_BUTTON_LEFT\
 		and event.is_pressed()\
-		and grid_object.visible:
-			need_check = true
+		and visible:
+			check = true
 
-func _process(delta):
-	if !pause.paused and grid_object.visible:
+		if event is InputEventMouseButton\
+		and event.button_index == MOUSE_BUTTON_RIGHT\
+		and event.is_pressed()\
+		and visible:
+			mode = gridmode.NOTHING
+			visible = false
+			check = false
+
+func _process(_delta):
+	if !blur.bluring and visible:
+
 		var mouse_pos: Vector2 = get_global_mouse_position()
 		var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 		var ground_tile_position = []
 		var farming_tile_position = []
 		var watering_tile_position = []
+
 		match mode:
 			gridmode.DESTROY:
 				collision.destroy_collision_check()
-				if need_check:
+				if check:
 					match collision.destroy_collision_check():
 						0:
 							tilemap.set_cells_terrain_connect(
@@ -78,11 +88,11 @@ func _process(delta):
 									tile_mouse_pos
 									)
 								)
-				need_check = false
+				check = false
 
 			gridmode.FARMING:
 				collision.farming_collision_check()
-				if need_check:
+				if check:
 					if collision.farming_collision_check():
 						farming_tile_position.append(tile_mouse_pos)
 						tilemap.set_cells_terrain_connect(
@@ -91,11 +101,11 @@ func _process(delta):
 							collision.farming_terrain_set,
 							collision.farming_terrain
 							)
-				need_check = false
+				check = false
 
 			gridmode.WATERING:
 				collision.watering_collision_check()
-				if need_check:
+				if check:
 					if collision.watering_collision_check():
 						watering_tile_position.append(tile_mouse_pos)
 						tilemap.set_cells_terrain_connect(
@@ -104,19 +114,19 @@ func _process(delta):
 							collision.watering_terrain_set,
 							collision.watering_terrain
 							)
-				need_check = false
+				check = false
 
 			gridmode.SEEDS:
 				collision.planting_collision_check()
-				if need_check:
+				if check:
 					var ID = randi_range(1,4)
 					if collision.planting_collision_check():
 						farming.crop(ID, tile_mouse_pos)
-				need_check = false
+				check = false
 
 			gridmode.BUILDING:
 				collision.building_collision_check()
-				if need_check:
+				if check:
 					if collision.building_collision_check():
 						ground_tile_position.append(tile_mouse_pos)
 						tilemap.set_cells_terrain_connect(
@@ -125,13 +135,14 @@ func _process(delta):
 							collision.ground_terrain_set,
 							collision.ground_terrain
 							)
-				need_check = false
+				check = false
+	else:
+		mode = gridmode.NOTHING
+		visible = false
+		check = false
 
-func get_used_cells(layer):
-	return tilemap.get_used_cells(layer)
-
-func change_texture(collision):
-	if collision:
+func change_texture(texture:bool):
+	if texture:
 		grid.texture = error
 	else:
 		grid.texture = default

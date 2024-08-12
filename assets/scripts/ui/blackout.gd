@@ -5,9 +5,6 @@ extends Control
 func _ready():
 	z_index = 999
 
-#func _process(delta):
-	#print(anim.is_playing())
-
 func blackout(state:bool, speed:int = 4):
 	match state:
 		true:

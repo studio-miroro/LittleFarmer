@@ -26,8 +26,9 @@ func _ready():
 	else:
 		push_error("The specified key is missing.")
 
-func _process(delta):
-	if Input.is_action_just_pressed("click left")\
+func _input(event):
+	if event is InputEventMouseButton\
+	and event.button_index == MOUSE_BUTTON_LEFT\
 	and mailMenu:
 		mailbox.open()
 

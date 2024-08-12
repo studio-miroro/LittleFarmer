@@ -1,4 +1,5 @@
-res://assets/nodes/ui/hud/hud
+res://assets/nodes/ui/hud/elements/instruments
+res://assets/nodes/ui/hud
 res://assets/nodes/ui/windows/pause/options/sections/pages
 res://assets/localizations
 res://assets/nodes/ui/windows/pause/options/sections
@@ -13,11 +14,7 @@ res://assets/nodes/ui/windows/mail
 res://assets/nodes/ui/windows/pause
 res://
 res://assets/nodes/ui
-E:/gamedev/.github/godot_game/assets/scripts/UI/inventory
 res://assets/nodes/UI
 res://assets/resources
 res://assets/resources/UI/inventory/items
 res://assets/resources/buildings/storage/level-1
-E:/gamedev/.github/godot_game
-res://assets/scripts/UI
-E:/gamedev/.github/godot_game/assets/singletons

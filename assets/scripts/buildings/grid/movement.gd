@@ -1,14 +1,13 @@
 extends TileMap
 
-@onready var pause = get_node("/root/World/UI/Pause")
-@onready var hud = get_node("/root/World/UI/HUD/Interface")
-@onready var grid = get_node("/root/World/Buildings/Grid")
-@onready var node = preload("res://assets/nodes/farming/plant.tscn")
+@onready var pause:Control = get_node("/root/World/UI/Pause")
+@onready var hud:Control = get_node("/root/World/UI/HUD/Interface")
+@onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
 
-func _process(delta):
+func _process(_delta):
 	if grid.mode != grid.gridmode.NOTHING:
-		grid_movement()
+		movement()
 
-func grid_movement():
+func movement():
 	var current:Vector2 = local_to_map(get_global_mouse_position())
 	grid.set_position(map_to_local(current))

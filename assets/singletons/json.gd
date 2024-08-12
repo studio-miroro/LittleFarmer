@@ -7,7 +7,7 @@ extends Node
 @onready var language:Control = get_node("/root/World/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
 
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
-@onready var gridCollision:Area2D = get_node("/root/World/Buildings/Grid/GridCollision")
+@onready var grid_collision:Area2D = get_node("/root/World/Buildings/Grid/GridCollision")
 @onready var farming:Node2D = get_node("/root/World/Farming")
 @onready var plant:PackedScene = load("res://assets/nodes/farming/plant.tscn")
 
@@ -152,9 +152,9 @@ func get_content(content:String):
 		"Vectors":
 			return {
 				"Vectors": {
-					"Road": grid.get_used_cells(gridCollision.ground_layer),
-					"Farmlands": grid.get_used_cells(gridCollision.farming_layer),
-					"Waterings": grid.get_used_cells(gridCollision.watering_layer),	
+					"Road": grid_collision.get_used_cells(grid_collision.ground_layer),
+					"Farmlands": grid_collision.get_used_cells(grid_collision.farming_layer),
+					"Waterings": grid_collision.get_used_cells(grid_collision.watering_layer),	
 					"Plants": get_position_children(farming),
 				}
 			}
@@ -192,7 +192,7 @@ func create_nodes(parent:Node2D, node: PackedScene, positions) -> void:
 				push_error("Variable position is not of type Vector2")
 
 func remove_all_child(parent: Node):
-	erase_cells(gridCollision.seeds_layer)
+	erase_cells(grid_collision.seeds_layer)
 	for child in parent.get_children():
 		parent.remove_child(child)
 		child.queue_free()
@@ -212,11 +212,11 @@ func get_children_data(parent: Node) -> Dictionary:
 	return data_dict
 
 func plant_load():
-	create_terrain(0, gridCollision.ground_layer, path.vectors, "Road", gridCollision.ground_terrain_set, gridCollision.ground_terrain)
-	create_terrain(0, gridCollision.farming_layer, path.vectors, "Farmlands", gridCollision.farming_terrain_set, gridCollision.farming_terrain)
-	create_terrain(0, gridCollision.watering_layer, path.vectors, "Waterings", gridCollision.watering_terrain_set, gridCollision.watering_terrain)
-	create_terrain(1, gridCollision.seeds_layer, path.vectors, "Plants", 0, 0)
-	create_nodes(farming, plant, create_terrain(2, gridCollision.seeds_layer, path.vectors, "Plants", -1, -1))
+	create_terrain(0, grid_collision.ground_layer, path.vectors, "Road", grid_collision.ground_terrain_set, grid_collision.ground_terrain)
+	create_terrain(0, grid_collision.farming_layer, path.vectors, "Farmlands", grid_collision.farming_terrain_set, grid_collision.farming_terrain)
+	create_terrain(0, grid_collision.watering_layer, path.vectors, "Waterings", grid_collision.watering_terrain_set, grid_collision.watering_terrain)
+	create_terrain(1, grid_collision.seeds_layer, path.vectors, "Plants", 0, 0)
+	create_nodes(farming, plant, create_terrain(2, grid_collision.seeds_layer, path.vectors, "Plants", -1, -1))
 
 func farm_load(object:Node2D, object_name:String, position):
 	var plant_id = get_key(path.plants, object_name, "plantID")
@@ -239,25 +239,25 @@ func farm_load(object:Node2D, object_name:String, position):
 		push_error("Data missing for node: " + object_name)
 
 func terrains_remove() -> void:
-	if grid.get_used_cells(gridCollision.ground_layer) != []:
+	if grid_collision.get_used_cells(grid_collision.ground_layer) != []:
 		tilemap.set_cells_terrain_connect(
-		gridCollision.ground_layer,
-		grid.get_used_cells(gridCollision.ground_layer),
-		gridCollision.ground_terrain_set,
+		grid_collision.ground_layer,
+		grid_collision.get_used_cells(grid_collision.ground_layer),
+		grid_collision.ground_terrain_set,
 		-1)
 		
-	if grid.get_used_cells(gridCollision.farming_layer) != []:
+	if grid_collision.get_used_cells(grid_collision.farming_layer) != []:
 		tilemap.set_cells_terrain_connect(
-		gridCollision.farming_layer,
-		grid.get_used_cells(gridCollision.farming_layer),
-		gridCollision.farming_terrain_set,
+		grid_collision.farming_layer,
+		grid_collision.get_used_cells(grid_collision.farming_layer),
+		grid_collision.farming_terrain_set,
 		-1)
 		
-	if grid.get_used_cells(gridCollision.watering_layer) != []:
+	if grid_collision.get_used_cells(grid_collision.watering_layer) != []:
 		tilemap.set_cells_terrain_connect(
-		gridCollision.watering_layer,
-		grid.get_used_cells(gridCollision.watering_layer),
-		gridCollision.watering_terrain_set,
+		grid_collision.watering_layer,
+		grid_collision.get_used_cells(grid_collision.watering_layer),
+		grid_collision.watering_terrain_set,
 		-1)
 
 func time_load() -> void:
