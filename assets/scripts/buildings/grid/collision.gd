@@ -92,7 +92,7 @@ func planting_collision_check() -> bool:
 		return false
 	
 func check_custom_data(tile_mouse:Vector2, custom_data_layer:String, layer:int) -> bool:
-	var tiledata = tilemap.get_cell_tile_data(layer,tile_mouse)
+	var tiledata = tilemap.get_cell_tile_data(layer, tile_mouse)
 	if tiledata:
 		return tiledata.get_custom_data(custom_data_layer)
 	else:

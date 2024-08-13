@@ -9,6 +9,7 @@ extends Node2D
 
 @onready var grid:Sprite2D = $Sprite2D
 @onready var collision:Area2D = $GridCollision
+
 @export var default:CompressedTexture2D = load("res://assets/resources/buildings/grid/default.png")
 @export var error:CompressedTexture2D = load("res://assets/resources/buildings/grid/error.png")
 
