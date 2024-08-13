@@ -1,11 +1,20 @@
-res://assets/scripts/buildings/storage/storage.gd
-res://levels/menu.tscn
-res://levels/countinue.tscn
-res://levels/newgame.tscn
-res://levels/quit.tscn
-res://assets/shaders/blur.gdshader
-res://assets/shaders/pixel.gdshader
-res://assets/resources/nature/cycle-gradient.tres
 res://levels/farm.tscn
-res://assets/nodes/ui/mainmenu/buttons/countinue.tscn
+res://assets/shaders/pixel.gdshader
+res://assets/shaders/blur.gdshader
+res://assets/resources/nature/cycle-gradient.tres
 res://assets/nodes/ui/main menu/buttons/countinue.tscn
+res://levels/menu.tscn
+res://assets/scripts/ui/main menu/menu.gd
+res://assets/scripts/ui/main menu/buttons/countinue.gd
+res://assets/scripts/ui/main menu/buttons/quit.gd
+res://assets/scripts/ui/main menu/buttons/new_game.gd
+res://assets/scripts/buildings/grid/grid.gd
+res://assets/singletons/json.gd
+res://assets/scripts/buildings/grid/collision.gd
+res://assets/scripts/ui/windows/pause/buttons/button_exit.gd
+res://assets/scripts/ui/windows/pause/pause.gd
+res://assets/scripts/buildings/mailbox/mailbox.gd
+res://assets/nodes/ui/windows/pause/pause.tscn
+res://assets/nodes/buildings/mailbox.tscn
+res://assets/scripts/ui/windows/pause/buttons/button_save.gd
+res://assets/scripts/ui/windows/pause/buttons/button_load.gd

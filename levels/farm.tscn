@@ -1,6 +1,7 @@
-[gd_scene load_steps=56 format=3 uid="uid://4vypwfxar3e"]
+[gd_scene load_steps=57 format=3 uid="uid://4vypwfxar3e"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_ieipv"]
+[ext_resource type="Script" path="res://assets/singletons/gamedata.gd" id="2_mkopp"]
 [ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/ui/system/tooltip/tooltip.tscn" id="2_otbj1"]
 [ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="3_1lalu"]
 [ext_resource type="PackedScene" uid="uid://cyl6jw0huwvk6" path="res://assets/nodes/ui/windows/pause/pause.tscn" id="4_yubjk"]
@@ -1662,9 +1663,9 @@ turbulence_influence_max = 0.719
 [node name="World" type="Node2D"]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_h27nr")
+script = ExtResource("2_mkopp")
 
 [node name="User Interface" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Cursor" parent="User Interface" instance=ExtResource("7_g3cy5")]
 
