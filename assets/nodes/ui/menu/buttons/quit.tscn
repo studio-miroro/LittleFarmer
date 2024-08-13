@@ -1,0 +1,65 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt0da1fsbcrkd"]
+
+[ext_resource type="Script" path="res://assets/quit.gd" id="1_5wnwh"]
+[ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="1_kytnh"]
+
+[node name="QuitGame" type="Control"]
+custom_minimum_size = Vector2(158, 183)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5wnwh")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_right = 148.0
+offset_bottom = 183.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_right = 148.0
+offset_bottom = 165.0
+mouse_filter = 2
+
+[node name="Sprite" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="ButtonSprite" type="TextureRect" parent="VBoxContainer/Sprite"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_kytnh")
+expand_mode = 2
+stretch_mode = 5
+flip_h = true
+
+[node name="Label" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="Scroll" type="ScrollContainer" parent="VBoxContainer/Label"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 4
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/Label/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "game.quit"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

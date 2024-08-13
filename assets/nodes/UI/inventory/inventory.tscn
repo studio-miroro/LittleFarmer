@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjkwsdkyksvs3"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/inventory/inventory.gd" id="1_ula8m"]
-[ext_resource type="Texture2D" uid="uid://bso14d0bn8kw1" path="res://assets/resources/ui/inventory/items/Sprite-0001.png" id="2_2ovt8"]
+[ext_resource type="Texture2D" uid="uid://bso14d0bn8kw1" path="res://assets/resources/game/ui/inventory/items/Sprite-0001.png" id="2_2ovt8"]
 
 [sub_resource type="Animation" id="Animation_ciguq"]
 length = 0.001

@@ -1,0 +1,72 @@
+[gd_scene load_steps=8 format=3 uid="uid://fge4b2po0gh4"]
+
+[ext_resource type="Script" path="res://assets/scripts/ui/menu/menu.gd" id="1_tbolg"]
+[ext_resource type="Script" path="res://assets/scripts/ui/menu/background.gd" id="2_0sfce"]
+[ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="3_pkm2d"]
+[ext_resource type="PackedScene" uid="uid://bq4qdj61kxktg" path="res://assets/nodes/ui/menu/logotype.tscn" id="4_yltw5"]
+[ext_resource type="PackedScene" uid="uid://bb6ctptc6wrab" path="res://assets/nodes/ui/menu/buttons/countinue.tscn" id="5_nhjdb"]
+[ext_resource type="PackedScene" uid="uid://bo0md5dxqtqql" path="res://assets/nodes/ui/menu/buttons/newgame.tscn" id="6_5neng"]
+[ext_resource type="PackedScene" uid="uid://dt0da1fsbcrkd" path="res://assets/nodes/ui/menu/buttons/quit.tscn" id="7_nqawj"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_tbolg")
+
+[node name="MainUI" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="MainUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.188235, 0.498039, 0.364706, 1)
+script = ExtResource("2_0sfce")
+
+[node name="Blackout" parent="MainUI" instance=ExtResource("3_pkm2d")]
+visible = false
+
+[node name="Node" type="Node" parent="MainUI"]
+
+[node name="Main" type="MarginContainer" parent="MainUI/Node"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainContainer" type="VBoxContainer" parent="MainUI/Node/Main"]
+layout_mode = 2
+alignment = 2
+
+[node name="Logo" type="MarginContainer" parent="MainUI/Node/Main/MainContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 75
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Logotype" parent="MainUI/Node/Main/MainContainer/Logo" instance=ExtResource("4_yltw5")]
+layout_mode = 2
+
+[node name="Buttons" type="MarginContainer" parent="MainUI/Node/Main/MainContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 75
+
+[node name="ButtonContainer" type="HBoxContainer" parent="MainUI/Node/Main/MainContainer/Buttons"]
+layout_mode = 2
+alignment = 1
+
+[node name="CountinueGame" parent="MainUI/Node/Main/MainContainer/Buttons/ButtonContainer" instance=ExtResource("5_nhjdb")]
+layout_mode = 2
+
+[node name="NewGame" parent="MainUI/Node/Main/MainContainer/Buttons/ButtonContainer" instance=ExtResource("6_5neng")]
+layout_mode = 2
+
+[node name="QuitGame" parent="MainUI/Node/Main/MainContainer/Buttons/ButtonContainer" instance=ExtResource("7_nqawj")]
+layout_mode = 2
+
+[node name="Credits" type="Node" parent="MainUI/Node/Main"]
