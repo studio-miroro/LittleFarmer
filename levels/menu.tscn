@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://fge4b2po0gh4"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/menu/menu.gd" id="1_tbolg"]
-[ext_resource type="Script" path="res://assets/scripts/ui/menu/background.gd" id="2_0sfce"]
+[ext_resource type="Script" path="res://assets/scripts/ui/main menu/menu.gd" id="1_tbolg"]
+[ext_resource type="Script" path="res://assets/scripts/ui/main menu/background.gd" id="2_0sfce"]
 [ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="3_pkm2d"]
-[ext_resource type="PackedScene" uid="uid://bq4qdj61kxktg" path="res://assets/nodes/ui/menu/logotype.tscn" id="4_yltw5"]
-[ext_resource type="PackedScene" uid="uid://bb6ctptc6wrab" path="res://assets/nodes/ui/menu/buttons/countinue.tscn" id="5_nhjdb"]
-[ext_resource type="PackedScene" uid="uid://bo0md5dxqtqql" path="res://assets/nodes/ui/menu/buttons/newgame.tscn" id="6_5neng"]
-[ext_resource type="PackedScene" uid="uid://dt0da1fsbcrkd" path="res://assets/nodes/ui/menu/buttons/quit.tscn" id="7_nqawj"]
+[ext_resource type="PackedScene" uid="uid://bq4qdj61kxktg" path="res://assets/nodes/ui/main menu/logotype.tscn" id="4_yltw5"]
+[ext_resource type="PackedScene" uid="uid://bb6ctptc6wrab" path="res://assets/nodes/ui/main menu/buttons/countinue.tscn" id="5_nhjdb"]
+[ext_resource type="PackedScene" uid="uid://bo0md5dxqtqql" path="res://assets/nodes/ui/main menu/buttons/newgame.tscn" id="6_5neng"]
+[ext_resource type="PackedScene" uid="uid://dt0da1fsbcrkd" path="res://assets/nodes/ui/main menu/buttons/quit.tscn" id="7_nqawj"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_tbolg")
