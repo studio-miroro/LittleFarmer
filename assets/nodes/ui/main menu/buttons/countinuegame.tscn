@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bb6ctptc6wrab"]
+[gd_scene load_steps=3 format=3 uid="uid://balcl5dqa5cvp"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/main menu/buttons/countinue.gd" id="1_0h6rb"]
-[ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="1_1nsxj"]
+[ext_resource type="Script" path="res://assets/scripts/ui/main menu/buttons/countinue_game.gd" id="1_r0gew"]
+[ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_g8f1x"]
 
 [node name="CountinueGame" type="Control"]
 custom_minimum_size = Vector2(158, 183)
@@ -11,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0h6rb")
+script = ExtResource("1_r0gew")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
@@ -36,7 +36,7 @@ theme_override_constants/margin_bottom = 5
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("1_1nsxj")
+texture = ExtResource("2_g8f1x")
 expand_mode = 2
 stretch_mode = 5
 flip_h = true

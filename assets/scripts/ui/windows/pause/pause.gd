@@ -1,14 +1,12 @@
 extends Control
 
 @onready var ui:CanvasLayer = get_node("/root/World/User Interface")
-@onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
-
-@onready var options:Control = get_node("/root/World/User Interface/Windows/Options")
 @onready var hud:Control = get_node("/root/World/User Interface/Hud")
-@onready var debbuger:Control = get_node("/root/World/User Interface/Debugger")
+@onready var options:Control = get_node("/root/World/User Interface/Windows/Options")
 @onready var blackout:Control = get_node("/root/World/User Interface/Blackout")
 @onready var blur:Control = get_node("/root/World/User Interface/Blur")
 
+@onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
 @onready var player:CharacterBody2D = get_node("/root/World/Camera")
 @onready var zoom:Camera2D = get_node("/root/World/Camera/Camera2D")
 
@@ -19,7 +17,6 @@ var paused:bool
 var other_menu:bool
 
 func _ready():
-	ui.visible = true
 	player.switch = true
 	player.check_switch()
 	await get_tree().create_timer(0.75).timeout

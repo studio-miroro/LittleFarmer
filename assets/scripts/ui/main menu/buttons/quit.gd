@@ -1,6 +1,6 @@
 extends Control
 
-@onready var blackout = get_node("/root/MainMenu/MainUI/Blackout")
+@onready var blackout:Control = get_node("/root/Menu/CanvasLayer/Blackout")
 @onready var sprite:TextureRect = $VBoxContainer/Sprite/ButtonSprite
 @onready var caption:Label = $VBoxContainer/Label/Scroll/Label
 

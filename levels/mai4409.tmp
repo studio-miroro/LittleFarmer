@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddfixbiqh2d4c"]
+
+[ext_resource type="Script" path="res://assets/scripts/ui/main menu/menu.gd" id="1_5dxrt"]
+[ext_resource type="PackedScene" uid="uid://bq4qdj61kxktg" path="res://assets/nodes/ui/main menu/logotype.tscn" id="2_cg3e4"]
+[ext_resource type="PackedScene" uid="uid://balcl5dqa5cvp" path="res://assets/nodes/ui/main menu/buttons/countinuegame.tscn" id="3_jayu2"]
+[ext_resource type="PackedScene" uid="uid://bo0md5dxqtqql" path="res://assets/nodes/ui/main menu/buttons/newgame.tscn" id="4_wguv7"]
+[ext_resource type="PackedScene" uid="uid://dt0da1fsbcrkd" path="res://assets/nodes/ui/main menu/buttons/quit.tscn" id="5_umbos"]
+[ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="6_4klra"]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_5dxrt")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Main" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -491.0
+offset_top = -353.5
+offset_right = 491.0
+offset_bottom = 353.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 125
+theme_override_constants/margin_right = 250
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main"]
+layout_mode = 2
+
+[node name="Logotype" parent="CanvasLayer/Main/VBoxContainer" instance=ExtResource("2_cg3e4")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Main/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Main/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="CountinueGame" parent="CanvasLayer/Main/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_jayu2")]
+layout_mode = 2
+
+[node name="NewGame" parent="CanvasLayer/Main/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("4_wguv7")]
+layout_mode = 2
+
+[node name="QuitGame" parent="CanvasLayer/Main/VBoxContainer/MarginContainer/HBoxContainer" instance=ExtResource("5_umbos")]
+layout_mode = 2
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.25098, 0, 0.25098, 1)
+
+[node name="Blackout" parent="CanvasLayer" instance=ExtResource("6_4klra")]
+visible = false

@@ -1,7 +1,7 @@
 extends TileMap
 
-@onready var pause:Control = get_node("/root/World/UI/Pause")
-@onready var hud:Control = get_node("/root/World/UI/HUD/Interface")
+@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
+@onready var hud:Control = get_node("/root/World/User Interface/Hud")
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
 
 func _process(_delta):
