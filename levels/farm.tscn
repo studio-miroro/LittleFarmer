@@ -1670,7 +1670,6 @@ script = ExtResource("2_880lm")
 [node name="Cursor" parent="User Interface" instance=ExtResource("3_qw7dq")]
 
 [node name="Blackout" parent="User Interface" instance=ExtResource("3_1lalu")]
-visible = false
 
 [node name="Blur" parent="User Interface" instance=ExtResource("9_ccti6")]
 

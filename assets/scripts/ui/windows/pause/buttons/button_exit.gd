@@ -6,11 +6,12 @@ extends Button
 @onready var blackout:Control = get_node("/root/World/User Interface/Blackout")
 @onready var player:CharacterBody2D = get_node("/root/World/Camera")
 
-@onready var path = preload("res://levels/menu.tscn").instantiate()
+@onready var path = preload("res://levels/main.tscn")
 
 func _on_pressed() -> void:
 	if pause.paused:
-		blackout.blackout(true)
+		#blackout.blackout(true)
 		#json.gamesave()
-		await get_tree().create_timer(1.25).timeout
+		#await get_tree().create_timer(1.25).timeout
+		get_tree().change_scene_to_packed(path)
 		

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://coers8ktfq5yt"]
+
+[ext_resource type="Script" path="res://assets/scripts/ui/main menu/buttons/countinue_game.gd" id="1_cv5ly"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_left = 181.0
+offset_top = 99.0
+offset_right = 546.0
+offset_bottom = 236.0
+script = ExtResource("1_cv5ly")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

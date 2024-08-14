@@ -1,3 +1,4 @@
+Button
 Control
 MarginContainer
 VBoxContainer
@@ -9,7 +10,5 @@ CanvasLayer
 ScrollContainer
 TextureRect
 Label
-Button
 Panel
 AnimationPlayer
-AnimationTree
