@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://assets/singletons/gamedata.gd" id="2_880lm"]
 [ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/ui/system/tooltip/tooltip.tscn" id="2_otbj1"]
 [ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="3_1lalu"]
-[ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/scripts/cursor.tscn" id="3_qw7dq"]
+[ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/cursor.tscn" id="3_b52oi"]
 [ext_resource type="PackedScene" uid="uid://cyl6jw0huwvk6" path="res://assets/nodes/ui/windows/pause/pause.tscn" id="4_yubjk"]
 [ext_resource type="PackedScene" uid="uid://bpmceytvqnc7d" path="res://assets/nodes/ui/windows/craft/menu.tscn" id="5_v6eft"]
 [ext_resource type="PackedScene" uid="uid://c50737uagx074" path="res://assets/nodes/ui/hud/hud.tscn" id="5_wan5o"]
@@ -1667,7 +1667,7 @@ script = ExtResource("2_880lm")
 
 [node name="User Interface" type="CanvasLayer" parent="."]
 
-[node name="Cursor" parent="User Interface" instance=ExtResource("3_qw7dq")]
+[node name="Cursor" parent="User Interface" instance=ExtResource("3_b52oi")]
 
 [node name="Blackout" parent="User Interface" instance=ExtResource("3_1lalu")]
 

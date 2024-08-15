@@ -15,6 +15,7 @@ extends Control
 
 var paused:bool
 var other_menu:bool
+var lock:bool = true
 
 func _ready():
 	player.switch = true
@@ -24,18 +25,21 @@ func _ready():
 	zoom.zooming = false
 	blackout.blackout(false)
 	await get_tree().create_timer(0.25).timeout
+	lock = false
 	hud._show()
 	player.switch = false
 	player.check_switch()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause")\
+	and !lock\
 	and !other_menu\
 	and !options.visible:
 		pause()
 
 func pause():
-	if !paused:
+	if !paused\
+	and !lock:
 		open()
 	else:
 		close()

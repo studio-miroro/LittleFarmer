@@ -1,7 +1,16 @@
-res://levels/farm.tscn
 res://assets/scripts/ui/main menu/buttons/countinue_game.gd
+res://levels/main.tscn
 res://assets/shaders/pixel.gdshader
 res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
-res://levels/main.tscn
+res://levels/farm.tscn
+res://assets/nodes/ui/main menu/buttons/countinuegame.tscn
+res://assets/scripts/ui/main menu/buttons/new_game.gd
+res://assets/scripts/ui/main menu/buttons/quit.gd
 res://assets/scripts/ui/windows/pause/buttons/button_exit.gd
+res://assets/nodes/ui/windows/pause/pause.tscn
+res://assets/scripts/ui/main menu/background.gd
+res://levels/load_game.tscn
+res://assets/scripts/ui/main menu/menu.gd
+res://assets/scripts/ui/windows/pause/pause.gd
+res://assets/scripts/ui/camera/camera_movement.gd

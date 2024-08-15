@@ -1,14 +1,72 @@
-[gd_scene load_steps=2 format=3 uid="uid://coers8ktfq5yt"]
+[gd_scene load_steps=9 format=3 uid="uid://coers8ktfq5yt"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/main menu/buttons/countinue_game.gd" id="1_cv5ly"]
+[ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/cursor.tscn" id="1_ea6rj"]
+[ext_resource type="PackedScene" uid="uid://bq4qdj61kxktg" path="res://assets/nodes/ui/main menu/logotype.tscn" id="1_qiujb"]
+[ext_resource type="Script" path="res://assets/scripts/ui/main menu/menu.gd" id="1_xofh6"]
+[ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="2_1ou3c"]
+[ext_resource type="PackedScene" uid="uid://balcl5dqa5cvp" path="res://assets/nodes/ui/main menu/buttons/countinuegame.tscn" id="2_d5qf6"]
+[ext_resource type="PackedScene" uid="uid://bo0md5dxqtqql" path="res://assets/nodes/ui/main menu/buttons/newgame.tscn" id="3_vkh6h"]
+[ext_resource type="Script" path="res://assets/scripts/ui/main menu/background.gd" id="4_4tfic"]
+[ext_resource type="PackedScene" uid="uid://dt0da1fsbcrkd" path="res://assets/nodes/ui/main menu/buttons/quit.tscn" id="4_lwcr4"]
 
-[node name="Test" type="Node2D"]
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_xofh6")
 
-[node name="Button" type="Button" parent="."]
-offset_left = 181.0
-offset_top = 99.0
-offset_right = 546.0
-offset_bottom = 236.0
-script = ExtResource("1_cv5ly")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[node name="Cursor" parent="CanvasLayer" instance=ExtResource("1_ea6rj")]
+
+[node name="Blackout" parent="CanvasLayer" instance=ExtResource("2_1ou3c")]
+visible = false
+
+[node name="Background" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_4tfic")
+
+[node name="Main" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main"]
+layout_mode = 2
+
+[node name="Logo" type="MarginContainer" parent="CanvasLayer/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Logotype" parent="CanvasLayer/Main/VBoxContainer/Logo" instance=ExtResource("1_qiujb")]
+layout_mode = 2
+
+[node name="ButtonsContainer" type="MarginContainer" parent="CanvasLayer/Main/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_constants/margin_bottom = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Main/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CountinueGame" parent="CanvasLayer/Main/VBoxContainer/ButtonsContainer/HBoxContainer" instance=ExtResource("2_d5qf6")]
+layout_mode = 2
+
+[node name="NewGame" parent="CanvasLayer/Main/VBoxContainer/ButtonsContainer/HBoxContainer" instance=ExtResource("3_vkh6h")]
+layout_mode = 2
+
+[node name="QuitGame" parent="CanvasLayer/Main/VBoxContainer/ButtonsContainer/HBoxContainer" instance=ExtResource("4_lwcr4")]
+layout_mode = 2
