@@ -55,15 +55,15 @@ msgstr ""
 
 #: assets/nodes/ui/windows/mail/mail.tscn
 msgid "get_items.mail"
-msgstr ""
+msgstr "Get all items"
 
 #: assets/nodes/ui/windows/pause/options/button_language.tscn
 msgid "change_language.options"
 msgstr "Language: English"
 
 #: assets/nodes/ui/windows/pause/options/button_back.tscn
-msgid "back.options"
-msgstr "Back"
+msgid "save&exit.options"
+msgstr "Save & Back"
 
 #: assets/nodes/ui/windows/pause/options/sections/button_control.tscn
 msgid "control.options"
@@ -75,4 +75,4 @@ msgstr "Graphic"
 
 #: assets/nodes/ui/windows/pause/options/sections/button_sound.tscn
 msgid "sound.options"
-msgstr "Sound"
+msgstr "Sounds"

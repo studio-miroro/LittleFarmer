@@ -27,7 +27,7 @@ msgstr ""
 
 #: assets/nodes/ui/windows/pause/pause.tscn
 msgid "version.game:"
-msgstr "Версия игры: "
+msgstr "Версия:"
 
 #: assets/nodes/ui/windows/pause/pause.tscn
 msgid "countinue.game"
@@ -51,18 +51,18 @@ msgstr "Сохранить и Выйти"
 
 #: assets/nodes/ui/windows/mail/mail.tscn
 msgid "Прикрепленные предметы:"
-msgstr ""
+msgstr "Прикрепленные предметы:"
 
 #: assets/nodes/ui/windows/mail/mail.tscn
 msgid "get_items.mail"
-msgstr ""
+msgstr "Забрать"
 
 #: assets/nodes/ui/windows/pause/options/button_language.tscn
 msgid "change_language.options"
 msgstr "Язык: Русский"
 
 #: assets/nodes/ui/windows/pause/options/button_back.tscn
-msgid "back.options"
+msgid "save&exit.options"
 msgstr "Назад"
 
 #: assets/nodes/ui/windows/pause/options/sections/button_control.tscn
@@ -75,4 +75,4 @@ msgstr "Графика"
 
 #: assets/nodes/ui/windows/pause/options/sections/button_sound.tscn
 msgid "sound.options"
-msgstr "Звук"
+msgstr "Звуки"

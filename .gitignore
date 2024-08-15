@@ -5,10 +5,11 @@ export_presets.cfg
 
 # Imported translations (automatically generated from CSV files)
 *.translation
-*.po
-*.pot
 
 # Mono-specific ignores
 .mono/
 data_*/
 /.vscode
+assets/localizations/main.pot
+assets/localizations/ru.mo
+assets/localizations/en.mo

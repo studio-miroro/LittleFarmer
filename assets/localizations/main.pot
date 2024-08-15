@@ -60,7 +60,7 @@ msgid "change_language.options"
 msgstr ""
 
 #: assets/nodes/ui/windows/pause/options/button_back.tscn
-msgid "back.options"
+msgid "save&exit.options"
 msgstr ""
 
 #: assets/nodes/ui/windows/pause/options/sections/button_control.tscn
