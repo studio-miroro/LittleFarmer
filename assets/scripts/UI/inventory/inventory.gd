@@ -31,7 +31,7 @@ func _ready():
 	check_window()
 	reset_data()
 
-func _process(delta):
+func _process(_delta):
 	if !pause.paused\
 	and !build.menu\
 	and !mailbox.menu:
@@ -54,6 +54,10 @@ func close() -> void:
 	blur.blur(false)
 	anim.play("close")
 	delete_slots()
+
+func load(data:Dictionary) -> void:
+	print(data)
+	#inventory_items[data]
 
 func get_data(index) -> void:
 	if menu:
@@ -128,6 +132,9 @@ func reset_data() -> void:
 	list.visible = false
 	button.visible = false
 
+func get_items() -> Dictionary:
+	return inventory_items
+
 func list_slots(index:int, list:Dictionary):
 	match index:
 		0:
@@ -170,7 +177,7 @@ func list_slots_return():
 
 func add_item(id:int, amount:int) -> void:
 	if inventory_items.has(id):
-		inventory_items[id]["amount"] = inventory_items[id]["amount"] + amount
+		inventory_items[id]["amount"] += amount
 	else:
 		inventory_items[id] = {"amount": amount}
 		
@@ -212,8 +219,8 @@ func get_tip(tip:String) -> String:
 		_:
 			return ""
 
-func check_item_type(type:String) -> void:
-	match type:
+func check_item_type(i_type:String) -> void:
+	match i_type:
 		"Семена":
 			button.visible = true
 		_:

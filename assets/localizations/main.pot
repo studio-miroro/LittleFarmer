@@ -8,6 +8,9 @@
 # res://assets/nodes/ui/windows/pause/options/sections/button_control.tscn
 # res://assets/nodes/ui/windows/pause/options/sections/button_graphic.tscn
 # res://assets/nodes/ui/windows/pause/options/sections/button_sound.tscn
+# res://assets/nodes/ui/main menu/buttons/loadgame.tscn
+# res://assets/nodes/ui/main menu/buttons/newgame.tscn
+# res://assets/nodes/ui/main menu/buttons/quit.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -73,4 +76,16 @@ msgstr ""
 
 #: assets/nodes/ui/windows/pause/options/sections/button_sound.tscn
 msgid "sound.options"
+msgstr ""
+
+#: assets/nodes/ui/main menu/buttons/loadgame.tscn
+msgid "menu.countinue"
+msgstr ""
+
+#: assets/nodes/ui/main menu/buttons/newgame.tscn
+msgid "game.new"
+msgstr ""
+
+#: assets/nodes/ui/main menu/buttons/quit.tscn
+msgid "game.quit"
 msgstr ""

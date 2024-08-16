@@ -173,6 +173,9 @@ func letter_delete_items(parent:GridContainer, node:PackedScene) -> void:
 		parent.remove_child(child)
 		child.queue_free()
 
+func get_letters() -> Dictionary:
+	return letters
+
 func reset_data() -> void:
 	header.text = ""
 	description.text = ""

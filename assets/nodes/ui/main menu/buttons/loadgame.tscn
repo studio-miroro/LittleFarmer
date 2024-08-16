@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://assets/scripts/ui/main menu/buttons/countinue_game.gd" id="1_r0gew"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_g8f1x"]
 
-[node name="CountinueGame" type="Control"]
+[node name="LoadGame" type="Control"]
 custom_minimum_size = Vector2(158, 183)
 layout_mode = 3
 anchors_preset = 15
@@ -57,7 +57,7 @@ vertical_scroll_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "game.countinue"
+text = "menu.countinue"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

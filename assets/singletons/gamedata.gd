@@ -3,8 +3,13 @@ extends Node
 @onready var cycle:Node2D = get_node("/root/World/Cycle")
 @onready var tilemap:TileMap = get_node("/root/World/Tilemap")
 @onready var player:Node2D = get_node("/root/World/Camera")
-@onready var balance:Control = get_node("/root/World/User Interface/Hud/Money")
+
 @onready var language:Control = get_node("/root/World/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
+
+@onready var balance:Control = get_node("/root/World/User Interface/Hud/Main/Indicators/Balance")
+@onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
+@onready var craft:Control = get_node("/root/World/User Interface/Windows/Crafting")
+@onready var mailbox:Control = get_node("/root/World/User Interface/Windows/Mailbox")
 
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
 @onready var grid_collision:Area2D = get_node("/root/World/Buildings/Grid/GridCollision")
@@ -19,6 +24,7 @@ extends Node
 
 var object_created:int
 var path = {
+	game = "user://game.json",
 	farm = "user://farm.json",
 	world = "user://world.json",
 	player = "user://player.json",
@@ -29,14 +35,24 @@ var path = {
 	mailbox = "user://mailbox.json",
 }
 
+func _ready():
+	if GameLoader.mode:
+		gameload()
+		GameLoader.loading(false)
+	else:
+		# StartTutorial()
+		pass
+
 func gamesave() -> void:
-	file_save(path.farm, "Farm")
-	file_save(path.world, "Nature")
-	file_save(path.player, "Player")
-	file_save(path.buildings, "Buildings")
-	file_save(path.vectors, "Vectors")
-	file_save(path.crafting, "Crafting")
-	file_save(path.inventory, "Inventory")
+	file_save(path.game, "settings")
+
+	file_save(path.farm, "farm")
+	file_save(path.world, "nature")
+	file_save(path.player, "player")
+	file_save(path.buildings, "buildings")
+	file_save(path.vectors, "vectors")
+	file_save(path.crafting, "crafting")
+	file_save(path.inventory, "inventory")
 
 func gameload() -> void:
 	remove_all_child(farming)
@@ -62,19 +78,24 @@ func file_load(path_file) -> Dictionary:
 		push_error("file not found: ", path)
 		return {}
 		
-func get_key(path_file, group:String, key:String):
+func get_key(path_file:String, key:String, group:String = ""):
 	var file = file_load(path_file)
-	if file.has(str(group))\
-	and typeof(file[str(group)]) == TYPE_DICTIONARY:
-		var container = file[str(group)]
-		if container.has(str(key)):
-			return container[str(key)]
-		return -1
+	if group != "":
+		if file.has(str(group))\
+		and typeof(file[str(group)]) == TYPE_DICTIONARY:
+			var container = file[str(group)]
+			if container.has(str(key)):
+				return container[str(key)]
+			return {}
+	else:
+		if file.has(str(key)):
+			return file[str(key)]
+		return {}
 
-func create_terrain(index:int, layer:int, path, key:String, terrain_set:int, terrain:int):
+func create_terrain(index:int, layer:int, path_file:String, key:String, terrain_set:int, terrain:int):
 	match index:
 		0:
-			var string_array = get_key(path, "Vectors", key)
+			var string_array = get_key(path_file, key)
 			var vector_array = []
 			for str in string_array:
 				var cleaned_str = str.replace("(", "").replace(")", "")
@@ -83,14 +104,9 @@ func create_terrain(index:int, layer:int, path, key:String, terrain_set:int, ter
 				var y = components[1].to_float()
 				vector_array.append(Vector2(x, y))
 				
-				tilemap.set_cells_terrain_connect(
-					layer,
-					vector_array,
-					terrain_set,
-					terrain
-					)
+				tilemap.set_cells_terrain_connect(layer, vector_array, terrain_set, terrain)
 		1:
-			var string_array = get_key(path, "Vectors", key)
+			var string_array = get_key(path_file, key)
 			var vector_array = []
 			for str in string_array:
 				var cleaned_str = str.replace("(", "").replace(")", "")
@@ -100,14 +116,9 @@ func create_terrain(index:int, layer:int, path, key:String, terrain_set:int, ter
 				vector_array.append(Vector2(x, y))
 			
 			for vector in vector_array:
-					tilemap.set_cell(
-						layer,
-						vector,
-						0,
-						Vector2i(0,3)
-					)
+					tilemap.set_cell(layer, vector, 0, Vector2i(0,3))
 		2: 
-			var string_array = get_key(path, "Vectors", key)
+			var string_array = get_key(path_file, key)
 			var vector_array = []
 			for str in string_array:
 				var cleaned_str = str.replace("(", "").replace(")", "")
@@ -119,51 +130,58 @@ func create_terrain(index:int, layer:int, path, key:String, terrain_set:int, ter
 			for vector in vector_array:
 				return vector_array
 
-func get_content(content:String):
+func get_content(content:String) -> Dictionary:
 	match content:
-		
-		"Game": 
+
+		"settings": 
 			return {
-				"Version": 12,
-				"Language": language.next_language,
+				"version": ProjectSettings.get_setting("application/config/version"),
+				"language": language.next_lang,
 			}
-		"Player":
+
+		"player":
 			return {
-				"Player": {
-					"X": round(player.position.x),
-					"Y": round(player.position.y),
-					#"Balance": balance.money,
+				"balance": balance.money,
+			}
+			
+		"nature":
+			return {
+				"time": {
+					"year": cycle.year,
+					"month": cycle.month,
+					"week": cycle.week,
+					"day": cycle.day,
+					"hour": cycle.hour,
+					"minute": cycle.minute,
+					"cycle": cycle.get_time()
 				}
 			}
 			
-		"Nature":
+		"vectors":
 			return {
-				"Time": {
-					"Year": cycle.year,
-					"Month": cycle.month,
-					"Week": cycle.week,
-					"Day": cycle.day,
-					"Hour": cycle.hour,
-					"Minute": cycle.minute,
-					"Cycle": cycle.get_time()
-				}
+				"road": grid_collision.get_used_cells(grid_collision.ground_layer),
+				"farmlands": grid_collision.get_used_cells(grid_collision.farming_layer),
+				"waterings": grid_collision.get_used_cells(grid_collision.watering_layer),	
+				"plants": get_position_children(farming),
 			}
 			
-		"Vectors":
-			return {
-				"Vectors": {
-					"Road": grid_collision.get_used_cells(grid_collision.ground_layer),
-					"Farmlands": grid_collision.get_used_cells(grid_collision.farming_layer),
-					"Waterings": grid_collision.get_used_cells(grid_collision.watering_layer),	
-					"Plants": get_position_children(farming),
-				}
-			}
-			
-		"Farm":
+		"farm":
 			return get_children_data(farming)
 			
-		"Building":
+		"building":
 			return buildings.get_buildings()
+
+		"inventory":
+			return inventory.get_items()
+
+		"craft":
+			return craft.get_blueprints()
+
+		"mailbox":
+			return mailbox.get_letters()
+
+		_:
+			return {}
 
 func get_position_children(parent:Node2D) -> Array:
 	var children = parent.get_children()
@@ -212,11 +230,11 @@ func get_children_data(parent: Node) -> Dictionary:
 	return data_dict
 
 func plant_load():
-	create_terrain(0, grid_collision.ground_layer, path.vectors, "Road", grid_collision.ground_terrain_set, grid_collision.ground_terrain)
-	create_terrain(0, grid_collision.farming_layer, path.vectors, "Farmlands", grid_collision.farming_terrain_set, grid_collision.farming_terrain)
-	create_terrain(0, grid_collision.watering_layer, path.vectors, "Waterings", grid_collision.watering_terrain_set, grid_collision.watering_terrain)
-	create_terrain(1, grid_collision.seeds_layer, path.vectors, "Plants", 0, 0)
-	create_nodes(farming, plant, create_terrain(2, grid_collision.seeds_layer, path.vectors, "Plants", -1, -1))
+	create_terrain(0, grid_collision.ground_layer, path.vectors, "road", grid_collision.ground_terrain_set, grid_collision.ground_terrain)
+	create_terrain(0, grid_collision.farming_layer, path.vectors, "farmlands", grid_collision.farming_terrain_set, grid_collision.farming_terrain)
+	create_terrain(0, grid_collision.watering_layer, path.vectors, "waterings", grid_collision.watering_terrain_set, grid_collision.watering_terrain)
+	create_terrain(1, grid_collision.seeds_layer, path.vectors, "plants", 0, 0)
+	create_nodes(farming, plant, create_terrain(2, grid_collision.seeds_layer, path.vectors, "plants", -1, -1))
 
 func farm_load(object:Node2D, object_name:String, position):
 	var plant_id = get_key(path.plants, object_name, "plantID")
@@ -241,35 +259,52 @@ func farm_load(object:Node2D, object_name:String, position):
 func terrains_remove() -> void:
 	if grid_collision.get_used_cells(grid_collision.ground_layer) != []:
 		tilemap.set_cells_terrain_connect(
-		grid_collision.ground_layer,
-		grid_collision.get_used_cells(grid_collision.ground_layer),
-		grid_collision.ground_terrain_set,
-		-1)
+			grid_collision.ground_layer,
+			grid_collision.get_used_cells(grid_collision.ground_layer),
+			grid_collision.ground_terrain_set,
+			-1
+		)
 		
 	if grid_collision.get_used_cells(grid_collision.farming_layer) != []:
 		tilemap.set_cells_terrain_connect(
-		grid_collision.farming_layer,
-		grid_collision.get_used_cells(grid_collision.farming_layer),
-		grid_collision.farming_terrain_set,
-		-1)
+			grid_collision.farming_layer,
+			grid_collision.get_used_cells(grid_collision.farming_layer),
+			grid_collision.farming_terrain_set,
+			-1
+		)
 		
 	if grid_collision.get_used_cells(grid_collision.watering_layer) != []:
 		tilemap.set_cells_terrain_connect(
-		grid_collision.watering_layer,
-		grid_collision.get_used_cells(grid_collision.watering_layer),
-		grid_collision.watering_terrain_set,
-		-1)
+			grid_collision.watering_layer,
+			grid_collision.get_used_cells(grid_collision.watering_layer),
+			grid_collision.watering_terrain_set,
+			-1
+		)
 
 func time_load() -> void:
-	cycle.year = get_key(path.world, "Time", "Year")
-	cycle.month = get_key(path.world, "Time", "Month")
-	cycle.week = get_key(path.world, "Time", "Week")
-	cycle.day = get_key(path.world, "Time", "Day")
-	cycle.hour = get_key(path.world, "Time", "Hour")
-	cycle.minute = get_key(path.world, "Time", "Minute")
-	cycle.timeload(get_key(path.world, "Time", "Cycle"))
+	cycle.year = get_key(path.world, "year", "time")
+	cycle.month = get_key(path.world, "month", "time")
+	cycle.week = get_key(path.world, "week", "time")
+	cycle.day = get_key(path.world, "day", "time")
+	cycle.hour = get_key(path.world, "hour", "time")
+	cycle.minute = get_key(path.world, "minute", "time")
+	cycle.timeload(get_key(path.world, "cycle", "time"))
 
 func player_load() -> void:
-	player.position.x = get_key(path.player, "Player", "X")
-	player.position.y = get_key(path.player, "Player", "Y")
-	balance.money = get_key(path.player, "Player", "Balance")
+	balance_load()
+	inventory_load()
+	craft_load()
+	mailbox_load()
+
+func balance_load() -> void:
+	balance.money = get_key(path.player, "balance")
+	balance.balance_update()
+
+func inventory_load() -> void:
+	inventory.load(get_key(path.inventory, "inventory"))
+
+func craft_load() -> void:
+	pass
+
+func mailbox_load() -> void:
+	pass

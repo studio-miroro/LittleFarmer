@@ -44,8 +44,8 @@ func set_data(index,_amount) -> void:
 	else:
 		push_error("Invalid index: " + str(index))
 
-func test(id) -> bool:
-	if item.content.has(id):
+func test(index:int) -> bool:
+	if item.content.has(index):
 		return true
 	return false
 

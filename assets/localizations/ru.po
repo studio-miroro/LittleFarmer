@@ -8,6 +8,9 @@
 # res://assets/nodes/ui/windows/pause/options/sections/button_control.tscn
 # res://assets/nodes/ui/windows/pause/options/sections/button_graphic.tscn
 # res://assets/nodes/ui/windows/pause/options/sections/button_sound.tscn
+# res://assets/nodes/ui/main menu/buttons/countinuegame.tscn
+# res://assets/nodes/ui/main menu/buttons/newgame.tscn
+# res://assets/nodes/ui/main menu/buttons/quit.tscn
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -27,7 +30,7 @@ msgstr ""
 
 #: assets/nodes/ui/windows/pause/pause.tscn
 msgid "version.game:"
-msgstr "Версия:"
+msgstr "Версия: "
 
 #: assets/nodes/ui/windows/pause/pause.tscn
 msgid "countinue.game"
@@ -39,11 +42,11 @@ msgstr "Настройки"
 
 #: assets/nodes/ui/windows/pause/pause.tscn
 msgid "save.load"
-msgstr ""
+msgstr "Сохранить игру"
 
 #: assets/nodes/ui/windows/pause/pause.tscn
 msgid "load.game"
-msgstr ""
+msgstr "Загрузить игру"
 
 #: assets/nodes/ui/windows/pause/pause.tscn
 msgid "exit.game"
@@ -55,7 +58,7 @@ msgstr "Прикрепленные предметы:"
 
 #: assets/nodes/ui/windows/mail/mail.tscn
 msgid "get_items.mail"
-msgstr "Забрать"
+msgstr "Забрать предметы"
 
 #: assets/nodes/ui/windows/pause/options/button_language.tscn
 msgid "change_language.options"
@@ -75,4 +78,16 @@ msgstr "Графика"
 
 #: assets/nodes/ui/windows/pause/options/sections/button_sound.tscn
 msgid "sound.options"
-msgstr "Звуки"
+msgstr "Звук"
+
+#: assets/nodes/ui/main menu/buttons/countinuegame.tscn
+msgid "game.countinue"
+msgstr "Продолжить игру"
+
+#: assets/nodes/ui/main menu/buttons/newgame.tscn
+msgid "game.new"
+msgstr "Новая игра"
+
+#: assets/nodes/ui/main menu/buttons/quit.tscn
+msgid "game.quit"
+msgstr "Выйти из игры"

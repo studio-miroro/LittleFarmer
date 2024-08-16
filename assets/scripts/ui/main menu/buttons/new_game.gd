@@ -9,4 +9,5 @@ extends Control
 func _on_button_pressed():
 	blackout.blackout(true, 4)
 	await get_tree().create_timer(1.25).timeout
+	GameLoader.loading(false)
 	get_tree().change_scene_to_file(path)

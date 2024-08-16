@@ -1,14 +1,14 @@
+Label
+HBoxContainer
 CanvasLayer
 CanvasGroup
 ColorRect
 Node
 MarginContainer
-HBoxContainer
 VBoxContainer
 Button
 Control
 Node2D
 ScrollContainer
 TextureRect
-Label
 Panel

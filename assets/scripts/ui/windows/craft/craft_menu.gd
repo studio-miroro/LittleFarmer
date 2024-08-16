@@ -163,6 +163,9 @@ func check_items(key) -> Variant:
 		return 0
 	return null
 
+func get_blueprints() -> Array:
+	return access
+
 func reset_data() -> void:
 	caption.text = ""
 	description.text = ""

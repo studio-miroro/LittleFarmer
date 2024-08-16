@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bq4qdj61kxktg" path="res://assets/nodes/ui/main menu/logotype.tscn" id="1_qiujb"]
 [ext_resource type="Script" path="res://assets/scripts/ui/main menu/menu.gd" id="1_xofh6"]
 [ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="2_1ou3c"]
-[ext_resource type="PackedScene" uid="uid://balcl5dqa5cvp" path="res://assets/nodes/ui/main menu/buttons/countinuegame.tscn" id="2_d5qf6"]
+[ext_resource type="PackedScene" uid="uid://balcl5dqa5cvp" path="res://assets/nodes/ui/main menu/buttons/loadgame.tscn" id="2_d5qf6"]
 [ext_resource type="PackedScene" uid="uid://bo0md5dxqtqql" path="res://assets/nodes/ui/main menu/buttons/newgame.tscn" id="3_vkh6h"]
 [ext_resource type="Script" path="res://assets/scripts/ui/main menu/background.gd" id="4_4tfic"]
 [ext_resource type="PackedScene" uid="uid://dt0da1fsbcrkd" path="res://assets/nodes/ui/main menu/buttons/quit.tscn" id="4_lwcr4"]
@@ -62,7 +62,7 @@ theme_override_constants/margin_bottom = 25
 layout_mode = 2
 alignment = 1
 
-[node name="CountinueGame" parent="CanvasLayer/Main/VBoxContainer/ButtonsContainer/HBoxContainer" instance=ExtResource("2_d5qf6")]
+[node name="LoadGame" parent="CanvasLayer/Main/VBoxContainer/ButtonsContainer/HBoxContainer" instance=ExtResource("2_d5qf6")]
 layout_mode = 2
 
 [node name="NewGame" parent="CanvasLayer/Main/VBoxContainer/ButtonsContainer/HBoxContainer" instance=ExtResource("3_vkh6h")]
