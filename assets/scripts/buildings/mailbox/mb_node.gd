@@ -32,6 +32,9 @@ func _input(event):
 	and mailMenu:
 		mailbox.open()
 
+func load() -> void:
+	pass
+
 func change_sprite(type:bool) -> void:
 	if type:
 		var distance = round(global_position.distance_to(player.global_position))

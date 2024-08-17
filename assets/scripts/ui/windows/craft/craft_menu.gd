@@ -25,7 +25,7 @@ func _ready():
 	check_window()
 	reset_data()
 
-func _process(delta):
+func _process(_delta):
 	if !pause.paused\
 	and !inventory.menu:
 		if Input.is_action_just_pressed("pause") and menu:
@@ -78,12 +78,12 @@ func delete_all_blueprints(parent) -> void:
 		parent.remove_child(child)
 		child.queue_free()
 
-func get_data(index:int):
-	if store.content.has(index):
-		self.index = index
-		if store.content[index].has("caption"):
-			if typeof(store.content[index]["caption"]) == TYPE_STRING and caption.text is String:
-				caption.text = str(store.content[index]["caption"])
+func get_data(id:int):
+	if store.content.has(id):
+		self.id = id
+		if store.content[id].has("caption"):
+			if typeof(store.content[id]["caption"]) == TYPE_STRING and caption.text is String:
+				caption.text = str(store.content[id]["caption"])
 			else:
 				caption.text = "Untitled blueprint"
 				push_error("The 'caption' key has a non-string type. Variant.type: " + str(typeof(store.content[index]["caption"])))
@@ -91,9 +91,9 @@ func get_data(index:int):
 			push_error("The object does not have the 'caption' key.")
 			description.visible = false
 			
-		if store.content[index].has("description"):
-			if typeof(store.content[index]["description"]) == TYPE_STRING and description.text is String:
-				description.text = store.content[index]["description"] + "\n"
+		if store.content[id].has("description"):
+			if typeof(store.content[id]["description"]) == TYPE_STRING and description.text is String:
+				description.text = store.content[id]["description"] + "\n"
 				description.visible = true
 			else:
 				push_error("The 'description' key has a non-string type. Variant.type: " + str(typeof(store.content[index]["description"])))
@@ -102,29 +102,29 @@ func get_data(index:int):
 			push_error("The object does not have the 'description' key.")
 			description.visible = false
 		
-		if store.content[index].has("resource"):
+		if store.content[id].has("resource"):
 			resources.visible = true
 			resources.text = "Необходимые ресурсы:"
 			
-			if store.content[index].get("resource") != {}:
-				for i in store.content[index]["resource"]:
-					check_material(index, i)
+			if store.content[id].get("resource") != {}:
+				for i in store.content[id]["resource"]:
+					check_material(id, i)
 			else:
 				push_warning("The drawing does not have the necessary resources for construction.")
 				resources.visible = false
 		else:
-			push_error("The array of 'resources' does not exist in index: " + str(index))
+			push_error("The array of 'resources' does not exist in index: " + str(id))
 			resources.visible = false
 		
-		if store.content[index].has("time"):
-			if typeof(store.content[index]["time"]) == TYPE_INT and description.text is String:
-				if store.content[index]["time"] > 0:
-					timeCreate.text = "Время создания: " + str(store.content[index]["time"]) + " сек."
+		if store.content[id].has("time"):
+			if typeof(store.content[id]["time"]) == TYPE_INT and description.text is String:
+				if store.content[id]["time"] > 0:
+					timeCreate.text = "Время создания: " + str(store.content[id]["time"]) + " сек."
 					timeCreate.visible = true
 				else:
 					timeCreate.visible = false
 			else:
-				push_error("The 'time' key has a non-integer type. Variant.type: " + str(typeof(store.content[index]["time"])))
+				push_error("The 'time' key has a non-integer type. Variant.type: " + str(typeof(store.content[id]["time"])))
 				timeCreate.visible = false
 		else:
 			push_error("The object does not have the 'time' key.")
@@ -134,18 +134,21 @@ func get_data(index:int):
 	else:
 		button.visible = false
 
-func check_material(index, key) -> void:
+func load(data:Dictionary) -> void:
+	print(data)
+
+func check_material(id, key) -> void:
 	if (resource(key) && check_items(key)) != null:
-			if typeof(store.content[index]["resource"][key]) != TYPE_STRING:
+			if typeof(store.content[id]["resource"][key]) != TYPE_STRING:
 				resources.text = resources.text + "\n• " + str(resource(key)) + " (" + str(check_items(key)) + "/" + str(round(store.content[index]["resource"][key])) + ")"
-				check_button(index, key)
+				check_button(id, key)
 			else:
 				push_error("The key '" + str(key) + "' does not store an integer or float: " + str(typeof(store.content[index]["resource"][key])))
 	else:
 		push_warning("The '" + str(key)+ "' material cannot be returned as a string. This material will not be taken into account.")
 
-func check_button(index, key):
-	if check_items(key) >= store.content[index]["resource"][key]:
+func check_button(id, key) -> void:
+	if check_items(key) >= store.content[id]["resource"][key]:
 		button.disabled = false
 	else:
 		button.disabled = true

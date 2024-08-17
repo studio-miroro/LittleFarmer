@@ -15,7 +15,7 @@ var __amount:int
 func _ready():
 	amount.visible = false
 
-func set_data(index,_amount) -> void:
+func set_data(index, _amount) -> void:
 	if item.content.has(index):
 		self.id = index
 		self.__amount = _amount

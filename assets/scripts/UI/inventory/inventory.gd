@@ -56,8 +56,7 @@ func close() -> void:
 	delete_slots()
 
 func load(data:Dictionary) -> void:
-	print(data)
-	#inventory_items[data]
+	inventory_items[data] = data
 
 func get_data(index) -> void:
 	if menu:
@@ -135,10 +134,10 @@ func reset_data() -> void:
 func get_items() -> Dictionary:
 	return inventory_items
 
-func list_slots(index:int, list:Dictionary):
-	match index:
+func list_slots(id:int, dictionary:Dictionary):
+	match id:
 		0:
-			for i in list:
+			for i in dictionary:
 				item_create(i)
 		_: pass
 

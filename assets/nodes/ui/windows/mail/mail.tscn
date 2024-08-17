@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cwtsqme5qki8s"]
 
-[ext_resource type="Script" path="res://assets/scripts/buildings/mailbox/system.gd" id="1_u66ny"]
+[ext_resource type="Script" path="res://assets/scripts/buildings/mailbox/mb_system.gd" id="1_nrqxv"]
 [ext_resource type="PackedScene" uid="uid://do4e681e4p00n" path="res://assets/nodes/ui/inventory/slot.tscn" id="3_qvooa"]
 
 [sub_resource type="Animation" id="Animation_c0gri"]
@@ -107,7 +107,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_u66ny")
+script = ExtResource("1_nrqxv")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1

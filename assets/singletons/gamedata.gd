@@ -304,7 +304,7 @@ func inventory_load() -> void:
 	inventory.load(get_key(path.inventory, "inventory"))
 
 func craft_load() -> void:
-	pass
+	craft.load(get_key(path.crafting, "craft"))
 
 func mailbox_load() -> void:
-	pass
+	mailbox.load(get_key(path.mailbox, "mailbox"))

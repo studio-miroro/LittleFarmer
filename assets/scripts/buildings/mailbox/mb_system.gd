@@ -34,19 +34,34 @@ func _ready():
 	check_window()
 	reset_data()
 	delete_letters(letters, letter_node, letters_container)
+	letter(
+		"Test Letter",
+		"Short description",
+		"Lev Alyukov",
+		100000,
+		{
+			1:{"amount":100},
+			2:{"amount":100},
+			3:{"amount":10},
+			4:{"amount":10},
+			5:{"amount":10},
+			6:{"amount":10},
+		}
+	)
 
 func letter(_header:String, _description:String, _author:String, _money:int, _items:Dictionary) -> void:
+	var key = letters.size() + 1
 	if _header != ""\
 	or _description != ""\
 	or _author != "": 
-		letters[letters.size() + 1] = {}
-		letters[letters.size() + 1]["header"] = _header
-		letters[letters.size() + 1]["description"] = _description
-		letters[letters.size() + 1]["author"] = _author
-		letters[letters.size() + 1]["money"] = _money
-		letters[letters.size() + 1]["items"] = {}
+		letters[key] = {}
+		letters[key]["header"] = _header
+		letters[key]["description"] = _description
+		letters[key]["author"] = _author
+		letters[key]["money"] = _money
+		letters[key]["items"] = {}
 		if _items != {}:
-			check_all_keys(index, _items)
+			check_all_keys(key, _items)
 
 func check_all_keys(id:int, dictionary:Dictionary) -> void:
 	for key in dictionary.keys():
@@ -108,14 +123,14 @@ func get_data(_index:int) -> void:
 					fixedItems.text = "Прикрепленные предметы:"
 					
 				for i in letters[_index]["items"]:
-					if typeof(item) == TYPE_DICTIONARY and letters[_index]["items"][i].has("amount"):
-						if typeof(item["amount"]) == TYPE_INT:
-							if item["amount"] > 0:
-								letter_create_items(i, item["amount"], items_container, item_node)
+					if typeof(letters[_index]["items"][i]) == TYPE_DICTIONARY and letters[_index]["items"][i].has("amount"):
+						if typeof(letters[_index]["items"][i]["amount"]) == TYPE_INT:
+							if letters[_index]["items"][i]["amount"] > 0:
+								letter_create_items(i, letters[_index]["items"][i]["amount"], items_container, item_node)
 							else:
-								item.erase(_index)
+								letters[_index]["items"][i].erase(_index)
 						else:
-							item.erase(_index)
+							letters[_index]["items"][i].erase(_index)
 			else:
 				items.visible = false
 				
@@ -151,9 +166,9 @@ func letter_items_check(check:int, _index:int, dictionary:Dictionary):
 
 func create_letters(dictionary:Dictionary, node:PackedScene, parent:VBoxContainer) -> void:
 	for i in dictionary:
-		var letter = node.instantiate()
-		parent.add_child(letter)
-		letter.set_data(i, dictionary[i]["header"])
+		var object = node.instantiate()
+		parent.add_child(object)
+		object.set_data(i, dictionary[i]["header"])
 		
 func delete_letters(dictionary:Dictionary, node:PackedScene, parent:VBoxContainer) -> void:
 	for child in parent.get_children():
@@ -162,9 +177,9 @@ func delete_letters(dictionary:Dictionary, node:PackedScene, parent:VBoxContaine
 			
 func letter_create_items(id:int, amount:int, parent:GridContainer, node:PackedScene) -> void:
 	if item.content.has(id):
-		var letter = node.instantiate()
-		parent.add_child(letter)
-		letter.set_data(id, amount)
+		var object = node.instantiate()
+		parent.add_child(object)
+		object.set_data(id, amount)
 	else:
 		push_error("Invalid item ID: " + str(id))
 		
