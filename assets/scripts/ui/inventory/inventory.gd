@@ -33,8 +33,6 @@ func _ready():
 	
 
 func _process(_delta):
-	if Input.is_action_just_pressed("pause"):
-		print(inventory_items)		
 	if !blur.state:
 		if Input.is_action_just_pressed("inventory"):
 			window()

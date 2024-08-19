@@ -19,7 +19,7 @@ var materials:Object = BuildingMaterials.new()
 
 var index:int
 var menu:bool = false
-var access:Array = [1,2,3,4,5,6,7,8,9,10]
+var access:Array[int]
 
 func _ready():
 	check_window()
@@ -43,6 +43,7 @@ func open() -> void:
 	blur.blur(true)
 	anim.play("open")
 	start_info()
+	delete_all_blueprints(container)
 	check_blueprints(access)
 	
 func close() -> void:
@@ -78,12 +79,12 @@ func delete_all_blueprints(parent) -> void:
 		parent.remove_child(child)
 		child.queue_free()
 
-func get_data(id:int):
-	if store.content.has(id):
-		self.id = id
-		if store.content[id].has("caption"):
-			if typeof(store.content[id]["caption"]) == TYPE_STRING and caption.text is String:
-				caption.text = str(store.content[id]["caption"])
+func get_data(id):
+	self.index = id
+	if store.content.has(int(index)):
+		if store.content[int(index)].has("caption"):
+			if typeof(store.content[int(index)]["caption"]) == TYPE_STRING and caption.text is String:
+				caption.text = str(store.content[int(index)]["caption"])
 			else:
 				caption.text = "Untitled blueprint"
 				push_error("The 'caption' key has a non-string type. Variant.type: " + str(typeof(store.content[index]["caption"])))
@@ -134,8 +135,8 @@ func get_data(id:int):
 	else:
 		button.visible = false
 
-func blueprints_load(data:Dictionary) -> void:
-	print(data)
+func blueprints_load(data:int) -> void:
+	access.append(data)
 
 func check_material(id, key) -> void:
 	if (resource(key) && check_items(key)) != null:

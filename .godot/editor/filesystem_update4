@@ -4,3 +4,9 @@ res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
 res://levels/farm.tscn
 res://assets/scripts/ui/inventory/inventory.gd
+res://assets/singletons/gamedata.gd
+res://assets/scripts/UI/inventory/inventory.gd
+res://assets/scripts/buildings/mailbox/mail.gd
+res://assets/scripts/ui/windows/craft/craft_menu.gd
+res://assets/scripts/ui/inventory/slot.gd
+res://assets/scripts/ui/hud/hud.gd

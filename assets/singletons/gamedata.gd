@@ -4,8 +4,6 @@ extends Node
 @onready var tilemap:TileMap = get_node("/root/World/Tilemap")
 @onready var player:Node2D = get_node("/root/World/Camera")
 
-@onready var language:Control = get_node("/root/World/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
-
 @onready var balance:Control = get_node("/root/World/User Interface/Hud/Main/Indicators/Balance")
 @onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
 @onready var craft:Control = get_node("/root/World/User Interface/Windows/Crafting")
@@ -22,6 +20,8 @@ extends Node
 @onready var animaltall:Node2D = get_node("/root/World/Buildings/Animal Stall")
 @onready var silo:Node2D = get_node("/root/World/Buildings/Silo")
 
+@onready var language:Control = get_node("/root/World/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
+
 var object_created:int
 var path = {
 	game = "user://game.json",
@@ -36,7 +36,7 @@ var path = {
 }
 
 func _ready():
-	gameload() # delete
+	gameload() # for testing
 	if GameLoader.mode:
 		gameload()
 		GameLoader.loading(false)
@@ -52,7 +52,7 @@ func gamesave() -> void:
 	file_save(path.player, "player")
 	file_save(path.buildings, "buildings")
 	file_save(path.vectors, "vectors")
-	file_save(path.crafting, "crafting")
+	file_save(path.crafting, "craft")
 	file_save(path.inventory, "inventory")
 	file_save(path.mailbox, "mailbox")
 
@@ -253,7 +253,8 @@ func inventory_load() -> void:
 	inventory.items_load(file_load(path.inventory))
 
 func craft_load() -> void:
-	craft.blueprints_load(file_load(path.crafting))
+	for i in get_key(path.crafting, "blueprints"):
+		craft.blueprints_load(int(i))
 
 func mailbox_load() -> void:
 	mailbox.letters_load(file_load(path.mailbox))
@@ -303,8 +304,9 @@ func get_content(content:String) -> Dictionary:
 			return inventory.get_items()
 
 		"craft":
-			return craft.get_blueprints()
-
+			return {
+				"blueprints": craft.get_blueprints()
+			}
 		"mailbox":
 			return mailbox.get_letters()
 
