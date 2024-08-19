@@ -34,6 +34,20 @@ func _ready():
 	check_window()
 	reset_data()
 	delete_letters(letters_container)
+	letter(
+		"Добро пожаловать!",
+		"Дарим Вам небольшой стартовый набор для лёгкого развития. \n Желаем удачи!",
+		"Разработчик",
+		100000,
+		{
+			1:{"amount": 100},
+			2:{"amount": 100},
+			3:{"amount": 100},
+			4:{"amount": 100},
+			5:{"amount": 100},
+			6:{"amount": 100},
+		}
+	)
 
 func letter(header:String = "", description:String = "", author:String = "", money:int = 0, items:Dictionary = {}) -> void:
 	var key = letters.size() + 1
@@ -71,12 +85,12 @@ func get_data(letterID:int) -> void:
 		else:
 			header_label.visible = false
 
-		if letters[index].has("description_label"):
-			if typeof(letters[index]["description_label"]) == TYPE_STRING:
-				description_label.text = letters[index]["description_label"]
+		if letters[index].has("description"):
+			if typeof(letters[index]["description"]) == TYPE_STRING:
+				description_label.text = letters[index]["description"]
 				description_label.visible = true
 			else:
-				push_error("The 'description_label' is not a string. Variant.type: " + str(typeof(letters[index]["description_label"])))
+				push_error("The 'description_label' is not a string. Variant.type: " + str(typeof(letters[index]["description"])))
 		else:
 			description_label.visible = false
 

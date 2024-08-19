@@ -5,56 +5,51 @@ extends Control
 @onready var mailbox:Control = get_node("/root/World/User Interface/Windows/Mailbox")
 
 @onready var icon:TextureRect = $Button/Icon
-@onready var amount:Label = $Button/Amount
+@onready var amount_label:Label = $Button/Amount
 
 var item:Object = Items.new()
 
 var id:int
-var __amount:int
+var amount:int
 
 func _ready():
-	amount.visible = false
+	amount_label.visible = false
 
-func set_data(index, _amount) -> void:
-	if item.content.has(index):
-		self.id = index
-		self.__amount = _amount
-		if item.content[index].has("icon"):
-			if typeof(item.content[index]["icon"]) == TYPE_OBJECT:
-				icon.texture = item.content[index]["icon"]
+func set_data(index, item_amount) -> void:
+	self.id = index
+	if item.content.has(id):
+		self.amount = item_amount
+		if item.content[int(id)].has("icon"):
+			if typeof(item.content[int(id)]["icon"]) == TYPE_OBJECT:
+				icon.texture = item.content[int(id)]["icon"]
 				icon.visible = true
 			else:
 				icon.visible = false
-				push_error("[ID: "+str(index)+"] The key stores a non-Compressed 2D Texture. Variant.type: " + str(typeof(item.content[index]["icon"])))
+				push_error("[ID: "+str(index)+"] The key stores a non-Compressed 2D Texture. Variant.type: " + str(typeof(item.content[id]["icon"])))
 		else:
 			icon.visible = false
 			push_error("[ID: "+str(index)+"] The object does not have the 'icon' key.")
 		
-		if typeof(_amount) == TYPE_INT and _amount > 0:
-			if _amount > 1:
-				amount.visible = true
-				if _amount > item.content["max"]:
-					_amount = item.content["max"]
-				amount.text = str(_amount)
+		if typeof(amount) == TYPE_INT and amount > 0:
+			if amount > 1:
+				amount_label.visible = true
+				if amount > item.content["max"]:
+					amount = item.content["max"]
+				amount_label.text = str(amount)
 			else:
-				amount.visible = false
+				amount_label.visible = false
 		else:
 			push_error("[ID: "+str(index)+"] The object does not have the 'icon' key.")
-			amount.visible = false
+			amount_label.visible = false
 	else:
 		push_error("Invalid index: " + str(index))
-
-func test(index:int) -> bool:
-	if item.content.has(index):
-		return true
-	return false
 
 func _on_button_mouse_entered():
 	if mailbox.menu:
 		if item.content.has(id):
 			if item.content[id].has("caption"):
 				tip.tooltip(
-					item.content[id]["caption"] + " [" + str(__amount) + "шт]"
+					item.content[id]["caption"] + " [" + str(amount) + "шт]"
 					)
 			else:
 				push_error("The 'caption' key is missing.")

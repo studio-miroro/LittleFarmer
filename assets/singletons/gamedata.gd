@@ -36,6 +36,7 @@ var path = {
 }
 
 func _ready():
+	gameload() # delete
 	if GameLoader.mode:
 		gameload()
 		GameLoader.loading(false)
@@ -130,59 +131,6 @@ func create_terrain(index:int, layer:int, path_file:String, key:String, terrain_
 				
 			for vector in vector_array:
 				return vector_array
-
-func get_content(content:String) -> Dictionary:
-	match content:
-
-		"settings": 
-			return {
-				"version": ProjectSettings.get_setting("application/config/version"),
-				"language": language.next_lang,
-			}
-
-		"player":
-			return {
-				"balance": balance.money,
-			}
-			
-		"nature":
-			return {
-				"time": {
-					"year": cycle.year,
-					"month": cycle.month,
-					"week": cycle.week,
-					"day": cycle.day,
-					"hour": cycle.hour,
-					"minute": cycle.minute,
-					"cycle": cycle.get_time()
-				}
-			}
-			
-		"vectors":
-			return {
-				"road": grid_collision.get_used_cells(grid_collision.ground_layer),
-				"farmlands": grid_collision.get_used_cells(grid_collision.farming_layer),
-				"waterings": grid_collision.get_used_cells(grid_collision.watering_layer),	
-				"plants": get_position_children(farming),
-			}
-			
-		"farm":
-			return get_children_data(farming)
-			
-		"building":
-			return buildings.get_buildings()
-
-		"inventory":
-			return inventory.get_items()
-
-		"craft":
-			return craft.get_blueprints()
-
-		"mailbox":
-			return mailbox.get_letters()
-
-		_:
-			return {}
 
 func get_position_children(parent:Node2D) -> Array:
 	var children = parent.get_children()
@@ -302,10 +250,63 @@ func balance_load() -> void:
 	balance.balance_update()
 
 func inventory_load() -> void:
-	inventory.items_load(get_key(path.inventory, "inventory"))
+	inventory.items_load(file_load(path.inventory))
 
 func craft_load() -> void:
-	craft.blueprints_load(get_key(path.crafting, "craft"))
+	craft.blueprints_load(file_load(path.crafting))
 
 func mailbox_load() -> void:
 	mailbox.letters_load(file_load(path.mailbox))
+
+func get_content(content:String) -> Dictionary:
+	match content:
+
+		"settings": 
+			return {
+				"version": ProjectSettings.get_setting("application/config/version"),
+				"language": language.next_lang,
+			}
+
+		"player":
+			return {
+				"balance": balance.money,
+			}
+			
+		"nature":
+			return {
+				"time": {
+					"year": cycle.year,
+					"month": cycle.month,
+					"week": cycle.week,
+					"day": cycle.day,
+					"hour": cycle.hour,
+					"minute": cycle.minute,
+					"cycle": cycle.get_time()
+				}
+			}
+			
+		"vectors":
+			return {
+				"road": grid_collision.get_used_cells(grid_collision.ground_layer),
+				"farmlands": grid_collision.get_used_cells(grid_collision.farming_layer),
+				"waterings": grid_collision.get_used_cells(grid_collision.watering_layer),	
+				"plants": get_position_children(farming),
+			}
+			
+		"farm":
+			return get_children_data(farming)
+			
+		"building":
+			return buildings.get_buildings()
+
+		"inventory":
+			return inventory.get_items()
+
+		"craft":
+			return craft.get_blueprints()
+
+		"mailbox":
+			return mailbox.get_letters()
+
+		_:
+			return {}

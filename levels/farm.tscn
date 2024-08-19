@@ -1692,7 +1692,6 @@ size_flags_vertical = 4
 [node name="Options" parent="User Interface/Windows" instance=ExtResource("8_rn4ps")]
 
 [node name="Inventory" parent="User Interface/Windows" instance=ExtResource("7_8hp1e")]
-visible = true
 
 [node name="Crafting" parent="User Interface/Windows" instance=ExtResource("5_v6eft")]
 

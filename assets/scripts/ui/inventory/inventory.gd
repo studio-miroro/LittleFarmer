@@ -30,15 +30,17 @@ enum item_type {
 func _ready():
 	check_window()
 	reset_data()
+	
 
 func _process(_delta):
-	if !pause.paused\
-	and !build.menu\
-	and !mailbox.menu:
+	if Input.is_action_just_pressed("pause"):
+		print(inventory_items)		
+	if !blur.state:
 		if Input.is_action_just_pressed("inventory"):
 			window()
 
-		if Input.is_action_just_pressed("pause") and menu:
+	else:
+		if (Input.is_action_just_pressed("pause") && menu) or Input.is_action_just_pressed("inventory"):
 			close()
 
 func open() -> void:
@@ -63,11 +65,11 @@ func get_data(index) -> void:
 	if menu:
 		var item = Items.new()
 		scroll_info.scroll_vertical = 0
-		if item.content.has(index):
-			if item.content[index].has("icon"):
-				if typeof(item.content[index]["icon"]) == TYPE_OBJECT:
+		if item.content.has(int(index)):
+			if item.content[int(index)].has("icon"):
+				if typeof(item.content[int(index)]["icon"]) == TYPE_OBJECT:
 					icon.visible = true
-					icon.texture = item.content[index]["icon"]
+					icon.texture = item.content[int(index)]["icon"]
 				else:
 					icon.visible = false
 					push_error("[ID: "+str(index)+"] The key stores a non-Compressed 2D Texture. Variant.type: " + str(typeof(item.content[index]["icon"])))
@@ -149,11 +151,12 @@ func delete_slots() -> void:
 func item_create(i) -> void:
 	var slot = node.instantiate()
 	check_amount(i)
-	if inventory_items[i]["amount"] > 0:
-		slots.add_child(slot)
-		slot.set_data(i, inventory_items[i]["amount"])
-	else:
-		remove_item(i)
+	if inventory_items.has(i):
+		if inventory_items[i]["amount"] > 0:
+			slots.add_child(slot)
+			slot.set_data(i, inventory_items[i]["amount"])
+		else:
+			remove_item(i)
 
 func update_list() -> void:
 	if storage.object[storage.level].has("slots"):
@@ -192,14 +195,15 @@ func check_slots() -> bool:
 		return false
 
 func check_amount(index) -> void:
-	if inventory_items[index].has("amount"):
-		if inventory_items[index]["amount"] > Items.new().content["max"]:
-			inventory_items[index]["amount"] = Items.new().content["max"]
-		if inventory_items[index]["amount"] < 0:
-			inventory_items[index]["amount"] = 0
-	else:
-		push_warning("[ID: "+str(index)+"] The 'amount' element does not exist in the inventory dictionary (array).")
-		inventory_items[index]["amount"] = 1
+	if inventory_items.has(index):
+		if inventory_items[index].has("amount"):
+			if inventory_items[index]["amount"] > Items.new().content["max"]:
+				inventory_items[index]["amount"] = Items.new().content["max"]
+			if inventory_items[index]["amount"] < 0:
+				inventory_items[index]["amount"] = 0
+		else:
+			push_warning("[ID: "+str(index)+"] The 'amount' element does not exist in the inventory dictionary (array).")
+			inventory_items[index]["amount"] = 1
 
 func get_specifications(index, i) -> void:
 	if typeof(Items.new().content[index]["specifications"][i]) == TYPE_STRING and specifications.text is String:

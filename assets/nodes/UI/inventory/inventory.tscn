@@ -100,7 +100,6 @@ _data = {
 }
 
 [node name="Inventory" type="Control"]
-visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 8
@@ -179,7 +178,6 @@ size_flags_vertical = 4
 texture = ExtResource("2_2ovt8")
 
 [node name="Caption" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Caption" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Caption"]
@@ -191,7 +189,6 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Description" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Description" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Description"]
@@ -202,7 +199,6 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Specifications" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Specifications" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Specifications"]
@@ -213,7 +209,6 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Type" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Type" type="Label" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Type"]

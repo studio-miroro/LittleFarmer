@@ -63,4 +63,17 @@ var content:Dictionary = {
 		"sale": 0,
 		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_4.png"),
 	},
+	6: {
+		"caption": "Семена капусты TEST",
+		"description": "Семена для выращивания плотной и сочной капусты. Посадите их в землю, поливайте и ждите зрелости.",
+		"specifications": {
+			"growth": "7 игровых дней",
+			"productivity": "1-2 кочана",
+			"conditions": "Регулярный полив и богатая почва",
+		},
+		"type": "Семена",
+		"purchase": 1,
+		"sale": 0,
+		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_4.png"),
+	},
 }
