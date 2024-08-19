@@ -21,8 +21,7 @@ func set_data(id:int, header:String) -> void:
 	text()
 	
 func text() -> void:
-	var len = len(label.get_text())
-	if len > symbols:
+	if len(label.get_text()) > symbols:
 		var current = label.get_text().substr(0, symbols) + "..."
 		label.set_text(current)
 

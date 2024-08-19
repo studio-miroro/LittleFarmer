@@ -53,6 +53,7 @@ func gamesave() -> void:
 	file_save(path.vectors, "vectors")
 	file_save(path.crafting, "crafting")
 	file_save(path.inventory, "inventory")
+	file_save(path.mailbox, "mailbox")
 
 func gameload() -> void:
 	remove_all_child(farming)
@@ -301,10 +302,10 @@ func balance_load() -> void:
 	balance.balance_update()
 
 func inventory_load() -> void:
-	inventory.load(get_key(path.inventory, "inventory"))
+	inventory.items_load(get_key(path.inventory, "inventory"))
 
 func craft_load() -> void:
-	craft.load(get_key(path.crafting, "craft"))
+	craft.blueprints_load(get_key(path.crafting, "craft"))
 
 func mailbox_load() -> void:
-	mailbox.load(get_key(path.mailbox, "mailbox"))
+	mailbox.letters_load(file_load(path.mailbox))

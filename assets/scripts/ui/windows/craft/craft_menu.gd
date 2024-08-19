@@ -134,7 +134,7 @@ func get_data(id:int):
 	else:
 		button.visible = false
 
-func load(data:Dictionary) -> void:
+func blueprints_load(data:Dictionary) -> void:
 	print(data)
 
 func check_material(id, key) -> void:
