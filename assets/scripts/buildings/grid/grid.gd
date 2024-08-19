@@ -22,7 +22,7 @@ func _ready():
 	grid.texture = default
 	
 func _input(event):
-	if !blur.bluring and mode != gridmode.NOTHING:
+	if !blur.state and mode != gridmode.NOTHING:
 		if event is InputEventMouseButton\
 		and event.button_index == MOUSE_BUTTON_LEFT\
 		and event.is_pressed()\
@@ -38,7 +38,7 @@ func _input(event):
 			check = false
 
 func _process(_delta):
-	if !blur.bluring and visible:
+	if !blur.state and visible:
 
 		var mouse_pos: Vector2 = get_global_mouse_position()
 		var tile_mouse_pos = tilemap.local_to_map(mouse_pos)

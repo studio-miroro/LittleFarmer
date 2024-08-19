@@ -93,7 +93,7 @@ func get_data(key:String, inDictionary:bool):
 			return null
 
 func _on_area_2d_mouse_entered():
-	if !blur.bluring:
+	if !blur.state:
 		change_sprite(true)
 
 func _on_area_2d_mouse_exited():

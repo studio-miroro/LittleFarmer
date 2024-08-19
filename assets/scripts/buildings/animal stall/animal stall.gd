@@ -55,7 +55,7 @@ func check_sprite(key:String):
 
 
 func _on_area_2d_mouse_entered():
-	if !blur.bluring:
+	if !blur.state:
 		change_sprite(true)
 
 func _on_area_2d_mouse_exited():

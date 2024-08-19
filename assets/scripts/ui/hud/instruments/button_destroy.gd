@@ -4,7 +4,7 @@ extends Control
 @onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
 
 func _on_button_pressed():
-	if !blur.bluring:
+	if !blur.state:
 		grid.mode = grid.gridmode.DESTROY
 		grid.visible = true
 

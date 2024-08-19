@@ -55,7 +55,7 @@ func check_sprite(key:String):
 		push_error("Index " + str(level) + " is not in the dictionary.")
 
 func _on_collision_mouse_entered():
-	if !blur.bluring:
+	if !blur.state:
 		change_sprite(true)
 
 func _on_collision_mouse_exited():

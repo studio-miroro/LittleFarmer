@@ -103,7 +103,7 @@ func get_data(key:String, inDictionary:bool):
 				push_error("The specified key (" + str(key) + ") does not exist.")
 
 func _on_area_2d_mouse_entered():
-	if !blur.bluring:
+	if !blur.state:
 		change_sprite(true)
 
 func _on_area_2d_mouse_exited():

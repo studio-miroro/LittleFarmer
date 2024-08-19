@@ -64,7 +64,7 @@ func check_sprite(key:String) -> void:
 		push_error("The specified key is missing.")
 
 func _on_area_2d_mouse_entered() -> void:
-	if !blur.bluring:
+	if !blur.state:
 		change_sprite(true)
 
 func _on_area_2d_mouse_exited() -> void:

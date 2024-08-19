@@ -100,7 +100,7 @@ func get_data(letterID:int) -> void:
 
 			if letters[index]["items"] != {}:
 				for i in letters[index]["items"]:
-					if typeof(letters[index]["items"][i]) == TYPE_DICTIONARY and letters[index]["items"][i].has("amount"):
+					if typeof(letters[index]["items"][i]) == TYPE_DICTIONARY && letters[index]["items"][i].has("amount"):
 						if letters[index]["items"][i]["amount"] > 0:
 							letter_create_items(
 								int(i), 
@@ -225,5 +225,5 @@ func _on_get_items_pressed():
 		get_all_items(index, letters)
 
 func _on_close_pressed() -> void:
-	if blur.bluring:
+	if blur.state:
 		close()
