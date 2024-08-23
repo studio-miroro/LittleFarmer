@@ -3,3 +3,9 @@ res://assets/shaders/pixel.gdshader
 res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
 res://assets/nodes/ui/inventory/inventory.tscn
+res://assets/scripts/ui/main menu/background.gd
+res://assets/scripts/ui/main menu/buttons/countinue_game.gd
+res://levels/main.tscn
+res://assets/scripts/ui/hud/elements/balance.gd
+res://assets/scripts/buildings/mailbox/letter.gd
+res://assets/nodes/ui/main menu/buttons/loadgame.tscn
