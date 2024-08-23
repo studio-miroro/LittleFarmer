@@ -9,7 +9,7 @@ func _ready():
 	background(get_time())
 
 func background(time:String) -> void:
-	if !range(morning, evening).has(int(time.left(2))):
+	if range(morning, evening).has(int(time.left(2))):
 		color = light
 	else:
 		color = dark
