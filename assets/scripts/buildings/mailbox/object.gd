@@ -1,11 +1,13 @@
 extends Node2D
 
-@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
-@onready var tip:Control = get_node("/root/World/User Interface/System/Tooltip")
-@onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
-@onready var blur:Control = get_node("/root/World/User Interface/Blur")
-@onready var player:CharacterBody2D = get_node("/root/World/Camera")
-@onready var mailbox:Control = get_node("/root/World/User Interface/Windows/Mailbox")
+@onready var main_scene = str(get_tree().root.get_child(1).name)
+
+@onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
+@onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
+@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
+@onready var player:CharacterBody2D = get_node("/root/" + main_scene + "/Camera")
+@onready var mailbox:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox")
 @onready var sprite:Sprite2D = $Sprite2D
 
 var max_distance:int = 250

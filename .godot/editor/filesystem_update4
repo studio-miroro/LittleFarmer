@@ -30,3 +30,22 @@ res://assets/scripts/ui/hud/instruments/button_watering.gd
 res://assets/scripts/ui/hud/instruments/button_destroy.gd
 res://assets/scripts/ui/blackout.gd
 res://assets/scripts/ui/blur.gd
+res://assets/scripts/ui/windows/pause/buttons/button_exit.gd
+res://assets/singletons/gamedata.gd
+res://assets/scripts/ui/windows/pause/buttons/button_options.gd
+res://assets/scripts/ui/windows/pause/buttons/button_countinue.gd
+res://assets/scripts/ui/windows/pause/options/sections/control.gd
+res://assets/scripts/ui/windows/pause/options/sections/sounds.gd
+res://assets/scripts/ui/windows/pause/options/sections/graphic.gd
+res://assets/scripts/ui/windows/pause/options/buttons/language.gd
+res://assets/scripts/ui/windows/pause/options/buttons/save_options.gd
+res://assets/singletons/gameloader.gd
+res://assets/scripts/farming/growth.gd
+res://assets/scripts/farming/plant.gd
+res://assets/scripts/buildings/house/house.gd
+res://assets/scripts/buildings/storage/storage.gd
+res://assets/scripts/buildings/animal stall/animal stall.gd
+res://assets/scripts/buildings/mailbox/object.gd
+res://assets/scripts/buildings/silo/silo.gd
+res://assets/scripts/buildings/grid/collision.gd
+res://assets/scripts/buildings/grid/grid.gd

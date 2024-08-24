@@ -14,7 +14,7 @@ func _ready():
 	else:
 		push_error("No atlas of crops.")
 
-func _process(delta):
+func _process(_delta):
 	if plant.plantID != 0:
 		if level == crops.crops[plant.plantID]["growthLevel"]\
 		and plant.condition != plant.phases.INCREASED:

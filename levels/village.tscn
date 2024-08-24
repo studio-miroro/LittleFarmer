@@ -1,5 +1,6 @@
-[gd_scene load_steps=32 format=3 uid="uid://v2hm5trbrh1c"]
+[gd_scene load_steps=33 format=3 uid="uid://v2hm5trbrh1c"]
 
+[ext_resource type="Script" path="res://assets/singletons/gamedata.gd" id="1_3gno8"]
 [ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/cursor.tscn" id="1_33f5s"]
 [ext_resource type="Texture2D" uid="uid://b66gdyd27b6v8" path="res://assets/resources/nature/grass.png" id="2_8dg41"]
 [ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="2_jgwxj"]
@@ -71,6 +72,7 @@ _data = {
 }
 
 [node name="Village" type="Node2D"]
+script = ExtResource("1_3gno8")
 
 [node name="User Interface" type="CanvasLayer" parent="."]
 

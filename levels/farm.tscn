@@ -1660,7 +1660,7 @@ scale_curve = SubResource("CurveTexture_g75xj")
 turbulence_noise_speed = Vector3(0, -1, 0)
 turbulence_influence_max = 0.719
 
-[node name="World" type="Node2D"]
+[node name="Farm" type="Node2D"]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_h27nr")
 script = ExtResource("2_880lm")

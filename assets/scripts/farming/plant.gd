@@ -112,26 +112,26 @@ func get_data() -> Dictionary:
 
 func set_data(
 	id:int,
-	condition:int,
-	degree:int,
-	fertilizer:int,
+	conditionID:int,
+	degreeID:int,
+	fertilizerID:int,
 	region_rect_x:int,
 	region_rect_y:int,
 	level:int,
 	pos:Vector2i
 	) -> void:
 	self.plantID = id
-	self.condition = condition
-	self.degree = degree
-	self.fertilizer = fertilizer
+	self.condition = conditionID
+	self.degree = degreeID
+	self.fertilizer = fertilizerID
 	sprite.region_rect.position.x = region_rect_x
 	sprite.region_rect.position.y = region_rect_y
 	sprite.level = level
 	growth()
 	check(plantID, pos)
 
-func get_condition(condition:int) -> String:
-	match condition:
+func get_condition(condition_type:int) -> String:
+	match condition_type:
 		0:
 			return "Посажено"
 		1:
@@ -143,8 +143,8 @@ func get_condition(condition:int) -> String:
 		_:
 			return ""
 
-func get_fertilizer(fertilizer:int) -> String:
-	match fertilizer:
+func get_fertilizer(fertilizer_type:int) -> String:
+	match fertilizer_type:
 		1:
 			return "Компост"
 		2:

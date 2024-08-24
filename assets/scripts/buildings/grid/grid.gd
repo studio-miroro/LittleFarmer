@@ -1,11 +1,13 @@
 extends Node2D
 
-@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
-@onready var blur:Control = get_node("/root/World/User Interface/Blur")
-@onready var tilemap:TileMap = get_node("/root/World/Tilemap")
+@onready var main_scene = str(get_tree().root.get_child(1).name)
 
-@onready var farming:Node2D = get_node("/root/World/Farming")
-@onready var farm:Node2D = get_node("/root/World/")
+@onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
+@onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
+
+@onready var farming:Node2D = get_node("/root/" + main_scene + "/Farming")
+@onready var farm:Node2D = get_node("/root/" + main_scene + "/")
 
 @onready var grid:Sprite2D = $Sprite2D
 @onready var collision:Area2D = $GridCollision

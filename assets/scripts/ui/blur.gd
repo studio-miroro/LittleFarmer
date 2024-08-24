@@ -34,7 +34,7 @@ func blur(bluring:bool, change_scene:bool = false, path:String = "") -> void:
 			if has_node("/root/" + main_scene + "/Buildings/Storage"):
 				get_node("/root/" + main_scene + "/Buildings/Storage").change_sprite(false)
 			if has_node("/root/" + main_scene + "/Buildings/Animal Stall"):
-				get_node("/root/World/Buildings/Animal Stall").change_sprite(false)
+				get_node("/root/" + main_scene + "/Buildings/Animal Stall").change_sprite(false)
 			if has_node("/root/" + main_scene + "/Buildings/Silo"):
 				get_node("/root/" + main_scene + "/Buildings/Silo").change_sprite(false)
 

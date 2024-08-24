@@ -1,26 +1,28 @@
 extends Node
 
-@onready var cycle:Node2D = get_node("/root/World/Cycle")
-@onready var tilemap:TileMap = get_node("/root/World/Tilemap")
-@onready var player:Node2D = get_node("/root/World/Camera")
+@onready var main_scene = str(get_tree().root.get_child(1).name)
 
-@onready var balance:Control = get_node("/root/World/User Interface/Hud/Main/Indicators/Balance")
-@onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
-@onready var craft:Control = get_node("/root/World/User Interface/Windows/Crafting")
-@onready var mailbox:Control = get_node("/root/World/User Interface/Windows/Mailbox")
+@onready var cycle:Node2D = get_node("/root/" + main_scene + "/Cycle")
+@onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
+@onready var player:Node2D = get_node("/root/" + main_scene + "/Camera")
 
-@onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
-@onready var grid_collision:Area2D = get_node("/root/World/Buildings/Grid/GridCollision")
-@onready var farming:Node2D = get_node("/root/World/Farming")
+@onready var balance:Control = get_node("/root/" + main_scene + "/User Interface/Hud/Main/Indicators/Balance")
+@onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
+@onready var craft:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting")
+@onready var mailbox:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox")
+
+@onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
+@onready var grid_collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
+@onready var farming:Node2D = get_node("/root/" + main_scene + "/Farming")
 @onready var plant:PackedScene = load("res://assets/nodes/farming/plant.tscn")
 
-@onready var buildings:Node2D = get_node("/root/World/Buildings")
-@onready var house:Node2D = get_node("/root/World/Buildings/House")
-@onready var storage:Node2D = get_node("/root/World/Buildings/Storage")
-@onready var animaltall:Node2D = get_node("/root/World/Buildings/Animal Stall")
-@onready var silo:Node2D = get_node("/root/World/Buildings/Silo")
+@onready var buildings:Node2D = get_node("/root/" + main_scene + "/Buildings")
+@onready var house:Node2D = get_node("/root/" + main_scene + "/Buildings/House")
+@onready var storage:Node2D = get_node("/root/" + main_scene + "/Buildings/Storage")
+@onready var animaltall:Node2D = get_node("/root/" + main_scene + "/Buildings/Animal Stall")
+@onready var silo:Node2D = get_node("/root/" + main_scene + "/Buildings/Silo")
 
-@onready var language:Control = get_node("/root/World/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
+@onready var language:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
 
 var object_created:int
 var path = {
@@ -36,7 +38,6 @@ var path = {
 }
 
 func _ready():
-	gameload() # for testing
 	if GameLoader.mode:
 		gameload()
 		GameLoader.loading(false)
@@ -99,6 +100,7 @@ func create_terrain(index:int, layer:int, path_file:String, key:String, terrain_
 		0:
 			var string_array = get_key(path_file, key)
 			var vector_array = []
+			
 			for str in string_array:
 				var cleaned_str = str.replace("(", "").replace(")", "")
 				var components = cleaned_str.split(",")
@@ -110,6 +112,7 @@ func create_terrain(index:int, layer:int, path_file:String, key:String, terrain_
 		1:
 			var string_array = get_key(path_file, key)
 			var vector_array = []
+
 			for str in string_array:
 				var cleaned_str = str.replace("(", "").replace(")", "")
 				var components = cleaned_str.split(",")

@@ -1,13 +1,15 @@
 extends Node2D
 
 class_name Storage
-@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
-@onready var tip:Control = get_node("/root/World/User Interface/System/Tooltip")
-@onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
-@onready var blur:Control = get_node("/root/World/User Interface/Blur")
-@onready var grid:Node2D = get_node("/root/World/Buildings/Grid") 
-@onready var player:CharacterBody2D = get_node("/root/World/Camera")
-@onready var shadow:Sprite2D = get_node("/root/World/Shadow/StorageShadow")
+@onready var main_scene = str(get_tree().root.get_child(1).name)
+
+@onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
+@onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
+@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
+@onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid") 
+@onready var player:CharacterBody2D = get_node("/root/" + main_scene + "/Camera")
+@onready var shadow:Sprite2D = get_node("/root/" + main_scene + "/Shadow/StorageShadow")
 @onready var sprite:Sprite2D = $Sprite2D
 
 var menu:bool = false

@@ -58,8 +58,10 @@ func open() -> void:
 	blur.blur(true)
 	hud._hide()
 	player.check_switch()
-	grid.visible = false
 	update_string_version()
+
+	if has_node("/root/" + main_scene + "/Buildings/Grid"):
+		grid.visible = false
 
 func close() -> void:
 	paused = false
