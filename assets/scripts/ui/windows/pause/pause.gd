@@ -20,7 +20,6 @@ var other_menu:bool
 var lock:bool = true
 
 func _ready():
-	print(get_tree().root)
 	player.switch = true
 	player.check_switch()
 	await get_tree().create_timer(0.75).timeout
@@ -46,11 +45,6 @@ func pause():
 		open()
 	else:
 		close()
-
-func update_string_version() -> void:
-	var version_prefix = tr("version.game:")
-	var version_number = ProjectSettings.get_setting("application/config/version")
-	version.text = version_prefix + version_number
 	
 func open() -> void:
 	paused = true
@@ -58,7 +52,7 @@ func open() -> void:
 	blur.blur(true)
 	hud._hide()
 	player.check_switch()
-	update_string_version()
+	version.text = ProjectSettings.get_setting("application/config/version")
 
 	if has_node("/root/" + main_scene + "/Buildings/Grid"):
 		grid.visible = false

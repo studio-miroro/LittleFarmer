@@ -1,5 +1,6 @@
-res://assets/resources/nature
 res://levels
+res://assets/nodes/systems
+res://assets/resources/nature
 res://assets/localizations
 res://assets/nodes/ui/main menu/buttons
 res://assets/singletons

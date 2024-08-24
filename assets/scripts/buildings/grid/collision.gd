@@ -29,40 +29,40 @@ func destroy_collision_check() -> int:
 	and !check_cell(tile_mouse_pos, farming_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer)\
 	and !check_cell(tile_mouse_pos, seeds_layer):
-		grid.change_texture(false)
+		grid.change_sprite(false)
 		return 0
 	elif check_cell(tile_mouse_pos, farming_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer)\
 	and !check_cell(tile_mouse_pos, seeds_layer):
-		grid.change_texture(false)
+		grid.change_sprite(false)
 		return 1
 	elif check_cell(tile_mouse_pos, farming_layer)\
 	and check_cell(tile_mouse_pos, watering_layer)\
 	and !check_cell(tile_mouse_pos, seeds_layer):
-		grid.change_texture(false)
+		grid.change_sprite(false)
 		return 2
 	elif check_cell(tile_mouse_pos, farming_layer)\
 	and check_cell(tile_mouse_pos, watering_layer)\
 	and check_cell(tile_mouse_pos, seeds_layer):
-		grid.change_texture(false)
+		grid.change_sprite(false)
 		return 3
 	elif check_cell(tile_mouse_pos, farming_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer)\
 	and check_cell(tile_mouse_pos, seeds_layer):
-		grid.change_texture(false)
+		grid.change_sprite(false)
 		return 4
 	else:
-		grid.change_texture(true)
+		grid.change_sprite(true)
 		return -1
 		
 func farming_collision_check() -> bool:
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 	if check_custom_data(tile_mouse_pos, can_place_dirt_custom_data, ground_layer) and !check_cell(tile_mouse_pos, farming_layer):
-		grid.change_texture(false)
+		grid.change_sprite(false)
 		return true
 	else:
-		grid.change_texture(true)
+		grid.change_sprite(true)
 		return false
 		
 func watering_collision_check() -> bool:
@@ -70,10 +70,10 @@ func watering_collision_check() -> bool:
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 	if check_custom_data(tile_mouse_pos, can_place_seed_custom_data, farming_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer):
-		grid.change_texture(false)
+		grid.change_sprite(false)
 		return true
 	else:
-		grid.change_texture(true)
+		grid.change_sprite(true)
 		return false
 
 func planting_collision_check() -> bool:
@@ -82,15 +82,15 @@ func planting_collision_check() -> bool:
 	if check_cell(tile_mouse_pos, farming_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer)\
 	and !check_cell(tile_mouse_pos, seeds_layer):
-		grid.change_texture(false)
+		grid.change_sprite(false)
 		return true
 	elif check_cell(tile_mouse_pos, farming_layer)\
 	and check_cell(tile_mouse_pos, watering_layer)\
 	and !check_cell(tile_mouse_pos, seeds_layer):
-		grid.change_texture(false)
+		grid.change_sprite(false)
 		return true
 	else:
-		grid.change_texture(true)
+		grid.change_sprite(true)
 		return false
 	
 func check_custom_data(tile_mouse:Vector2, custom_data_layer:String, layer:int) -> bool:

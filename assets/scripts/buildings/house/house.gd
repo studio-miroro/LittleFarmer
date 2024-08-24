@@ -46,7 +46,7 @@ func _ready():
 	else:
 		push_error("Index " + str(level) + " is not in the dictionary.")
 
-func check_key(key:String):
+func check_key(key:String) -> void:
 	match key:
 		"fume":
 			fume.emitting = object[level].has(key)
@@ -59,7 +59,7 @@ func check_key(key:String):
 				else:
 					ext.visible = false
 
-func change_sprite(type:bool):
+func change_sprite(type:bool) -> void:
 	if type:
 		var distance = round(global_position.distance_to(player.global_position))
 		if grid.mode == grid.gridmode.NOTHING and distance < max_distance:
@@ -73,7 +73,7 @@ func change_sprite(type:bool):
 		check_sprite("default")
 		tip.tooltip("")
 
-func check_sprite(key:String):
+func check_sprite(key:String) -> void:
 	if object.has(level):
 		if object[level].has(key):
 			if typeof(object[level][key]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:

@@ -12,7 +12,7 @@ extends Node
 @onready var mailbox:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox")
 
 @onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
-@onready var grid_collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
+@onready var collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
 @onready var farming:Node2D = get_node("/root/" + main_scene + "/Farming")
 @onready var plant:PackedScene = load("res://assets/nodes/farming/plant.tscn")
 
@@ -101,8 +101,8 @@ func create_terrain(index:int, layer:int, path_file:String, key:String, terrain_
 			var string_array = get_key(path_file, key)
 			var vector_array = []
 			
-			for str in string_array:
-				var cleaned_str = str.replace("(", "").replace(")", "")
+			for string in string_array:
+				var cleaned_str = string.replace("(", "").replace(")", "")
 				var components = cleaned_str.split(",")
 				var x = components[0].to_float()
 				var y = components[1].to_float()
@@ -113,8 +113,8 @@ func create_terrain(index:int, layer:int, path_file:String, key:String, terrain_
 			var string_array = get_key(path_file, key)
 			var vector_array = []
 
-			for str in string_array:
-				var cleaned_str = str.replace("(", "").replace(")", "")
+			for string in string_array:
+				var cleaned_str = string.replace("(", "").replace(")", "")
 				var components = cleaned_str.split(",")
 				var x = components[0].to_float()
 				var y = components[1].to_float()
@@ -125,8 +125,8 @@ func create_terrain(index:int, layer:int, path_file:String, key:String, terrain_
 		2: 
 			var string_array = get_key(path_file, key)
 			var vector_array = []
-			for str in string_array:
-				var cleaned_str = str.replace("(", "").replace(")", "")
+			for string in string_array:
+				var cleaned_str = string.replace("(", "").replace(")", "")
 				var components = cleaned_str.split(",")
 				var x = components[0].to_float()
 				var y = components[1].to_float()
@@ -162,7 +162,7 @@ func create_nodes(parent:Node2D, node: PackedScene, positions) -> void:
 				push_error("Variable position is not of type Vector2")
 
 func remove_all_child(parent: Node):
-	erase_cells(grid_collision.seeds_layer)
+	erase_cells(collision.seeds_layer)
 	for child in parent.get_children():
 		parent.remove_child(child)
 		child.queue_free()
@@ -182,11 +182,11 @@ func get_children_data(parent: Node) -> Dictionary:
 	return data_dict
 
 func plant_load():
-	create_terrain(0, grid_collision.ground_layer, path.vectors, "road", grid_collision.ground_terrain_set, grid_collision.ground_terrain)
-	create_terrain(0, grid_collision.farming_layer, path.vectors, "farmlands", grid_collision.farming_terrain_set, grid_collision.farming_terrain)
-	create_terrain(0, grid_collision.watering_layer, path.vectors, "waterings", grid_collision.watering_terrain_set, grid_collision.watering_terrain)
-	create_terrain(1, grid_collision.seeds_layer, path.vectors, "plants", 0, 0)
-	create_nodes(farming, plant, create_terrain(2, grid_collision.seeds_layer, path.vectors, "plants", -1, -1))
+	create_terrain(0, collision.ground_layer, path.vectors, "road", collision.ground_terrain_set, collision.ground_terrain)
+	create_terrain(0, collision.farming_layer, path.vectors, "farmlands", collision.farming_terrain_set, collision.farming_terrain)
+	create_terrain(0, collision.watering_layer, path.vectors, "waterings", collision.watering_terrain_set, collision.watering_terrain)
+	create_terrain(1, collision.seeds_layer, path.vectors, "plants", 0, 0)
+	create_nodes(farming, plant, create_terrain(2, collision.seeds_layer, path.vectors, "plants", -1, -1))
 
 func farm_load(object:Node2D, object_name:String, position):
 	var plant_id = get_key(path.plants, object_name, "plantID")
@@ -209,27 +209,27 @@ func farm_load(object:Node2D, object_name:String, position):
 		push_error("Data missing for node: " + object_name)
 
 func terrains_remove() -> void:
-	if grid_collision.get_used_cells(grid_collision.ground_layer) != []:
+	if collision.get_used_cells(collision.ground_layer) != []:
 		tilemap.set_cells_terrain_connect(
-			grid_collision.ground_layer,
-			grid_collision.get_used_cells(grid_collision.ground_layer),
-			grid_collision.ground_terrain_set,
+			collision.ground_layer,
+			collision.get_used_cells(collision.ground_layer),
+			collision.ground_terrain_set,
 			-1
 		)
 		
-	if grid_collision.get_used_cells(grid_collision.farming_layer) != []:
+	if collision.get_used_cells(collision.farming_layer) != []:
 		tilemap.set_cells_terrain_connect(
-			grid_collision.farming_layer,
-			grid_collision.get_used_cells(grid_collision.farming_layer),
-			grid_collision.farming_terrain_set,
+			collision.farming_layer,
+			collision.get_used_cells(collision.farming_layer),
+			collision.farming_terrain_set,
 			-1
 		)
 		
-	if grid_collision.get_used_cells(grid_collision.watering_layer) != []:
+	if collision.get_used_cells(collision.watering_layer) != []:
 		tilemap.set_cells_terrain_connect(
-			grid_collision.watering_layer,
-			grid_collision.get_used_cells(grid_collision.watering_layer),
-			grid_collision.watering_terrain_set,
+			collision.watering_layer,
+			collision.get_used_cells(collision.watering_layer),
+			collision.watering_terrain_set,
 			-1
 		)
 
@@ -291,9 +291,9 @@ func get_content(content:String) -> Dictionary:
 			
 		"vectors":
 			return {
-				"road": grid_collision.get_used_cells(grid_collision.ground_layer),
-				"farmlands": grid_collision.get_used_cells(grid_collision.farming_layer),
-				"waterings": grid_collision.get_used_cells(grid_collision.watering_layer),	
+				"road": collision.get_used_cells(collision.ground_layer),
+				"farmlands": collision.get_used_cells(collision.farming_layer),
+				"waterings": collision.get_used_cells(collision.watering_layer),	
 				"plants": get_position_children(farming),
 			}
 			

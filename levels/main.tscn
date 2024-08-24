@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://coers8ktfq5yt"]
+[gd_scene load_steps=10 format=3 uid="uid://coers8ktfq5yt"]
 
 [ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/cursor.tscn" id="1_ea6rj"]
 [ext_resource type="PackedScene" uid="uid://bq4qdj61kxktg" path="res://assets/nodes/ui/main menu/logotype.tscn" id="1_qiujb"]
 [ext_resource type="Script" path="res://assets/scripts/ui/main menu/menu.gd" id="1_xofh6"]
 [ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="2_1ou3c"]
-[ext_resource type="PackedScene" uid="uid://balcl5dqa5cvp" path="res://assets/nodes/ui/main menu/buttons/loadgame.tscn" id="2_d5qf6"]
-[ext_resource type="PackedScene" uid="uid://bo0md5dxqtqql" path="res://assets/nodes/ui/main menu/buttons/newgame.tscn" id="3_vkh6h"]
+[ext_resource type="PackedScene" uid="uid://balcl5dqa5cvp" path="res://assets/nodes/ui/main menu/buttons/countinue_buttons.tscn" id="2_d5qf6"]
+[ext_resource type="PackedScene" uid="uid://bo0md5dxqtqql" path="res://assets/nodes/ui/main menu/buttons/new_buttons.tscn" id="3_vkh6h"]
 [ext_resource type="Script" path="res://assets/scripts/ui/main menu/background.gd" id="4_4tfic"]
-[ext_resource type="PackedScene" uid="uid://dt0da1fsbcrkd" path="res://assets/nodes/ui/main menu/buttons/quit.tscn" id="4_lwcr4"]
+[ext_resource type="PackedScene" uid="uid://dt0da1fsbcrkd" path="res://assets/nodes/ui/main menu/buttons/quit_buttons.tscn" id="4_lwcr4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d56hu"]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource("1_xofh6")
@@ -37,10 +39,10 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main"]
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/Main"]
 layout_mode = 2
 
-[node name="Logo" type="MarginContainer" parent="CanvasLayer/Main/VBoxContainer"]
+[node name="Logo" type="MarginContainer" parent="CanvasLayer/Main/Buttons"]
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/margin_left = 25
@@ -48,24 +50,33 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
-[node name="Logotype" parent="CanvasLayer/Main/VBoxContainer/Logo" instance=ExtResource("1_qiujb")]
+[node name="Logotype" parent="CanvasLayer/Main/Buttons/Logo" instance=ExtResource("1_qiujb")]
 layout_mode = 2
 
-[node name="ButtonsContainer" type="MarginContainer" parent="CanvasLayer/Main/VBoxContainer"]
+[node name="ButtonsContainer" type="MarginContainer" parent="CanvasLayer/Main/Buttons"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 10
-theme_override_constants/margin_bottom = 25
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Main/VBoxContainer/ButtonsContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Main/Buttons/ButtonsContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="LoadGame" parent="CanvasLayer/Main/VBoxContainer/ButtonsContainer/HBoxContainer" instance=ExtResource("2_d5qf6")]
+[node name="LoadGame" parent="CanvasLayer/Main/Buttons/ButtonsContainer/HBoxContainer" instance=ExtResource("2_d5qf6")]
 layout_mode = 2
 
-[node name="NewGame" parent="CanvasLayer/Main/VBoxContainer/ButtonsContainer/HBoxContainer" instance=ExtResource("3_vkh6h")]
+[node name="NewGame" parent="CanvasLayer/Main/Buttons/ButtonsContainer/HBoxContainer" instance=ExtResource("3_vkh6h")]
 layout_mode = 2
 
-[node name="QuitGame" parent="CanvasLayer/Main/VBoxContainer/ButtonsContainer/HBoxContainer" instance=ExtResource("4_lwcr4")]
+[node name="QuitGame" parent="CanvasLayer/Main/Buttons/ButtonsContainer/HBoxContainer" instance=ExtResource("4_lwcr4")]
 layout_mode = 2
+
+[node name="Credits" type="VBoxContainer" parent="CanvasLayer/Main"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Version" type="Label" parent="CanvasLayer/Main/Credits"]
+layout_mode = 2
+text = "v1.0.0"
+label_settings = SubResource("LabelSettings_d56hu")

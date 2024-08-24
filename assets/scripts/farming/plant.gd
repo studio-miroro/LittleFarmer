@@ -1,10 +1,14 @@
 extends Node2D
 
-@onready var tip:Control = get_node("/root/World/User Interface/System/Tooltip")
-@onready var tilemap:TileMap = get_node("/root/World/Tilemap")
-@onready var grid:Node2D = get_node("/root/World/Buildings/Grid")
-@onready var collision:Area2D = get_node("/root/World/Buildings/Grid/GridCollision")
-@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
+@onready var main_scene = str(get_tree().root.get_child(1).name)
+
+@onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
+@onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
+
+@onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
+@onready var collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
+
 @onready var sprite:Sprite2D = $Sprite2D
 @onready var timer:Timer = $Timer
 
@@ -15,14 +19,9 @@ var fertilizer:int = fertilizers.NOTHING
 var degree:int
 
 enum phases {PLANTED,GROWING,INCREASED,DEAD}
-enum fertilizers {
-	NOTHING,
-	COMPOST,
-	HUMUS,
-	MANURE
-	}
+enum fertilizers {NOTHING, COMPOST, HUMUS, MANURE}
 
-func _process(delta):
+func _process(_delta):
 	if pause.paused:
 		timer.set_paused(true)
 	else:
@@ -48,9 +47,6 @@ func set_fertilizer(type:int) -> void:
 			
 func check(id:int,pos:Vector2i) -> void:
 	if !pause.paused:
-		var mouse_position = tilemap.local_to_map(get_global_mouse_position())
-		var atlas_coords = Vector2i(0,3)
-		var source_id = 0
 		if collision.check_cell(pos, collision.farming_layer)\
 		and !collision.check_cell(pos, collision.watering_layer)\
 		and condition != phases.DEAD:
@@ -110,16 +106,7 @@ func get_data() -> Dictionary:
 		"position": tilemap.local_to_map(global_position),
 	}
 
-func set_data(
-	id:int,
-	conditionID:int,
-	degreeID:int,
-	fertilizerID:int,
-	region_rect_x:int,
-	region_rect_y:int,
-	level:int,
-	pos:Vector2i
-	) -> void:
+func set_data(id:int, conditionID:int, degreeID:int, fertilizerID:int, region_rect_x:int, region_rect_y:int, level:int, pos:Vector2i) -> void:
 	self.plantID = id
 	self.condition = conditionID
 	self.degree = degreeID
@@ -180,4 +167,4 @@ func _on_collision_mouse_entered() -> void:
 		
 func _on_collision_mouse_exited() -> void:
 	if !pause.paused:
-		tip.tooltip("")
+		tip.tooltip()

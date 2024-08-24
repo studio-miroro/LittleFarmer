@@ -1,8 +1,10 @@
 extends Control
 
-@onready var tip:Control = get_node("/root/World/User Interface/System/Tooltip")
-@onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
-@onready var mailbox:Control = get_node("/root/World/User Interface/Windows/Mailbox")
+@onready var main_scene = str(get_tree().root.get_child(1).name)
+
+@onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
+@onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
+@onready var mailbox:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox")
 
 @onready var icon:TextureRect = $Button/Icon
 @onready var amount_label:Label = $Button/Amount

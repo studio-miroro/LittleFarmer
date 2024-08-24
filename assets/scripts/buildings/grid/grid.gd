@@ -144,7 +144,7 @@ func _process(_delta):
 		visible = false
 		check = false
 
-func change_texture(texture:bool):
+func change_sprite(texture:bool):
 	if texture:
 		grid.texture = error
 	else:
