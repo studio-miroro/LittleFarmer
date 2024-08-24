@@ -1,9 +1,11 @@
 extends Control
 
-@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
-@onready var hud:Control = get_node("/root/World/User Interface/Hud")
-@onready var tip:Control = get_node("/root/World/User Interface/System/Tooltip")
-@onready var cycle:CanvasModulate = get_node("/root/World/Cycle")
+@onready var main_scene = str(get_tree().root.get_child(1).name)
+
+@onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var hud:Control = get_node("/root/" + main_scene + "/User Interface/Hud")
+@onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
+@onready var cycle:CanvasModulate = get_node("/root/" + main_scene + "/Cycle")
 @onready var label:Label = $Main/Margin/HBoxContainer/Label/Label
 @onready var timer:Timer = $Timer
 

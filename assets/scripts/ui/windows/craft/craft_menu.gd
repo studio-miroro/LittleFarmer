@@ -1,12 +1,14 @@
 extends Control
 
+@onready var main_scene = str(get_tree().root.get_child(1).name)
+
 @onready var node:PackedScene = load("res://assets/nodes/ui/windows/craft/blueprint.tscn")
-@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
-@onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
-@onready var blur:Control = get_node("/root/World/User Interface/Blur")
+@onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
+@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var anim:AnimationPlayer = $AnimationPlayer
 
-@onready var container:GridContainer = get_node("/root/World/User Interface/Windows/Crafting/Panel/HBoxContainer/Items/GridContainer")
+@onready var container:GridContainer = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting/Panel/HBoxContainer/Items/GridContainer")
 @onready var caption:Label = $Panel/HBoxContainer/Info/VBoxContainer/ObjectCaption
 @onready var description:Label = $Panel/HBoxContainer/Info/VBoxContainer/ObjectDescription
 @onready var resources:Label = $Panel/HBoxContainer/Info/VBoxContainer/ObjectResources

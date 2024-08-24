@@ -1,11 +1,32 @@
 res://levels/farm.tscn
+res://assets/scripts/ui/main menu/buttons/countinue_game.gd
 res://assets/shaders/pixel.gdshader
 res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
-res://assets/nodes/ui/inventory/inventory.tscn
-res://assets/scripts/ui/main menu/background.gd
-res://assets/scripts/ui/main menu/buttons/countinue_game.gd
 res://levels/main.tscn
-res://assets/scripts/ui/hud/elements/balance.gd
-res://assets/scripts/buildings/mailbox/letter.gd
 res://assets/nodes/ui/main menu/buttons/loadgame.tscn
+res://levels/village.tscn
+res://assets/scripts/ui/windows/pause/pause.gd
+res://assets/scripts/world/nature/light.gd
+res://assets/scripts/world/nature/pointlight.gd
+res://levels/village.gd
+res://assets/scripts/ui/camera/camera_movement.gd
+res://assets/scripts/ui/inventory/inventory.gd
+res://assets/scripts/ui/windows/craft/craft_menu.gd
+res://assets/scripts/buildings/mailbox/mail.gd
+res://assets/scripts/ui/hud/hud.gd
+res://assets/scripts/ui/hud/elements/balance.gd
+res://assets/scripts/ui/hud/elements/clock.gd
+res://assets/nodes/ui/hud/hud.tscn
+res://assets/nodes/ui/hud/elements/clock.tscn
+res://assets/scripts/world/nature/clouds.gd
+res://assets/scripts/world/nature/time.gd
+res://assets/scripts/buildings/grid/movement.gd
+res://assets/scripts/ui/camera/movement.gd
+res://assets/nodes/nature/clouds.tscn
+res://assets/scripts/world/nature/cloud_movement.gd
+res://assets/scripts/ui/hud/instruments/button_farming.gd
+res://assets/scripts/ui/hud/instruments/button_watering.gd
+res://assets/scripts/ui/hud/instruments/button_destroy.gd
+res://assets/scripts/ui/blackout.gd
+res://assets/scripts/ui/blur.gd

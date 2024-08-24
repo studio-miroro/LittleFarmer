@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dgmow3vhiqfk8"]
 
 [ext_resource type="Texture2D" uid="uid://bkhp6g63k4272" path="res://assets/resources/nature/clouds/cloud_0.png" id="1_1ep74"]
-[ext_resource type="Script" path="res://assets/scripts/ui/camera/movement.gd" id="2_t2wku"]
+[ext_resource type="Script" path="res://assets/scripts/world/nature/cloud_movement.gd" id="2_itqxf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o217l"]
 
@@ -47,7 +47,7 @@ material = SubResource("ShaderMaterial_o217l")
 position = Vector2(112, 112)
 scale = Vector2(1.76562, 1.76562)
 texture = ExtResource("1_1ep74")
-script = ExtResource("2_t2wku")
+script = ExtResource("2_itqxf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -46,10 +46,10 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h27nr"]
 shader = ExtResource("1_ieipv")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xicbh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7fouv"]
 shader = ExtResource("1_ieipv")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g3bwj"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i60fw"]
 resource_name = "grass"
 texture = ExtResource("11_f64k1")
 0:0/0 = 0
@@ -133,7 +133,7 @@ texture = ExtResource("11_f64k1")
 0:3/0/physics_layer_0/angular_velocity = 0.0
 0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.5, -6.5, 6.5, -6.5, 6.5, 6.5, -6.5, 6.5)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_odeu0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iasrn"]
 resource_name = "dirt"
 texture = ExtResource("12_n5h5x")
 0:0/0 = 0
@@ -654,7 +654,7 @@ texture = ExtResource("12_n5h5x")
 4:3/0/custom_data_0 = true
 4:3/0/custom_data_2 = true
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qsn7t"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iu2c7"]
 texture = ExtResource("13_mqvhx")
 0:0/0 = 0
 0:0/0/terrain_set = 1
@@ -1127,7 +1127,7 @@ texture = ExtResource("13_mqvhx")
 11:3/0/terrains_peering_bit/top_side = 0
 11:3/0/custom_data_0 = true
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_djx2v"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s1spb"]
 texture = ExtResource("14_l5qkb")
 0:0/size_in_atlas = Vector2i(1, 2)
 0:0/0 = 0
@@ -1180,7 +1180,7 @@ texture = ExtResource("14_l5qkb")
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_0/angular_velocity = 0.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5ifi"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kh751"]
 texture = ExtResource("15_skd4g")
 0:0/0 = 0
 0:0/0/terrain_set = 2
@@ -1607,7 +1607,7 @@ texture = ExtResource("15_skd4g")
 11:3/0/terrains_peering_bit/top_left_corner = 0
 11:3/0/terrains_peering_bit/top_side = 0
 
-[sub_resource type="TileSet" id="TileSet_8p8g6"]
+[sub_resource type="TileSet" id="TileSet_tdmf8"]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "dirt"
@@ -1624,11 +1624,11 @@ custom_data_layer_1/name = "can_place_dirt"
 custom_data_layer_1/type = 1
 custom_data_layer_2/name = "can_watering_dirt"
 custom_data_layer_2/type = 1
-sources/1 = SubResource("TileSetAtlasSource_odeu0")
-sources/0 = SubResource("TileSetAtlasSource_g3bwj")
-sources/2 = SubResource("TileSetAtlasSource_qsn7t")
-sources/3 = SubResource("TileSetAtlasSource_djx2v")
-sources/5 = SubResource("TileSetAtlasSource_x5ifi")
+sources/1 = SubResource("TileSetAtlasSource_iasrn")
+sources/0 = SubResource("TileSetAtlasSource_i60fw")
+sources/2 = SubResource("TileSetAtlasSource_iu2c7")
+sources/3 = SubResource("TileSetAtlasSource_s1spb")
+sources/5 = SubResource("TileSetAtlasSource_kh751")
 
 [sub_resource type="Animation" id="Animation_3pdwo"]
 length = 0.001
@@ -1717,8 +1717,8 @@ script = ExtResource("8_yhpsj")
 gradient_texture = ExtResource("9_e2igt")
 
 [node name="Tilemap" type="TileMap" parent="."]
-material = SubResource("ShaderMaterial_xicbh")
-tile_set = SubResource("TileSet_8p8g6")
+material = SubResource("ShaderMaterial_7fouv")
+tile_set = SubResource("TileSet_tdmf8")
 collision_visibility_mode = 2
 navigation_visibility_mode = 2
 format = 2

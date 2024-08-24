@@ -1,9 +1,11 @@
 extends Control
 
-@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
-@onready var blur:Control = get_node("/root/World/User Interface/Blur")
-@onready var build:Control = get_node("/root/World/User Interface/Windows/Crafting")
-@onready var mailbox:Control = get_node("/root/World/User Interface/Windows/Mailbox")
+@onready var main_scene = str(get_tree().root.get_child(1).name)
+
+@onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
+@onready var build:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting")
+@onready var mailbox:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox")
 @onready var node:PackedScene = load("res://assets/nodes/UI/Inventory/slot.tscn")
 @onready var anim:AnimationPlayer = $Animation
 
@@ -36,7 +38,6 @@ func _process(_delta):
 	if !blur.state:
 		if Input.is_action_just_pressed("inventory"):
 			window()
-
 	else:
 		if (Input.is_action_just_pressed("pause") && menu) or Input.is_action_just_pressed("inventory"):
 			close()

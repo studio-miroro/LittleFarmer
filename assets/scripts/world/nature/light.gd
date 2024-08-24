@@ -1,8 +1,10 @@
 extends Node2D
 
-@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
-@onready var time:Object = get_node("/root/World/Cycle")
-@onready var parent:Node2D = get_node("/root/World/Light")
+@onready var main_scene = str(get_tree().root.get_child(1).name)
+
+@onready var pause:Control = get_node("/root/"+ main_scene + "/User Interface/Windows/Pause")
+@onready var time:Object = get_node("/root/"+ main_scene + "/Cycle")
+@onready var parent:Node2D = get_node("/root/"+ main_scene + "/Light")
 
 var energy:float = 1
 var energy_min:float = 0
@@ -12,7 +14,7 @@ var off:int = 0
 var speed:float = 0.005
 var light:bool
 
-func _process(delta):
+func _process(_delta):
 	if !pause.paused:
 		if time.hour == off:
 			check_light(false)

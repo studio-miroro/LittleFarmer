@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1eg5t00oti5i"]
+
+[ext_resource type="Script" path="res://levels/village.gd" id="1_6863a"]
+[ext_resource type="Texture2D" uid="uid://kcdto5fme037" path="res://assets/resources/nature/tree.png" id="32_ofkp1"]
+
+[node name="Village" type="Node2D"]
+
+[node name="Nature" type="Node2D" parent="."]
+script = ExtResource("1_6863a")
+
+[node name="Tree" type="Sprite2D" parent="Nature"]
+z_index = 4
+position = Vector2(248, 0)
+texture = ExtResource("32_ofkp1")

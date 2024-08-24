@@ -1,9 +1,11 @@
 extends Control
 
-@onready var pause:Control = get_node("/root/World/User Interface/Windows/Pause")
-@onready var inventory:Control = get_node("/root/World/User Interface/Windows/Inventory")
-@onready var balance:Control = get_node("/root/World/User Interface/Hud/Main/Indicators/Balance")
-@onready var blur:Control = get_node("/root/World/User Interface/Blur")
+@onready var main_scene = str(get_tree().root.get_child(1).name)
+
+@onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var inventory:Control = get_node("/root/" + main_scene + "orld/User Interface/Windows/Inventory")
+@onready var balance:Control = get_node("/root/" + main_scene + "/User Interface/Hud/Main/Indicators/Balance")
+@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var animation:AnimationPlayer = $AnimationPlayer
 
 @onready var letters_container:VBoxContainer = $Panel/HBoxContainer/LettersScroll/VBoxContainer

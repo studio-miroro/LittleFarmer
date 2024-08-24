@@ -4,7 +4,7 @@ const dark:Color = Color("222831")
 const light:Color = Color("EEEEEE")
 
 const evening:int = 17
-const morning:int = 8
+const morning:int = 7
 
 func _ready():
 	background(get_time())

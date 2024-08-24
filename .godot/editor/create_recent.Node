@@ -1,3 +1,4 @@
+TileMap
 Label
 HBoxContainer
 CanvasLayer
@@ -11,4 +12,3 @@ Control
 Node2D
 ScrollContainer
 TextureRect
-Panel
