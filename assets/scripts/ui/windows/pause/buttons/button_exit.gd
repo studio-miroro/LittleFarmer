@@ -11,8 +11,7 @@ extends Button
 func _on_pressed() -> void:
 	if pause.paused:
 		blackout.blackout(true)
-		await get_tree().create_timer(1.25).timeout
-		get_tree().change_scene_to_file(path)
 		if main_scene == "Farm":
 			gamedata.gamesave()
-		
+			
+		blackout.change_scene(path)

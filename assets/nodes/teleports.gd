@@ -10,11 +10,13 @@ var teleporting:bool
 func _input(event) -> void:
 	if event is InputEventMouseButton\
 	and event.button_index == MOUSE_BUTTON_LEFT\
-	and event.is_pressed():
+	and event.is_pressed()\
+	and teleporting:
 		teleport()
 
 func teleport() -> void:
-	blackout.blackout(true, 4, path)
+	blackout.blackout(true)
+	blackout.change_scene(path)
 
 func _on_area_2d_mouse_entered():
 	teleporting = true

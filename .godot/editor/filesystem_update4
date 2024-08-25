@@ -1,9 +1,3 @@
-res://assets/scripts/ui/main menu/menu.gd
-res://assets/scripts/buildings/mailbox/letter.gd
-res://assets/scripts/buildings/grid/grid.gd
-res://assets/scripts/ui/inventory/slot.gd
-res://assets/scripts/ui/blur.gd
-res://assets/scripts/ui/main menu/background.gd
 res://levels/farm.tscn
 res://assets/scripts/ui/main menu/buttons/countinue_game.gd
 res://assets/shaders/pixel.gdshader
@@ -11,13 +5,8 @@ res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
 res://levels/village.tscn
 res://levels/main.tscn
-res://assets/nodes/systems/village_teleport.gd
 res://assets/scripts/ui/blackout.gd
-res://assets/scripts/ui/windows/pause/pause.gd
-res://assets/scripts/ui/windows/pause/buttons/button_countinue.gd
-res://assets/nodes/systems/village_teleport.tscn
-res://assets/scripts/ui/cursor.gd
-res://assets/singletons/gamedata.gd
-res://assets/scripts/buildings/mailbox/mail.gd
-res://assets/scripts/buildings/grid/collision.gd
+res://assets/scripts/ui/blur.gd
 res://assets/nodes/teleports.gd
+res://assets/scripts/ui/windows/pause/pause.gd
+res://assets/scripts/ui/windows/pause/buttons/button_exit.gd
