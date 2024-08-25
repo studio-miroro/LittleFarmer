@@ -4,7 +4,6 @@ extends Node2D
 
 @onready var blackout:Control = get_node("/root/" + main_scene + "/User Interface/Blackout")
 
-var path:String = "res://levels/village.tscn"
 var teleporting:bool
 
 func _input(event) -> void:
@@ -16,7 +15,12 @@ func _input(event) -> void:
 
 func teleport() -> void:
 	blackout.blackout(true)
-	blackout.change_scene(path)
+	if main_scene == "Farm":
+		var path:String = "res://levels/village.tscn"
+		blackout.change_scene(path)
+	if main_scene == "Village":
+		var path:String = "res://levels/farm.tscn"
+		blackout.change_scene(path)
 
 func _on_area_2d_mouse_entered():
 	teleporting = true

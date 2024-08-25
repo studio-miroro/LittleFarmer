@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://v2hm5trbrh1c"]
+[gd_scene load_steps=35 format=3 uid="uid://v2hm5trbrh1c"]
 
 [ext_resource type="Script" path="res://assets/singletons/gamedata.gd" id="1_3gno8"]
 [ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/cursor.tscn" id="1_33f5s"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://0f10j8vd2h4t" path="res://assets/resources/buildings/mailbox/shadow.png" id="26_bk2ye"]
 [ext_resource type="Texture2D" uid="uid://qfktaby7ay6k" path="res://assets/resources/buildings/silo/level-1/shadow.png" id="27_dcqt0"]
 [ext_resource type="Texture2D" uid="uid://d3hjp3y2ylfmh" path="res://assets/resources/nature/shadow.png" id="28_vo68o"]
+[ext_resource type="Script" path="res://assets/nodes/teleports.gd" id="28_wk8hr"]
 [ext_resource type="Script" path="res://assets/scripts/world/nature/light.gd" id="29_g56t7"]
 [ext_resource type="Texture2D" uid="uid://bmm3sn5q3j181" path="res://assets/resources/nature/light.webp" id="30_if0e1"]
 [ext_resource type="Script" path="res://assets/scripts/world/nature/pointlight.gd" id="31_bu52b"]
@@ -70,6 +71,9 @@ _data = {
 "RESET": SubResource("Animation_3pdwo"),
 "light": SubResource("Animation_2yp3r")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aekrg"]
+size = Vector2(32, 32)
 
 [node name="Village" type="Node2D"]
 script = ExtResource("1_3gno8")
@@ -186,4 +190,17 @@ z_index = 4
 position = Vector2(248, 0)
 texture = ExtResource("32_ofkp1")
 
+[node name="Teleports" type="Node" parent="."]
+
+[node name="Village" type="Node2D" parent="Teleports"]
+script = ExtResource("28_wk8hr")
+
+[node name="Area2D" type="Area2D" parent="Teleports/Village"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleports/Village/Area2D"]
+position = Vector2(-115, 32)
+shape = SubResource("RectangleShape2D_aekrg")
+
 [connection signal="timeout" from="Shadow/CloudTimer" to="Shadow" method="_on_cloud_timer_timeout"]
+[connection signal="mouse_entered" from="Teleports/Village/Area2D" to="Teleports/Village" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Teleports/Village/Area2D" to="Teleports/Village" method="_on_area_2d_mouse_exited"]

@@ -5,7 +5,7 @@ extends Control
 func _ready():
 	z_index = 999
 
-func blackout(state:bool, speed:int = 4):
+func blackout(state:bool, speed:int = 4) -> void:
 	match state:
 		true:
 			anim.play("Blackout")
