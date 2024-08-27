@@ -11,21 +11,16 @@ extends Node
 @onready var craft:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting")
 @onready var mailbox:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox")
 
+@onready var buildings:Node2D = get_node("/root/" + main_scene + "/Buildings")
 @onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
 @onready var collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
 @onready var farming:Node2D = get_node("/root/" + main_scene + "/Farming")
 @onready var plant:PackedScene = load("res://assets/nodes/farming/plant.tscn")
 
-@onready var buildings:Node2D = get_node("/root/" + main_scene + "/Buildings")
-@onready var house:Node2D = get_node("/root/" + main_scene + "/Buildings/House")
-@onready var storage:Node2D = get_node("/root/" + main_scene + "/Buildings/Storage")
-@onready var animaltall:Node2D = get_node("/root/" + main_scene + "/Buildings/Animal Stall")
-@onready var silo:Node2D = get_node("/root/" + main_scene + "/Buildings/Silo")
-
 @onready var language:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
 
 var object_created:int
-var path = {
+var path:Dictionary = {
 	game = "user://game.json",
 	farm = "user://farm.json",
 	world = "user://world.json",
@@ -38,6 +33,7 @@ var path = {
 }
 
 func _ready():
+	gameload() # test
 	if GameLoader.mode:
 		gameload()
 		GameLoader.loading(false)
@@ -47,7 +43,6 @@ func _ready():
 
 func gamesave() -> void:
 	file_save(path.game, "settings")
-
 	file_save(path.farm, "farm")
 	file_save(path.world, "nature")
 	file_save(path.player, "player")
@@ -63,6 +58,7 @@ func gameload() -> void:
 	time_load()
 	player_load()
 	plant_load()
+	buildings_load()
 	
 func file_save(path_file, content) -> void:
 	var json_string = JSON.stringify(get_content(content), "\t")
@@ -262,13 +258,18 @@ func craft_load() -> void:
 func mailbox_load() -> void:
 	mailbox.letters_load(file_load(path.mailbox))
 
+func buildings_load() -> void:
+	for content in file_load(path.buildings):
+		if file_load(path.buildings)[content].has("level"):
+			buildings.build_content(content, file_load(path.buildings)[content]["level"])
+
 func get_content(content:String) -> Dictionary:
 	match content:
 
 		"settings": 
 			return {
 				"version": ProjectSettings.get_setting("application/config/version"),
-				"language": language.next_lang,
+				"language": language.lang,
 			}
 
 		"player":
@@ -300,7 +301,7 @@ func get_content(content:String) -> Dictionary:
 		"farm":
 			return get_children_data(farming)
 			
-		"building":
+		"buildings":
 			return buildings.get_buildings()
 
 		"inventory":

@@ -33,8 +33,10 @@ var object:Dictionary = {
 		
 	}
 }
-
 func _ready():
+	update()
+
+func update():
 	if object.has(level):
 		if object[level].has("default"):
 			sprite.texture = object[level]["default"]
@@ -85,24 +87,14 @@ func check_sprite(key:String) -> void:
 	else:
 		push_error("Index " + str(level) + " is not in the dictionary.")
 
-func get_data(key:String, inDictionary:bool):
-	if inDictionary:
-		if object.has(level):
-			if object[level].has(key):
-				return object[level].get(key)
-			else:
-				push_error("The " + str(key) + " key stores a type that is not an object.")
-				return null
-		else:
-			push_error("Index " + str(level) + " is not in the dictionary.")
-			return null
-	else:
-		match key:
-			"level":
-				return level
-			_:
-				push_error("The specified key (" + str(key) + ") does not exist.")
-				return null
+func get_data():
+	if object.has(level):
+		return {"level": level}
+
+func load_data(obj_level:int) -> void:
+	self.level = obj_level
+	print(level)
+	update()
 
 func _on_area_2d_mouse_entered():
 	if !blur.state:

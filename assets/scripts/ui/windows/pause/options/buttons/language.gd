@@ -6,14 +6,14 @@ extends Control
 @export var languages:Array[String] = [
 	"ru", "en"
 	]
-var next_lang:int = 1
+var lang:int = 1
 
 func _ready():
 	change_language()
 
 func change_language() -> void:
-	next_lang = (next_lang + 1) % languages.size()
-	TranslationServer.set_locale(languages[next_lang])
+	lang = (lang + 1) % languages.size()
+	TranslationServer.set_locale(languages[lang])
 
 func _on_button_pressed() -> void:
 	if options.menu:

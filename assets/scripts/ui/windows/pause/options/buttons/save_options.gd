@@ -8,5 +8,4 @@ extends Control
 func _on_button_pressed():
 	if options.menu:
 		options.close()
-		pause.update_string_version()
 		pause.visible = true

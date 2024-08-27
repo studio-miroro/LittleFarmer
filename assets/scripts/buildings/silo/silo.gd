@@ -22,6 +22,9 @@ var object:Dictionary = {
 }
 
 func _ready():
+	update()
+
+func update():
 	if object.has(level):
 		if object[level].has("default"):
 			sprite.texture = object[level]["default"]
@@ -34,12 +37,13 @@ func change_sprite(type:bool):
 	if type:
 		var distance = round(global_position.distance_to(player.global_position))
 		if grid.mode == grid.gridmode.NOTHING and distance < max_distance:
-			check_sprite("hover")
-			tip.tooltip(
-				str(object[level]["caption"]) + "\n" +
-				str(object[level]["description"]) + "\n" +
-				"Уровень: " + str(level)
-				)
+			if object.has(level):
+				check_sprite("hover")
+				tip.tooltip(
+					str(object[level]["caption"]) + "\n" +
+					str(object[level]["description"]) + "\n" +
+					"Уровень: " + str(level)
+					)
 	else:
 		check_sprite("default")
 		tip.tooltip("")
@@ -55,6 +59,15 @@ func check_sprite(key:String):
 			push_error("There is no key at index " + str(level) + ".")
 	else:
 		push_error("Index " + str(level) + " is not in the dictionary.")
+
+func get_data():
+	if object.has(level):
+		return {"level": level}
+
+func load_data(obj_level:int) -> void:
+	self.level = obj_level
+	print(level)
+	update()
 
 func _on_collision_mouse_entered():
 	if !blur.state:

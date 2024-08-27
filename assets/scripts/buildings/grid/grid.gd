@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
@@ -12,8 +11,8 @@ extends Node2D
 @onready var grid:Sprite2D = $Sprite2D
 @onready var collision:Area2D = $GridCollision
 
-@export var default:CompressedTexture2D = load("res://assets/resources/buildings/grid/default.png")
-@export var error:CompressedTexture2D = load("res://assets/resources/buildings/grid/error.png")
+@onready var default:CompressedTexture2D = load("res://assets/resources/buildings/grid/default.png")
+@onready var error:CompressedTexture2D = load("res://assets/resources/buildings/grid/error.png")
 
 enum gridmode {NOTHING, DESTROY, FARMING, SEEDS, WATERING, BUILDING}
 var mode:int = gridmode.NOTHING
@@ -22,6 +21,7 @@ var check:bool = false
 func _ready():
 	z_index = 10
 	grid.texture = default
+	visible = false
 	
 func _input(event):
 	if !blur.state and mode != gridmode.NOTHING:
@@ -144,8 +144,8 @@ func _process(_delta):
 		visible = false
 		check = false
 
-func change_sprite(texture:bool):
-	if texture:
+func change_sprite(sprite:bool):
+	if sprite:
 		grid.texture = error
 	else:
 		grid.texture = default

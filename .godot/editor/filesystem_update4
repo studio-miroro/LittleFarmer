@@ -1,12 +1,20 @@
-res://levels/farm.tscn
+res://levels/main.tscn
 res://assets/scripts/ui/main menu/buttons/countinue_game.gd
 res://assets/shaders/pixel.gdshader
 res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
+res://levels/farm.tscn
 res://levels/village.tscn
-res://levels/main.tscn
-res://assets/scripts/ui/blackout.gd
-res://assets/scripts/ui/blur.gd
-res://assets/nodes/teleports.gd
-res://assets/scripts/ui/windows/pause/pause.gd
-res://assets/scripts/ui/windows/pause/buttons/button_exit.gd
+res://assets/scripts/ui/main menu/menu.gd
+res://assets/singletons/gamedata.gd
+res://assets/scripts/buildings/buildings.gd
+res://assets/scripts/ui/main menu/background.gd
+res://assets/scripts/buildings/house/house.gd
+res://assets/scripts/buildings/storage/storage.gd
+res://assets/scripts/buildings/animal stall/animal stall.gd
+res://assets/scripts/buildings/silo/silo.gd
+res://assets/scripts/buildings/mailbox/object.gd
+res://assets/scripts/buildings/grid/grid.gd
+res://assets/scripts/ui/inventory/inventory.gd
+res://assets/scripts/ui/windows/craft/blueprint.gd
+res://assets/scripts/ui/windows/pause/options/buttons/language.gd

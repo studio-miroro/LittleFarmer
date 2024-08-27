@@ -13,5 +13,5 @@ func _on_pressed() -> void:
 		blackout.blackout(true)
 		if main_scene == "Farm":
 			gamedata.gamesave()
-			
+
 		blackout.change_scene(path)

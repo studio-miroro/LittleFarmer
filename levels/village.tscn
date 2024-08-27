@@ -198,7 +198,7 @@ script = ExtResource("28_wk8hr")
 [node name="Area2D" type="Area2D" parent="Teleports/Village"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleports/Village/Area2D"]
-position = Vector2(-115, 32)
+position = Vector2(-146, 33)
 shape = SubResource("RectangleShape2D_aekrg")
 
 [connection signal="timeout" from="Shadow/CloudTimer" to="Shadow" method="_on_cloud_timer_timeout"]
