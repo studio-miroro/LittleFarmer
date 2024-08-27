@@ -91,7 +91,6 @@ func get_data():
 
 func load_data(obj_level:int) -> void:
 	self.level = obj_level
-	print(level)
 	update()
 
 func _on_area_2d_mouse_entered():

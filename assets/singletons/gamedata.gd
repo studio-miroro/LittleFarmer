@@ -33,7 +33,6 @@ var path:Dictionary = {
 }
 
 func _ready():
-	gameload() # test
 	if GameLoader.mode:
 		gameload()
 		GameLoader.loading(false)
