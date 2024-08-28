@@ -3,7 +3,7 @@ extends Control
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
-@onready var inventory:Control = get_node("/root/" + main_scene + "orld/User Interface/Windows/Inventory")
+@onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var balance:Control = get_node("/root/" + main_scene + "/User Interface/Hud/Main/Indicators/Balance")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var animation:AnimationPlayer = $AnimationPlayer
@@ -37,7 +37,7 @@ func _ready():
 	reset_data()
 	delete_letters(letters_container)
 
-func letter(header:String = "", description:String = "", author:String = "", money:int = 0, items:Dictionary = {}) -> void:
+func letter(header:String, description:String = "", author:String = "", money:int = 0, items:Dictionary = {}) -> void:
 	var key = letters.size() + 1
 	if header != ""\
 	or description != "": 
