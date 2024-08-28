@@ -29,7 +29,7 @@ var path:Dictionary = {
 	vectors = "user://vectors.json",
 	crafting = "user://crafting.json",
 	inventory = "user://inventory.json",
-	mailbox = "user://mailbox.json",
+	mailbox = "user://letters.json",
 }
 
 func _ready():
