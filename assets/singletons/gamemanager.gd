@@ -42,8 +42,9 @@ func _ready():
 			pass
 	else:
 		time_load()
-		inventory_load()
 		balance_load()
+		inventory_load()
+		buildings_load()
 
 func gamesave() -> void:
 	file_save(path.game, "settings")

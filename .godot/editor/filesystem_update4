@@ -15,3 +15,5 @@ res://assets/scripts/farming/plant.gd
 res://assets/scripts/buildings/grid/grid.gd
 res://assets/scripts/buildings/grid/collision.gd
 res://assets/scripts/farming/farming.gd
+res://assets/scripts/buildings/mailbox/letter.gd
+res://assets/scripts/buildings/mailbox/mail.gd

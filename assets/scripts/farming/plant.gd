@@ -13,6 +13,7 @@ extends Node2D
 @onready var timer:Timer = $Timer
 
 var crops:Object = Crops.new()
+
 var plantID:int
 var condition:int = phases.PLANTED
 var fertilizer:int = fertilizers.NOTHING

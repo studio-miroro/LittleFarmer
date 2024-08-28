@@ -16,11 +16,13 @@ func _input(event) -> void:
 
 func teleport() -> void:
 	blackout.blackout(true)
+	
 	if main_scene == "Farm":
 		var path:String = "res://levels/village.tscn"
 		manager.gamesave()
 		GameLoader.loading(false)
 		blackout.change_scene(path)
+
 	if main_scene == "Village":
 		var path:String = "res://levels/farm.tscn"
 		GameLoader.loading(true)
