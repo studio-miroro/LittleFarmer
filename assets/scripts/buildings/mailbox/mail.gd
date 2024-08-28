@@ -39,16 +39,14 @@ func _ready():
 
 func letter(header:String, description:String = "", author:String = "", money:int = 0, items:Dictionary = {}) -> void:
 	var key = letters.size() + 1
-	if header != ""\
-	or description != "": 
-		letters[key] = {}
-		letters[key]["header"] = header
-		letters[key]["description"] = description
-		letters[key]["author"] = author
-		letters[key]["money"] = money
-		letters[key]["items"] = {}
-		if items != {}:
-			check_all_keys(key, items)
+	letters[key] = {}
+	letters[key]["header"] = header
+	letters[key]["description"] = description
+	letters[key]["author"] = author
+	letters[key]["money"] = money
+	letters[key]["items"] = {}
+	if items != {}:
+		check_all_keys(key, items)
 
 func check_all_keys(id:int, dictionary:Dictionary) -> void:
 	for key in dictionary.keys():
