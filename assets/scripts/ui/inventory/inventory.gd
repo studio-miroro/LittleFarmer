@@ -162,7 +162,7 @@ func update_list() -> void:
 		if has_node("/root/" + main_scene + "/Buildings/Storage"):
 			if storage.object[storage.level].has("slots"):
 				var text = "Вместимость:"
-				list.text = text + " " + str(list_slots_return()) + "/" + str(storage.object[storage.level]["slots"])
+				list.text = text + " " + str(get_all_items()) + "/" + str(storage.object[storage.level]["slots"])
 				list.visible = true
 			else:
 				push_error("The 'slots' element does not exist.")
@@ -172,11 +172,13 @@ func update_list() -> void:
 	else:
 		push_error("There is no parent of 'Buildings' in the '" + main_scene + "' scene")
 
-func list_slots_return():
+func get_all_items():
 	if slots:
 		var item:int = 0
-		if slots.get_children() != []:
-			for child in slots.get_children():
+		if inventory_items != {}:
+			for it in inventory_items:
+		#if slots.get_children() != []:
+		#	for child in slots.get_children():
 				item += 1
 		return item
 	else:
@@ -193,11 +195,11 @@ func remove_item(id:int):
 		if id == key:
 			inventory_items.erase(key)
 
-func check_slots() -> bool:
-	if list_slots_return() <= storage.object[storage.level]["slots"]:
-		return true
-	else:
-		return false
+#func check_slots() -> bool:
+#	if get_all_items() <= storage.object[storage.level]["slots"]:
+#		return true
+#	else:
+#		return false
 
 func check_amount(index) -> void:
 	if inventory_items.has(index):
@@ -215,6 +217,11 @@ func get_specifications(index, i) -> void:
 		specifications.text = specifications.text + "\n• " + get_tip(i) + ": "+ Items.new().content[index]["specifications"][i]
 	else:
 		push_error("[ID: "+str(index)+"] The '"+ str(i) +"' element is not a string. Variant.type: " + str(typeof(Items.new().content[index]["specifications"][i])))
+
+func check_available_slots(counter:int) -> bool:
+	if counter > get_all_items():
+		return false
+	return true
 
 func get_tip(tip:String) -> String:
 	match tip:
