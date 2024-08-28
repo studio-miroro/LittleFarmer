@@ -23,14 +23,14 @@ func change_scene(path:String) -> void:
 		else:
 			match result:
 				ERR_CANT_OPEN:
-					push_warning("Error: Can't open the scene file.")
+					push_warning("Can't open the scene file.")
 				ERR_FILE_NOT_FOUND:
-					push_warning("Error: Scene file not found.")
+					push_warning("Scene file not found.")
 				ERR_INVALID_DATA:
-					push_warning("Error: Invalid scene file format.")
+					push_warning("Invalid scene file format.")
 				ERR_FILE_CORRUPT:
-					push_warning("Error: Scene file is corrupt.")
+					push_warning("Scene file is corrupt.")
 				ERR_UNAVAILABLE:
-					push_warning("Error: The scene is unavailable.")
+					push_warning("The scene is unavailable.")
 				_:
 					push_warning("An unknown error occurred: ", result)
