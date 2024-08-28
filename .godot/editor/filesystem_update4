@@ -17,3 +17,8 @@ res://assets/scripts/buildings/grid/collision.gd
 res://assets/scripts/farming/farming.gd
 res://assets/scripts/buildings/mailbox/letter.gd
 res://assets/scripts/buildings/mailbox/mail.gd
+res://assets/scripts/ui/main menu/menu.gd
+res://assets/scripts/ui/main menu/buttons/new_game.gd
+res://assets/scripts/ui/main menu/buttons/quit.gd
+res://assets/scripts/ui/main menu/background.gd
+res://assets/scripts/ui/blackout.gd
