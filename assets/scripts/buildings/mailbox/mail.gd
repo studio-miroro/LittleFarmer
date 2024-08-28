@@ -94,11 +94,6 @@ func get_data(letterID:int) -> void:
 		and (letters[index]["items"] != {} or letters[index]["money"] != 0):
 			items_block.visible = true
 
-			if !letters[index]["items"].has("collected"):
-				getItems_button.visible = true
-			else:
-				getItems_button.visible = false
-
 			if letters[index]["items"] != {}:
 				for i in letters[index]["items"]:
 					if typeof(letters[index]["items"][i]) == TYPE_DICTIONARY && letters[index]["items"][i].has("amount"):
@@ -111,7 +106,20 @@ func get_data(letterID:int) -> void:
 							)
 						else:
 							letters[index]["items"][i].erase(index)
-							push_warning("Error")
+
+				if !letters[index]["items"].has("collected"):
+					var item_counter:int = 0
+					for i in items_container.get_children():
+						item_counter+=1
+						if inventory.check_available_slots(item_counter):
+							getItems_button.disabled = true
+							getItems_button.text = tr("Недостаточно места")
+						else:
+							getItems_button.disabled = false
+							getItems_button.text = tr("Забрать")
+					getItems_button.visible = true
+				else:
+					getItems_button.visible = false
 
 			if letters[index]["money"] > 0:
 				var nested_str = tr("Вложение")
@@ -119,8 +127,7 @@ func get_data(letterID:int) -> void:
 				fixedItems_label.text = nested_str + ": " + str(balance.format(letters[index]["money"])) + " " + money_str
 				fixedItems_label.visible = true
 			else:
-				var attached_str = tr("Прикрепленные предметы")
-				fixedItems_label.text = attached_str + ":"
+				fixedItems_label.text = tr("Прикрепленные предметы") + ":"
 				fixedItems_label.visible = true
 
 		else:
