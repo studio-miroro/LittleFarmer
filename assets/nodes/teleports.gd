@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 
-@onready var gamedata = get_node("/root/" + main_scene)
+@onready var manager = get_node("/root/" + main_scene)
 @onready var blackout:Control = get_node("/root/" + main_scene + "/User Interface/Blackout")
 
 var teleporting:bool
@@ -18,9 +18,9 @@ func teleport() -> void:
 	blackout.blackout(true)
 	if main_scene == "Farm":
 		var path:String = "res://levels/village.tscn"
-		gamedata.gamesave()
+		manager.gamesave()
+		GameLoader.loading(false)
 		blackout.change_scene(path)
-		#GameLoader.loading(true)
 	if main_scene == "Village":
 		var path:String = "res://levels/farm.tscn"
 		GameLoader.loading(true)

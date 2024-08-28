@@ -21,7 +21,7 @@ func crop(id:int, pos:Vector2):
 		plant.set_position(tilemap.map_to_local(mouse_position))
 		add_child(plant)
 		plant.z_index = 6
-		plant.name = "Plant_1"
+		plant.name = "plant_1"
 		plant.plant(id)
 		plant.check(id,pos)
 	else:
@@ -34,7 +34,7 @@ func crop(id:int, pos:Vector2):
 		plant.set_position(tilemap.map_to_local(mouse_position))
 		add_child(plant)
 		plant.z_index = 6
-		plant.name = "Plant_1"
+		plant.name = "plant_1"
 		plant.plant(id)
 		plant.check(id,pos)
 

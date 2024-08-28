@@ -6,6 +6,7 @@ extends Control
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var build:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting")
 @onready var mailbox:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox")
+@onready var storage:Node2D = get_node("/root/" + main_scene + "/Buildings/Storage")
 @onready var node:PackedScene = load("res://assets/nodes/UI/Inventory/slot.tscn")
 @onready var anim:AnimationPlayer = $Animation
 
@@ -23,7 +24,6 @@ extends Control
 @onready var list:Label = $Panel/StorageItemList
 
 var menu:bool = false
-var storage:Object = Storage.new()
 var inventory_items:Dictionary = {}
 enum item_type {
 	seed,
@@ -158,13 +158,19 @@ func item_create(i) -> void:
 			remove_item(i)
 
 func update_list() -> void:
-	if storage.object[storage.level].has("slots"):
-		var text = "Вместимость:"
-		list.text = text + " " + str(list_slots_return()) + "/" + str(storage.object[storage.level]["slots"])
-		list.visible = true
+	if has_node("/root/" + main_scene + "/Buildings"):
+		if has_node("/root/" + main_scene + "/Buildings/Storage"):
+			if storage.object[storage.level].has("slots"):
+				var text = "Вместимость:"
+				list.text = text + " " + str(list_slots_return()) + "/" + str(storage.object[storage.level]["slots"])
+				list.visible = true
+			else:
+				push_error("The 'slots' element does not exist.")
+				list.visible = false
+		else:
+			push_error("In the parent of 'Buildings'  there is no child node 'Storage'")
 	else:
-		push_error("The 'slots' element does not exist.")
-		list.visible = false
+		push_error("There is no parent of 'Buildings' in the '" + main_scene + "' scene")
 
 func list_slots_return():
 	if slots:

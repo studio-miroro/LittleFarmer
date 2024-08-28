@@ -1,6 +1,6 @@
-[gd_scene load_steps=35 format=3 uid="uid://v2hm5trbrh1c"]
+[gd_scene load_steps=39 format=3 uid="uid://v2hm5trbrh1c"]
 
-[ext_resource type="Script" path="res://assets/singletons/gamedata.gd" id="1_3gno8"]
+[ext_resource type="Script" path="res://assets/singletons/gamemanager.gd" id="1_3gno8"]
 [ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/cursor.tscn" id="1_33f5s"]
 [ext_resource type="Texture2D" uid="uid://b66gdyd27b6v8" path="res://assets/resources/nature/grass.png" id="2_8dg41"]
 [ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="2_jgwxj"]
@@ -25,8 +25,12 @@
 [ext_resource type="Texture2D" uid="uid://d3hjp3y2ylfmh" path="res://assets/resources/nature/shadow.png" id="28_vo68o"]
 [ext_resource type="Script" path="res://assets/nodes/teleports.gd" id="28_wk8hr"]
 [ext_resource type="Script" path="res://assets/scripts/world/nature/light.gd" id="29_g56t7"]
+[ext_resource type="Script" path="res://assets/scripts/buildings/buildings.gd" id="29_pjypp"]
 [ext_resource type="Texture2D" uid="uid://bmm3sn5q3j181" path="res://assets/resources/nature/light.webp" id="30_if0e1"]
+[ext_resource type="PackedScene" uid="uid://b6yctk4o25kkc" path="res://assets/nodes/buildings/mailbox.tscn" id="30_qol0i"]
 [ext_resource type="Script" path="res://assets/scripts/world/nature/pointlight.gd" id="31_bu52b"]
+[ext_resource type="PackedScene" uid="uid://c06vvkgkvvlfq" path="res://assets/nodes/buildings/animal stall.tscn" id="31_kamc5"]
+[ext_resource type="PackedScene" uid="uid://d0hq20gmqku1b" path="res://assets/nodes/buildings/storage.tscn" id="32_3aixo"]
 [ext_resource type="Texture2D" uid="uid://kcdto5fme037" path="res://assets/resources/nature/tree.png" id="32_ofkp1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jvamn"]
@@ -200,6 +204,24 @@ script = ExtResource("28_wk8hr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleports/Village/Area2D"]
 position = Vector2(-146, 33)
 shape = SubResource("RectangleShape2D_aekrg")
+
+[node name="Buildings" type="Node2D" parent="."]
+script = ExtResource("29_pjypp")
+
+[node name="Mailbox" parent="Buildings" instance=ExtResource("30_qol0i")]
+visible = false
+z_index = 4
+position = Vector2(255, 37)
+
+[node name="Animal Stall" parent="Buildings" instance=ExtResource("31_kamc5")]
+visible = false
+z_index = 4
+position = Vector2(200, 3)
+
+[node name="Storage" parent="Buildings" instance=ExtResource("32_3aixo")]
+visible = false
+z_index = 4
+position = Vector2(360, 19)
 
 [connection signal="timeout" from="Shadow/CloudTimer" to="Shadow" method="_on_cloud_timer_timeout"]
 [connection signal="mouse_entered" from="Teleports/Village/Area2D" to="Teleports/Village" method="_on_area_2d_mouse_entered"]

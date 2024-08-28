@@ -1,7 +1,7 @@
 [gd_scene load_steps=59 format=3 uid="uid://4vypwfxar3e"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_ieipv"]
-[ext_resource type="Script" path="res://assets/singletons/gamedata.gd" id="2_880lm"]
+[ext_resource type="Script" path="res://assets/singletons/gamemanager.gd" id="2_880lm"]
 [ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/ui/system/tooltip/tooltip.tscn" id="2_otbj1"]
 [ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="3_1lalu"]
 [ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/cursor.tscn" id="3_b52oi"]
@@ -1647,7 +1647,7 @@ _data = {
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.494118, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_g75xj"]
+[sub_resource type="CurveTexture" id="CurveTexture_cqifc"]
 curve = SubResource("Curve_jdrmm")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qsejb"]
@@ -1657,7 +1657,7 @@ direction = Vector3(1, -1, -1)
 initial_velocity_min = 5.0
 initial_velocity_max = 5.0
 gravity = Vector3(0, -1, 1)
-scale_curve = SubResource("CurveTexture_g75xj")
+scale_curve = SubResource("CurveTexture_cqifc")
 turbulence_noise_speed = Vector3(0, -1, 0)
 turbulence_influence_max = 0.719
 

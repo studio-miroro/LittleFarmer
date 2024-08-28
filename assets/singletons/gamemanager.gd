@@ -19,7 +19,7 @@ extends Node
 
 @onready var language:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
 
-var object_created:int
+var planted:int
 var path:Dictionary = {
 	game = "user://game.json",
 	farm = "user://farm.json",
@@ -33,12 +33,17 @@ var path:Dictionary = {
 }
 
 func _ready():
-	if GameLoader.mode:
-		gameload()
-		GameLoader.loading(false)
+	if main_scene == "Farm":
+		if GameLoader.mode:
+			gameload()
+			GameLoader.loading(false)
+		else:
+			# StartTutorial()
+			pass
 	else:
-		# StartTutorial()
-		pass
+		time_load()
+		inventory_load()
+		balance_load()
 
 func gamesave() -> void:
 	file_save(path.game, "settings")
@@ -54,10 +59,14 @@ func gamesave() -> void:
 func gameload() -> void:
 	remove_all_child(farming)
 	terrains_remove()
-	time_load()
-	player_load()
 	plant_load()
+
+	time_load()
+	balance_load()
 	buildings_load()
+	inventory_load()
+	craft_load()
+	mailbox_load()
 	
 func file_save(path_file, content) -> void:
 	var json_string = JSON.stringify(get_content(content), "\t")
@@ -143,9 +152,9 @@ func create_nodes(parent:Node2D, node: PackedScene, positions) -> void:
 		for position in positions:
 			var object = node.instantiate()
 			if position is Vector2:
-				object_created +=1
-				object.name = "Plant_" + str(object_created)
-				var object_name = "Plant_" + str(object_created)
+				planted +=1
+				object.name = "plant_" + str(planted)
+				var object_name = "plant_" + str(planted)
 				object.global_position = tilemap.map_to_local(position)
 				object.z_index = 6
 				if object.has_method("check_node"):
@@ -161,7 +170,7 @@ func remove_all_child(parent: Node):
 	for child in parent.get_children():
 		parent.remove_child(child)
 		child.queue_free()
-	object_created = 0
+	planted = 0
 	
 func erase_cells(layer: int) -> void:
 	var used_cells = tilemap.get_used_cells(layer)
@@ -236,12 +245,6 @@ func time_load() -> void:
 	cycle.hour = get_key(path.world, "hour", "time")
 	cycle.minute = get_key(path.world, "minute", "time")
 	cycle.timeload(get_key(path.world, "cycle", "time"))
-
-func player_load() -> void:
-	balance_load()
-	inventory_load()
-	craft_load()
-	mailbox_load()
 
 func balance_load() -> void:
 	balance.money = get_key(path.player, "balance")

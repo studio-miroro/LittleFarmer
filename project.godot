@@ -21,7 +21,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GameLoader="*res://assets/singletons/gameloader.gd"
+GameLoader="*res://assets/singletons/loader.gd"
 
 [display]
 
@@ -104,7 +104,6 @@ test={
 [internationalization]
 
 locale/translation_remaps={}
-locale/translations=PackedStringArray("res://assets/localizations/en.po", "res://assets/localizations/ru.po")
 locale/translations_pot_files=PackedStringArray("res://assets/nodes/ui/windows/pause/options/ui items/buttons/language.tscn", "res://assets/nodes/ui/windows/pause/options/ui items/buttons/exit.tscn", "res://assets/nodes/ui/windows/pause/pause.tscn", "res://assets/nodes/ui/windows/mail/mail.tscn", "res://assets/nodes/ui/windows/pause/options/button_language.tscn", "res://assets/nodes/ui/windows/pause/options/button_back.tscn", "res://assets/nodes/ui/windows/pause/options/sections/button_control.tscn", "res://assets/nodes/ui/windows/pause/options/sections/button_graphic.tscn", "res://assets/nodes/ui/windows/pause/options/sections/button_sound.tscn", "res://assets/nodes/ui/main menu/buttons/loadgame.tscn", "res://assets/nodes/ui/main menu/buttons/newgame.tscn", "res://assets/nodes/ui/main menu/buttons/quit.tscn")
 
 [rendering]

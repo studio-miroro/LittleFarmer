@@ -1,7 +1,5 @@
 res://levels
-res://assets/nodes/systems
 res://assets/resources/nature
-res://assets/localizations
 res://assets/nodes/ui/main menu/buttons
 res://assets/singletons
 res://assets/scripts/ui/main menu/buttons

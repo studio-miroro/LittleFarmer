@@ -2,7 +2,7 @@ extends Button
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 
-@onready var gamedata = get_node("/root/" + main_scene)
+@onready var manager = get_node("/root/" + main_scene)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var blackout:Control = get_node("/root/" + main_scene + "/User Interface/Blackout")
 
@@ -12,6 +12,6 @@ func _on_pressed() -> void:
 	if pause.paused:
 		blackout.blackout(true)
 		if main_scene == "Farm":
-			gamedata.gamesave()
+			manager.gamesave()
 
 		blackout.change_scene(path)
