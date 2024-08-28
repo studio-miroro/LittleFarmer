@@ -5,7 +5,7 @@ extends ColorRect
 const dark:Color = Color("222831")
 const light:Color = Color("EEEEEE")
 
-const evening:int = 17
+const evening:int = 18
 const morning:int = 7
 
 func _ready():
