@@ -4,6 +4,7 @@ extends Control
 
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
+@onready var storage:Node2D = get_node("/root/" + main_scene + "/Buildings/Storage")
 @onready var balance:Control = get_node("/root/" + main_scene + "/User Interface/Hud/Main/Indicators/Balance")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var animation:AnimationPlayer = $AnimationPlayer
@@ -107,16 +108,20 @@ func get_data(letterID:int) -> void:
 						else:
 							letters[index]["items"][i].erase(index)
 
-				if !letters[index]["items"].has("collected"):
-					var item_counter:int = 0
-					for i in items_container.get_children():
-						item_counter+=1
-						if inventory.check_available_slots(item_counter):
-							getItems_button.disabled = true
-							getItems_button.text = tr("Недостаточно места")
+				if !letters[index]["items"].has("collected"):		
+					if storage.object.has(storage.level):
+						if storage.object[storage.level].has("slots"):
+							if storage.object[storage.level]["slots"] - inventory.get_all_items() >= get_letter_items():
+								getItems_button.disabled = false
+								getItems_button.text = "Забрать"
+							else:
+								getItems_button.disabled = true
+								getItems_button.text = "Недостаточно места"
 						else:
-							getItems_button.disabled = false
-							getItems_button.text = tr("Забрать")
+							push_error("")
+					else:
+						push_error("")
+
 					getItems_button.visible = true
 				else:
 					getItems_button.visible = false
@@ -157,7 +162,7 @@ func get_all_items(letter_id, dictionary:Dictionary) -> void:
 
 	dictionary[letter_id]["items"]["collected"] = true
 	getItems_button.visible = false
-		
+
 func check_letter_item(check:int, letterID, dictionary:Dictionary):
 	match check:
 		1:
@@ -184,7 +189,13 @@ func delete_letters(parent:VBoxContainer) -> void:
 	for child in parent.get_children():
 		parent.remove_child(child)
 		child.queue_free()
-			
+
+func get_letter_items():
+	var item_counter:int = 0
+	for i in items_container.get_children():
+		item_counter+=1
+	return item_counter
+
 func letter_create_items(id:int, amount:int, parent:GridContainer, node:PackedScene) -> void:
 	if item.content.has(id):
 		var object = node.instantiate()

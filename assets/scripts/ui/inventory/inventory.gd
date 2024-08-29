@@ -24,7 +24,7 @@ extends Control
 @onready var list:Label = $Panel/StorageItemList
 
 var menu:bool = false
-var inventory_items:Dictionary = {}
+var inventory_items:Dictionary = {1:{"amount":100},2:{"amount":100},3:{"amount":100},4:{"amount":100},}
 enum item_type {
 	seed,
 }
@@ -177,8 +177,6 @@ func get_all_items():
 		var item:int = 0
 		if inventory_items != {}:
 			for it in inventory_items:
-		#if slots.get_children() != []:
-		#	for child in slots.get_children():
 				item += 1
 		return item
 	else:
@@ -194,12 +192,6 @@ func remove_item(id:int):
 	for key in inventory_items:
 		if id == key:
 			inventory_items.erase(key)
-
-#func check_slots() -> bool:
-#	if get_all_items() <= storage.object[storage.level]["slots"]:
-#		return true
-#	else:
-#		return false
 
 func check_amount(index) -> void:
 	if inventory_items.has(index):
@@ -218,10 +210,6 @@ func get_specifications(index, i) -> void:
 	else:
 		push_error("[ID: "+str(index)+"] The '"+ str(i) +"' element is not a string. Variant.type: " + str(typeof(Items.new().content[index]["specifications"][i])))
 
-func check_available_slots(counter:int) -> bool:
-	if counter > get_all_items():
-		return false
-	return true
 
 func get_tip(tip:String) -> String:
 	match tip:
