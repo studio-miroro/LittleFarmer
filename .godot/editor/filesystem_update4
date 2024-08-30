@@ -1,16 +1,12 @@
 res://assets/scripts/ui/main menu/menu.gd
-res://assets/scripts/ui/blackout.gd
-res://assets/scripts/ui/main menu/background.gd
-res://assets/scripts/ui/camera/camera_movement.gd
-res://assets/nodes/ui/camera.tscn
+res://assets/singletons/gamemanager.gd
+res://levels/main.tscn
 res://assets/scripts/ui/main menu/buttons/countinue_game.gd
 res://assets/shaders/pixel.gdshader
 res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
-res://assets/scripts/buildings/mailbox/mail.gd
-res://levels/main.tscn
-res://assets/scripts/UI/inventory/inventory.gd
 res://levels/farm.tscn
 res://levels/village.tscn
+res://assets/nodes/ui/camera.tscn
 res://assets/nodes/ui/system/notifications/notice.tscn
 res://assets/nodes/ui/windows/mail/mail.tscn

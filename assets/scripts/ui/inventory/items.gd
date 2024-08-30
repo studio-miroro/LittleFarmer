@@ -5,13 +5,101 @@ var content:Dictionary = {
 	"max": 9999,
 	1: {
 		"caption": "Бревно",
-		"description": "Test",
+		"description": "",
 		"type": "Стройматериалы",
 		"purchase": 1,
 		"sale": 0,
-		"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
+		"icon": load("res://assets/resources/ui/inventory/items/resources/timber.png"),
 	},
 	2: {
+		"caption": "Доски",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load("res://assets/resources/ui/inventory/items/resources/timber.png"),
+	},
+	3: {
+		"caption": "Камень",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load(""),
+	},
+	4: {
+		"caption": "Булыжник",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load(""),
+	},
+	5: {
+		"caption": "Уголь",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load(""),
+	},
+	6: {
+		"caption": "Каменноугольный кокс",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load(""),
+	},
+	7: {
+		"caption": "Медная руда",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load(""),
+	},
+	8: {
+		"caption": "Медный слиток",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load(""),
+	},
+	9: {
+		"caption": "Железная руда",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load(""),
+	},
+	10: {
+		"caption": "Слиток железа",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load(""),
+	},
+	11: {
+		"caption": "Алюминиевая руда",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load(""),
+	},
+	12: {
+		"caption": "Алюминий",
+		"description": "",
+		"type": "Стройматериалы",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load(""),
+	},
+	13: {
 		"caption": "Семена моркови",
 		"description": "Маленькие семена для выращивания моркови. Посадите их на плодородной земле, поливайте и ждите урожая.",
 		"specifications": {
@@ -24,7 +112,7 @@ var content:Dictionary = {
 		"sale": 0,
 		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_1.png"),
 	},
-	3: {
+	14: {
 		"caption": "Семена картофеля",
 		"description": "Эти семена помогут вырастить питательный картофель. Посадите их в землю, поливайте и наблюдайте за ростом.",
 		"specifications": {
@@ -37,7 +125,7 @@ var content:Dictionary = {
 		"sale": 0,
 		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_2.png"),
 	},
-	4: {
+	15: {
 		"caption": "Семена редиса",
 		"description": "Маленькие семена для быстрого выращивания хрустящего редиса. Посадите их, поливайте и ждите урожая.",
 		"specifications": {
@@ -50,7 +138,7 @@ var content:Dictionary = {
 		"sale": 0,
 		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_3.png"),
 	},
-	5: {
+	16: {
 		"caption": "Семена капусты",
 		"description": "Семена для выращивания плотной и сочной капусты. Посадите их в землю, поливайте и ждите зрелости.",
 		"specifications": {
@@ -63,7 +151,7 @@ var content:Dictionary = {
 		"sale": 0,
 		"icon": null#load("res://assets/resources/UI/inventory/items/seeds packets/packet_4.png"),
 	},
-	6: {
+	17: {
 		"caption": "Семена капусты TEST",
 		"description": "Семена для выращивания плотной и сочной капусты. Посадите их в землю, поливайте и ждите зрелости.",
 		"specifications": {
