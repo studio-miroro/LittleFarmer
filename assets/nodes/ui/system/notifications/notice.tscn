@@ -60,7 +60,7 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"delete"
+"method": &"notice_delete"
 }]
 }
 
@@ -105,22 +105,22 @@ theme_override_constants/margin_bottom = 5
 [node name="HBoxContainer" type="HBoxContainer" parent="Main/Content"]
 layout_mode = 2
 
-[node name="Icon" type="MarginContainer" parent="Main/Content/HBoxContainer"]
+[node name="MarginIcon" type="MarginContainer" parent="Main/Content/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 10
 
-[node name="Icon" type="TextureRect" parent="Main/Content/HBoxContainer/Icon"]
+[node name="Icon" type="TextureRect" parent="Main/Content/HBoxContainer/MarginIcon"]
 layout_mode = 2
 texture = ExtResource("2_oe23o")
 expand_mode = 2
 
-[node name="Label" type="MarginContainer" parent="Main/Content/HBoxContainer"]
+[node name="MarginLabel" type="MarginContainer" parent="Main/Content/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_right = 10
 
-[node name="Label" type="Label" parent="Main/Content/HBoxContainer/Label"]
+[node name="Label" type="Label" parent="Main/Content/HBoxContainer/MarginLabel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
 text = "

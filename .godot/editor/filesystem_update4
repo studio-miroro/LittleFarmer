@@ -1,13 +1,10 @@
-res://assets/scripts/buildings/mailbox/mail.gd
-res://levels/main.tscn
+res://assets/scripts/ui/main menu/menu.gd
+res://assets/scripts/ui/blackout.gd
+res://assets/scripts/ui/main menu/background.gd
+res://assets/scripts/ui/camera/camera_movement.gd
+res://assets/nodes/ui/camera.tscn
 res://assets/scripts/ui/main menu/buttons/countinue_game.gd
 res://assets/shaders/pixel.gdshader
 res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
-res://levels/farm.tscn
-res://levels/village.tscn
-res://assets/scripts/ui/inventory/inventory.gd
-res://assets/scripts/UI/inventory/inventory.gd
-res://assets/scripts/buildings/mailbox/letter.gd
-res://assets/scripts/ui/inventory/slot.gd
-res://assets/scripts/world/nature/time.gd
+res://assets/scripts/buildings/mailbox/mail.gd
