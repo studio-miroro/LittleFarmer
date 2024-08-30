@@ -1,6 +1,6 @@
 [gd_scene load_steps=30 format=3 uid="uid://b8eteio2464wo"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/camera/camera_movement.gd" id="1_6ghsa"]
+[ext_resource type="Script" path="res://assets/scripts/ui/camera/player_movement.gd" id="1_6ghsa"]
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_7c5dj"]
 [ext_resource type="Script" path="res://assets/scripts/ui/camera/zoom.gd" id="3_kqeun"]
 
