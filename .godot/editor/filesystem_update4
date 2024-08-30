@@ -8,3 +8,9 @@ res://assets/shaders/pixel.gdshader
 res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
 res://assets/scripts/buildings/mailbox/mail.gd
+res://levels/main.tscn
+res://assets/scripts/UI/inventory/inventory.gd
+res://levels/farm.tscn
+res://levels/village.tscn
+res://assets/nodes/ui/system/notifications/notice.tscn
+res://assets/nodes/ui/windows/mail/mail.tscn

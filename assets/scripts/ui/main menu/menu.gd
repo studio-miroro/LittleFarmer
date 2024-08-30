@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var version:Label = $"../Main/Credits/Version"
+@onready var version:Label = $CanvasLayer/Main/Credits/Version
 @onready var background:ColorRect = $CanvasLayer/Background
 @onready var blackout:Control = $CanvasLayer/Blackout
 
