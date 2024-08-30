@@ -10,3 +10,8 @@ res://levels/village.tscn
 res://assets/nodes/ui/camera.tscn
 res://assets/nodes/ui/system/notifications/notice.tscn
 res://assets/nodes/ui/windows/mail/mail.tscn
+res://assets/singletons/filemanager.gd
+res://assets/system/filemanager.gd
+res://assets/system/data_manager.gd
+res://assets/system/file_manager.gd
+res://assets/system/game_loader.gd

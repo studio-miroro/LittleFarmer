@@ -21,7 +21,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GameLoader="*res://assets/singletons/loader.gd"
+GameLoader="*res://assets/system/game_loader.gd"
 
 [display]
 
