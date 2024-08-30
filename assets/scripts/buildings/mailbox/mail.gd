@@ -3,16 +3,16 @@ extends Control
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var storage:Node2D = get_node("/root/" + main_scene + "/Buildings/Storage")
 @onready var balance:Control = get_node("/root/" + main_scene + "/User Interface/Hud/Main/Indicators/Balance")
-@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
-@onready var animation:AnimationPlayer = $AnimationPlayer
 
 @onready var letters_container:VBoxContainer = $Panel/HBoxContainer/LettersScroll/VBoxContainer
 @onready var content_container:VBoxContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer
 @onready var items_container:GridContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer/Items/GridContainer
 @onready var items_block:MarginContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items
+@onready var animation:AnimationPlayer = $AnimationPlayer
 @onready var letter_node:PackedScene = load("res://assets/nodes/ui/windows/mail/letter.tscn")
 @onready var item_node:PackedScene = load("res://assets/nodes/ui/inventory/slot.tscn")
 
@@ -20,7 +20,7 @@ extends Control
 @onready var description_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/MainContent/Text
 @onready var author_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Author/Author
 @onready var fixedItems_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/LabelContainer/Label
-@onready var getItems_button:Button = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems
+@onready var button:Button = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems
 
 var item:Object = Items.new()
 var menu:bool = false
@@ -112,19 +112,19 @@ func get_data(letterID:int) -> void:
 					if storage.object.has(storage.level):
 						if storage.object[storage.level].has("slots"):
 							if storage.object[storage.level]["slots"] - inventory.get_all_items() >= get_letter_items():
-								getItems_button.disabled = false
-								getItems_button.text = "Забрать"
+								button.disabled = false
+								button.text = "Забрать"
 							else:
-								getItems_button.disabled = true
-								getItems_button.text = "Недостаточно места"
+								button.disabled = true
+								button.text = "Недостаточно места"
 						else:
 							push_error("")
 					else:
 						push_error("")
 
-					getItems_button.visible = true
+					button.visible = true
 				else:
-					getItems_button.visible = false
+					button.visible = false
 
 			if letters[index]["money"] > 0:
 				var nested_str = tr("Вложение")
@@ -161,7 +161,7 @@ func get_all_items(letter_id, dictionary:Dictionary) -> void:
 		balance.add_money(dictionary[letter_id]["money"])
 
 	dictionary[letter_id]["items"]["collected"] = true
-	getItems_button.visible = false
+	button.visible = false
 
 func check_letter_item(check:int, letterID, dictionary:Dictionary):
 	match check:
@@ -240,7 +240,7 @@ func check_window() -> void:
 	visible = menu
 
 func _on_get_items_pressed():
-	if getItems_button.visible:
+	if button.visible:
 		get_all_items(index, letters)
 
 func _on_close_pressed() -> void:
