@@ -1,7 +1,7 @@
 extends Control
 
-@onready var icon:TextureRect = $Main/Content/HBoxContainer/Icon/Icon
-@onready var label:Label = $Main/Content/HBoxContainer/Label/Label
+@onready var icon:TextureRect = $Main/Content/HBoxContainer/MarginIcon/Icon
+@onready var label:Label = $Main/Content/HBoxContainer/MarginLabel/Label
 @onready var anim:AnimationPlayer = $AnimationPlayer
 @onready var time:Timer = $Timer
 
@@ -10,16 +10,16 @@ var icons:Dictionary = {
 	"error": load("res://assets/resources/ui/notifications/icons/error.png"),
 }
 
-func notice(icon, text):
+func notice(image, text:String) -> void:
 	set_text(text)
-	set_icon(icon)
+	set_icon(image)
 	anim.play("create")
 
-func set_text(text:String):
+func set_text(text:String) -> void:
 	visible = true
 	label.text = text
 
-func set_icon(image):
+func set_icon(image) -> void:
 	if image != null:
 		if typeof(image) == TYPE_STRING\
 		and icons.has(image):
@@ -34,8 +34,8 @@ func set_icon(image):
 	else:
 		icon.visible = false
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	anim.play("delete")
 
-func delete():
+func notice_delete() -> void:
 	queue_free()
