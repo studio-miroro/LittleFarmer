@@ -1,5 +1,7 @@
 extends ColorRect
 
+@onready var version:Label = $"../Main/Credits/Version"
+
 const dark:Color = Color("222831")
 const light:Color = Color("EEEEEE")
 
