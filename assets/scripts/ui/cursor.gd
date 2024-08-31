@@ -1,30 +1,56 @@
 extends Node2D
 
-@onready var cursor_static:CompressedTexture2D = load("res://assets/resources/ui/cursor/cursor_static.png")
-@onready var cursor_active:CompressedTexture2D = load("res://assets/resources/ui/cursor/cursor_active.png")
+enum states {DEFAULT}
+var state:int = states.DEFAULT
+
+var cursor:Dictionary = {
+	"default": {
+		"static": load("res://assets/resources/ui/cursor/cursor_static.png"),
+		"active": load("res://assets/resources/ui/cursor/cursor_active.png"),
+	},
+}
 
 func _ready():
-	Input.set_custom_mouse_cursor(
-		cursor_static, 
-		Input.CURSOR_ARROW, 
-		Vector2(0,0)
-		)
+	if cursor.has("default"):
+		if cursor["default"].has("static"):
+			Input.set_custom_mouse_cursor(
+				cursor["default"]["static"], 
+				Input.CURSOR_ARROW, 
+				Vector2(0,0)
+				)
+		else:
+			push_error("The 'static' key is missing")
+	else:
+		push_error("The 'default' group does not exist.")
 		
 func _input(event) -> void:
-	if event is InputEventMouseButton\
-	and event.button_index == MOUSE_BUTTON_LEFT\
-	and event.is_pressed():
-		Input.set_custom_mouse_cursor(
-			cursor_active,
-			Input.CURSOR_ARROW, 
-			Vector2(0,0)
-			)
-			
-	if event is InputEventMouseButton\
-	and event.button_index == MOUSE_BUTTON_LEFT\
-	and event.is_released():
-		Input.set_custom_mouse_cursor(
-			cursor_static,
-			Input.CURSOR_ARROW, 
-			Vector2(0,0)
-			)
+	match state:
+		states.DEFAULT:
+			if cursor.has("default"):
+				if cursor["default"].has("active"):
+					if event is InputEventMouseButton\
+					and event.button_index == MOUSE_BUTTON_LEFT\
+					and event.is_pressed():
+						Input.set_custom_mouse_cursor(
+							cursor["default"]["active"],
+							Input.CURSOR_ARROW, 
+							Vector2(0,0)
+							)
+				else:
+					push_error("The 'active' key is missing")
+					
+				if cursor["default"].has("static"):
+					if event is InputEventMouseButton\
+					and event.button_index == MOUSE_BUTTON_LEFT\
+					and event.is_released():
+						Input.set_custom_mouse_cursor(
+							cursor["default"]["static"],
+							Input.CURSOR_ARROW, 
+							Vector2(0,0)
+							)
+				else:
+					push_error("The 'static' key is missing")
+			else:
+				push_error("The 'default' group does not exist.")
+		_:
+			pass

@@ -1,7 +1,4 @@
-res://assets/scripts/ui/main menu/menu.gd
-res://assets/singletons/gamemanager.gd
 res://levels/main.tscn
-res://assets/scripts/ui/main menu/buttons/countinue_game.gd
 res://assets/shaders/pixel.gdshader
 res://assets/shaders/blur.gdshader
 res://assets/resources/nature/cycle-gradient.tres
@@ -10,8 +7,5 @@ res://levels/village.tscn
 res://assets/nodes/ui/camera.tscn
 res://assets/nodes/ui/system/notifications/notice.tscn
 res://assets/nodes/ui/windows/mail/mail.tscn
-res://assets/singletons/filemanager.gd
-res://assets/system/filemanager.gd
-res://assets/system/data_manager.gd
-res://assets/system/file_manager.gd
-res://assets/system/game_loader.gd
+res://assets/scripts/ui/cursor.gd
+res://assets/scripts/buildings/grid/grid.gd
