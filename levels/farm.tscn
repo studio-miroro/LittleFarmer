@@ -1,7 +1,7 @@
 [gd_scene load_steps=59 format=3 uid="uid://4vypwfxar3e"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_ieipv"]
-[ext_resource type="Script" path="res://assets/singletons/gamemanager.gd" id="2_880lm"]
+[ext_resource type="Script" path="res://assets/system/data_manager.gd" id="2_880lm"]
 [ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/ui/system/tooltip/tooltip.tscn" id="2_otbj1"]
 [ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="3_1lalu"]
 [ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/cursor.tscn" id="3_b52oi"]
