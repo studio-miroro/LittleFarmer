@@ -2,7 +2,7 @@ import os
 import shutil
 
 import_dir = "./.import"
-extensions = [".tscn-", ".tmp", ".cfg", ".save", ".dmp"]
+extensions = [".tscn-", ".tmp", ".cfg", ".save", ".dmp", ".md5", ".ctex"]
 
 if os.path.exists(import_dir):
     shutil.rmtree(import_dir)
