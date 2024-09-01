@@ -2,12 +2,11 @@ extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
-
 @onready var farming:Node2D = get_node("/root/" + main_scene + "/Farming")
 @onready var farm:Node2D = get_node("/root/" + main_scene + "/")
-
 @onready var grid:Sprite2D = $Sprite2D
 @onready var collision:Area2D = $GridCollision
 
@@ -17,6 +16,9 @@ extends Node2D
 enum gridmode {NOTHING, DESTROY, FARMING, SEEDS, WATERING, BUILDING}
 var mode:int = gridmode.NOTHING
 var check:bool = false
+
+var inventory_plant:int
+var plantID:int
 
 func _ready():
 	z_index = 10
@@ -42,7 +44,7 @@ func _input(event):
 func _process(_delta):
 	if !blur.state and visible:
 
-		var mouse_pos: Vector2 = get_global_mouse_position()
+		var mouse_pos:Vector2 = get_global_mouse_position()
 		var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 		var ground_tile_position = []
 		var farming_tile_position = []
@@ -121,10 +123,19 @@ func _process(_delta):
 
 			gridmode.SEEDS:
 				collision.planting_collision_check()
-				if check:
-					var ID = randi_range(1,4)
-					if collision.planting_collision_check():
-						farming.crop(ID, tile_mouse_pos)
+				if inventory.check_item_amount(inventory_plant):
+					if check:
+						if inventory.get_item_amount(inventory_plant) > 0:
+							if collision.planting_collision_check():
+								if Crops.new().crops.has(plantID):
+									inventory.subject_item(inventory_plant, 1)
+									farming.crop(plantID, tile_mouse_pos)
+								else:
+									push_error("The numerical ID (" + str(plantID) + ") of this crop is missing in the main file crops.gd")
+				else:
+					mode = gridmode.NOTHING
+					visible = false
+
 				check = false
 
 			gridmode.BUILDING:

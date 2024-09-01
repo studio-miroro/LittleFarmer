@@ -44,3 +44,6 @@ res://assets/nodes/ui/system/context_menu/ContextMenu.tscn
 res://assets/nodes/ui/system/context_menu/ContextMenu_button.tscn
 res://assets/scripts/ui/system/context_menu/ContextMenu.gd
 res://assets/scripts/ui/system/context_menu/ContextMenu_button.gd
+res://assets/scripts/farming/farming.gd
+res://assets/scripts/ui/hud/instruments/button_destroy.gd
+res://assets/scripts/buildings/grid/collision.gd

@@ -1,10 +1,11 @@
 extends Node2D
 
-@onready var tilemap = get_node("/root/World/Tilemap")
-@onready var collision = get_node("/root/World/Buildings/Grid/GridCollision")
+@onready var main_scene = str(get_tree().root.get_child(1).name)
+@onready var tilemap = get_node("/root/" + main_scene + "/Tilemap")
+@onready var collision = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
 @onready var node = preload("res://assets/nodes/farming/plant.tscn")
 
-func crop(id:int, pos:Vector2):
+func crop(id:int, pos:Vector2i):
 	var plant = node.instantiate()
 	var mouse_position = tilemap.local_to_map(get_global_mouse_position())
 	var atlas_coords = Vector2i(0,3)
