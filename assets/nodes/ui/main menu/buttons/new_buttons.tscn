@@ -39,7 +39,6 @@ mouse_filter = 2
 texture = ExtResource("1_njtai")
 expand_mode = 2
 stretch_mode = 5
-flip_h = true
 
 [node name="Label" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2

@@ -172,10 +172,13 @@ size_flags_horizontal = 6
 size_flags_vertical = 3
 
 [node name="Icon" type="TextureRect" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("2_2ovt8")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Caption" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
 layout_mode = 2
