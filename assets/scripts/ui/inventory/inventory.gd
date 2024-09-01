@@ -141,7 +141,7 @@ func reset_data() -> void:
 func get_items() -> Dictionary:
 	return inventory_items
 
-func list_slots(id:int, dictionary:Dictionary):
+func list_slots(id:int, dictionary:Dictionary) -> void:
 	match id:
 		0:
 			for i in dictionary:
@@ -195,7 +195,7 @@ func add_item(id:int, amount:int) -> void:
 	else:
 		inventory_items[id] = {"amount": amount}
 		
-func subject_item(item_id:int, item_amount:int):
+func subject_item(item_id:int, item_amount:int) -> void:
 	for key in inventory_items:
 		if item_id == key:
 			inventory_items[item_id]["amount"] -= item_amount 
