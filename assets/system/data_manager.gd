@@ -34,7 +34,7 @@ var paths:Dictionary = {
 
 func _ready():
 	#FileSystem.create_directory("user://saves/test")
-
+	#gameload()
 	if main_scene == "Farm":
 		if GameLoader.mode:
 			gameload()
@@ -150,7 +150,7 @@ func get_position_children(parent:Node2D) -> Array:
 			coordinates.append(tilemap.local_to_map(child.global_position))
 	return coordinates
 
-func create_nodes(parent:Node2D, node: PackedScene, positions) -> void:
+func create_nodes(parent:Node2D, node:PackedScene, positions) -> void:
 	if positions != null:
 		for position in positions:
 			var object = node.instantiate()
@@ -195,14 +195,14 @@ func plant_load():
 	create_terrain(1, collision.seeds_layer, paths.vectors, "plants", 0, 0)
 	create_nodes(farming, plant, create_terrain(2, collision.seeds_layer, paths.vectors, "plants", -1, -1))
 
-func farm_load(object:Node2D, object_name:String, position):
-	var plant_id = get_key(paths.plants, object_name, "plantID")
-	var condition = get_key(paths.plants, object_name, "condition")
-	var degree = get_key(paths.plants, object_name, "degree")
-	var fertilizer = get_key(paths.plants, object_name, "fertilizer")
-	var region_rect_x = get_key(paths.plants, object_name, "region_rect.x")
-	var region_rect_y = get_key(paths.plants, object_name, "region_rect.y")
-	var level = get_key(paths.plants, object_name, "level_growth")
+func farm_load(object:Node2D, object_name:String, position:Vector2i):
+	var plant_id = get_key(paths.farm, "plantID", object_name)
+	var condition = get_key(paths.farm, "condition", object_name)
+	var degree = get_key(paths.farm, "degree", object_name)
+	var fertilizer = get_key(paths.farm, "fertilizer", object_name)
+	var region_rect_x = get_key(paths.farm, "region_rect.x", object_name)
+	var region_rect_y = get_key(paths.farm, "region_rect.y", object_name)
+	var level = get_key(paths.farm, "level_growth", object_name)
 
 	if plant_id != null\
 	and condition != null\
