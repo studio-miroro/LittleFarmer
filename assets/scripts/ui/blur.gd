@@ -6,8 +6,6 @@ extends Control
 @onready var camera:CharacterBody2D = get_node("/root/" + main_scene + "/Camera")
 @onready var background:ColorRect = $ColorRect
 
-var buildings:String = "/root/" + main_scene + "/Buildings/"
-
 const max_blur:float = 1.5
 const min_blur:float = 0.0
 const speed:float = 0.1
@@ -33,6 +31,6 @@ func blur(bluring:bool) -> void:
 	camera.switch = bluring
 
 	if bluring:
-		if has_node(buildings):
-			for nodes in get_node(buildings).get_children():
+		if has_node("/root/" + main_scene + "/Buildings/"):
+			for nodes in get_node("/root/" + main_scene + "/Buildings/").get_children():
 				nodes.change_sprite(false)
