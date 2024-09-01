@@ -21,3 +21,4 @@ res://assets/scripts/ui/inventory/inventory.gd
 res://assets/scripts/ui/main menu/menu.gd
 res://assets/scripts/ui/windows/pause/buttons/button_countinue.gd
 res://assets/scripts/ui/main menu/buttons/countinue_game.gd
+res://assets/scripts/ui/windows/pause/pause_menu.gd
