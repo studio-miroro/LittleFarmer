@@ -25,6 +25,7 @@ func _ready():
 	await get_tree().create_timer(0.75).timeout
 	player.switch = true
 	zoom.zooming = false
+	zoom.change_zoom = true
 	blackout.blackout(false)
 	await get_tree().create_timer(0.25).timeout
 	lock = false

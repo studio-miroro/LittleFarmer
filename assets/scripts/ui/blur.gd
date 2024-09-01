@@ -4,6 +4,7 @@ extends Control
 @onready var hud:Control = get_node("/root/" + main_scene + "/User Interface/Hud")
 @onready var tooltip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
 @onready var camera:CharacterBody2D = get_node("/root/" + main_scene + "/Camera")
+@onready var zoom:Camera2D = get_node("/root/" + main_scene + "/Camera/Camera2D")
 @onready var background:ColorRect = $ColorRect
 
 const max_blur:float = 1.5
@@ -29,6 +30,7 @@ func blur(bluring:bool) -> void:
 	hud._visible(bluring)
 	tooltip.tooltip()
 	camera.switch = bluring
+	zoom.change_zoom = !bluring
 
 	if bluring:
 		if has_node("/root/" + main_scene + "/Buildings/"):
