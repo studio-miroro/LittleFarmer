@@ -14,7 +14,7 @@ var max_distance:int = 250
 var mailMenu:bool = false
 var object:Dictionary = {
 	"caption" = "Почтовый ящик",
-	"description" = "Хранит письма от ваших соседей.",
+	"description" = "Хранилище для писем",
 	"default" = preload("res://assets/resources/buildings/mailbox/object_0.png"),
 	"hover" = preload("res://assets/resources/buildings/mailbox/object_1.png"),
 }
@@ -31,11 +31,9 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton\
 	and event.button_index == MOUSE_BUTTON_LEFT\
+	and event.is_pressed()\
 	and mailMenu:
 		mailbox.open()
-
-func load() -> void:
-	pass
 
 func change_sprite(type:bool) -> void:
 	if type:
