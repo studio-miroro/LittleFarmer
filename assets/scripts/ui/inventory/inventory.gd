@@ -71,7 +71,7 @@ func get_data(index) -> void:
 					icon.texture = item.content[int(index)]["icon"]
 				else:
 					icon.visible = false
-					push_error("[ID: "+str(index)+"] The key stores a non-Compressed 2D Texture. Variant.type: " + str(typeof(item.content[index]["icon"])))
+					push_error("[ID: "+str(index)+"] The key stores a non-Compressed 2D Texture.")
 			else:
 				push_error("[ID: "+str(index)+"] The object does not have the 'icon' key.")
 				icon.visible = false
@@ -82,7 +82,7 @@ func get_data(index) -> void:
 					caption.text = item.content[index]["caption"]
 				else:
 					caption.visible = false
-					push_error("[ID: "+str(index)+"] The 'caption' key has a non-string type. Variant.type: " + str(typeof(item.content[index]["caption"])))
+					push_error("[ID: "+str(index)+"] The 'caption' key has a non-string type.")
 			else:
 				push_error("[ID: "+str(index)+"] The object does not have the 'caption' key.")
 				caption.visible = false
@@ -93,7 +93,7 @@ func get_data(index) -> void:
 					description.text = item.content[index]["description"]
 				else:
 					description.visible = false
-					push_error("[ID: "+str(index)+"] The 'description' key has a non-string type. Variant.type: " + str(typeof(item.content[index]["description"])))
+					push_error("[ID: "+str(index)+"] The 'description' key has a non-string type.")
 			else:
 				push_error("[ID: "+str(index)+"] The object does not have the 'description' key.")
 				description.visible = false
@@ -117,7 +117,7 @@ func get_data(index) -> void:
 					check_item_type(item.content[index]["type"])
 				else:
 					type.visible = false
-					push_error("[ID: "+str(index)+"] The 'type' key has a non-string type. Variant.type: " + str(typeof(item.content[index]["type"])))
+					push_error("[ID: "+str(index)+"] The 'type' key has a non-string type.")
 			else:
 				push_error("[ID: "+str(index)+"] The object does not have the 'type' key.")
 		else:
@@ -208,7 +208,7 @@ func get_specifications(index, i) -> void:
 	if typeof(Items.new().content[index]["specifications"][i]) == TYPE_STRING and specifications.text is String:
 		specifications.text = specifications.text + "\n• " + get_tip(i) + ": "+ Items.new().content[index]["specifications"][i]
 	else:
-		push_error("[ID: "+str(index)+"] The '"+ str(i) +"' element is not a string. Variant.type: " + str(typeof(Items.new().content[index]["specifications"][i])))
+		push_error("[ID: "+str(index)+"] The '"+ str(i) +"' element is not a string.")
 
 
 func get_tip(tip:String) -> String:
