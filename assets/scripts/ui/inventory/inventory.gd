@@ -15,7 +15,7 @@ extends Control
 @onready var slots:GridContainer = $Panel/HBoxContainer/Slots/GridContainer
 @onready var scroll_slots:ScrollContainer = $Panel/HBoxContainer/Slots
 
-@onready var icon:TextureRect = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Icon
+@onready var icon:TextureRect = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Icon/Icon
 @onready var caption:Label = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Caption/Caption
 @onready var description:Label = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Description/Description
 @onready var specifications:Label = $Panel/HBoxContainer/ItemInfo/VBoxContainer/Specifications/Specifications
@@ -33,7 +33,6 @@ func _ready():
 	check_window()
 	reset_data()
 	
-
 func _process(_delta):
 	if !blur.state:
 		if Input.is_action_just_pressed("inventory"):

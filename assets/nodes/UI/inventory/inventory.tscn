@@ -171,8 +171,12 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 3
 
-[node name="Icon" type="TextureRect" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
-custom_minimum_size = Vector2(128, 128)
+[node name="Icon" type="MarginContainer" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+
+[node name="Icon" type="TextureRect" parent="Panel/HBoxContainer/ItemInfo/VBoxContainer/Icon"]
+custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

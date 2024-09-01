@@ -22,3 +22,25 @@ res://assets/scripts/ui/main menu/menu.gd
 res://assets/scripts/ui/windows/pause/buttons/button_countinue.gd
 res://assets/scripts/ui/main menu/buttons/countinue_game.gd
 res://assets/scripts/ui/windows/pause/pause_menu.gd
+res://assets/nodes/ui/main menu/buttons/countinue_buttons.tscn
+res://assets/nodes/ui/main menu/buttons/quit_buttons.tscn
+res://assets/nodes/ui/main menu/buttons/new_buttons.tscn
+res://assets/nodes/ui/inventory/inventory.tscn
+res://assets/scripts/ui/inventory/slot.gd
+res://assets/scripts/ui/camera/zoom.gd
+res://assets/scripts/ui/camera/player_movement.gd
+res://assets/scripts/farming/crops.gd
+res://ContextMenu.gd
+res://ContextMenu_Button.gd
+res://context_menu.tscn
+res://context_menu_button.tscn
+res://assets/scripts/ui/system/context_menu/context_menu_button.gd
+res://assets/scripts/ui/system/context_menu/context_menu.gd
+res://assets/nodes/ui/system/context_menu/context_menu.tscn
+res://assets/nodes/ui/system/context_menu/context_menu_button.tscn
+res://assets/nodes/ui/system/tooltip/tooltip.tscn
+res://assets/nodes/ui/system/context_menu/button.tscn
+res://assets/nodes/ui/system/context_menu/ContextMenu.tscn
+res://assets/nodes/ui/system/context_menu/ContextMenu_button.tscn
+res://assets/scripts/ui/system/context_menu/ContextMenu.gd
+res://assets/scripts/ui/system/context_menu/ContextMenu_button.gd
