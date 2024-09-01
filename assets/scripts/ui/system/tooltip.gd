@@ -6,7 +6,7 @@ extends Control
 
 var tip:bool
 
-func _process(delta):
+func _process(_delta):
 	if tip:
 		position = get_global_mouse_position()
 
