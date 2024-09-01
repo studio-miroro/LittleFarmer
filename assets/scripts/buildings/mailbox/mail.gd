@@ -13,14 +13,15 @@ extends Control
 @onready var items_container:GridContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer/Items/GridContainer
 @onready var items_block:MarginContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items
 @onready var animation:AnimationPlayer = $AnimationPlayer
-@onready var letter_node:PackedScene = load("res://assets/nodes/ui/windows/mail/letter.tscn")
-@onready var item_node:PackedScene = load("res://assets/nodes/ui/inventory/slot.tscn")
 
 @onready var header_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterHeader/Title
 @onready var description_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/MainContent/Text
 @onready var author_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Author/Author
 @onready var fixedItems_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/LabelContainer/Label
 @onready var button:Button = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems
+
+@onready var letter_node:PackedScene = load("res://assets/nodes/ui/windows/mail/letter.tscn")
+@onready var item_node:PackedScene = load("res://assets/nodes/ui/inventory/slot.tscn")
 
 var item:Object = Items.new()
 var menu:bool = false
@@ -69,7 +70,7 @@ func get_data(letterID:int) -> void:
 				header_label.text = letters[index]["header"]
 				header_label.visible = true
 			else:
-				push_error("The 'header' is not a string. Variant.type: " + str(typeof(letters[index]["header"])))
+				push_error("The 'header' is not a string.")
 		else:
 			header_label.visible = false
 
@@ -78,7 +79,7 @@ func get_data(letterID:int) -> void:
 				description_label.text = letters[index]["description"]
 				description_label.visible = true
 			else:
-				push_error("The 'description_label' is not a string. Variant.type: " + str(typeof(letters[index]["description"])))
+				push_error("The 'description_label' is not a string.")
 		else:
 			description_label.visible = false
 
@@ -87,7 +88,7 @@ func get_data(letterID:int) -> void:
 				author_label.text = "— " + letters[index]["author"]
 				author_label.visible = true
 			else:
-				push_error("The 'author' is not a string. Variant.type: " + str(typeof(letters[index]["author"])))
+				push_error("The 'author' is not a string.")
 		else:
 			author_label.visible = false
 
