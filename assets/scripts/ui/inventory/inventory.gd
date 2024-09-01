@@ -25,7 +25,7 @@ extends Control
 @onready var list:Label = $Panel/StorageItemList
 
 var menu:bool = false
-var inventory_items:Dictionary = {13:{"amount":100},14:{"amount":100},15:{"amount":100},16:{"amount":2},}
+var inventory_items:Dictionary = {}
 var item_index
 
 var button_index:int
@@ -195,12 +195,12 @@ func add_item(id:int, amount:int) -> void:
 	else:
 		inventory_items[id] = {"amount": amount}
 		
-func subject_item(item_id:int, item_amount:int) -> void:
+func subject_item(item_id, item_amount:int) -> void:
 	for key in inventory_items:
 		if item_id == key:
 			inventory_items[item_id]["amount"] -= item_amount 
 
-func remove_item(id:int) -> void:
+func remove_item(id) -> void:
 	for key in inventory_items:
 		if id == key:
 			inventory_items.erase(key)
@@ -213,10 +213,14 @@ func get_item_amount(item_id:int) -> int:
 			return 0
 	return 0
 
-func check_item_amount(item_id:int) -> bool:
-	if inventory_items.has(item_id) and inventory_items[item_id].has("amount"):
-		if inventory_items[item_id]["amount"] > 0:
-			return true
+func check_item_amount(id) -> bool:
+	if inventory_items.has(id):
+		if inventory_items[id].has("amount"):
+			if inventory_items[id]["amount"] > 0:
+				return true
+			else:
+				remove_item(id)
+				return false
 		else:
 			return false
 	return false
