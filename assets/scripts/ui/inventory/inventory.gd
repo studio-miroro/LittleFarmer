@@ -25,7 +25,7 @@ extends Control
 @onready var list:Label = $Panel/StorageItemList
 
 var menu:bool = false
-var inventory_items:Dictionary = {}
+var inventory_items:Dictionary = {13:{"amount":2},14:{"amount":2},15:{"amount":2},16:{"amount":2},}
 var item_index
 
 var button_index:int
@@ -272,7 +272,7 @@ func _on_button_pressed():
 				if Items.new().content[item_index].has("crop"):
 					grid.inventory_plant = int(item_index)
 					grid.plantID = int(Items.new().content[item_index]["crop"])
-					grid.mode = grid.gridmode.SEEDS
+					grid.mode = grid.modes.PLANTED
 					grid.visible = true
 				else:
 					push_error("The 'crop' key does not exist")

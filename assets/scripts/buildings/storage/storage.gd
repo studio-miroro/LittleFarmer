@@ -60,7 +60,7 @@ func update():
 func change_sprite(type:bool):
 	if type:
 		var distance = round(global_position.distance_to(player.global_position))
-		if grid.mode == grid.gridmode.NOTHING and distance < max_distance:
+		if grid.mode == grid.modes.NOTHING and distance < max_distance:
 			check_sprite("hover")
 			tip.tooltip(
 				str(object[level]["caption"]) + "\n" +

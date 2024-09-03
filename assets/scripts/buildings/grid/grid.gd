@@ -13,8 +13,8 @@ extends Node2D
 @onready var default:CompressedTexture2D = load("res://assets/resources/buildings/grid/default.png")
 @onready var error:CompressedTexture2D = load("res://assets/resources/buildings/grid/error.png")
 
-enum gridmode {NOTHING, DESTROY, FARMING, SEEDS, WATERING, BUILDING}
-var mode:int = gridmode.NOTHING
+enum modes {NOTHING, DESTROY, FARMING, PLANTED, WATERING, BUILDING}
+var mode:int = modes.NOTHING
 var check:bool = false
 
 var inventory_plant:int
@@ -26,7 +26,7 @@ func _ready():
 	visible = false
 	
 func _input(event):
-	if !blur.state and mode != gridmode.NOTHING:
+	if !blur.state and mode != modes.NOTHING:
 		if event is InputEventMouseButton\
 		and event.button_index == MOUSE_BUTTON_LEFT\
 		and event.is_pressed()\
@@ -37,7 +37,7 @@ func _input(event):
 		and event.button_index == MOUSE_BUTTON_RIGHT\
 		and event.is_pressed()\
 		and visible:
-			mode = gridmode.NOTHING
+			mode = modes.NOTHING
 			visible = false
 			check = false
 
@@ -51,7 +51,7 @@ func _process(_delta):
 		var watering_tile_position = []
 
 		match mode:
-			gridmode.DESTROY:
+			modes.DESTROY:
 				collision.destroy_collision_check()
 				if check:
 					match collision.destroy_collision_check():
@@ -95,7 +95,7 @@ func _process(_delta):
 								)
 				check = false
 
-			gridmode.FARMING:
+			modes.FARMING:
 				collision.farming_collision_check()
 				if check:
 					if collision.farming_collision_check():
@@ -108,7 +108,7 @@ func _process(_delta):
 							)
 				check = false
 
-			gridmode.WATERING:
+			modes.WATERING:
 				collision.watering_collision_check()
 				if check:
 					if collision.watering_collision_check():
@@ -121,7 +121,7 @@ func _process(_delta):
 							)
 				check = false
 
-			gridmode.SEEDS:
+			modes.PLANTED:
 				collision.planting_collision_check()
 				if inventory.check_item_amount(inventory_plant):
 					if check:
@@ -133,12 +133,12 @@ func _process(_delta):
 								else:
 									push_error("The numerical ID (" + str(plantID) + ") of this crop is missing in the main file crops.gd")
 				else:
-					mode = gridmode.NOTHING
+					mode = modes.NOTHING
 					visible = false
 
 				check = false
 
-			gridmode.BUILDING:
+			modes.BUILDING:
 				collision.building_collision_check()
 				if check:
 					if collision.building_collision_check():
@@ -151,7 +151,7 @@ func _process(_delta):
 							)
 				check = false
 	else:
-		mode = gridmode.NOTHING
+		mode = modes.NOTHING
 		visible = false
 		check = false
 

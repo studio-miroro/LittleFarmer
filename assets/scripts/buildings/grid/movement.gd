@@ -6,7 +6,7 @@ extends TileMap
 func _process(_delta):
 	if has_node("/root/" + main_scene + "/Buildings"):
 		if has_node("/root/" + main_scene + "/Buildings/Grid"):
-			if grid.mode != grid.gridmode.NOTHING:
+			if grid.mode != grid.modes.NOTHING:
 				movement()
 
 func movement() -> void:

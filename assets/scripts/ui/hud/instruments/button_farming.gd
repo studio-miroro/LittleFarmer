@@ -9,5 +9,5 @@ func _on_button_pressed():
 	if has_node("/root/" + main_scene + "/Buildings"):
 		if has_node("/root/" + main_scene + "/Buildings/Grid"):
 			if !blur.state:
-				grid.mode = grid.gridmode.FARMING
+				grid.mode = grid.modes.FARMING
 				grid.visible = true

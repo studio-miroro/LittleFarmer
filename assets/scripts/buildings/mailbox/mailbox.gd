@@ -38,7 +38,7 @@ func _input(event):
 func change_sprite(type:bool) -> void:
 	if type:
 		var distance = round(global_position.distance_to(player.global_position))
-		if grid.mode == grid.gridmode.NOTHING and distance < max_distance:
+		if grid.mode == grid.modes.NOTHING and distance < max_distance:
 			check_sprite("hover")
 			if object.has("caption")\
 			and object.has("description"):
