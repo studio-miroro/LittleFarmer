@@ -1,12 +1,12 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1725197058
+::res://::1725339070
 icon.png::CompressedTexture2D::3175978816258705609::1708690233::1725197058::1::::<><>::
 readme.md::TextFile::-1::1724395331::0::1::::<><>::
 ::res://assets/::1725040405
 ::res://assets/fonts/::1716907915
 ::res://assets/localization/::1723904451
 ::res://assets/nodes/::1724833943
-teleports.gd::GDScript::-1::1724835249::0::1::::<>Node2D<>::
+teleports.gd::GDScript::-1::1725209907::0::1::::<>Node2D<>::
 ::res://assets/nodes/buildings/::1724747777
 animal stall.tscn::PackedScene::6592871262218546846::1723550917::0::1::::<><>::res://assets/scripts/buildings/animal stall/animal stall.gd<>uid://dwbqo6itkhbxi::::res://assets/resources/buildings/animal stall/object_0.png<>res://assets/shaders/pixel.gdshader
 grid.tscn::PackedScene::1598154552864410824::1724657193::0::1::::<><>::res://assets/scripts/buildings/grid/grid.gd<>uid://dbas6kc4l6swb::::res://assets/resources/buildings/grid/default.png<>res://assets/scripts/buildings/grid/collision.gd
@@ -23,8 +23,8 @@ blackout.tscn::PackedScene::2012606326992694353::1725180277::0::1::::<><>::res:/
 blur.tscn::PackedScene::6662597176536320269::1723550828::0::1::::<><>::res://assets/scripts/ui/blur.gd<>res://assets/shaders/blur.gdshader
 camera.tscn::PackedScene::4712071243883417110::1725180277::0::1::::<><>::res://assets/scripts/ui/camera/player_movement.gd<>res://assets/shaders/pixel.gdshader<>res://assets/scripts/ui/camera/zoom.gd
 cursor.tscn::PackedScene::7402447763254889265::1723550828::0::1::::<><>::res://assets/scripts/ui/cursor.gd<>res://assets/shaders/pixel.gdshader
-::res://assets/nodes/ui/hud/::1724493611
-hud.tscn::PackedScene::6932110778028776921::1724493611::0::1::::<><>::res://assets/shaders/pixel.gdshader<>res://assets/scripts/ui/hud/hud.gd<>uid://d2wxohp87kgqx::::res://assets/nodes/ui/hud/elements/balance.tscn<>uid://dlpc7fxunbs1g::::res://assets/nodes/ui/hud/elements/clock.tscn<>uid://i5wr18nbfkhb::::res://assets/nodes/ui/hud/elements/instruments/button_destroy.tscn<>uid://d0607ns0r4vi3::::res://assets/nodes/ui/hud/elements/instruments/button_farming.tscn<>uid://cxywm6titpfsh::::res://assets/nodes/ui/hud/elements/instruments/button_watering.tscn
+::res://assets/nodes/ui/hud/::1725209624
+hud.tscn::PackedScene::6932110778028776921::1725209624::0::1::::<><>::res://assets/shaders/pixel.gdshader<>res://assets/scripts/ui/hud/hud.gd<>uid://d2wxohp87kgqx::::res://assets/nodes/ui/hud/elements/balance.tscn<>uid://dlpc7fxunbs1g::::res://assets/nodes/ui/hud/elements/clock.tscn<>uid://i5wr18nbfkhb::::res://assets/nodes/ui/hud/elements/instruments/button_destroy.tscn<>uid://d0607ns0r4vi3::::res://assets/nodes/ui/hud/elements/instruments/button_farming.tscn<>uid://cxywm6titpfsh::::res://assets/nodes/ui/hud/elements/instruments/button_watering.tscn
 instruments.tscn::PackedScene::6881020850800163977::1723471604::0::1::::<><>::
 ::res://assets/nodes/ui/hud/elements/::1724493611
 balance.tscn::PackedScene::9101199024221839359::1723550828::0::1::::<><>::res://assets/scripts/ui/hud/elements/balance.gd<>uid://blip53ufv0jwb::::res://icon.png
@@ -115,8 +115,8 @@ icon.png::CompressedTexture2D::814021882603298165::1719416631::1725197058::1::::
 crops.png::CompressedTexture2D::7844749763466489154::1721288171::1725197058::1::::<><>::
 farmland.png::CompressedTexture2D::2805514261652585920::1716729587::1725197058::1::::<><>::
 watering.png::CompressedTexture2D::4173572663268820334::1715437486::1725197058::1::::<><>::
-::res://assets/resources/nature/::1725197057
-cycle-gradient.tres::GradientTexture1D::6421603076923343127::1725172637::0::1::::<><>::
+::res://assets/resources/nature/::1725296346
+cycle-gradient.tres::GradientTexture1D::6421603076923343127::1725296346::0::1::::<><>::
 grass.png::CompressedTexture2D::4626641472650683279::1717050732::1725197057::1::::<><>::
 ground road.png::CompressedTexture2D::6812170322218110496::1719826039::1725197057::1::::<><>::
 light.webp::CompressedTexture2D::3255192290398409580::1715612614::1725197057::1::::<><>::
@@ -151,7 +151,7 @@ cobblestone.png::CompressedTexture2D::1878667973446561594::1725184442::172519705
 log.png::CompressedTexture2D::7926630518014443271::1725180664::1725197058::1::::<><>::
 plank.png::CompressedTexture2D::5851192307481189637::1725180664::1725197058::1::::<><>::
 stone.png::CompressedTexture2D::7554139076548561687::1725183631::1725197058::1::::<><>::
-::res://assets/resources/ui/inventory/items/seeds packets/::1725197487
+::res://assets/resources/ui/inventory/items/seeds packets/::1725197489
 packet_1.png::CompressedTexture2D::5900162811375183692::1725197487::1725197489::1::::<><>::
 packet_2.png::CompressedTexture2D::8609540309799703461::1725197487::1725197489::1::::<><>::
 packet_3.png::CompressedTexture2D::3140545731329667835::1725197487::1725197489::1::::<><>::
@@ -168,15 +168,15 @@ materials.gd::GDScript::-1::1722844558::0::1::::BuildingMaterials<>Node<>::
 store.gd::GDScript::-1::1720538461::0::1::::StoreBuilding<>Node<>::
 ::res://assets/scripts/buildings/animal stall/::1724052906
 animal stall.gd::GDScript::-1::1724749142::0::1::::<>Node2D<>::
-::res://assets/scripts/buildings/grid/::1724493518
+::res://assets/scripts/buildings/grid/::1725201050
 collision.gd::GDScript::-1::1724524931::0::1::::<>Area2D<>::
-grid.gd::GDScript::-1::1724745931::0::1::::<>Node2D<>::
+grid.gd::GDScript::-1::1725205773::0::1::::<>Node2D<>::
 movement.gd::GDScript::-1::1724490746::0::1::::<>TileMap<>::
 ::res://assets/scripts/buildings/house/::1724052891
 house.gd::GDScript::-1::1724749137::0::1::::<>Node2D<>::
 ::res://assets/scripts/buildings/mailbox/::1724922815
 letter.gd::GDScript::-1::1724500820::0::1::::<>Control<>::
-mail.gd::GDScript::-1::1725173742::0::1::::<>Control<>::
+mail.gd::GDScript::-1::1725204432::0::1::::<>Control<>::
 mailbox.gd::GDScript::-1::1725173813::0::1::::<>Node2D<>::
 ::res://assets/scripts/buildings/silo/::1724052915
 silo.gd::GDScript::-1::1724749147::0::1::::<>Node2D<>::
@@ -184,16 +184,16 @@ silo.gd::GDScript::-1::1724749147::0::1::::<>Node2D<>::
 storage.gd::GDScript::-1::1724852552::0::1::::Storage<>Node2D<>::
 ::res://assets/scripts/farming/::1722777684
 crops.gd::GDScript::-1::1722013302::0::1::::Crops<>Node2D<>::
-farming.gd::GDScript::-1::1724834737::0::1::::<>Node2D<>::
+farming.gd::GDScript::-1::1725201447::0::1::::<>Node2D<>::
 growth.gd::GDScript::-1::1724493311::0::1::::<>Sprite2D<>::
 plant.gd::GDScript::-1::1724835434::0::1::::<>Node2D<>::
 ::res://assets/scripts/ui/::1725174491
 blackout.gd::GDScript::-1::1725175044::0::1::::<>Control<>::
-blur.gd::GDScript::-1::1725184512::0::1::::<>Control<>::
+blur.gd::GDScript::-1::1725197964::0::1::::<>Control<>::
 cursor.gd::GDScript::-1::1725171967::0::1::::<>Node2D<>::
 ::res://assets/scripts/ui/camera/::1725173300
 player_movement.gd::GDScript::-1::1725171967::0::1::::<>CharacterBody2D<>::
-zoom.gd::GDScript::-1::1725186291::0::1::::<>Camera2D<>::
+zoom.gd::GDScript::-1::1725198683::0::1::::<>Camera2D<>::
 ::res://assets/scripts/ui/hud/::1725173300
 hud.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 ::res://assets/scripts/ui/hud/elements/::1725173300
@@ -204,8 +204,8 @@ button_destroy.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 button_farming.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 button_watering.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 ::res://assets/scripts/ui/inventory/::1725173300
-inventory.gd::GDScript::-1::1725197415::0::1::::<>Control<>::
-items.gd::GDScript::-1::1725197437::0::1::::Items<>Node<>::
+inventory.gd::GDScript::-1::1725209665::0::1::::<>Control<>::
+items.gd::GDScript::-1::1725199717::0::1::::Items<>Node<>::
 slot.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 ::res://assets/scripts/ui/main menu/::1725173300
 background.gd::GDScript::-1::1725171967::0::1::::<>ColorRect<>::
@@ -215,7 +215,7 @@ countinue_game.gd::GDScript::-1::1725175100::0::1::::<>Control<>::
 new_game.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 quit.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 ::res://assets/scripts/ui/system/::1725192622
-tooltip.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
+tooltip.gd::GDScript::-1::1725205386::0::1::::<>Control<>::
 ::res://assets/scripts/ui/system/context_menu/::1725195242
 ContextMenu.gd::GDScript::-1::1725196597::0::1::::ContextMenu<>Control<>::
 ContextMenu_button.gd::GDScript::-1::1725196543::0::1::::<>Button<>::
@@ -225,9 +225,9 @@ notifications.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 ::res://assets/scripts/ui/windows/::1725173300
 ::res://assets/scripts/ui/windows/craft/::1725173300
 blueprint.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-craft_menu.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
+craft_menu.gd::GDScript::-1::1725296345::0::1::::<>Control<>::
 ::res://assets/scripts/ui/windows/pause/::1725176375
-pause_menu.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
+pause_menu.gd::GDScript::-1::1725198018::0::1::::<>Control<>::
 ::res://assets/scripts/ui/windows/pause/buttons/::1725173300
 button_countinue.gd::GDScript::-1::1725171967::0::1::::<>Button<>::
 button_exit.gd::GDScript::-1::1725171967::0::1::::<>Button<>::
@@ -243,62 +243,6 @@ save_options.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 control.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 graphic.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 sounds.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/::1725174491
-blackout.gd::GDScript::-1::1725175044::0::1::::<>Control<>::
-blur.gd::GDScript::-1::1725184512::0::1::::<>Control<>::
-cursor.gd::GDScript::-1::1725171967::0::1::::<>Node2D<>::
-::res://assets/scripts/UI/camera/::1725173300
-player_movement.gd::GDScript::-1::1725171967::0::1::::<>CharacterBody2D<>::
-zoom.gd::GDScript::-1::1725186291::0::1::::<>Camera2D<>::
-::res://assets/scripts/UI/hud/::1725173300
-hud.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/hud/elements/::1725173300
-balance.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-clock.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/hud/instruments/::1725173300
-button_destroy.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-button_farming.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-button_watering.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/inventory/::1725173300
-inventory.gd::GDScript::-1::1725197415::0::1::::<>Control<>::
-items.gd::GDScript::-1::1725197437::0::1::::Items<>Node<>::
-slot.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/main menu/::1725173300
-background.gd::GDScript::-1::1725171967::0::1::::<>ColorRect<>::
-menu.gd::GDScript::-1::1725175113::0::1::::<>Node2D<>::
-::res://assets/scripts/UI/main menu/buttons/::1725173300
-countinue_game.gd::GDScript::-1::1725175100::0::1::::<>Control<>::
-new_game.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-quit.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/system/::1725192622
-tooltip.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/system/context_menu/::1725195242
-ContextMenu.gd::GDScript::-1::1725196597::0::1::::ContextMenu<>Control<>::
-ContextMenu_button.gd::GDScript::-1::1725196543::0::1::::<>Button<>::
-::res://assets/scripts/UI/system/notifications/::1725173300
-notice.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-notifications.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/windows/::1725173300
-::res://assets/scripts/UI/windows/craft/::1725173300
-blueprint.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-craft_menu.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/windows/pause/::1725176375
-pause_menu.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/windows/pause/buttons/::1725173300
-button_countinue.gd::GDScript::-1::1725171967::0::1::::<>Button<>::
-button_exit.gd::GDScript::-1::1725171967::0::1::::<>Button<>::
-button_load.gd::GDScript::-1::1725171967::0::1::::<>Button<>::
-button_options.gd::GDScript::-1::1725171967::0::1::::<>Button<>::
-button_save.gd::GDScript::-1::1725171967::0::1::::<>Button<>::
-::res://assets/scripts/UI/windows/pause/options/::1725173300
-options.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/windows/pause/options/buttons/::1725173300
-language.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-save_options.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-::res://assets/scripts/UI/windows/pause/options/sections/::1725173300
-control.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-graphic.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
-sounds.gd::GDScript::-1::1725171967::0::1::::<>Control<>::
 ::res://assets/scripts/world/::1718712845
 ::res://assets/scripts/world/nature/::1724490435
 clouds.gd::GDScript::-1::1724490324::0::1::::<>CanvasGroup<>::
@@ -306,18 +250,18 @@ cloud_movement.gd::GDScript::-1::1724490382::0::1::::<>Sprite2D<>::
 light.gd::GDScript::-1::1724488813::0::1::::<>Node2D<>::
 pointlight.gd::GDScript::-1::1724488805::0::1::::<>PointLight2D<>::
 time.gd::GDScript::-1::1724489237::0::1::::<>CanvasModulate<>::
-::res://assets/shaders/::1725197438
-blur.gdshader::Shader::-1::1725197438::0::1::::<><>::
-pixel.gdshader::Shader::-1::1725197438::0::1::::<><>::
+::res://assets/shaders/::1725210117
+blur.gdshader::Shader::-1::1725210117::0::1::::<><>::
+pixel.gdshader::Shader::-1::1725210117::0::1::::<><>::
 ::res://assets/sounds/::1725186721
 ::res://assets/sounds/ambient/::1717057829
 ::res://assets/sounds/music/::1717057833
 ::res://assets/sounds/ui/::1717057823
-::res://assets/system/::1725040430
-data_manager.gd::GDScript::-1::1725040906::0::1::::<>Node<>::
+::res://assets/system/::1725204067
+data_manager.gd::GDScript::-1::1725208741::0::1::::<>Node<>::
 file_manager.gd::GDScript::-1::1725040635::0::1::::<>Node<>::
 game_loader.gd::GDScript::-1::1725040583::0::1::::<>Node<>::
-::res://levels/::1725197438
-farm.tscn::PackedScene::61185692863429520::1725197438::0::1::::<><>::res://assets/shaders/pixel.gdshader<>res://assets/system/data_manager.gd<>uid://dmrj3nbdfyut::::res://assets/nodes/ui/system/tooltip/tooltip.tscn<>uid://3w6lj8hrhrxx::::res://assets/nodes/ui/blackout.tscn<>uid://ddp2h6ryjofvt::::res://assets/nodes/ui/cursor.tscn<>uid://cyl6jw0huwvk6::::res://assets/nodes/ui/windows/pause/pause.tscn<>uid://bpmceytvqnc7d::::res://assets/nodes/ui/windows/craft/menu.tscn<>uid://c50737uagx074::::res://assets/nodes/ui/hud/hud.tscn<>uid://cwtsqme5qki8s::::res://assets/nodes/ui/windows/mail/mail.tscn<>uid://cjkwsdkyksvs3::::res://assets/nodes/ui/inventory/inventory.tscn<>uid://bhadiamik4ev0::::res://assets/nodes/ui/windows/pause/options/options.tscn<>res://assets/scripts/world/nature/time.gd<>uid://c16oacn0qg214::::res://assets/nodes/ui/blur.tscn<>uid://cxqw4nldap880::::res://assets/resources/nature/cycle-gradient.tres<>uid://b8eteio2464wo::::res://assets/nodes/ui/camera.tscn<>uid://b66gdyd27b6v8::::res://assets/resources/nature/grass.png<>uid://cipgdxgpuslcv::::res://assets/nodes/ui/system/notifications/notifications.tscn<>uid://bf8an67t7ykhk::::res://assets/resources/farming/farmland.png<>uid://b0pyequa6wol7::::res://assets/resources/farming/watering.png<>uid://dj1b5aexd5fug::::res://assets/resources/farming/crops.png<>uid://c4b4pkekg047e::::res://assets/resources/nature/ground road.png<>res://assets/scripts/buildings/grid/movement.gd<>res://assets/scripts/world/nature/clouds.gd<>uid://cvsn1ntefp3ks::::res://assets/resources/buildings/animal stall/shadow.png<>uid://duwrjdqcjgs2t::::res://assets/resources/buildings/house/level-1/shadow.png<>uid://0f10j8vd2h4t::::res://assets/resources/buildings/mailbox/shadow.png<>uid://qfktaby7ay6k::::res://assets/resources/buildings/silo/level-1/shadow.png<>uid://d3hjp3y2ylfmh::::res://assets/resources/nature/shadow.png<>uid://dc2pao6crly1w::::res://assets/resources/buildings/storage/level-1/shadow.png<>res://assets/scripts/world/nature/light.gd<>uid://bmm3sn5q3j181::::res://assets/resources/nature/light.webp<>res://assets/scripts/world/nature/pointlight.gd<>uid://kcdto5fme037::::res://assets/resources/nature/tree.png<>uid://b6yctk4o25kkc::::res://assets/nodes/buildings/mailbox.tscn<>uid://c06vvkgkvvlfq::::res://assets/nodes/buildings/animal stall.tscn<>uid://dkff5xvqcxcdu::::res://assets/nodes/buildings/house.tscn<>uid://1r8kos7xjwxc::::res://assets/resources/buildings/house/smoke.png<>uid://w1fmwa12i36k::::res://assets/nodes/buildings/grid.tscn<>uid://dj3jsnuixqgv8::::res://assets/nodes/buildings/silo.tscn<>res://assets/scripts/buildings/buildings.gd<>uid://d0hq20gmqku1b::::res://assets/nodes/buildings/storage.tscn<>res://assets/scripts/farming/farming.gd<>res://assets/nodes/teleports.gd
-main.tscn::PackedScene::5764808772091430635::1725197271::0::1::::<><>::uid://ddp2h6ryjofvt::::res://assets/nodes/ui/cursor.tscn<>uid://bq4qdj61kxktg::::res://assets/nodes/ui/main menu/logotype.tscn<>res://assets/scripts/ui/main menu/menu.gd<>uid://3w6lj8hrhrxx::::res://assets/nodes/ui/blackout.tscn<>uid://balcl5dqa5cvp::::res://assets/nodes/ui/main menu/buttons/countinue_buttons.tscn<>uid://bo0md5dxqtqql::::res://assets/nodes/ui/main menu/buttons/new_buttons.tscn<>res://assets/scripts/ui/main menu/background.gd<>uid://dt0da1fsbcrkd::::res://assets/nodes/ui/main menu/buttons/quit_buttons.tscn
+::res://levels/::1725296347
+farm.tscn::PackedScene::61185692863429520::1725296347::0::1::::<><>::res://assets/shaders/pixel.gdshader<>res://assets/system/data_manager.gd<>uid://dmrj3nbdfyut::::res://assets/nodes/ui/system/tooltip/tooltip.tscn<>uid://3w6lj8hrhrxx::::res://assets/nodes/ui/blackout.tscn<>uid://ddp2h6ryjofvt::::res://assets/nodes/ui/cursor.tscn<>uid://cyl6jw0huwvk6::::res://assets/nodes/ui/windows/pause/pause.tscn<>uid://bpmceytvqnc7d::::res://assets/nodes/ui/windows/craft/menu.tscn<>uid://c50737uagx074::::res://assets/nodes/ui/hud/hud.tscn<>uid://cwtsqme5qki8s::::res://assets/nodes/ui/windows/mail/mail.tscn<>uid://cjkwsdkyksvs3::::res://assets/nodes/ui/inventory/inventory.tscn<>uid://bhadiamik4ev0::::res://assets/nodes/ui/windows/pause/options/options.tscn<>res://assets/scripts/world/nature/time.gd<>uid://c16oacn0qg214::::res://assets/nodes/ui/blur.tscn<>uid://cxqw4nldap880::::res://assets/resources/nature/cycle-gradient.tres<>uid://b8eteio2464wo::::res://assets/nodes/ui/camera.tscn<>uid://b66gdyd27b6v8::::res://assets/resources/nature/grass.png<>uid://cipgdxgpuslcv::::res://assets/nodes/ui/system/notifications/notifications.tscn<>uid://bf8an67t7ykhk::::res://assets/resources/farming/farmland.png<>uid://b0pyequa6wol7::::res://assets/resources/farming/watering.png<>uid://dj1b5aexd5fug::::res://assets/resources/farming/crops.png<>uid://c4b4pkekg047e::::res://assets/resources/nature/ground road.png<>res://assets/scripts/buildings/grid/movement.gd<>res://assets/scripts/world/nature/clouds.gd<>uid://cvsn1ntefp3ks::::res://assets/resources/buildings/animal stall/shadow.png<>uid://duwrjdqcjgs2t::::res://assets/resources/buildings/house/level-1/shadow.png<>uid://0f10j8vd2h4t::::res://assets/resources/buildings/mailbox/shadow.png<>uid://qfktaby7ay6k::::res://assets/resources/buildings/silo/level-1/shadow.png<>uid://d3hjp3y2ylfmh::::res://assets/resources/nature/shadow.png<>uid://dc2pao6crly1w::::res://assets/resources/buildings/storage/level-1/shadow.png<>res://assets/scripts/world/nature/light.gd<>uid://bmm3sn5q3j181::::res://assets/resources/nature/light.webp<>res://assets/scripts/world/nature/pointlight.gd<>uid://kcdto5fme037::::res://assets/resources/nature/tree.png<>uid://b6yctk4o25kkc::::res://assets/nodes/buildings/mailbox.tscn<>uid://c06vvkgkvvlfq::::res://assets/nodes/buildings/animal stall.tscn<>uid://dkff5xvqcxcdu::::res://assets/nodes/buildings/house.tscn<>uid://1r8kos7xjwxc::::res://assets/resources/buildings/house/smoke.png<>uid://w1fmwa12i36k::::res://assets/nodes/buildings/grid.tscn<>uid://dj3jsnuixqgv8::::res://assets/nodes/buildings/silo.tscn<>res://assets/scripts/buildings/buildings.gd<>uid://d0hq20gmqku1b::::res://assets/nodes/buildings/storage.tscn<>res://assets/scripts/farming/farming.gd<>res://assets/nodes/teleports.gd
+main.tscn::PackedScene::5764808772091430635::1725296346::0::1::::<><>::uid://ddp2h6ryjofvt::::res://assets/nodes/ui/cursor.tscn<>uid://bq4qdj61kxktg::::res://assets/nodes/ui/main menu/logotype.tscn<>res://assets/scripts/ui/main menu/menu.gd<>uid://3w6lj8hrhrxx::::res://assets/nodes/ui/blackout.tscn<>uid://balcl5dqa5cvp::::res://assets/nodes/ui/main menu/buttons/countinue_buttons.tscn<>uid://bo0md5dxqtqql::::res://assets/nodes/ui/main menu/buttons/new_buttons.tscn<>res://assets/scripts/ui/main menu/background.gd<>uid://dt0da1fsbcrkd::::res://assets/nodes/ui/main menu/buttons/quit_buttons.tscn
 village.tscn::PackedScene::1530151970060721930::1725197271::0::1::::<><>::res://assets/system/data_manager.gd<>uid://ddp2h6ryjofvt::::res://assets/nodes/ui/cursor.tscn<>uid://b66gdyd27b6v8::::res://assets/resources/nature/grass.png<>uid://3w6lj8hrhrxx::::res://assets/nodes/ui/blackout.tscn<>uid://c16oacn0qg214::::res://assets/nodes/ui/blur.tscn<>uid://c50737uagx074::::res://assets/nodes/ui/hud/hud.tscn<>uid://cyl6jw0huwvk6::::res://assets/nodes/ui/windows/pause/pause.tscn<>uid://bhadiamik4ev0::::res://assets/nodes/ui/windows/pause/options/options.tscn<>uid://cjkwsdkyksvs3::::res://assets/nodes/ui/inventory/inventory.tscn<>uid://bpmceytvqnc7d::::res://assets/nodes/ui/windows/craft/menu.tscn<>uid://cwtsqme5qki8s::::res://assets/nodes/ui/windows/mail/mail.tscn<>uid://dmrj3nbdfyut::::res://assets/nodes/ui/system/tooltip/tooltip.tscn<>uid://cipgdxgpuslcv::::res://assets/nodes/ui/system/notifications/notifications.tscn<>uid://b8eteio2464wo::::res://assets/nodes/ui/camera.tscn<>res://assets/scripts/world/nature/time.gd<>uid://cxqw4nldap880::::res://assets/resources/nature/cycle-gradient.tres<>res://assets/scripts/world/nature/clouds.gd<>uid://dewhtah3uhtg7::::res://assets/resources/buildings/storage/level-2/shadow.png<>uid://cvsn1ntefp3ks::::res://assets/resources/buildings/animal stall/shadow.png<>uid://duwrjdqcjgs2t::::res://assets/resources/buildings/house/level-1/shadow.png<>uid://0f10j8vd2h4t::::res://assets/resources/buildings/mailbox/shadow.png<>uid://qfktaby7ay6k::::res://assets/resources/buildings/silo/level-1/shadow.png<>uid://d3hjp3y2ylfmh::::res://assets/resources/nature/shadow.png<>res://assets/nodes/teleports.gd<>res://assets/scripts/world/nature/light.gd<>res://assets/scripts/buildings/buildings.gd<>uid://bmm3sn5q3j181::::res://assets/resources/nature/light.webp<>uid://b6yctk4o25kkc::::res://assets/nodes/buildings/mailbox.tscn<>res://assets/scripts/world/nature/pointlight.gd<>uid://c06vvkgkvvlfq::::res://assets/nodes/buildings/animal stall.tscn<>uid://d0hq20gmqku1b::::res://assets/nodes/buildings/storage.tscn<>uid://kcdto5fme037::::res://assets/resources/nature/tree.png

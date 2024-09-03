@@ -33,8 +33,6 @@ var paths:Dictionary = {
 }
 
 func _ready():
-	#FileSystem.create_directory("user://saves/test")
-	#gameload()
 	if main_scene == "Farm":
 		if GameLoader.mode:
 			gameload()

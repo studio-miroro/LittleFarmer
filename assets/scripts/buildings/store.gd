@@ -20,7 +20,6 @@ var content: Dictionary = {
 			"wood" = 25,
 			},
 		"time" = 15,
-		# Config
 		"icon" = null,#load("res://assets/resources/UI/building menu/sprite_0.png"),
 		"node" = null,#load(""),
 	},
@@ -31,7 +30,6 @@ var content: Dictionary = {
 			"wood" = 75,
 			},
 		"time" = 60,
-		# Config
 		"icon" = null,#load("res://assets/resources/UI/building menu/sprite_0.png"),
 		"node" = null,#load(""),
 	},
@@ -42,8 +40,7 @@ var content: Dictionary = {
 			"wood" = 100,
 			"stone" = 250,
 			},
-		"time" = 120,
-		# Config
+		"time" = 12,
 		"icon" = null,#load("res://assets/resources/UI/building menu/sprite_0.png"),
 		"node" = null,#load(""),
 	},
