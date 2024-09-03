@@ -2,7 +2,7 @@ extends Control
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 
-@onready var node:PackedScene = load("res://assets/nodes/ui/windows/craft/blueprint.tscn")
+@onready var blueprint:PackedScene = load("res://assets/nodes/ui/windows/craft/blueprint.tscn")
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
@@ -69,7 +69,7 @@ func check_blueprints(array:Array) -> void:
 		delete_all_blueprints(container)
 
 func create_item(i) -> void:
-	var item = node.instantiate()
+	var item = blueprint.instantiate()
 	if item.test(i):
 		container.add_child(item)
 		item.set_data(i)
