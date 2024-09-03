@@ -26,6 +26,8 @@ func teleport() -> void:
 	if main_scene == "Village":
 		var path:String = "res://levels/farm.tscn"
 		GameLoader.loading(true)
+		manager.file_save(manager.paths.world, "nature")
+		manager.file_save(manager.paths.player, "player")
 		blackout.change_scene(path)
 
 func _on_area_2d_mouse_entered():
