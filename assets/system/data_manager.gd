@@ -194,22 +194,22 @@ func plant_load():
 	create_nodes(farming, plant, create_terrain(2, collision.seeds_layer, paths.vectors, "plants", -1, -1))
 
 func farm_load(object:Node2D, object_name:String, position:Vector2i):
-	var plant_id = get_key(paths.farm, "plantID", object_name)
+	var id = get_key(paths.farm, "plantID", object_name)
 	var condition = get_key(paths.farm, "condition", object_name)
 	var degree = get_key(paths.farm, "degree", object_name)
 	var fertilizer = get_key(paths.farm, "fertilizer", object_name)
-	var region_rect_x = get_key(paths.farm, "region_rect.x", object_name)
-	var region_rect_y = get_key(paths.farm, "region_rect.y", object_name)
-	var level = get_key(paths.farm, "level_growth", object_name)
+	var rect_x = get_key(paths.farm, "region_rect.x", object_name)
+	var rect_y = get_key(paths.farm, "region_rect.y", object_name)
+	var growth_level = get_key(paths.farm, "growth_level", object_name)
 
-	if plant_id != null\
+	if id != null\
 	and condition != null\
 	and degree != null\
 	and fertilizer != null\
-	and region_rect_x != null\
-	and region_rect_y != null\
-	and level != null:
-		object.set_data(plant_id, condition, degree, fertilizer, region_rect_x, region_rect_y, level, position)
+	and rect_x != null\
+	and rect_y != null\
+	and growth_level != null:
+		object.set_data(id, condition, degree, fertilizer, rect_x, rect_y, growth_level, position)
 	else:
 		push_error("Data missing for node: " + object_name)
 
