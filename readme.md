@@ -8,15 +8,16 @@
 
 ## Key Features
 
-#### 1. Freedom Of Action 
+
+[x] **Freedom Of Action** 
 
 * **Open Farm World**: The player can freely move around the entire farm by controlling the camera. There is no fixed route or tasks, you can explore and interact with any elements.
 
-#### 2. Crafting and Crafts
+[ ] **Crafting and Crafts**
 
 * **Creating tools and objects**: The ability to create your own tools, decorations and useful items for the farm.
 
-#### 3. The Economic System
+[ ] **The Economic System**
 
 * **Sale of products**: The opportunity to sell grown products on the market, set your own prices and develop the economy of the farm.
 
