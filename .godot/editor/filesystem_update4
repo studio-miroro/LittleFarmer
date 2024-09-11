@@ -1,19 +1,8 @@
-res://assets/scripts/ui/windows/craft/craft_menu.gd
-res://assets/scripts/buildings/materials.gd
-res://assets/scripts/ui/inventory/items.gd
-res://assets/scripts/ui/inventory/slot.gd
-res://assets/scripts/buildings/store.gd
-res://assets/scripts/ui/inventory/inventory.gd
 res://levels/main.tscn
 res://assets/resources/nature/cycle-gradient.tres
 res://levels/farm.tscn
-res://assets/scripts/buildings/grid/grid.gd
-res://assets/scripts/ui/hud/instruments/button_destroy.gd
-res://assets/scripts/ui/hud/instruments/button_watering.gd
-res://assets/scripts/ui/hud/instruments/button_farming.gd
-res://assets/scripts/buildings/house/house.gd
-res://assets/scripts/buildings/grid/movement.gd
-res://assets/scripts/buildings/storage/storage.gd
-res://assets/scripts/buildings/mailbox/mailbox.gd
-res://assets/scripts/buildings/animal stall/animal stall.gd
-res://assets/scripts/buildings/silo/silo.gd
+res://assets/nodes/ui/windows/craft/menu.tscn
+res://assets/nodes/ui/hud/hud.tscn
+res://assets/nodes/ui/hud/elements/instruments/button_crafting.tscn
+res://assets/scripts/world/nature/time.gd
+res://assets/scripts/ui/inventory/items.gd
