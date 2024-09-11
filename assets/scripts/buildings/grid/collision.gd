@@ -14,9 +14,9 @@ const farming_layer:int = 4
 const watering_layer:int = 5
 const seeds_layer:int = 6
 
-const ground_terrain_set:int = 2
-const watering_terrain_set:int = 1
 const farming_terrain_set:int = 0
+const watering_terrain_set:int = 1
+const ground_terrain_set:int = 2
 
 const ground_terrain:int = 0
 const watering_terrain:int = 0

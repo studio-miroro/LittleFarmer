@@ -3,6 +3,7 @@ extends Node2D
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
 
@@ -27,9 +28,6 @@ func _process(_delta):
 		timer.set_paused(true)
 	else:
 		timer.set_paused(false)
-
-func check_node() -> bool:
-	return true
 
 func plant(id:int) -> void:
 	self.plantID = id
@@ -103,7 +101,7 @@ func get_data() -> Dictionary:
 		"fertilizer": self.fertilizer,
 		"region_rect.x": self.sprite.region_rect.position.x,
 		"region_rect.y": self.sprite.region_rect.position.y,
-		"level_growth": sprite.level,
+		"growth_level": sprite.level,
 		"position": tilemap.local_to_map(global_position),
 	}
 
@@ -143,7 +141,7 @@ func get_fertilizer(fertilizer_type:int) -> String:
 			return ""
 
 func _on_collision_mouse_entered() -> void:
-	if !pause.paused\
+	if !blur.bluring\
 	and grid.mode == grid.gridmode.NOTHING:
 		if crops.crops.has(plantID):
 			if crops.crops[plantID].has("caption"):
@@ -169,3 +167,6 @@ func _on_collision_mouse_entered() -> void:
 func _on_collision_mouse_exited() -> void:
 	if !pause.paused:
 		tip.tooltip()
+
+func check_node() -> bool:
+	return true
