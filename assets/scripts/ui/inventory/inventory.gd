@@ -25,7 +25,7 @@ extends Control
 @onready var list:Label = $Panel/StorageItemList
 
 var menu:bool = false
-var inventory_items:Dictionary = {13:{"amount":2},14:{"amount":2},15:{"amount":2},16:{"amount":2},}
+var inventory_items:Dictionary = {}
 var item_index
 
 var button_index:int
@@ -46,28 +46,28 @@ func _process(_delta):
 		if (Input.is_action_just_pressed("pause") && menu) or (Input.is_action_just_pressed("inventory") && menu):
 			close()
 
+func load_content(data:Dictionary) -> void:
+	inventory_items = data
+
 func open() -> void:
 	menu = true
 	pause.other_menu = true
 	blur.blur(true)
 	anim.play("open")
-	list_slots(0, inventory_items)
-	update_list()
+	create_all_items()
+	update_string_capacity()
 
 func close() -> void:
 	menu = false
 	pause.other_menu = false
 	blur.blur(false)
 	anim.play("close")
-	delete_slots()
-
-func items_load(data:Dictionary) -> void:
-	inventory_items = data
+	remove_inventory_slots()
 
 func get_data(index) -> void:
 	if menu:
 		var item = Items.new()
-		item_index = index
+		self.item_index = index
 		scroll_info.scroll_vertical = 0
 
 		if item.content.has(int(index)):
@@ -82,10 +82,10 @@ func get_data(index) -> void:
 				push_error("[ID: "+str(index)+"] The object does not have the 'icon' key.")
 				icon.visible = false
 
-			if item.content[index].has("caption"):
-				if typeof(item.content[index]["caption"]) == TYPE_STRING:
+			if item.content[int(index)].has("caption"):
+				if typeof(item.content[int(index)]["caption"]) == TYPE_STRING:
 					caption.visible = true
-					caption.text = item.content[index]["caption"]
+					caption.text = item.content[int(index)]["caption"]
 				else:
 					caption.visible = false
 					push_error("[ID: "+str(index)+"] The 'caption' key has a non-string type.")
@@ -93,10 +93,10 @@ func get_data(index) -> void:
 				push_error("[ID: "+str(index)+"] The object does not have the 'caption' key.")
 				caption.visible = false
 
-			if item.content[index].has("description"):
-				if typeof(item.content[index]["description"]) == TYPE_STRING:
+			if item.content[int(index)].has("description"):
+				if typeof(item.content[int(index)]["description"]) == TYPE_STRING:
 					description.visible = true
-					description.text = item.content[index]["description"]
+					description.text = item.content[int(index)]["description"]
 				else:
 					description.visible = false
 					push_error("[ID: "+str(index)+"] The 'description' key has a non-string type.")
@@ -104,23 +104,23 @@ func get_data(index) -> void:
 				push_error("[ID: "+str(index)+"] The object does not have the 'description' key.")
 				description.visible = false
 
-			if item.content[index].has("specifications"):
-				if item.content[index].get("specifications") != {}:
+			if item.content[int(index)].has("specifications"):
+				if item.content[int(index)].get("specifications") != {}:
 					specifications.visible = true
 					specifications.text = ""
-					for i in item.content[index]["specifications"]:
-						get_specifications(index, i)
+					for i in item.content[int(index)]["specifications"]:
+						get_specifications(int(index), i)
 				else:
 					specifications.visible = false
 					push_warning("[ID: "+str(index)+"] The 'specifications' key is empty.")
 			else:
 				specifications.visible = false
 
-			if item.content[index].has("type"):
-				if typeof(item.content[index]["type"]) == TYPE_STRING:
+			if item.content[int(index)].has("type"):
+				if typeof(item.content[int(index)]["type"]) == TYPE_STRING:
 					type.visible = true
-					type.text = "\nТип: " + item.content[index]["type"] + "\n"
-					check_item_type(item.content[index]["type"])
+					type.text = "\nТип: " + item.content[int(index)]["type"] + "\n"
+					check_item_type(item.content[int(index)]["type"])
 				else:
 					type.visible = false
 					push_error("[ID: "+str(index)+"] The 'type' key has a non-string type.")
@@ -141,29 +141,28 @@ func reset_data() -> void:
 func get_items() -> Dictionary:
 	return inventory_items
 
-func list_slots(id:int, dictionary:Dictionary) -> void:
-	match id:
-		0:
-			for i in dictionary:
-				item_create(i)
-		_: pass
+func create_all_items() -> void:
+	for item in inventory_items:
+		if Items.new().content.has(int(item)):
+			item_create(item)
 
-func delete_slots() -> void:
-	for child in slots.get_children():
-		slots.remove_child(child)
-		child.queue_free()
+func remove_inventory_slots() -> void:
+	for item in slots.get_children():
+		slots.remove_child(item)
+		item.queue_free()
 
-func item_create(i) -> void:
+func item_create(id) -> void:
 	var slot = node.instantiate()
-	check_amount(i)
-	if inventory_items.has(i):
-		if inventory_items[i]["amount"] > 0:
+	check_amount(id)
+	if inventory_items.has(id):
+		if inventory_items[id]["amount"] > 0:
 			slots.add_child(slot)
-			slot.set_data(i, inventory_items[i]["amount"])
+			slot.set_data(id, inventory_items[id]["amount"])
 		else:
-			remove_item(i)
+			remove_item(id)
+			push_error("Invalid item index: " + str(id))
 
-func update_list() -> void:
+func update_string_capacity() -> void:
 	if has_node("/root/" + main_scene + "/Buildings"):
 		if has_node("/root/" + main_scene + "/Buildings/Storage"):
 			if storage.object[storage.level].has("slots"):
@@ -182,8 +181,9 @@ func get_all_items() -> int:
 	if slots:
 		var item:int = 0
 		if inventory_items != {}:
-			for it in inventory_items:
-				item += 1
+			for i in inventory_items:
+				if Items.new().content.has(int(i)):
+					item += 1
 		return item
 	else:
 		push_error("Cannot load parent.")
@@ -205,7 +205,7 @@ func remove_item(id) -> void:
 		if id == key:
 			inventory_items.erase(key)
 
-func get_item_amount(item_id:int) -> int:
+func get_item_amount(item_id) -> int:
 	if inventory_items.has(item_id) and inventory_items[item_id].has("amount"):
 		if inventory_items[item_id]["amount"] > 0:
 			return inventory_items[item_id]["amount"]
@@ -221,8 +221,7 @@ func check_item_amount(id) -> bool:
 			else:
 				remove_item(id)
 				return false
-		else:
-			return false
+		else: return false
 	return false
 
 func check_amount(index) -> void:
@@ -268,10 +267,10 @@ func _on_button_pressed():
 	match button_index:
 		item_type.SEEDS:
 			close()
-			if Items.new().content.has(item_index):
-				if Items.new().content[item_index].has("crop"):
-					grid.inventory_plant = int(item_index)
-					grid.plantID = int(Items.new().content[item_index]["crop"])
+			if Items.new().content.has(int(item_index)):
+				if Items.new().content[int(item_index)].has("crop"):
+					grid.inventory_plant = item_index
+					grid.plantID = Items.new().content[int(item_index)]["crop"]
 					grid.mode = grid.modes.PLANTED
 					grid.visible = true
 				else:
