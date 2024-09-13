@@ -52,14 +52,14 @@ func timeload(timeindex):
 
 func recalculate_time() -> void:
 	var total_minutes = int(time / sin_speed)
-	var day = int(total_minutes / minutes_in_day)
+	var target_day = int(total_minutes / minutes_in_day)
 	var current_day_minutes = total_minutes % minutes_in_day
-	var hour = int(current_day_minutes / minutes_in_hour)
-	var minute = int(current_day_minutes % minutes_in_hour)
+	var target_hour = int(current_day_minutes / minutes_in_hour)
+	var target_minute = int(current_day_minutes % minutes_in_hour)
 	
-	if past_minute != minute:
-		past_minute = minute
-		time_tick.emit(day, hour, minute)
+	if past_minute != target_minute:
+		past_minute = target_minute
+		time_tick.emit(target_day, hour, target_minute)
 
 func get_time() -> float:
 	return time

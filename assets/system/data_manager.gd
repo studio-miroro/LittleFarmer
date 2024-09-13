@@ -252,7 +252,7 @@ func balance_load() -> void:
 	balance.balance_update()
 
 func inventory_load() -> void:
-	inventory.items_load(file_load(paths.inventory))
+	inventory.load_content(file_load(paths.inventory))
 
 func craft_load() -> void:
 	for i in get_key(paths.crafting, "blueprints"):
@@ -268,7 +268,6 @@ func buildings_load() -> void:
 
 func get_content(content:String) -> Dictionary:
 	match content:
-
 		"settings": 
 			return {
 				"version": ProjectSettings.get_setting("application/config/version"),

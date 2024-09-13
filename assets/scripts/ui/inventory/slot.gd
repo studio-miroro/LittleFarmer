@@ -11,7 +11,7 @@ extends Control
 
 var item:Object = Items.new()
 
-var id:int
+var id
 var amount:int
 
 func _ready():
@@ -19,7 +19,7 @@ func _ready():
 
 func set_data(index, item_amount) -> void:
 	self.id = index
-	if item.content.has(id):
+	if item.content.has(int(id)):
 		self.amount = item_amount
 		if item.content[int(id)].has("icon"):
 			if typeof(item.content[int(id)]["icon"]) == TYPE_OBJECT:

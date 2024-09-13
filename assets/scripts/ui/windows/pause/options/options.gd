@@ -16,8 +16,8 @@ func _ready():
 func page(scene:PackedScene) -> void:
 	remove_pages()
 	if pages_container.get_children() == []:
-		var page = scene.instantiate()
-		pages_container.add_child(page)
+		var content = scene.instantiate()
+		pages_container.add_child(content)
 
 func remove_pages() -> void:
 	if pages_container.get_children() != []:
