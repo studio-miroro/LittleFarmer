@@ -25,7 +25,7 @@
 ## Technical Part
 
 - Game Engine: [Godot Engine v4.2.1](https://godotengine.org/download/archive/4.2.1-stable/)
-- Sprite Editor: [Aseprite v1.3.7](https://www.aseprite.org/)
+- Sprite Editor: [Aseprite v1.3.8](https://www.aseprite.org/)
 - Sound Editor: [Fl Studio 12](https://www.image-line.com/fl-studio/)
 
 ## License
