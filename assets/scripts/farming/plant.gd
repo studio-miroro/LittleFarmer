@@ -142,7 +142,7 @@ func get_fertilizer(fertilizer_type:int) -> String:
 
 func _on_collision_mouse_entered() -> void:
 	if !blur.state\
-	and grid.mode == grid.gridmode.NOTHING:
+	and grid.mode == grid.modes.NOTHING:
 		if crops.crops.has(plantID):
 			if crops.crops[plantID].has("caption"):
 				if typeof(crops.crops[plantID]["caption"]) == TYPE_STRING:
