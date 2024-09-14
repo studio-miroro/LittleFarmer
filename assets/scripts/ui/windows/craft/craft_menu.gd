@@ -16,7 +16,7 @@ extends Control
 
 var index:int
 var menu:bool = false
-var access:Array[int] = [1,2,3,4,5,6,7,8,9,10]
+var access:Array[int] = []
 
 var items:Object = Items.new()
 var blueprints:Object = Blueprints.new()
@@ -52,7 +52,7 @@ func close() -> void:
 	pause.other_menu = false
 	blur.blur(false)
 	anim.play("close")
-	check_blueprints()
+	delete_all_blueprints()
 
 func start_info() -> void:
 	caption.text = "* Информация *"
@@ -64,8 +64,6 @@ func check_blueprints() -> void:
 	if menu:
 		for id in access:
 			create_item(id)
-	else:
-		delete_all_blueprints()
 
 func create_item(id) -> void:
 	var item = blueprint.instantiate()
@@ -113,11 +111,10 @@ func get_data(id):
 				for i in blueprints.content[id]["resource"]:
 					check_material(id, i)
 			else:
-				push_warning("The drawing does not have the necessary resources for construction.")
 				resources.visible = false
 		else:
-			push_error("The array of 'resources' does not exist in index: " + str(id))
 			resources.visible = false
+			button.disabled = false # checking others factors
 		
 		if blueprints.content[id].has("time"):
 			if typeof(blueprints.content[id]["time"]) == TYPE_INT and description.text is String:
@@ -153,11 +150,15 @@ func check_material(id, key) -> void:
 	else:
 		push_error("Invalid material: " + str(key))
 
-func check_button(id, key) -> void:
-	if check_items(key) >= blueprints.content[id]["resource"][key]:
-		button.disabled = false
-	else:
-		button.disabled = true
+func check_button(id, key = null) -> void:
+	if blueprints.content[id].has("resource"):
+		if blueprints.content[id]["resource"].has(key):
+			if check_items(key) >= blueprints.content[id]["resource"][key]:
+				button.disabled = false
+			else:
+				button.disabled = true
+		else:
+			button.disabled = false
 
 func resource(key) -> Variant:
 	if key in materials.resources:

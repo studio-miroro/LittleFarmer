@@ -17,8 +17,8 @@ enum modes {NOTHING, DESTROY, FARMING, PLANTED, WATERING, BUILDING}
 var mode:int = modes.NOTHING
 var check:bool = false
 
-var inventory_plant:int
-var plantID:int
+var inventory_plant
+var plantID
 
 func _ready():
 	z_index = 10
