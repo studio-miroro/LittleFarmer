@@ -3,11 +3,11 @@ extends Control
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var notice:Control = get_node("/root/" + main_scene + "/User Interface/System/Notifications")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var storage:Node2D = get_node("/root/" + main_scene + "/Buildings/Storage")
 @onready var balance:Control = get_node("/root/" + main_scene + "/User Interface/Hud/Main/Indicators/Balance")
-@onready var notice = get_node("/root/" + main_scene + "/User Interface/System/Notifications")
 
 @onready var letters_container:VBoxContainer = $Panel/HBoxContainer/LettersScroll/VBoxContainer
 @onready var content_container:VBoxContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer
