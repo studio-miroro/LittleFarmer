@@ -14,3 +14,9 @@ res://assets/scripts/ui/system/notifications/notice.gd
 res://assets/scripts/ui/system/notifications/notifications.gd
 res://assets/nodes/ui/system/notifications/notice.tscn
 res://assets/nodes/ui/system/notifications/notifications.tscn
+res://assets/nodes/ui/windows/craft/craft_button.gd
+res://assets/scripts/ui/windows/craft/craft_menu.gd
+res://assets/scripts/buildings/blueprints.gd
+res://assets/scripts/buildings/grid/grid.gd
+res://assets/scripts/ui/windows/craft/blueprint.gd
+res://assets/scripts/buildings/grid/collision.gd
