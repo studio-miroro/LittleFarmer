@@ -5,7 +5,7 @@ extends Control
 
 const maximum:int = 8
 
-func create_notice(image, text:String) -> void:
+func create_notice(text:String, image = "") -> void:
 	var notice = node.instantiate()
 	if all_notices(container) < maximum:
 		if text != "":

@@ -10,7 +10,7 @@ var icons:Dictionary = {
 	"error": load("res://assets/resources/ui/notifications/icons/error.png"),
 }
 
-func notice(image, text:String) -> void:
+func notice(text:String, image = "") -> void:
 	set_text(text)
 	set_icon(image)
 	anim.play("create")
