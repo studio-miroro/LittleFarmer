@@ -7,6 +7,7 @@ extends Control
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var storage:Node2D = get_node("/root/" + main_scene + "/Buildings/Storage")
 @onready var balance:Control = get_node("/root/" + main_scene + "/User Interface/Hud/Main/Indicators/Balance")
+@onready var notice = get_node("/root/" + main_scene + "/User Interface/System/Notifications")
 
 @onready var letters_container:VBoxContainer = $Panel/HBoxContainer/LettersScroll/VBoxContainer
 @onready var content_container:VBoxContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer
@@ -19,6 +20,7 @@ extends Control
 @onready var author_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Author/Author
 @onready var fixedItems_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/LabelContainer/Label
 @onready var button:Button = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems
+@onready var button_script:Button = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox/Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems")
 
 @onready var letter_node:PackedScene = load("res://assets/nodes/ui/windows/mail/letter.tscn")
 @onready var item_node:PackedScene = load("res://assets/nodes/ui/inventory/slot.tscn")
@@ -97,6 +99,8 @@ func get_data(letterID:int) -> void:
 			items_block.visible = true
 
 			if letters[index]["items"] != {}:
+				button.text = tr("Забрать")
+
 				for i in letters[index]["items"]:
 					if typeof(letters[index]["items"][i]) == TYPE_DICTIONARY && letters[index]["items"][i].has("amount"):
 						if letters[index]["items"][i]["amount"] > 0:
@@ -113,11 +117,9 @@ func get_data(letterID:int) -> void:
 					if storage.object.has(storage.level):
 						if storage.object[storage.level].has("slots"):
 							if storage.object[storage.level]["slots"] - inventory.get_all_items() >= get_letter_items():
-								button.disabled = false
-								button.text = "Забрать"
+								button_script.state(false)
 							else:
-								button.disabled = true
-								button.text = "Недостаточно места"
+								button_script.state(true)
 						else:
 							push_error("")
 					else:
@@ -171,14 +173,15 @@ func check_letter_item(check:int, letterID, dictionary:Dictionary):
 				for key in dictionary[letterID]["items"]:
 					if item.content.has(int(key)):
 						return true
-					else: return false
+					else:
+						return false
 				
 		2:
 			for key in dictionary[letterID]["items"].keys():
 				if item.content.has(int(key)):
 					inventory.add_item(int(key), int(dictionary[letterID]["items"][key]["amount"]))
 				else:
-					push_error("")
+					push_error("Incorrect subject ID ("+str(key)+"): Such a subject does not exist in the main subject dictionary.")
 
 func create_letters(dictionary:Dictionary, node:PackedScene, parent:VBoxContainer) -> void:
 	for i in dictionary:
@@ -241,8 +244,11 @@ func check_window() -> void:
 	visible = menu
 
 func _on_get_items_pressed():
-	if button.visible:
-		get_all_items(index, letters)
+	if !button_script.button:
+		if button.visible:
+			get_all_items(index, letters)
+	else:
+		notice.create_notice("error", "Не хватает места на складе.")
 
 func _on_close_pressed() -> void:
 	if blur.state:
