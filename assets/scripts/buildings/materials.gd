@@ -22,10 +22,6 @@ var resources:Dictionary = {
 		"caption": "Уголь",
 		"id": 5
 	},
-	"charcoal": {
-		"caption": "Древесный уголь",
-		"id": 6
-	},
 	"copper_ore": {
 		"caption": "Медная руда",
 		"id": 7
@@ -39,11 +35,11 @@ var resources:Dictionary = {
 		"id": 9
 	},
 	"iron_ingot": {
-		"caption": "Слиток железа",
+		"caption": "Железный слиток",
 		"id": 10
 	},
 	"aluminum_ore": {
-		"caption": "Алюминиевая руда",
+		"caption": "Бокситовая руда",
 		"id": 11
 	},
 	"aluminum": {
