@@ -25,8 +25,8 @@ extends Control
 
 var menu:bool = false
 var inventory_items:Dictionary = {}
-var item_index
 
+var item_index
 var button_index:int
 enum item_type {
 	NOTHING,

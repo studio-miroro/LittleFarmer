@@ -2,6 +2,7 @@ extends Control
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var notice:Control = get_node("/root/" + main_scene + "/User Interface/System/Notifications")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 
@@ -171,8 +172,6 @@ func check_items(key) -> Variant:
 		if materials.resources[key].has("id"):
 			if inventory.inventory_items.has(materials.resources[key]["id"]):
 				return inventory.inventory_items[materials.resources[key]["id"]]["amount"]
-			return 0
-		return 0
 	return 0
 
 func get_blueprints() -> Array:
