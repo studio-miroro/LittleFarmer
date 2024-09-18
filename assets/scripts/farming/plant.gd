@@ -51,7 +51,7 @@ func check(id:int,pos:Vector2i) -> void:
 		and condition != phases.DEAD:
 			self.condition = phases.PLANTED
 			await get_tree().create_timer(
-					crops.crops["checkWatering"]
+					crops.crops["check_watering"]
 				).timeout
 			if degree < crops.crops[plantID]["mortality"]:
 				degree += 1
@@ -71,23 +71,23 @@ func growth() -> void:
 		match fertilizer:
 			fertilizers.NOTHING:
 				timer.wait_time = randi_range(
-					crops.crops[plantID]["growthRate"] * 0.849,
-					crops.crops[plantID]["growthRate"]
+					crops.crops[plantID]["growth_rate"] * 0.849,
+					crops.crops[plantID]["growth_rate"]
 				)
 			fertilizers.COMPOST:
 				timer.wait_time = randi_range(
-					crops.crops[plantID]["growthRate"] * 0.621,
-					crops.crops[plantID]["growthRate"] * 0.995
+					crops.crops[plantID]["growth_rate"] * 0.621,
+					crops.crops[plantID]["growth_rate"] * 0.995
 				)
 			fertilizers.HUMUS:
 				timer.wait_time = randi_range(
-					crops.crops[plantID]["growthRate"] * 0.431,
-					crops.crops[plantID]["growthRate"] * 0.894
+					crops.crops[plantID]["growth_rate"] * 0.431,
+					crops.crops[plantID]["growth_rate"] * 0.894
 				)
 			fertilizers.MANURE:
 				timer.wait_time = randi_range(
-					crops.crops[plantID]["growthRate"] * 0.332,
-					crops.crops[plantID]["growthRate"] * 0.792
+					crops.crops[plantID]["growth_rate"] * 0.332,
+					crops.crops[plantID]["growth_rate"] * 0.792
 				)
 		timer.start()
 	if condition == phases.INCREASED:

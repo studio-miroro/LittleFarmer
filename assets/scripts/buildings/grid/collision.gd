@@ -18,9 +18,7 @@ const farming_terrain_set:int = 0
 const watering_terrain_set:int = 1
 const ground_terrain_set:int = 2
 
-const ground_terrain:int = 0
-const watering_terrain:int = 0
-const farming_terrain:int = 0
+const terrain:int = 0
 
 func destroy_collision_check() -> int:
 	var mouse_pos: Vector2 = get_global_mouse_position()

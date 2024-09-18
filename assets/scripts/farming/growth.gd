@@ -7,7 +7,8 @@ var level:int
 
 func _ready():
 	if crops.crops.has("atlas"):
-		if typeof(crops.crops["atlas"]) == TYPE_OBJECT and texture is CompressedTexture2D:
+		if typeof(crops.crops["atlas"]) == TYPE_OBJECT\
+		and texture is CompressedTexture2D:
 			texture = texture
 		else:
 			push_error("Atlas is not a CompressedTexture2D.")
@@ -16,7 +17,7 @@ func _ready():
 
 func _process(_delta):
 	if plant.plantID != 0:
-		if level == crops.crops[plant.plantID]["growthLevel"]\
+		if level == crops.crops[plant.plantID]["growth_level"]\
 		and plant.condition != plant.phases.INCREASED:
 			plant_increased()
 	else:
@@ -33,7 +34,7 @@ func rect(id):
 		push_error("The X and Y coordinates cannot be determined.")
 
 func _on_timer_timeout() -> void:
-	if level < crops.crops[plant.plantID]["growthLevel"]:
+	if level < crops.crops[plant.plantID]["growth_level"]:
 		region_rect.position.x += 16
 		level += 1
 	else:

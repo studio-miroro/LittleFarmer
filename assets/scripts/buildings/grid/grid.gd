@@ -17,8 +17,12 @@ enum modes {NOTHING, DESTROY, FARMING, PLANTED, WATERING, BUILDING}
 var mode:int = modes.NOTHING
 var check:bool = false
 
-var inventory_plant
+var inventory_item
 var plantID
+
+var building_node
+var terrain_layer
+var terrain_set
 
 func _ready():
 	z_index = 10
@@ -104,7 +108,7 @@ func _process(_delta):
 							collision.farming_layer,
 							farming_tile_position,
 							collision.farming_terrain_set,
-							collision.farming_terrain
+							collision.terrain
 							)
 				check = false
 
@@ -117,18 +121,18 @@ func _process(_delta):
 							collision.watering_layer,
 							watering_tile_position,
 							collision.watering_terrain_set,
-							collision.watering_terrain
+							collision.terrain
 							)
 				check = false
 
 			modes.PLANTED:
 				collision.planting_collision_check()
-				if inventory.check_item_amount(inventory_plant):
+				if inventory.check_item_amount(inventory_item):
 					if check:
-						if inventory.get_item_amount(inventory_plant) > 0:
+						if inventory.get_item_amount(inventory_item) > 0:
 							if collision.planting_collision_check():
 								if Crops.new().crops.has(plantID):
-									inventory.subject_item(inventory_plant, 1)
+									inventory.subject_item(inventory_item, 1)
 									farming.crop(plantID, tile_mouse_pos)
 								else:
 									push_error("The numerical ID (" + str(plantID) + ") of this crop is missing in the main file crops.gd")
@@ -139,16 +143,14 @@ func _process(_delta):
 				check = false
 
 			modes.BUILDING:
-				collision.building_collision_check()
 				if check:
-					if collision.building_collision_check():
-						ground_tile_position.append(tile_mouse_pos)
-						tilemap.set_cells_terrain_connect(
-							collision.ground_layer,
-							ground_tile_position,
-							collision.ground_terrain_set,
-							collision.ground_terrain
-							)
+					ground_tile_position.append(tile_mouse_pos)
+					tilemap.set_cells_terrain_connect(
+						terrain_layer,
+						ground_tile_position,
+						terrain_set,
+						collision.terrain
+						)
 				check = false
 	else:
 		mode = modes.NOTHING
