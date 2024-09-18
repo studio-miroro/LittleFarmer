@@ -187,9 +187,9 @@ func get_children_data(parent: Node) -> Dictionary:
 	return data_dict
 
 func plant_load():
-	create_terrain(0, collision.ground_layer, paths.vectors, "road", collision.ground_terrain_set, collision.ground_terrain)
-	create_terrain(0, collision.farming_layer, paths.vectors, "farmlands", collision.farming_terrain_set, collision.farming_terrain)
-	create_terrain(0, collision.watering_layer, paths.vectors, "waterings", collision.watering_terrain_set, collision.watering_terrain)
+	create_terrain(0, collision.ground_layer, paths.vectors, "road", collision.ground_terrain_set, collision.terrain)
+	create_terrain(0, collision.farming_layer, paths.vectors, "farmlands", collision.farming_terrain_set, collision.terrain)
+	create_terrain(0, collision.watering_layer, paths.vectors, "waterings", collision.watering_terrain_set, collision.terrain)
 	create_terrain(1, collision.seeds_layer, paths.vectors, "plants", 0, 0)
 	create_nodes(farming, plant, create_terrain(2, collision.seeds_layer, paths.vectors, "plants", -1, -1))
 
