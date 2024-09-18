@@ -3,16 +3,17 @@ ea4bc82a6ad023ab7ee23ee620429895
 icon.png::CompressedTexture2D::3175978816258705609::1708690233::1725197058::1::::<><>::
 license.md::TextFile::-1::1725609909::0::1::::<><>::
 readme.md::TextFile::-1::1726161079::0::1::::<><>::
-::res://assets/::1726119558
+::res://assets/::1726637995
 ::res://assets/fonts/::1716907915
 ::res://assets/localization/::1723904451
 ::res://assets/nodes/::1724833943
 teleports.gd::GDScript::-1::1725209907::0::1::::<>Node2D<>::
-::res://assets/nodes/buildings/::1724747777
+::res://assets/nodes/buildings/::1726637968
 animal stall.tscn::PackedScene::6592871262218546846::1723550917::0::1::::<><>::res://assets/scripts/buildings/animal stall/animal stall.gd<>uid://dwbqo6itkhbxi::::res://assets/resources/buildings/animal stall/object_0.png<>res://assets/shaders/pixel.gdshader
 grid.tscn::PackedScene::1598154552864410824::1724657193::0::1::::<><>::res://assets/scripts/buildings/grid/grid.gd<>uid://dbas6kc4l6swb::::res://assets/resources/buildings/grid/default.png<>res://assets/scripts/buildings/grid/collision.gd
 house.tscn::PackedScene::7871830776219397018::1723550917::0::1::::<><>::res://assets/shaders/pixel.gdshader<>res://assets/scripts/buildings/house/house.gd<>uid://exdd2rlucmpx::::res://assets/resources/buildings/house/level-1/object_0.png<>uid://cepxwjna6bihx::::res://assets/resources/buildings/house/level-2/ext_0.png
 mailbox.tscn::PackedScene::4611975837345463070::1724747777::0::1::::<><>::res://assets/scripts/buildings/mailbox/mailbox.gd<>uid://lss3l88wn07f::::res://assets/resources/buildings/mailbox/object_0.png
+tablet.tscn::PackedScene::7312343346844335075::1726636593::0::1::::<><>::
 silo.tscn::PackedScene::7849343532254950515::1723550917::0::1::::<><>::res://assets/scripts/buildings/silo/silo.gd<>res://assets/shaders/pixel.gdshader<>uid://cp0xrur0sy6ro::::res://assets/resources/buildings/silo/level-1/object_0.png
 storage.tscn::PackedScene::8929454797547830421::1723550917::0::1::::<><>::res://assets/scripts/buildings/storage/storage.gd<>uid://dqrqmtbev426d::::res://assets/resources/buildings/storage/level-1/object_0.png
 ::res://assets/nodes/farming/::1726502204
@@ -76,7 +77,7 @@ button_sound.tscn::PackedScene::5315734268034200478::1723550828::0::1::::<><>::r
 graphic.tscn::PackedScene::7661014950338136138::1723232345::0::1::::<><>::
 sounds.tscn::PackedScene::279283029703714518::1723232345::0::1::::<><>::
 ::res://assets/resources/::1724921392
-::res://assets/resources/buildings/::1719300138
+::res://assets/resources/buildings/::1726637544
 ::res://assets/resources/buildings/animal stall/::1725197058
 object_0.png::CompressedTexture2D::8706479103328210642::1715238602::1725197058::1::::<><>::
 object_1.png::CompressedTexture2D::6637082600564491981::1715238602::1725197058::1::::<><>::
@@ -113,14 +114,18 @@ shadow.png::CompressedTexture2D::7356289475936367314::1718605179::1725197058::1:
 object_0.png::CompressedTexture2D::8372085267170042699::1717163543::1725197058::1::::<><>::
 object_1.png::CompressedTexture2D::176306023326697781::1717163543::1725197058::1::::<><>::
 shadow.png::CompressedTexture2D::7485892697367152880::1717162380::1725197058::1::::<><>::
+::res://assets/resources/buildings/tablet/::1726638482
+shadow.png::CompressedTexture2D::3907601073622916739::1726637547::1726637576::1::::<><>::
+tablet_0.png::CompressedTexture2D::5920832085718603117::1726638589::1726638592::1::::<><>::
+tablet_1.png::CompressedTexture2D::1070842048738604485::1726638589::1726638592::1::::<><>::
 ::res://assets/resources/buildings/well/::1725197058
 icon.png::CompressedTexture2D::814021882603298165::1719416631::1725197058::1::::<><>::
 ::res://assets/resources/farming/::1725197058
 crops.png::CompressedTexture2D::7844749763466489154::1721288171::1725197058::1::::<><>::
 farmland.png::CompressedTexture2D::2805514261652585920::1716729587::1725197058::1::::<><>::
 watering.png::CompressedTexture2D::4173572663268820334::1715437486::1725197058::1::::<><>::
-::res://assets/resources/nature/::1726577738
-cycle-gradient.tres::GradientTexture1D::6421603076923343127::1726577738::0::1::::<><>::
+::res://assets/resources/nature/::1726636593
+cycle-gradient.tres::GradientTexture1D::6421603076923343127::1726636593::0::1::::<><>::
 grass.png::CompressedTexture2D::4626641472650683279::1717050732::1725197057::1::::<><>::
 ground road.png::CompressedTexture2D::6812170322218110496::1719826039::1725197057::1::::<><>::
 light.webp::CompressedTexture2D::3255192290398409580::1715612614::1725197057::1::::<><>::
@@ -172,20 +177,20 @@ packet_4.png::CompressedTexture2D::6279276270234184024::1725197487::1725197489::
 ::res://assets/resources/ui/notifications/::1722759464
 ::res://assets/resources/ui/notifications/icons/::1725197058
 info.png::CompressedTexture2D::5333273010124369955::1722761379::1725197058::1::::<><>::
-::res://assets/scripts/::1725173299
-::res://assets/scripts/buildings/::1725627884
+::res://assets/scripts/::1726638027
+::res://assets/scripts/buildings/::1726637993
 blueprints.gd::GDScript::-1::1726496992::0::1::::Blueprints<>Node<>::
 buildings.gd::GDScript::-1::1724747724::0::1::::<>Node2D<>::
 materials.gd::GDScript::-1::1726497680::0::1::::BuildingMaterials<>Node<>::
 ::res://assets/scripts/buildings/animal stall/::1725341403
 animal stall.gd::GDScript::-1::1725341403::0::1::::<>Node2D<>::
 ::res://assets/scripts/buildings/grid/::1725341388
-collision.gd::GDScript::-1::1725630530::0::1::::<>Area2D<>::
-grid.gd::GDScript::-1::1726576041::0::1::::<>Node2D<>::
+collision.gd::GDScript::-1::1726634511::0::1::::<>Area2D<>::
+grid.gd::GDScript::-1::1726634531::0::1::::<>Node2D<>::
 movement.gd::GDScript::-1::1725341388::0::1::::<>TileMap<>::
 ::res://assets/scripts/buildings/house/::1725341383
 house.gd::GDScript::-1::1725341382::0::1::::<>Node2D<>::
-::res://assets/scripts/buildings/mailbox/::1725341398
+::res://assets/scripts/buildings/mailbox/::1726638027
 letter.gd::GDScript::-1::1724500820::0::1::::<>Control<>::
 mail.gd::GDScript::-1::1726502203::0::1::::<>Control<>::
 mailbox.gd::GDScript::-1::1725341398::0::1::::<>Node2D<>::
@@ -193,11 +198,13 @@ mailbox.gd::GDScript::-1::1725341398::0::1::::<>Node2D<>::
 silo.gd::GDScript::-1::1725341409::0::1::::<>Node2D<>::
 ::res://assets/scripts/buildings/storage/::1725341394
 storage.gd::GDScript::-1::1725341394::0::1::::Storage<>Node2D<>::
+::res://assets/scripts/buildings/tablet/::1726637995
+tablet.gd::GDScript::-1::1726638152::0::1::::<>Node2D<>::
 ::res://assets/scripts/farming/::1726139731
-crops.gd::GDScript::-1::1722013302::0::1::::Crops<>Node2D<>::
-farming.gd::GDScript::-1::1725201447::0::1::::<>Node2D<>::
-growth.gd::GDScript::-1::1724493311::0::1::::<>Sprite2D<>::
-plant.gd::GDScript::-1::1726140074::0::1::::<>Node2D<>::
+crops.gd::GDScript::-1::1726634097::0::1::::Crops<>Node2D<>::
+farming.gd::GDScript::-1::1726634147::0::1::::<>Node2D<>::
+growth.gd::GDScript::-1::1726634157::0::1::::<>Sprite2D<>::
+plant.gd::GDScript::-1::1726634114::0::1::::<>Node2D<>::
 ::res://assets/scripts/ui/::1725174491
 blackout.gd::GDScript::-1::1725175044::0::1::::<>Control<>::
 blur.gd::GDScript::-1::1725197964::0::1::::<>Control<>::
@@ -216,7 +223,7 @@ button_destroy.gd::GDScript::-1::1725341317::0::1::::<>Control<>::
 button_farming.gd::GDScript::-1::1725341349::0::1::::<>Control<>::
 button_watering.gd::GDScript::-1::1725341321::0::1::::<>Control<>::
 ::res://assets/scripts/ui/inventory/::1726142394
-inventory.gd::GDScript::-1::1726577980::0::1::::<>Control<>::
+inventory.gd::GDScript::-1::1726635093::0::1::::<>Control<>::
 items.gd::GDScript::-1::1726139211::0::1::::Items<>Node<>::
 slot.gd::GDScript::-1::1726204302::0::1::::<>Control<>::
 ::res://assets/scripts/ui/main menu/::1725173300
@@ -237,7 +244,7 @@ notifications.gd::GDScript::-1::1726486897::0::1::::<>Control<>::
 ::res://assets/scripts/ui/windows/::1725173300
 ::res://assets/scripts/ui/windows/craft/::1725173300
 blueprint.gd::GDScript::-1::1725629613::0::1::::<>Control<>::
-craft_menu.gd::GDScript::-1::1726502157::0::1::::<>Control<>::
+craft_menu.gd::GDScript::-1::1726635205::0::1::::<>Control<>::
 ::res://assets/scripts/ui/windows/pause/::1725176375
 pause_menu.gd::GDScript::-1::1725198018::0::1::::<>Control<>::
 ::res://assets/scripts/ui/windows/pause/buttons/::1725173300

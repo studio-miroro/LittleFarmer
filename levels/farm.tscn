@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://4vypwfxar3e"]
+[gd_scene load_steps=61 format=3 uid="uid://4vypwfxar3e"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_ieipv"]
 [ext_resource type="Script" path="res://assets/system/data_manager.gd" id="2_880lm"]
@@ -36,6 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://b6yctk4o25kkc" path="res://assets/nodes/buildings/mailbox.tscn" id="28_pepi0"]
 [ext_resource type="PackedScene" uid="uid://c06vvkgkvvlfq" path="res://assets/nodes/buildings/animal stall.tscn" id="29_1mqwf"]
 [ext_resource type="PackedScene" uid="uid://dkff5xvqcxcdu" path="res://assets/nodes/buildings/house.tscn" id="30_tx0gn"]
+[ext_resource type="Texture2D" uid="uid://bvw4vbklgj45l" path="res://assets/resources/buildings/tablet/shadow.png" id="30_whhom"]
 [ext_resource type="Texture2D" uid="uid://1r8kos7xjwxc" path="res://assets/resources/buildings/house/smoke.png" id="31_8anwe"]
 [ext_resource type="PackedScene" uid="uid://w1fmwa12i36k" path="res://assets/nodes/buildings/grid.tscn" id="32_nkvxm"]
 [ext_resource type="PackedScene" uid="uid://dj3jsnuixqgv8" path="res://assets/nodes/buildings/silo.tscn" id="33_8j4he"]
@@ -43,6 +44,7 @@
 [ext_resource type="PackedScene" uid="uid://d0hq20gmqku1b" path="res://assets/nodes/buildings/storage.tscn" id="34_67pno"]
 [ext_resource type="Script" path="res://assets/scripts/farming/farming.gd" id="35_q8rfs"]
 [ext_resource type="Script" path="res://assets/nodes/teleports.gd" id="43_511qs"]
+[ext_resource type="PackedScene" uid="uid://dcgfhx6lnhmtf" path="res://assets/nodes/buildings/tablet.tscn" id="45_loqmw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h27nr"]
 shader = ExtResource("1_ieipv")
@@ -1662,7 +1664,7 @@ turbulence_noise_speed = Vector3(0, -1, 0)
 turbulence_influence_max = 0.719
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhb1c"]
-size = Vector2(32, 32)
+size = Vector2(32, 48)
 
 [node name="Farm" type="Node2D"]
 y_sort_enabled = true
@@ -1788,6 +1790,10 @@ texture = ExtResource("22_2ky2k")
 position = Vector2(249, 25)
 texture = ExtResource("23_geqd5")
 
+[node name="Sprite2D" type="Sprite2D" parent="Shadow"]
+position = Vector2(617, 95)
+texture = ExtResource("30_whhom")
+
 [node name="Light" type="Node2D" parent="."]
 z_index = 6
 script = ExtResource("24_ymcwy")
@@ -1851,6 +1857,9 @@ position = Vector2(152, 2)
 z_index = 4
 position = Vector2(360, 19)
 
+[node name="Tablet" parent="Buildings" instance=ExtResource("45_loqmw")]
+position = Vector2(616, 89)
+
 [node name="Farming" type="Node2D" parent="."]
 script = ExtResource("35_q8rfs")
 
@@ -1862,7 +1871,7 @@ script = ExtResource("43_511qs")
 [node name="Area2D" type="Area2D" parent="Teleports/Village"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Teleports/Village/Area2D"]
-position = Vector2(636, 103)
+position = Vector2(624, 104)
 shape = SubResource("RectangleShape2D_hhb1c")
 
 [connection signal="timeout" from="Shadow/CloudTimer" to="Shadow" method="_on_cloud_timer_timeout"]
