@@ -1,7 +1,6 @@
 extends Control
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var build:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting")
@@ -269,7 +268,7 @@ func _on_button_pressed():
 			close()
 			if Items.new().content.has(int(item_index)):
 				if Items.new().content[int(item_index)].has("crop"):
-					grid.inventory_plant = item_index
+					grid.inventory_item = item_index
 					grid.plantID = Items.new().content[int(item_index)]["crop"]
 					grid.mode = grid.modes.PLANTED
 					grid.visible = true
