@@ -4,6 +4,7 @@ extends Button
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var notice:Control = get_node("/root/" + main_scene + "/User Interface/System/Notifications")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
+@onready var craft:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 
 var items:Object = Items.new()
@@ -25,7 +26,12 @@ func check_building_type(index:int):
 	match target_array[0]:
 		"terrain":
 			print("Terrain")
+			craft.close()
 		"node":
 			print("Node")
+			craft.close()
+		"upgrade":
+			print("Upgrade")
+			craft.close()
 		_:
 			pass

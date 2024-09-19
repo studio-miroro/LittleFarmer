@@ -17,7 +17,7 @@ extends Control
 
 var index:int
 var menu:bool = false
-var access:Array[int] = []
+var access:Array[int] = [1,2,3,4,5,6]
 
 var items:Object = Items.new()
 var blueprints:Object = Blueprints.new()
