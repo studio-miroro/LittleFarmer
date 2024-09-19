@@ -27,7 +27,7 @@ func _process(_delta):
 func blur(bluring:bool) -> void:
 	self.state = bluring
 	
-	hud._visible(bluring)
+	hud.state(bluring)
 	tooltip.tooltip()
 	camera.switch = bluring
 	zoom.change_zoom = !bluring

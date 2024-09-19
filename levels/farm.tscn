@@ -43,7 +43,7 @@
 [ext_resource type="Script" path="res://assets/scripts/buildings/buildings.gd" id="33_25htm"]
 [ext_resource type="PackedScene" uid="uid://d0hq20gmqku1b" path="res://assets/nodes/buildings/storage.tscn" id="34_67pno"]
 [ext_resource type="Script" path="res://assets/scripts/farming/farming.gd" id="35_q8rfs"]
-[ext_resource type="Script" path="res://assets/nodes/teleports.gd" id="43_511qs"]
+[ext_resource type="Script" path="res://assets/scripts/world/teleports.gd" id="43_511qs"]
 [ext_resource type="PackedScene" uid="uid://dcgfhx6lnhmtf" path="res://assets/nodes/buildings/tablet.tscn" id="45_loqmw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h27nr"]

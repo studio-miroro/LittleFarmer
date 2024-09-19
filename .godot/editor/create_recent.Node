@@ -1,3 +1,6 @@
+Timer
+AnimationPlayer
+AnimationTree
 MarginContainer
 Label
 Sprite2D
@@ -10,5 +13,3 @@ Panel
 Node2D
 Node
 HBoxContainer
-TileMap
-CanvasLayer
