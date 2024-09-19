@@ -18,7 +18,6 @@ extends Node
 @onready var plant:PackedScene = load("res://assets/nodes/farming/plant.tscn")
 
 @onready var language:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
-
 var planted:int
 var paths:Dictionary = {
 	game = "user://game.json",
@@ -31,7 +30,6 @@ var paths:Dictionary = {
 	inventory = "user://inventory.json",
 	mailbox = "user://letters.json",
 }
-
 func _ready():
 	if main_scene == "Farm":
 		if GameLoader.mode:
@@ -45,6 +43,16 @@ func _ready():
 		balance_load()
 		inventory_load()
 		buildings_load()
+
+func get_name_target_scene() -> String:
+	var scene = get_tree().root.get_child(1).name
+	match scene:
+		"Farm":
+			return tr("Ферма")
+		"Village":
+			return tr("Деревня")
+		_:
+			return ""
 
 func gamesave() -> void:
 	file_save(paths.game, "settings")

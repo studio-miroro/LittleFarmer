@@ -11,20 +11,20 @@ extends Control
 
 var hud:bool
 
-func _hide():
+func hud_hide():
 	anim.play("hide")
 	hud = false
 	
-func _show():
+func hud_show():
 	anim.play("show")
 	hud = true
 
-func _visible(state:bool):
-	match state:
+func state(hud_state:bool):
+	match hud_state:
 		true:
-			_hide()
+			hud_hide()
 		false:
-			_show()
+			hud_show()
 
 func window():
 	visible = hud
