@@ -18,18 +18,18 @@ var object:Dictionary = {
 		"caption" = "Дом",
 		"description" = "Простой домик.",
 		# Sprites
-		"default" = preload("res://Assets/Resources/Buildings/House/Level-1/object_0.png"),
-		"hover" = preload("res://Assets/Resources/Buildings/House/Level-1/object_1.png"),
+		"default" = load("res://Assets/Resources/Buildings/House/Level-1/object_0.png"),
+		"hover" = load("res://Assets/Resources/Buildings/House/Level-1/object_1.png"),
 	},
 	2: {
 		"caption" = "Дом",
 		"description" = "Улучшенный деревянный домик.",
 		"fume" 	= true,
 		# Sprites
-		"default" = preload("res://Assets/Resources/Buildings/House/Level-2/object_0.png"),
-		"hover" = preload("res://Assets/Resources/Buildings/House/Level-2/object_1.png"),
-		"ext_default" = preload("res://assets/resources/buildings/house/level-2/ext_0.png"),
-		"ext_hover"= preload("res://assets/resources/buildings/house/level-2/ext_1.png"),
+		"default" = load("res://Assets/Resources/Buildings/House/Level-2/object_0.png"),
+		"hover" = load("res://Assets/Resources/Buildings/House/Level-2/object_1.png"),
+		"ext_default" = load("res://assets/resources/buildings/house/level-2/ext_0.png"),
+		"ext_hover"= load("res://assets/resources/buildings/house/level-2/ext_1.png"),
 		
 	}
 }
