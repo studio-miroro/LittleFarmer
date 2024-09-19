@@ -10,23 +10,23 @@ var state:bool = false
 const time:int = 5
 
 func _ready():
-    await get_tree().create_timer(1.5).timeout
-    show_area_name()
+	await get_tree().create_timer(1.5).timeout
+	show_area_name()
 
 func show_area_name():
-    state = true
-    label.text = str(manager.get_name_target_scene())
-    anim.play("show")
-    timer.wait_time = time
-    timer.start()
+	state = true
+	label.text = str(manager.get_name_target_scene())
+	anim.play("show")
+	timer.wait_time = time
+	timer.start()
 
 func hide_area_name():
-    anim.play("hide")
-    state = false
+	anim.play("hide")
+	state = false
 
 func check_state():
-    visible = state
+	visible = state
 
 func _on_timer_timeout():
-    hide_area_name()
-    timer.stop()
+	hide_area_name()
+	timer.stop()
