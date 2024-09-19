@@ -15,7 +15,7 @@ var weeks:Array[String] = [
 	"Чт", "Пт", "Сб",
 	"Вс"
 	]
-var week_day:int
+var weekday = 0
 
 func _ready():
 	timer.wait_time = speed
@@ -24,10 +24,14 @@ func _ready():
 	
 func clock_update() -> void:
 	var time = str(cycle.hour) + ":" + str(cycle.minute) + "0"
-	if week_day < weeks.size():
-		label.text = "Пн" + ", " + time
+	label.text = str(week_update()) + ", " + str(time)
+
+func week_update():
+	if weekday < weeks.size() - 1:
+		weekday += 1
 	else:
-		week_day = 0
+		weekday = 0
+	return weeks[weekday]
 		
 func time_paused(status:bool) -> void:
 	timer.set_paused(status)
@@ -48,4 +52,5 @@ func _on_timer_timeout():
 			cycle.hour = cycle.hour + 1
 		if cycle.hour > 23:
 			cycle.hour = 0
+
 		clock_update()
