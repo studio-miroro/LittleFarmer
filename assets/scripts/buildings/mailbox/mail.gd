@@ -1,7 +1,6 @@
 extends Control
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var notice:Control = get_node("/root/" + main_scene + "/User Interface/System/Notifications")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
@@ -14,14 +13,12 @@ extends Control
 @onready var items_container:GridContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer/Items/GridContainer
 @onready var items_block:MarginContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items
 @onready var animation:AnimationPlayer = $AnimationPlayer
-
 @onready var header_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterHeader/Title
 @onready var description_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/MainContent/Text
 @onready var author_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Author/Author
 @onready var fixedItems_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/LabelContainer/Label
 @onready var button:Button = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems
 @onready var button_script:Button = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox/Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems")
-
 @onready var letter_node:PackedScene = load("res://assets/nodes/ui/windows/mail/letter.tscn")
 @onready var item_node:PackedScene = load("res://assets/nodes/ui/inventory/slot.tscn")
 
@@ -132,6 +129,8 @@ func get_data(letterID:int) -> void:
 			if letters[index]["money"] > 0:
 				var nested_str = tr("Вложение")
 				var money_str = tr("монет")
+				if letters[index]["money"] > balance.maximum:
+					letters[index]["money"] = balance.maximum
 				fixedItems_label.text = nested_str + ": " + str(balance.format(letters[index]["money"])) + " " + money_str
 				fixedItems_label.visible = true
 			else:
