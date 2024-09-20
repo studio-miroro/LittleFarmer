@@ -13,8 +13,8 @@ var max_distance:int = 250
 var level:int = 1
 var object:Dictionary = {
 	1: {
-		"caption" = "Хлев",
-		"description" = "Помещение для скота.",
+		"caption" = tr("animalstall.caption"),
+		"description" = tr("animalstall.description"),
 		"default" = preload("res://assets/resources/buildings/animal stall/object_0.png"),
 		"hover" = preload("res://assets/resources/buildings/animal stall/object_1.png"),
 	},
@@ -38,10 +38,11 @@ func change_sprite(type:bool):
 		if grid.mode == grid.modes.NOTHING and distance < max_distance:
 			if object.has(level):
 				check_sprite("hover")
+				var level_text = tr("object.level")
 				tip.tooltip(
 					str(object[level]["caption"]) + "\n" +
 					str(object[level]["description"]) + "\n" +
-					"Уровень: " + str(level)
+					str(level_text) + str(level)
 					)
 	else:
 		check_sprite("default")

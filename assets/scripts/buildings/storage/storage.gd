@@ -17,16 +17,16 @@ var max_distance:int = 250
 var level:int = 1
 var object:Dictionary = {
 	1: {
-		"caption" = "Старый склад",
-		"description" = "Для хранения чего-либо.",
+		"caption" = tr("storage_lvl1.caption"),
+		"description" = tr("storage_lvl1.description"),
 		"slots" = 12,
 		"default" = preload("res://Assets/Resources/Buildings/Storage/Level-1/object_0.png"),
 		"hover" = preload("res://Assets/Resources/Buildings/Storage/Level-1/object_1.png"),
 		"shadow" = preload("res://Assets/Resources/Buildings/Storage/Level-1/shadow.png"),
 	},
 	2: {
-		"caption" = "Склад",
-		"description" = "Для хранения чего-либо.",
+		"caption" = tr("storage_lvl2.caption"),
+		"description" = tr("storage_lvl2.description"),
 		"slots" = 24,
 		"default" = preload("res://Assets/Resources/Buildings/Storage/Level-2/object_0.png"),
 		"hover" = preload("res://Assets/Resources/Buildings/Storage/Level-2/object_1.png"),
@@ -62,10 +62,11 @@ func change_sprite(type:bool):
 		var distance = round(global_position.distance_to(player.global_position))
 		if grid.mode == grid.modes.NOTHING and distance < max_distance:
 			check_sprite("hover")
+			var level_text = tr("object.level")
 			tip.tooltip(
 				str(object[level]["caption"]) + "\n" +
 				str(object[level]["description"]) + "\n" +
-				"Уровень: " + str(level)
+				str(level_text) + str(level)
 				)
 			menu = true
 	else:

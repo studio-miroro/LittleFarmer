@@ -11,8 +11,8 @@ extends Node2D
 
 var max_distance:int = 250
 var object:Dictionary = {
-	"caption" = "Указатель",
-	"description" = "→ г. Изумрудный",
+	"caption" = tr("tablet.caption"),
+	"description" = tr("tablet.description"),
 	"default" = preload("res://assets/resources/buildings/tablet/tablet_0.png"),
 	"hover" = preload("res://assets/resources/buildings/tablet/tablet_1.png"),
 }

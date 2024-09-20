@@ -7,7 +7,7 @@ var crops:Dictionary = {
 	"height": 32,
 	"check_watering": 5,
 	1: {
-		"caption" = "Морковь",
+		"caption" = tr("carrot.caption"),
 		"type" = "vegetable", 
 		"season" = "spring",
 		"growth_rate" = 25,
@@ -18,7 +18,7 @@ var crops:Dictionary = {
 		"crop_id" = 1,
 	},
 	2: {
-		"caption" = "Картофель",
+		"caption" = tr("potato.caption"),
 		"type" = "vegetable", 
 		"season" = "spring",
 		"growth_rate" = 50,
@@ -29,7 +29,7 @@ var crops:Dictionary = {
 		"crop_id" = 1,
 	},
 	3: {
-		"caption" = "Редис",
+		"caption" = tr("radish.caption"),
 		"type" = "vegetable", 
 		"season" = "spring",
 		"growth_rate" = 35,
@@ -40,7 +40,7 @@ var crops:Dictionary = {
 		"crop_id" = 1,
 	},
 	4: {
-		"caption" = "Капуста",
+		"caption" = tr("cabbage.caption"),
 		"type" = "vegetable", 
 		"season" = "spring",
 		"growth_rate" = 75,

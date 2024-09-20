@@ -15,17 +15,15 @@ var max_distance:int = 250
 var level:int = 1
 var object:Dictionary = {
 	1: {
-		"caption" = "Дом",
-		"description" = "Простой домик.",
-		# Sprites
+		"caption" = tr("house_lvl1.caption"),
+		"description" = tr("house_lvl1.description"),
 		"default" = load("res://Assets/Resources/Buildings/House/Level-1/object_0.png"),
 		"hover" = load("res://Assets/Resources/Buildings/House/Level-1/object_1.png"),
 	},
 	2: {
-		"caption" = "Дом",
-		"description" = "Улучшенный деревянный домик.",
+		"caption" = tr("house_lvl2.caption"),
+		"description" = "house_lvl2.description.",
 		"fume" 	= true,
-		# Sprites
 		"default" = load("res://Assets/Resources/Buildings/House/Level-2/object_0.png"),
 		"hover" = load("res://Assets/Resources/Buildings/House/Level-2/object_1.png"),
 		"ext_default" = load("res://assets/resources/buildings/house/level-2/ext_0.png"),
@@ -66,10 +64,11 @@ func change_sprite(type:bool) -> void:
 		var distance = round(global_position.distance_to(player.global_position))
 		if grid.mode == grid.modes.NOTHING and distance < max_distance:
 			check_sprite("hover")
+			var level_text = tr("object.level")
 			tip.tooltip(
 				str(object[level]["caption"]) + "\n" +
 				str(object[level]["description"]) + "\n" +
-				"Уровень: " + str(level)
+				str(level_text) + str(level)
 				)
 	else:
 		check_sprite("default")
@@ -95,9 +94,9 @@ func load_data(obj_level:int) -> void:
 	self.level = obj_level
 	update()
 
-func _on_area_2d_mouse_entered():
+func _on_area_2d_mouse_entered() -> void:
 	if !blur.state:
 		change_sprite(true)
 
-func _on_area_2d_mouse_exited():
+func _on_area_2d_mouse_exited() -> void:
 	change_sprite(false)

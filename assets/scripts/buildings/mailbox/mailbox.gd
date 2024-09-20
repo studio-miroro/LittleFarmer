@@ -11,10 +11,10 @@ extends Node2D
 @onready var sprite:Sprite2D = $Sprite2D
 
 var max_distance:int = 250
-var mailMenu:bool = false
+var open_menu:bool = false
 var object:Dictionary = {
-	"caption" = "Почтовый ящик",
-	"description" = "Хранилище для писем",
+	"caption" = tr("mailbox.caption"),
+	"description" = tr("mailbox.description"),
 	"default" = preload("res://assets/resources/buildings/mailbox/object_0.png"),
 	"hover" = preload("res://assets/resources/buildings/mailbox/object_1.png"),
 }
@@ -32,7 +32,7 @@ func _input(event):
 	if event is InputEventMouseButton\
 	and event.button_index == MOUSE_BUTTON_LEFT\
 	and event.is_pressed()\
-	and mailMenu:
+	and open_menu:
 		mailbox.open()
 
 func change_sprite(type:bool) -> void:
@@ -46,13 +46,13 @@ func change_sprite(type:bool) -> void:
 					object["caption"]+"\n"
 					+object["description"]
 				)
-				mailMenu = true
+				open_menu = true
 			else:
 				push_error("Check the 'caption', 'description' elements.")
 	else:
 		check_sprite("default")
 		tip.tooltip("")
-		mailMenu = false
+		open_menu = false
 	
 func check_sprite(key:String) -> void:
 	if object.has(key):

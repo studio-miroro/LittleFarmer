@@ -44,16 +44,6 @@ func _ready():
 		inventory_load()
 		buildings_load()
 
-func get_name_target_scene() -> String:
-	var scene = get_tree().root.get_child(1).name
-	match scene:
-		"Farm":
-			return tr("Ферма")
-		"Village":
-			return tr("Деревня")
-		_:
-			return ""
-
 func gamesave() -> void:
 	file_save(paths.game, "settings")
 	file_save(paths.farm, "farm")

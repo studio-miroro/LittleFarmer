@@ -15,7 +15,7 @@ func _ready():
 
 func show_area_name():
 	state = true
-	label.text = str(manager.get_name_target_scene())
+	label.text = str(get_name_target_scene())
 	anim.play("show")
 	timer.wait_time = time
 	timer.start()
@@ -23,6 +23,16 @@ func show_area_name():
 func hide_area_name():
 	anim.play("hide")
 	state = false
+
+func get_name_target_scene() -> String:
+	var scene = get_tree().root.get_child(1).name
+	match scene:
+		"Farm":
+			return tr("farm.scene")
+		"Village":
+			return tr("village.scene")
+		_:
+			return ""
 
 func check_state():
 	visible = state

@@ -11,9 +11,9 @@ extends Control
 
 var speed:int = 1
 var weeks:Array[String] = [
-	"Пн", "Вт", "Ср",
-	"Чт", "Пт", "Сб",
-	"Вс"
+	tr("Пн"), tr("Вт"), tr("Ср"),
+	tr("Чт"), tr("Пт"), tr("Сб"),
+	tr("Вс")
 	]
 var weekday = 0
 

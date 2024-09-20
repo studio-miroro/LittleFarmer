@@ -24,7 +24,23 @@ extends Control
 @onready var list:Label = $Panel/StorageItemList
 
 var menu:bool = false
-var inventory_items:Dictionary = {}
+var inventory_items:Dictionary = {
+	1:{"amount":100},
+	2:{"amount":100},
+	3:{"amount":100},
+	4:{"amount":100},
+	5:{"amount":100},
+	6:{"amount":100},
+	7:{"amount":100},
+	8:{"amount":100},
+	9:{"amount":100},
+	10:{"amount":100},
+	11:{"amount":100},
+	12:{"amount":100},
+	13:{"amount":100},
+	14:{"amount":100},
+	15:{"amount":100},
+}
 
 var item_index
 var button_index:int
