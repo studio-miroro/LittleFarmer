@@ -28,9 +28,9 @@ func update():
 		if object[level].has("default"):
 			sprite.texture = object[level]["default"]
 		else:
-			print_debug(str(manager.get_system_datetime()) + " ERROR: There is no key at index " + str(level) + ".")
+			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: There is no key at index " + str(level) + ".")
 	else:
-		print_debug(str(manager.get_system_datetime()) + " ERROR: Index " + str(level) + " is not in the dictionary.")
+		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Index " + str(level) + " is not in the dictionary.")
 
 func change_sprite(type:bool):
 	if type:
@@ -54,11 +54,11 @@ func check_sprite(key:String):
 			if typeof(object[level][key]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
 				sprite.texture = object[level][key]
 			else:
-				print_debug(str(manager.get_system_datetime()) + " ERROR: The specified sprite cannot be installed.")
+				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The specified sprite cannot be installed.")
 		else:
-			print_debug(str(manager.get_system_datetime()) + " ERROR: There is no key at index " + str(level) + ".")
+			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: There is no key at index " + str(level) + ".")
 	else:
-		print_debug(str(manager.get_system_datetime()) + " ERROR: Index " + str(level) + " is not in the dictionary.")
+		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Index " + str(level) + " is not in the dictionary.")
 
 func get_data():
 	if object.has(level):

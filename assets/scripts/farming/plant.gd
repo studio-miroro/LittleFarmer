@@ -155,11 +155,11 @@ func _on_collision_mouse_entered() -> void:
 							"Состояние: " + get_condition(condition)
 						)
 				else:
-					print_debug(str(manager.get_system_datetime()) + " ERROR: The 'caption' element is not a string type. Variant.type: " + str(typeof(crops.crops[plantID]["caption"])))
+					print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The 'caption' element is not a string type. Variant.type: " + str(typeof(crops.crops[plantID]["caption"])))
 			else:
-				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'caption' element is missing.")
+				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The 'caption' element is missing.")
 		else:
-			print_debug(str(manager.get_system_datetime()) + " ERROR: Invalid ID: " + str(plantID))
+			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Invalid ID: " + str(plantID))
 		
 func _on_collision_mouse_exited() -> void:
 	if !pause.paused:

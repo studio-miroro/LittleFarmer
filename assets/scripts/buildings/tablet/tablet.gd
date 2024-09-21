@@ -22,9 +22,9 @@ func _ready():
 		if typeof(object["default"]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
 			sprite.texture = object["default"]
 		else:
-			print_debug(str(manager.get_system_datetime()) + " ERROR: The specified sprite cannot be installed.")
+			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The specified sprite cannot be installed.")
 	else:
-		print_debug(str(manager.get_system_datetime()) + " ERROR: The specified key is missing.")
+		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The specified key is missing.")
 
 func change_sprite(type:bool) -> void:
 	if type:
@@ -38,7 +38,7 @@ func change_sprite(type:bool) -> void:
 					+object["description"]
 				)
 			else:
-				print_debug(str(manager.get_system_datetime()) + " ERROR: Check the 'caption', 'description' elements.")
+				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Check the 'caption', 'description' elements.")
 	else:
 		check_sprite("default")
 		tip.tooltip("")
@@ -48,9 +48,9 @@ func check_sprite(key:String) -> void:
 		if typeof(object[key]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
 			sprite.texture = object[key]
 		else:
-			print_debug(str(manager.get_system_datetime()) + " ERROR: The specified sprite cannot be installed.")
+			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The specified sprite cannot be installed.")
 	else:
-		print_debug(str(manager.get_system_datetime()) + " ERROR: The specified key is missing.")
+		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The specified key is missing.")
 
 func _on_area_2d_mouse_entered() -> void:
 	if !blur.state:

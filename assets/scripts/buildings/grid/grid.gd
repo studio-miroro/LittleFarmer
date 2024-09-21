@@ -139,7 +139,7 @@ func _process(_delta):
 									inventory.subject_item(inventory_item, 1)
 									farming.crop(plantID, tile_mouse_pos)
 								else:
-									print_debug(str(manager.get_system_datetime()) + " ERROR: The numerical ID (" + str(plantID) + ") of this crop is missing in the main file crops.gd")
+									print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The numerical ID (" + str(plantID) + ") of this crop is missing in the main file crops.gd")
 				else:
 					mode = modes.NOTHING
 					visible = false
