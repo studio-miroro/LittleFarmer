@@ -1,7 +1,9 @@
 extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
+@onready var manager = get_node("/root/" + main_scene)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var hud:Control = get_node("/root/" + main_scene + "/User Interface/Hud")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
@@ -13,7 +15,7 @@ extends Node2D
 @onready var default:CompressedTexture2D = load("res://assets/resources/buildings/grid/default.png")
 @onready var error:CompressedTexture2D = load("res://assets/resources/buildings/grid/error.png")
 
-enum modes {NOTHING, DESTROY, FARMING, PLANTED, WATERING, BUILDING}
+enum modes {NOTHING, DESTROY, FARMING, PLANTING, WATERING, BUILD, UPGRADE}
 var mode:int = modes.NOTHING
 var check:bool = false
 
@@ -31,6 +33,7 @@ func _ready():
 	
 func _input(event):
 	if !blur.state and mode != modes.NOTHING:
+		hud.state(true)
 		if event is InputEventMouseButton\
 		and event.button_index == MOUSE_BUTTON_LEFT\
 		and event.is_pressed()\
@@ -41,6 +44,7 @@ func _input(event):
 		and event.button_index == MOUSE_BUTTON_RIGHT\
 		and event.is_pressed()\
 		and visible:
+			hud.state(false)
 			mode = modes.NOTHING
 			visible = false
 			check = false
@@ -125,7 +129,7 @@ func _process(_delta):
 							)
 				check = false
 
-			modes.PLANTED:
+			modes.PLANTING:
 				collision.planting_collision_check()
 				if inventory.check_item_amount(inventory_item):
 					if check:
@@ -135,14 +139,14 @@ func _process(_delta):
 									inventory.subject_item(inventory_item, 1)
 									farming.crop(plantID, tile_mouse_pos)
 								else:
-									push_error("The numerical ID (" + str(plantID) + ") of this crop is missing in the main file crops.gd")
+									print_debug(str(manager.get_system_datetime()) + " ERROR: The numerical ID (" + str(plantID) + ") of this crop is missing in the main file crops.gd")
 				else:
 					mode = modes.NOTHING
 					visible = false
 
 				check = false
 
-			modes.BUILDING:
+			modes.BUILD:
 				if check:
 					ground_tile_position.append(tile_mouse_pos)
 					tilemap.set_cells_terrain_connect(
