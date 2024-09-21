@@ -11,6 +11,6 @@ var resources:Dictionary = {
 	"copper_ingot": 8,
 	"iron_ore": 9,
 	"iron_ingot": 10,
-	"aluminum_ore": 11,
+	"bauxite_ore": 11,
 	"aluminum": 12,
 }
