@@ -39,7 +39,6 @@ func check_blueprints_status():
 	print_debug("\n"+str(manager.get_system_datetime()) + " INFO: Due to inventory overflow, an item with the following ID was destroyed: " + str(items_to_remove))
 	
 func _process(_delta):
-	print(access)
 	if !pause.paused\
 	and !inventory.menu:
 		if Input.is_action_just_pressed("pause") and menu:
