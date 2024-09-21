@@ -1,6 +1,7 @@
 extends Control
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
+@onready var manager = get_node("/root/" + main_scene)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var build:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting")
@@ -24,23 +25,7 @@ extends Control
 @onready var list:Label = $Panel/StorageItemList
 
 var menu:bool = false
-var inventory_items:Dictionary = {
-	1:{"amount":100},
-	2:{"amount":100},
-	3:{"amount":100},
-	4:{"amount":100},
-	5:{"amount":100},
-	6:{"amount":100},
-	7:{"amount":100},
-	8:{"amount":100},
-	9:{"amount":100},
-	10:{"amount":100},
-	11:{"amount":100},
-	12:{"amount":100},
-	13:{"amount":100},
-	14:{"amount":100},
-	15:{"amount":100},
-}
+var inventory_items:Dictionary = {}
 
 var item_index
 var button_index:int
@@ -52,6 +37,13 @@ enum item_type {
 func _ready():
 	check_window()
 	reset_data()
+	check_inventory_status()
+
+func check_inventory_status():
+	for item in inventory_items:
+		if item >= storage.object[storage.level]["slots"]:
+			inventory_items.erase(item)
+			print_debug(str(manager.get_system_datetime()) + " INFO: Due to inventory overflow, an item with the following ID was destroyed: " + str(item))
 	
 func _process(_delta):
 	if !blur.state:
@@ -175,17 +167,17 @@ func item_create(id) -> void:
 			slot.set_data(id, inventory_items[id]["amount"])
 		else:
 			remove_item(id)
-			push_error("Invalid item index: " + str(id))
+			print_debug(str(manager.get_system_datetime()) + " ERROR: Invalid item index: " + str(id))
 
 func update_string_capacity() -> void:
 	if has_node("/root/" + main_scene + "/Buildings"):
 		if has_node("/root/" + main_scene + "/Buildings/Storage"):
 			if storage.object[storage.level].has("slots"):
-				var text = "Вместимость:"
+				var text = tr("storage.capacity")
 				list.text = text + " " + str(get_all_items()) + "/" + str(storage.object[storage.level]["slots"])
 				list.visible = true
 			else:
-				push_error("The 'slots' element does not exist.")
+				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'slots' element does not exist.")
 				list.visible = false
 		else:
 			push_error("In the parent of 'Buildings'  there is no child node 'Storage'")
