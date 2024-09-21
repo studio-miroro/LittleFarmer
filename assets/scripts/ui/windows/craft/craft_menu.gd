@@ -27,8 +27,19 @@ var materials:Object = BuildingMaterials.new()
 func _ready():
 	check_window()
 	reset_data()
+	check_blueprints_status()
 
+func check_blueprints_status():
+	var items_to_remove = []
+	for i in access:
+		if !blueprints.content.has(i):
+			items_to_remove.append(i)
+	for item in items_to_remove:
+		access.erase(item)
+	print_debug("\n"+str(manager.get_system_datetime()) + " INFO: Due to inventory overflow, an item with the following ID was destroyed: " + str(items_to_remove))
+	
 func _process(_delta):
+	print(access)
 	if !pause.paused\
 	and !inventory.menu:
 		if Input.is_action_just_pressed("pause") and menu:
