@@ -11,9 +11,9 @@ extends Control
 
 var speed:int = 1
 var weeks:Array[String] = [
-	tr("Пн"), tr("Вт"), tr("Ср"),
-	tr("Чт"), tr("Пт"), tr("Сб"),
-	tr("Вс")
+	tr("mon.clock"), tr("tue.clock"), tr("wed.clock"),
+	tr("thu.clock"), tr("fri.clock"), tr("sat.clock"),
+	tr("sun.clock")
 	]
 var weekday = 0
 
@@ -24,7 +24,7 @@ func _ready():
 	
 func clock_update() -> void:
 	var time = str(cycle.hour) + ":" + str(cycle.minute) + "0"
-	label.text = str(week_update()) + ", " + str(time)
+	label.text = str(week_update()) + " " + str(time)
 
 func week_update():
 	if weekday < weeks.size() - 1:
