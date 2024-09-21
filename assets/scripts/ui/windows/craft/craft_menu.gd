@@ -187,15 +187,14 @@ func check_button(id, key = null) -> void:
 
 func resource(key) -> Variant:
 	if key in materials.resources:
-		if materials.resources[key].has("caption"):
-			return materials.resources[key]["caption"]
+		if items.content[materials.resources[key]].has("caption"):
+			return items.content[materials.resources[key]]["caption"]
 	return null
 
 func check_items(key) -> Variant:
 	if key in materials.resources:
-		if materials.resources[key].has("id"):
-			if inventory.inventory_items.has(materials.resources[key]["id"]):
-				return inventory.inventory_items[materials.resources[key]["id"]]["amount"]
+		if inventory.inventory_items.has(materials.resources[key]):
+			return inventory.inventory_items[materials.resources[key]]["amount"]
 	return 0
 
 func get_blueprints() -> Array:
