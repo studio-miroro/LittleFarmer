@@ -158,7 +158,6 @@ custom_minimum_size = Vector2(275, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 follow_focus = true
-horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Info"]
 custom_minimum_size = Vector2(275, 0)
@@ -189,6 +188,8 @@ autowrap_mode = 3
 
 [node name="Resources" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="ObjectResources" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer/Resources"]
 custom_minimum_size = Vector2(0, 50)

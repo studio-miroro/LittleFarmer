@@ -25,13 +25,13 @@ func check_building_type(index:int):
 	var target_array = blueprints.content[index]["type"].keys() 
 	match target_array[0]:
 		"terrain":
-			print("Terrain")
+			# Code ...
 			craft.close()
 		"node":
-			print("Node")
+			# Code ...
 			craft.close()
 		"upgrade":
-			print("Upgrade")
+			# Code ...
 			craft.close()
 		_:
 			pass

@@ -6,8 +6,9 @@ extends Control
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 
-@onready var container:GridContainer = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting/Panel/HBoxContainer/Items/GridContainer")
 @onready var blueprint:PackedScene = load("res://assets/nodes/ui/windows/craft/blueprint.tscn")
+@onready var container:GridContainer = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting/Panel/HBoxContainer/Items/GridContainer")
+@onready var build_button:Button = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting/Panel/HBoxContainer/Info/VBoxContainer/Button/Craft")
 @onready var caption:Label = $Panel/HBoxContainer/Info/VBoxContainer/Caption/ObjectCaption
 @onready var description:Label = $Panel/HBoxContainer/Info/VBoxContainer/Description/ObjectDescription
 @onready var resources:Label = $Panel/HBoxContainer/Info/VBoxContainer/Resources/ObjectResources
@@ -56,8 +57,10 @@ func close() -> void:
 	delete_all_blueprints()
 
 func start_info() -> void:
-	caption.text = "* Информация *"
-	description.text = "Начните строительство, выбрав доступные чертежи слева."
+	var start_caption = tr("header.craft")
+	var start_description = tr("description.craft")
+	caption.text = start_caption
+	description.text = start_description
 	time_create.text = ""
 	button.visible = false
 
@@ -86,8 +89,10 @@ func get_data(id):
 		if blueprints.content[int(index)].has("caption"):
 			if typeof(blueprints.content[int(index)]["caption"]) == TYPE_STRING and caption.text is String:
 				caption.text = str(blueprints.content[int(index)]["caption"])
+				caption.visible = true
 			else:
-				caption.text = "Untitled blueprint"
+				caption.text = ""
+				caption.visible = false
 				push_error("The 'caption' key has a non-string type. Variant.type: " + str(typeof(blueprints.content[index]["caption"])))
 		else:
 			push_error("The object does not have the 'caption' key.")
@@ -105,8 +110,9 @@ func get_data(id):
 			description.visible = false
 		
 		if blueprints.content[id].has("resource"):
+			var resources_label = tr("necessary_resources.craft")
 			resources.visible = true
-			resources.text = "Необходимые ресурсы:"
+			resources.text = resources_label + ":"
 			
 			if blueprints.content[id].get("resource") != {}:
 				for i in blueprints.content[id]["resource"]:
@@ -115,12 +121,14 @@ func get_data(id):
 				resources.visible = false
 		else:
 			resources.visible = false
-			button.disabled = false # checking others factors
+			button.disabled = false
 		
 		if blueprints.content[id].has("time"):
 			if typeof(blueprints.content[id]["time"]) == TYPE_INT and description.text is String:
 				if blueprints.content[id]["time"] > 0:
-					time_create.text = "Время создания: " + str(blueprints.content[id]["time"]) + " сек."
+					var creation_time_label = tr("creation_time.craft")
+					var creation_time_seconds = tr("time.craft")
+					time_create.text = creation_time_label + ": " + str(blueprints.content[id]["time"]) +  creation_time_seconds
 					time_create.visible = true
 				else:
 					time_create.visible = false
@@ -131,12 +139,28 @@ func get_data(id):
 			push_error("The object does not have the 'time' key.")
 			time_create.visible = false
 		
+		button.text = check_blueprint_type(id)
 		button.visible = true
 	else:
 		button.visible = false
 
 func blueprints_load(data:int) -> void:
 	access.append(data)
+
+func check_blueprint_type(id) -> String:
+	if blueprints.content.has(id):
+		if blueprints.content[id].has("type"):
+			var type_array = blueprints.content[index]["type"].keys() 
+			match type_array[0]:
+				"node":
+					return tr("node.button_craft")
+				"upgrade":
+					return tr("upgrade.button_craft")
+				"terrain":
+					return tr("terrain.button_craft")
+				_:
+					return ""
+	return "???"
 
 func check_material(id, key) -> void:
 	if resource(key) != null:

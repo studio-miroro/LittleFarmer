@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c50737uagx074"]
+[gd_scene load_steps=20 format=3 uid="uid://c50737uagx074"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_8w4wf"]
 [ext_resource type="Script" path="res://assets/scripts/ui/hud/hud.gd" id="2_sl7o8"]
@@ -12,6 +12,12 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lbeot"]
 shader = ExtResource("1_8w4wf")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6tlru"]
+font_size = 18
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.180392)
+shadow_offset = Vector2(0, 2)
 
 [sub_resource type="Animation" id="Animation_b10bj"]
 length = 0.001
@@ -239,6 +245,7 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 8
 text = "AREA.NAME"
+label_settings = SubResource("LabelSettings_6tlru")
 horizontal_alignment = 1
 vertical_alignment = 1
 
