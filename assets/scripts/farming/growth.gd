@@ -1,5 +1,7 @@
 extends Sprite2D
 
+@onready var main_scene = str(get_tree().root.get_child(1).name)
+@onready var manager = get_node("/root/" + main_scene)
 @onready var plant = $".."
 @onready var timer = $"../Timer"
 var crops = Crops.new()
@@ -11,9 +13,9 @@ func _ready():
 		and texture is CompressedTexture2D:
 			texture = texture
 		else:
-			push_error("Atlas is not a CompressedTexture2D.")
+			print_debug(str(manager.get_system_datetime()) + " ERROR: Atlas is not a CompressedTexture2D.")
 	else:
-		push_error("No atlas of crops.")
+		print_debug(str(manager.get_system_datetime()) + " ERROR: No atlas of crops.")
 
 func _process(_delta):
 	if plant.plantID != 0:
@@ -21,7 +23,7 @@ func _process(_delta):
 		and plant.condition != plant.phases.INCREASED:
 			plant_increased()
 	else:
-		push_error("Invalid variable index: " + str(plant.plantID))
+		print_debug(str(manager.get_system_datetime()) + " ERROR: Invalid variable index: " + str(plant.plantID))
 		remove_child(plant)
 		queue_free()
 		
@@ -31,7 +33,7 @@ func rect(id):
 		region_rect.position.x = crops.crops[id]['X']
 		region_rect.position.y = crops.crops[id]['Y']
 	else:
-		push_error("The X and Y coordinates cannot be determined.")
+		print_debug(str(manager.get_system_datetime()) + " ERROR: The X and Y coordinates cannot be determined.")
 
 func _on_timer_timeout() -> void:
 	if level < crops.crops[plant.plantID]["growth_level"]:

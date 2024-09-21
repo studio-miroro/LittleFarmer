@@ -1,19 +1,15 @@
 extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-
+@onready var manager = get_node("/root/" + main_scene)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
-
 @onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
 @onready var collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
-
 @onready var sprite:Sprite2D = $Sprite2D
 @onready var timer:Timer = $Timer
-
-var crops:Object = Crops.new()
 
 var plantID:int
 var condition:int = phases.PLANTED
@@ -22,6 +18,7 @@ var degree:int
 
 enum phases {PLANTED,GROWING,INCREASED,DEAD}
 enum fertilizers {NOTHING, COMPOST, HUMUS, MANURE}
+var crops:Object = Crops.new()
 
 func _process(_delta):
 	if pause.paused:
@@ -158,11 +155,11 @@ func _on_collision_mouse_entered() -> void:
 							"Состояние: " + get_condition(condition)
 						)
 				else:
-					push_error("The 'caption' element is not a string type. Variant.type: " + str(typeof(crops.crops[plantID]["caption"])))
+					print_debug(str(manager.get_system_datetime()) + " ERROR: The 'caption' element is not a string type. Variant.type: " + str(typeof(crops.crops[plantID]["caption"])))
 			else:
-				push_error("The 'caption' element is missing.")
+				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'caption' element is missing.")
 		else:
-			push_error("Invalid ID: " + str(plantID))
+			print_debug(str(manager.get_system_datetime()) + " ERROR: Invalid ID: " + str(plantID))
 		
 func _on_collision_mouse_exited() -> void:
 	if !pause.paused:

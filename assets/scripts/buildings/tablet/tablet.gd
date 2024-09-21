@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-
+@onready var manager = get_node("/root/" + main_scene)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
 @onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
@@ -22,9 +22,9 @@ func _ready():
 		if typeof(object["default"]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
 			sprite.texture = object["default"]
 		else:
-			push_error("The specified sprite cannot be installed.")
+			print_debug(str(manager.get_system_datetime()) + " ERROR: The specified sprite cannot be installed.")
 	else:
-		push_error("The specified key is missing.")
+		print_debug(str(manager.get_system_datetime()) + " ERROR: The specified key is missing.")
 
 func change_sprite(type:bool) -> void:
 	if type:
@@ -38,7 +38,7 @@ func change_sprite(type:bool) -> void:
 					+object["description"]
 				)
 			else:
-				push_error("Check the 'caption', 'description' elements.")
+				print_debug(str(manager.get_system_datetime()) + " ERROR: Check the 'caption', 'description' elements.")
 	else:
 		check_sprite("default")
 		tip.tooltip("")
@@ -48,9 +48,9 @@ func check_sprite(key:String) -> void:
 		if typeof(object[key]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
 			sprite.texture = object[key]
 		else:
-			push_error("The specified sprite cannot be installed.")
+			print_debug(str(manager.get_system_datetime()) + " ERROR: The specified sprite cannot be installed.")
 	else:
-		push_error("The specified key is missing.")
+		print_debug(str(manager.get_system_datetime()) + " ERROR: The specified key is missing.")
 
 func _on_area_2d_mouse_entered() -> void:
 	if !blur.state:

@@ -1,11 +1,11 @@
 extends Control
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
+@onready var manager = get_node("/root/" + main_scene)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var notice:Control = get_node("/root/" + main_scene + "/User Interface/System/Notifications")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
-
 @onready var blueprint:PackedScene = load("res://assets/nodes/ui/windows/craft/blueprint.tscn")
 @onready var container:GridContainer = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting/Panel/HBoxContainer/Items/GridContainer")
 @onready var build_button:Button = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting/Panel/HBoxContainer/Info/VBoxContainer/Button/Craft")
@@ -75,7 +75,7 @@ func create_item(id) -> void:
 		container.add_child(item)
 		item.set_data(id)
 	else:
-		push_error("Cannot load node. Invalid index: " + str(id))
+		print_debug(str(manager.get_system_datetime()) + " ERROR: Cannot load node. Invalid index: " + str(id))
 
 func delete_all_blueprints() -> void:
 	for child in container.get_children():
@@ -93,9 +93,9 @@ func get_data(id):
 			else:
 				caption.text = ""
 				caption.visible = false
-				push_error("The 'caption' key has a non-string type. Variant.type: " + str(typeof(blueprints.content[index]["caption"])))
+				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'caption' key has a non-string type. Variant.type: " + str(typeof(blueprints.content[index]["caption"])))
 		else:
-			push_error("The object does not have the 'caption' key.")
+			print_debug(str(manager.get_system_datetime()) + " ERROR: The object does not have the 'caption' key.")
 			description.visible = false
 			
 		if blueprints.content[id].has("description"):
@@ -103,10 +103,10 @@ func get_data(id):
 				description.text = blueprints.content[id]["description"] + "\n"
 				description.visible = true
 			else:
-				push_error("The 'description' key has a non-string type. Variant.type: " + str(typeof(blueprints.content[index]["description"])))
+				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'description' key has a non-string type. Variant.type: " + str(typeof(blueprints.content[index]["description"])))
 				description.visible = false
 		else:
-			push_error("The object does not have the 'description' key.")
+			print_debug(str(manager.get_system_datetime()) + " ERROR: The object does not have the 'description' key.")
 			description.visible = false
 		
 		if blueprints.content[id].has("resource"):
@@ -133,10 +133,10 @@ func get_data(id):
 				else:
 					time_create.visible = false
 			else:
-				push_error("The 'time' key has a non-integer type. Variant.type: " + str(typeof(blueprints.content[id]["time"])))
+				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'time' key has a non-integer type. Variant.type: " + str(typeof(blueprints.content[id]["time"])))
 				time_create.visible = false
 		else:
-			push_error("The object does not have the 'time' key.")
+			print_debug(str(manager.get_system_datetime()) + " ERROR: The object does not have the 'time' key.")
 			time_create.visible = false
 		
 		button.text = check_blueprint_type(id)
@@ -169,11 +169,11 @@ func check_material(id, key) -> void:
 					resources.text = resources.text + "\n• " + str(resource(key)) + " (" + str(check_items(key)) + "/" + str(round(blueprints.content[index]["resource"][key])) + ")"
 					check_button(id, key)
 				else:
-					push_error("The key '" + str(key) + "' does not blueprints an integer or float: " + str(typeof(blueprints.content[index]["resource"][key])))
+					print_debug(str(manager.get_system_datetime()) + " ERROR: The key '" + str(key) + "' does not blueprints an integer or float: " + str(typeof(blueprints.content[index]["resource"][key])))
 		else:
 			push_warning("The '" + str(key)+ "' material cannot be returned as a string. This material will not be taken into account.")
 	else:
-		push_error("Invalid material: " + str(key))
+		print_debug(str(manager.get_system_datetime()) + " ERROR: Invalid material: " + str(key))
 
 func check_button(id, key = null) -> void:
 	if blueprints.content[id].has("resource"):

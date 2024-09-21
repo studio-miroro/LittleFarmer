@@ -1,6 +1,7 @@
 extends Control
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
+@onready var manager = get_node("/root/" + main_scene)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var notice:Control = get_node("/root/" + main_scene + "/User Interface/System/Notifications")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
@@ -69,7 +70,7 @@ func get_data(letterID:int) -> void:
 				header_label.text = letters[index]["header"]
 				header_label.visible = true
 			else:
-				push_error("The 'header' is not a string.")
+				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'header' is not a string.")
 		else:
 			header_label.visible = false
 
@@ -78,7 +79,7 @@ func get_data(letterID:int) -> void:
 				description_label.text = letters[index]["description"]
 				description_label.visible = true
 			else:
-				push_error("The 'description_label' is not a string.")
+				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'description_label' is not a string.")
 		else:
 			description_label.visible = false
 
@@ -87,7 +88,7 @@ func get_data(letterID:int) -> void:
 				author_label.text = "— " + letters[index]["author"]
 				author_label.visible = true
 			else:
-				push_error("The 'author' is not a string.")
+				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'author' is not a string.")
 		else:
 			author_label.visible = false
 
@@ -118,9 +119,9 @@ func get_data(letterID:int) -> void:
 							else:
 								button_script.state(true)
 						else:
-							push_error("")
+							print_debug(str(manager.get_system_datetime()) + " ERROR: ")
 					else:
-						push_error("")
+						print_debug(str(manager.get_system_datetime()) + " ERROR: ")
 
 					button.visible = true
 				else:
@@ -141,7 +142,7 @@ func get_data(letterID:int) -> void:
 			items_block.visible = false
 
 	else:
-		push_error("Invalid index: " + str(index))
+		print_debug(str(manager.get_system_datetime()) + " ERROR: Invalid index: " + str(index))
 
 func check_letterID(letterID):
 	for i in letters:
@@ -180,7 +181,7 @@ func check_letter_item(check:int, letterID, dictionary:Dictionary):
 				if item.content.has(int(key)):
 					inventory.add_item(int(key), int(dictionary[letterID]["items"][key]["amount"]))
 				else:
-					push_error("Incorrect subject ID ("+str(key)+"): Such a subject does not exist in the main subject dictionary.")
+					print_debug(str(manager.get_system_datetime()) + " ERROR: Incorrect subject ID ("+str(key)+"): Such a subject does not exist in the main subject dictionary.")
 
 func create_letters(dictionary:Dictionary, node:PackedScene, parent:VBoxContainer) -> void:
 	for i in dictionary:
@@ -205,7 +206,7 @@ func letter_create_items(id:int, amount:int, parent:GridContainer, node:PackedSc
 		parent.add_child(object)
 		object.set_data(id, amount)
 	else:
-		push_error("Invalid item ID: " + str(id))
+		print_debug(str(manager.get_system_datetime()) + " ERROR: Invalid item ID: " + str(id))
 		
 func letter_delete_items(parent:GridContainer) -> void:
 	for child in parent.get_children():

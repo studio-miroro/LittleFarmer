@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-
+@onready var manager = get_node("/root/" + main_scene)
 @onready var tip = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
 @onready var pause = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
@@ -42,9 +42,9 @@ func update():
 			check_key("ext")
 				
 		else:
-			push_error("There is no key at index " + str(level) + ".")
+			print_debug(str(manager.get_system_datetime()) + " ERROR: There is no key at index " + str(level) + ".")
 	else:
-		push_error("Index " + str(level) + " is not in the dictionary.")
+		print_debug(str(manager.get_system_datetime()) + " ERROR: Index " + str(level) + " is not in the dictionary.")
 
 func check_key(key:String) -> void:
 	match key:
@@ -80,11 +80,11 @@ func check_sprite(key:String) -> void:
 			if typeof(object[level][key]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
 				sprite.texture = object[level][key]
 			else:
-				push_error("The specified sprite cannot be installed.")
+				print_debug(str(manager.get_system_datetime()) + " ERROR: The specified sprite cannot be installed.")
 		else:
-			push_error("There is no key at index " + str(level) + ".")
+			print_debug(str(manager.get_system_datetime()) + " ERROR: There is no key at index " + str(level) + ".")
 	else:
-		push_error("Index " + str(level) + " is not in the dictionary.")
+		print_debug(str(manager.get_system_datetime()) + " ERROR: Index " + str(level) + " is not in the dictionary.")
 
 func get_data():
 	if object.has(level):

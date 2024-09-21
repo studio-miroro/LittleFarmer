@@ -5,19 +5,17 @@ extends Node
 @onready var cycle:Node2D = get_node("/root/" + main_scene + "/Cycle")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
 @onready var player:Node2D = get_node("/root/" + main_scene + "/Camera")
-
 @onready var balance:Control = get_node("/root/" + main_scene + "/User Interface/Hud/Main/Indicators/Balance")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var craft:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting")
 @onready var mailbox:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox")
-
 @onready var buildings:Node2D = get_node("/root/" + main_scene + "/Buildings")
 @onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
 @onready var collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
 @onready var farming:Node2D = get_node("/root/" + main_scene + "/Farming")
 @onready var plant:PackedScene = load("res://assets/nodes/farming/plant.tscn")
-
 @onready var language:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
+
 var planted:int
 var paths:Dictionary = {
 	game = "user://game.json",
@@ -81,7 +79,7 @@ func file_load(path_file) -> Dictionary:
 		var parse_result = JSON.parse_string(json_string)
 		return parse_result
 	else:
-		push_error("file not found: ", path_file)
+		print_debug(str(get_system_datetime()) + "ERROR: file not found: ", path_file)
 		return {}
 		
 func get_key(path_file:String, key:String, group:String = ""):
@@ -160,9 +158,9 @@ func create_nodes(parent:Node2D, node:PackedScene, positions) -> void:
 					parent.add_child(object)
 					farm_load(object, object_name, position)
 				else:
-					push_error("Cannot load node.")
+					print_debug(str(get_system_datetime()) + "ERROR: Cannot load node.")
 			else:
-				push_error("Variable position is not of type Vector2")
+				print_debug(str(get_system_datetime()) + "ERROR: Variable position is not of type Vector2")
 
 func remove_all_child(parent: Node):
 	erase_cells(collision.seeds_layer)
@@ -209,7 +207,7 @@ func farm_load(object:Node2D, object_name:String, position:Vector2i):
 	and growth_level != null:
 		object.set_data(id, condition, degree, fertilizer, rect_x, rect_y, growth_level, position)
 	else:
-		push_error("Data missing for node: " + object_name)
+		print_debug(str(get_system_datetime()) + "ERROR: Data missing for node: " + object_name)
 
 func terrains_remove() -> void:
 	if collision.get_used_cells(collision.ground_layer) != []:
@@ -263,6 +261,10 @@ func buildings_load() -> void:
 	for content in file_load(paths.buildings):
 		if file_load(paths.buildings)[content].has("level"):
 			buildings.build_content(content, file_load(paths.buildings)[content]["level"])
+
+func get_system_datetime() -> String:
+	var system_datetime = Time.get_datetime_dict_from_system()
+	return "["+str(system_datetime["year"])+"-"+str(system_datetime["month"])+"-"+str(system_datetime["day"])+" "+str(system_datetime["hour"])+":"+str(system_datetime["minute"])+":"+str(system_datetime["second"])+"]"
 
 func get_content(content:String) -> Dictionary:
 	match content:
