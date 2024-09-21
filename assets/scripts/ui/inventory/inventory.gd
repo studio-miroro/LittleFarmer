@@ -253,19 +253,20 @@ func get_specifications(index, i) -> void:
 func get_tip(tip:String) -> String:
 	match tip:
 		"growth":
-			return "Время роста"
+			return tr("growthtime_crop.inventory")
 		"productivity":
-			return "Урожайность"
+			return tr("productivity_crop.inventory")
 		"conditions":
-			return "Условия"
+			return tr("conditions_crop.inventory")
 		_:
 			return ""
 
 func check_item_type(i_type:String) -> void:
 	match i_type:
-		"Семена":
+		"seeds":
+			var plant_text = tr("plant_seeds.inventory_button")
 			button_index = item_type.SEEDS
-			button.text = tr("Посадить семена")
+			button.text = plant_text
 			button.visible = true
 		_:
 			button_index = item_type.NOTHING
