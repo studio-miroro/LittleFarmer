@@ -1,7 +1,7 @@
 extends Control
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var manager = get_node("/root/" + main_scene)
+@onready var manager:Node2D = get_node("/root/" + main_scene)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var notice:Control = get_node("/root/" + main_scene + "/User Interface/System/Notifications")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
@@ -67,8 +67,8 @@ func close() -> void:
 	delete_all_blueprints()
 
 func start_info() -> void:
-	var start_caption = tr("header.craft")
-	var start_description = tr("description.craft")
+	var start_caption = tr("startinfo_header.craft")
+	var start_description = tr("startinfo_description.craft")
 	caption.text = start_caption
 	description.text = start_description
 	time_create.text = ""
