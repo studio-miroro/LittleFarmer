@@ -1,11 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cyl6jw0huwvk6"]
+[gd_scene load_steps=13 format=3 uid="uid://cyl6jw0huwvk6"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/pause_menu.gd" id="1_i0wdk"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_0oiu2"]
 [ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/buttons/button_countinue.gd" id="3_ipf4w"]
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/buttons/button_save.gd" id="4_qcrph"]
 [ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/buttons/button_options.gd" id="4_t8cec"]
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/buttons/button_load.gd" id="5_76178"]
 [ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/buttons/button_exit.gd" id="6_wegtm"]
 
 [sub_resource type="Animation" id="Animation_s30n0"]
@@ -149,26 +147,6 @@ text = "options.game"
 icon_alignment = 1
 script = ExtResource("4_t8cec")
 
-[node name="save" type="MarginContainer" parent="MarginContainer/MarginContainer/container"]
-visible = false
-layout_mode = 2
-
-[node name="save" type="Button" parent="MarginContainer/MarginContainer/container/save"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-text = "save.load"
-script = ExtResource("4_qcrph")
-
-[node name="load" type="MarginContainer" parent="MarginContainer/MarginContainer/container"]
-visible = false
-layout_mode = 2
-
-[node name="load" type="Button" parent="MarginContainer/MarginContainer/container/load"]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-text = "load.game"
-script = ExtResource("5_76178")
-
 [node name="exit" type="MarginContainer" parent="MarginContainer/MarginContainer/container"]
 layout_mode = 2
 
@@ -192,6 +170,4 @@ vertical_alignment = 2
 
 [connection signal="pressed" from="MarginContainer/MarginContainer/container/countinue/countinue" to="MarginContainer/MarginContainer/container/countinue/countinue" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/container/options/options" to="MarginContainer/MarginContainer/container/options/options" method="_on_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/container/save/save" to="MarginContainer/MarginContainer/container/save/save" method="_on_pressed"]
-[connection signal="pressed" from="MarginContainer/MarginContainer/container/load/load" to="MarginContainer/MarginContainer/container/load/load" method="_on_pressed"]
 [connection signal="pressed" from="MarginContainer/MarginContainer/container/exit/exit" to="MarginContainer/MarginContainer/container/exit/exit" method="_on_pressed"]
