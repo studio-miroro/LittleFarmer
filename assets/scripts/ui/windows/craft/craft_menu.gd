@@ -155,6 +155,7 @@ func get_data(id):
 		button.visible = false
 
 func blueprints_load(data:int) -> void:
+	access.clear()
 	access.append(data)
 
 func check_blueprint_type(id) -> String:
