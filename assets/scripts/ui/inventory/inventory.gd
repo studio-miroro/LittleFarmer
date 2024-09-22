@@ -26,19 +26,6 @@ extends Control
 
 var menu:bool = false
 var inventory_items:Dictionary = {
-	1:{"amount":100},
-	2:{"amount":100},
-	3:{"amount":100},
-	4:{"amount":100},
-	5:{"amount":100},
-	6:{"amount":100},
-	7:{"amount":100},
-	8:{"amount":100},
-	9:{"amount":100},
-	10:{"amount":100},
-	11:{"amount":100},
-	12:{"amount":100},
-	13:{"amount":100},
 }
 
 var item_index
@@ -51,14 +38,16 @@ enum item_type {
 func _ready():
 	check_window()
 	reset_data()
-	check_inventory_status()
+	check_inventory()
 
-func check_inventory_status():
-	for item in inventory_items:
-		if item >= storage.object[storage.level]["slots"]:
+func check_inventory():
+	var max_slots = storage.object[storage.level]["slots"]
+	while inventory_items.size() > max_slots:
+		for item in inventory_items:
 			inventory_items.erase(item)
+			break
 			print_debug("\n"+str(manager.get_system_datetime()) + " INFO: Due to inventory overflow, an item with the following ID was destroyed: " + str(item))
-	
+
 func _process(_delta):
 	if !blur.state:
 		if Input.is_action_just_pressed("inventory"):
