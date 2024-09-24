@@ -14,7 +14,6 @@ script = ExtResource("1_4uigv")
 texture = ExtResource("2_j2paw")
 
 [node name="GridCollision" type="Area2D" parent="."]
-visible = false
 z_index = 4
 script = ExtResource("3_123wc")
 
