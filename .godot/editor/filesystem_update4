@@ -1,3 +1,4 @@
 res://levels/farm.tscn
 res://assets/resources/nature/cycle-gradient.tres
 res://assets/scripts/world/nature/shadow.gd
+res://assets/scripts/world/nature/cloud_movement.gd

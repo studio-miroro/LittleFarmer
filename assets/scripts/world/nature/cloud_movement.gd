@@ -7,7 +7,7 @@ extends Sprite2D
 @onready var max_distance:float = get_node("/root/" + main_scene + "/Shadow").max_distance
 @onready var shadow_group:Node2D = get_node("/root/" + main_scene + "/Shadow")
 
-var node = preload("res://assets/nodes/nature/clouds.tscn")
+var node = preload("res://assets/nodes/nature/cloud.tscn")
 var speed:float = .5
 
 func _process(_delta):
