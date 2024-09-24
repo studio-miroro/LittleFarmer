@@ -2,3 +2,8 @@ res://levels/farm.tscn
 res://assets/resources/nature/cycle-gradient.tres
 res://assets/scripts/world/nature/shadow.gd
 res://assets/scripts/world/nature/cloud_movement.gd
+res://assets/scripts/ui/inventory/inventory.gd
+res://assets/scripts/buildings/grid/grid.gd
+res://assets/scripts/buildings/materials.gd
+res://assets/scripts/buildings/grid/collision.gd
+res://assets/scripts/buildings/blueprints.gd
