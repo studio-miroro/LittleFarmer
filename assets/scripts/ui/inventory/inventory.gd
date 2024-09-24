@@ -209,6 +209,7 @@ func subject_item(item_id, item_amount:int) -> void:
 	for key in inventory_items:
 		if item_id == key:
 			inventory_items[item_id]["amount"] -= item_amount 
+			check_amount(item_id)
 
 func remove_item(id) -> void:
 	for key in inventory_items:
@@ -219,8 +220,6 @@ func get_item_amount(item_id) -> int:
 	if inventory_items.has(item_id) and inventory_items[item_id].has("amount"):
 		if inventory_items[item_id]["amount"] > 0:
 			return inventory_items[item_id]["amount"]
-		else:
-			return 0
 	return 0
 
 func check_item_amount(id) -> bool:
@@ -231,7 +230,6 @@ func check_item_amount(id) -> bool:
 			else:
 				remove_item(id)
 				return false
-		else: return false
 	return false
 
 func check_amount(index) -> void:
@@ -239,8 +237,8 @@ func check_amount(index) -> void:
 		if inventory_items[index].has("amount"):
 			if inventory_items[index]["amount"] > Items.new().content["max"]:
 				inventory_items[index]["amount"] = Items.new().content["max"]
-			if inventory_items[index]["amount"] < 0:
-				inventory_items[index]["amount"] = 0
+			if inventory_items[index]["amount"] <= 0:
+				remove_item(index)
 		else:
 			push_warning("[ID: " + str(index) + "] The 'amount' element does not exist in the inventory dictionary (array).")
 			inventory_items[index]["amount"] = 1
