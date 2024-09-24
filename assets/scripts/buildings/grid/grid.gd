@@ -158,22 +158,23 @@ func _process(_delta):
 				check = false
 
 			modes.BUILD:
+				var blueprint = Blueprints.new().content[building_id]
+
 				collision.building_collision_check(building_node_layer)
-				if collision.building_collision_check(building_node_layer):
-					if Blueprints.new().content[building_id].has("resource"):
-						for resource in Blueprints.new().content[building_id]["resource"]:
-							if inventory.check_item_amount(BuildingMaterials.new().resources[resource]):
-								if check:
-									inventory.subject_item(
-										BuildingMaterials.new().resources[resource], 
-										Blueprints.new().content[building_id]["resource"][resource]
-										)
-									building_tile_position.append(tile_mouse_pos)
-									buildings.build(tile_mouse_pos, building_node, building_node_layer, building_shadow)
-							else:
-								hud.state(false)
-								mode = modes.NOTHING
-								visible = false	
+				if blueprint.has("resource"):
+					for resource in blueprint["resource"]:
+						var required_amount = blueprint["resource"][resource]
+						var available_amount = inventory.get_item_amount(BuildingMaterials.new().resources[resource])
+						if available_amount >= required_amount:
+							if check:
+								inventory.subject_item(BuildingMaterials.new().resources[resource], required_amount)
+								building_tile_position.append(tile_mouse_pos)
+								buildings.build(tile_mouse_pos, building_node, building_node_layer, building_shadow)
+								continue
+						else:
+							hud.state(false)
+							mode = modes.NOTHING
+							visible = false
 				
 				check = false
 
