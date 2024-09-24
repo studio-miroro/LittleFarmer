@@ -18,7 +18,7 @@ extends CanvasGroup
 	preload("res://assets/resources/nature/clouds/cloud_10.png")
 ]
 
-var node:PackedScene = preload("res://assets/nodes/nature/clouds.tscn")
+var node:PackedScene = preload("res://assets/nodes/nature/cloud.tscn")
 var max_distance:float = 600
 
 func cloud_spawn() -> void:
