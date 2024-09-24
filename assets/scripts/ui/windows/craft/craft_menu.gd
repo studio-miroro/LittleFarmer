@@ -176,11 +176,11 @@ func check_blueprint_type(id) -> String:
 func check_material(id, key) -> void:
 	if resource(key) != null:
 		if check_items(key) != null:
-				if typeof(blueprints.content[id]["resource"][key]) != TYPE_STRING:
-					resources.text = resources.text + "\n• " + str(resource(key)) + " (" + str(check_items(key)) + "/" + str(round(blueprints.content[index]["resource"][key])) + ")"
-					check_button(id, key)
-				else:
-					print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The key '" + str(key) + "' does not blueprints an integer or float: " + str(typeof(blueprints.content[index]["resource"][key])))
+			if typeof(blueprints.content[id]["resource"][key]) != TYPE_STRING:
+				resources.text = resources.text + "\n• " + str(resource(key)) + " (" + str(check_items(key)) + "/" + str(round(blueprints.content[index]["resource"][key])) + ")"
+				check_button(id, key)
+			else:
+				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The key '" + str(key) + "' does not blueprints an integer or float: " + str(typeof(blueprints.content[index]["resource"][key])))
 		else:
 			push_warning("The '" + str(key)+ "' material cannot be returned as a string. This material will not be taken into account.")
 	else:
