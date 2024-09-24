@@ -1,9 +1,3 @@
-res://levels/main.tscn
-res://assets/resources/nature/cycle-gradient.tres
 res://levels/farm.tscn
-res://assets/nodes/buildings/grid.tscn
-res://assets/nodes/buildings/mailbox.tscn
-res://assets/nodes/farming/plant.tscn
-res://assets/scripts/ui/windows/craft/craft_menu.gd
-res://assets/scripts/buildings/grid/grid.gd
-res://assets/scripts/ui/inventory/inventory.gd
+res://assets/resources/nature/cycle-gradient.tres
+res://assets/scripts/world/nature/shadow.gd
