@@ -1,7 +1,7 @@
 extends CanvasGroup
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-
+@onready var tilemap:Node2D = get_node("/root/" + main_scene + "/Tilemap")
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var timer:Timer = $CloudTimer
 @export var sprites:Array = [
@@ -43,3 +43,13 @@ func _on_cloud_timer_timeout():
 	if !pause.paused:
 		timer.wait_time = randi_range(30,240)
 		cloud_spawn()
+
+func create_shadow(tile_mouse_pos:Vector2i, shadow_texture:CompressedTexture2D):
+	var shadow:Sprite2D = Sprite2D.new()
+	var vector_x = tilemap.map_to_local(tile_mouse_pos).x
+	var vector_y = tilemap.map_to_local(tile_mouse_pos).y
+	var target_vector = Vector2i(vector_x, vector_y + 5)
+
+	shadow.texture = shadow_texture
+	shadow.set_position(target_vector)
+	add_child(shadow)
