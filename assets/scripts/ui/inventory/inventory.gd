@@ -25,8 +25,7 @@ extends Control
 @onready var list:Label = $Panel/StorageItemList
 
 var menu:bool = false
-var inventory_items:Dictionary = {
-}
+var inventory_items:Dictionary = {}
 
 var item_index
 var button_index:int
