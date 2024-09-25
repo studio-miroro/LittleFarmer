@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bgd5qkw1nr3g5"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/options/buttons/save_options.gd" id="1_3bca6"]
+[ext_resource type="Script" path="res://assets/scripts/ui/pause/options/buttons/save_options.gd" id="1_3bca6"]
 
 [node name="Back" type="Control"]
 layout_mode = 3

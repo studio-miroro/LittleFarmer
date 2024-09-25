@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cps3s5crjjsv1"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/craft/blueprint.gd" id="1_yf12q"]
+[ext_resource type="Script" path="res://assets/scripts/ui/craft/blueprint.gd" id="1_yf12q"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_stk0w"]
 
 [node name="Item_BuildingMenu" type="Control"]

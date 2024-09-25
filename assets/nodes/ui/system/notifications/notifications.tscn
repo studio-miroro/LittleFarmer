@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cipgdxgpuslcv"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/system/notifications/notifications.gd" id="1_je5qf"]
+[ext_resource type="Script" path="res://assets/scripts/ui/notifications/notifications.gd" id="1_je5qf"]
 
 [node name="Notifications" type="Control"]
 layout_mode = 3

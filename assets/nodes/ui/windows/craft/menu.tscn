@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bpmceytvqnc7d"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/craft/craft_menu.gd" id="1_bnylh"]
+[ext_resource type="Script" path="res://assets/scripts/ui/craft/craft.gd" id="1_bnylh"]
 [ext_resource type="PackedScene" uid="uid://cps3s5crjjsv1" path="res://assets/nodes/ui/windows/craft/blueprint.tscn" id="2_km2qd"]
 [ext_resource type="Script" path="res://assets/nodes/ui/windows/craft/craft_button.gd" id="3_ip6ve"]
 

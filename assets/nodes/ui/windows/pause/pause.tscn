@@ -1,10 +1,10 @@
 [gd_scene load_steps=13 format=3 uid="uid://cyl6jw0huwvk6"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/pause_menu.gd" id="1_i0wdk"]
+[ext_resource type="Script" path="res://assets/scripts/ui/pause/pause_menu.gd" id="1_i0wdk"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_0oiu2"]
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/buttons/button_countinue.gd" id="3_ipf4w"]
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/buttons/button_options.gd" id="4_t8cec"]
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/buttons/button_exit.gd" id="6_wegtm"]
+[ext_resource type="Script" path="res://assets/scripts/ui/pause/buttons/button_countinue.gd" id="3_ipf4w"]
+[ext_resource type="Script" path="res://assets/scripts/ui/pause/buttons/button_options.gd" id="4_t8cec"]
+[ext_resource type="Script" path="res://assets/scripts/ui/pause/buttons/button_exit.gd" id="6_wegtm"]
 
 [sub_resource type="Animation" id="Animation_s30n0"]
 length = 0.001

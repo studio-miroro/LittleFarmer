@@ -18,7 +18,7 @@ extends Control
 
 var index:int
 var menu:bool = false
-var access:Array[int] = [1,2,3,4,5,6]
+var access:Array[int] = []
 
 var items:Object = Items.new()
 var blueprints:Object = Blueprints.new()
@@ -27,16 +27,17 @@ var materials:Object = BuildingMaterials.new()
 func _ready():
 	check_window()
 	reset_data()
-	check_blueprints_status()
+	remove_invalid_blueprints()
 
-func check_blueprints_status():
+func remove_invalid_blueprints():
 	var items_to_remove = []
 	for i in access:
 		if !blueprints.content.has(i):
 			items_to_remove.append(i)
-	for item in items_to_remove:
-		access.erase(item)
-	print_debug("\n"+str(manager.get_system_datetime()) + " INFO: Due to inventory overflow, an item with the following ID was destroyed: " + str(items_to_remove))
+	if items_to_remove != []:
+		for item in items_to_remove:
+			access.erase(item)
+		print_debug("\n"+str(manager.get_system_datetime()) + " INFO: Due to inventory overflow, an item with the following ID was destroyed: " + str(items_to_remove))
 	
 func _process(_delta):
 	if !pause.paused\

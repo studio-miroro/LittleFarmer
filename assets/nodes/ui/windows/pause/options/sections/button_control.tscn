@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ddfcb2whryuw4"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/options/sections/control.gd" id="1_p7f05"]
+[ext_resource type="Script" path="res://assets/scripts/ui/pause/options/sections/control.gd" id="1_p7f05"]
 
 [node name="ControlButton" type="Control"]
 custom_minimum_size = Vector2(0, 54)

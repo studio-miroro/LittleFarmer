@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://5ymnuvhlss3c"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/system/notifications/notice.gd" id="1_h616u"]
+[ext_resource type="Script" path="res://assets/scripts/ui/notifications/notice.gd" id="1_h616u"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_oe23o"]
 
 [sub_resource type="Animation" id="Animation_3s3em"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cqkiiqc8l7616"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/system/context_menu/ContextMenu.gd" id="1_ka1ag"]
+[ext_resource type="Script" path="res://assets/scripts/ui/context_menu/ContextMenu.gd" id="1_ka1ag"]
 
 [node name="ContextMenu" type="Control"]
 layout_mode = 3

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://chy8mp78juife"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/options/sections/sounds.gd" id="1_a1b6f"]
+[ext_resource type="Script" path="res://assets/scripts/ui/pause/options/sections/sounds.gd" id="1_a1b6f"]
 
 [node name="SoundButton" type="Control"]
 custom_minimum_size = Vector2(0, 54)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dybd07h5qsf68"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/windows/pause/options/buttons/language.gd" id="1_wu546"]
+[ext_resource type="Script" path="res://assets/scripts/ui/pause/options/buttons/language.gd" id="1_wu546"]
 
 [node name="Language" type="Control"]
 custom_minimum_size = Vector2(0, 54)
