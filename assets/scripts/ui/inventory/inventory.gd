@@ -39,6 +39,17 @@ func _ready():
 	reset_data()
 	check_inventory()
 
+func inventory_update():
+	#var items = Items.new()
+	var remove_items = []
+	for item in inventory_items:
+		if inventory_items[item]["amount"] == 0:
+			remove_items.append(item)
+	
+	if remove_items != []:
+		for i in remove_items:
+			inventory_items.erase(i)
+
 func check_inventory():
 	var max_slots = storage.object[storage.level]["slots"]
 	while inventory_items.size() > max_slots:
@@ -65,6 +76,7 @@ func open() -> void:
 	anim.play("open")
 	create_all_items()
 	update_string_capacity()
+	inventory_update()
 
 func close() -> void:
 	menu = false
@@ -152,9 +164,13 @@ func get_items() -> Dictionary:
 	return inventory_items
 
 func create_all_items() -> void:
+	var items = Items.new()
 	for item in inventory_items:
-		if Items.new().content.has(int(item)):
-			item_create(item)
+		if items.content.has(int(item)):
+			if inventory_items[item].has("amount"):
+				if inventory_items[item]["amount"] > 0:
+					item_create(item)
+	inventory_update()
 
 func remove_inventory_slots() -> void:
 	for item in slots.get_children():
@@ -188,28 +204,52 @@ func update_string_capacity() -> void:
 		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: There is no parent of 'Buildings' in the '" + main_scene + "' scene")
 
 func get_all_items() -> int:
+	var items = Items.new()
 	if slots:
 		var item:int = 0
 		if inventory_items != {}:
 			for i in inventory_items:
-				if Items.new().content.has(int(i)):
+				if items.content.has(int(i)):
 					item += 1
 		return item
 	else:
 		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Cannot load parent.")
 		return 0
 
-func add_item(id:int, amount:int) -> void:
+func add_item(id, amount:int = 0) -> void:
 	if inventory_items.has(id):
 		inventory_items[id]["amount"] += amount
 	else:
 		inventory_items[id] = {"amount": amount}
 		
-func subject_item(item_id, item_amount:int) -> void:
-	for key in inventory_items:
-		if item_id == key:
-			inventory_items[item_id]["amount"] -= item_amount 
-			check_amount(item_id)
+func subject_item(id, item_amount:int = 1) -> void:
+	match typeof(id):
+		TYPE_INT:
+			if item_amount != 0:
+				for key in inventory_items:
+					if id == key:
+						inventory_items[id]["amount"] -= item_amount 
+						check_amount(id)
+			else:
+				pass # print_debug
+
+		TYPE_DICTIONARY:
+			var materials = BuildingMaterials.new()
+			var resources_id = []
+			var amounts = []
+
+			for item in id:
+				if id[item].has("amount"):
+					if id[item]["amount"] > 0:
+						resources_id.append(materials.resources[item])
+						amounts.append(id[item]["amount"])
+
+			for item_id in resources_id:
+				if inventory_items.has(item_id):
+					inventory_items[item_id]["amount"] -= amounts[item_id-1]
+					check_amount(item_id)
+		_:
+			pass # print_debug
 
 func remove_item(id) -> void:
 	for key in inventory_items:
@@ -233,19 +273,22 @@ func check_item_amount(id) -> bool:
 	return false
 
 func check_amount(index) -> void:
-	if inventory_items.has(index):
-		if inventory_items[index].has("amount"):
-			if inventory_items[index]["amount"] > Items.new().content["max"]:
-				inventory_items[index]["amount"] = Items.new().content["max"]
-			if inventory_items[index]["amount"] <= 0:
+	var inventory = inventory_items[index]
+	var items = Items.new()
+	if inventory.has(index):
+		if inventory.has("amount"):
+			if inventory["amount"] > items.content["max"]:
+				inventory["amount"] = items.content["max"]
+			if inventory["amount"] <= 0:
 				remove_item(index)
 		else:
 			push_warning("[ID: " + str(index) + "] The 'amount' element does not exist in the inventory dictionary (array).")
-			inventory_items[index]["amount"] = 1
+			inventory["amount"] = 1
 
 func get_specifications(index, i) -> void:
-	if typeof(Items.new().content[index]["specifications"][i]) == TYPE_STRING and specifications.text is String:
-		specifications.text = specifications.text + "\n• " + get_tip(i) + ": "+ Items.new().content[index]["specifications"][i]
+	var items = Items.new()
+	if typeof(items.content[index]["specifications"][i]) == TYPE_STRING and specifications.text is String:
+		specifications.text = specifications.text + "\n• " + get_tip(i) + ": "+ items.content[index]["specifications"][i]
 	else:
 		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The '"+ str(i) +"' element is not a string.")
 
@@ -273,13 +316,14 @@ func check_item_type(i_type:String) -> void:
 			button.visible = false
 
 func _on_button_pressed():
+	var items = Items.new().content
 	match button_index:
 		item_type.SEEDS:
 			close()
-			if Items.new().content.has(int(item_index)):
-				if Items.new().content[int(item_index)].has("crop"):
+			if items.has(int(item_index)):
+				if items[int(item_index)].has("crop"):
 					grid.inventory_item = item_index
-					grid.plantID = Items.new().content[int(item_index)]["crop"]
+					grid.plantID = items[int(item_index)]["crop"]
 					grid.mode = grid.modes.PLANTING
 					grid.visible = true
 				else:
