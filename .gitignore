@@ -13,3 +13,4 @@ data_*/
 assets/localizations/main.pot
 assets/localizations/ru.mo
 assets/localizations/en.mo
+*.md5
