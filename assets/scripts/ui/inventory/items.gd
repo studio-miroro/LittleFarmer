@@ -119,7 +119,7 @@ var content:Dictionary = {
 		"crop": 2,
 		"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_2.png"),
 	},
-	15: {
+	14: {
 		"caption": tr("radish_packet.caption"),
 		"description": tr("radish_packet.description"), # Маленькие семена для быстрого выращивания хрустящего редиса. Посадите их, поливайте и ждите урожая.
 		"specifications": {
@@ -133,7 +133,7 @@ var content:Dictionary = {
 		"crop": 3,
 		"icon": load("res://assets/resources/UI/inventory/items/seeds packets/packet_3.png"),
 	},
-	16: {
+	15: {
 		"caption": tr("cabbage_packet.caption"),
 		"description": tr("radish_packet.description"), # Семена для выращивания плотной и сочной капусты. Посадите их в землю, поливайте и ждите зрелости.
 		"specifications": {

@@ -53,64 +53,36 @@ func _input(event):
 		and event.button_index == MOUSE_BUTTON_RIGHT\
 		and event.is_pressed()\
 		and visible:
-			hud.state(false)
-			mode = modes.NOTHING
-			visible = false
+			reset_grid()
 			check = false
 
 func _process(_delta):
-	if !blur.state and visible:
-
+	if !blur.state\
+	and visible\
+	and mode != modes.NOTHING:
 		var mouse_pos:Vector2 = get_global_mouse_position()
 		var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 		var ground_tile_position = []
 		var farming_tile_position = []
 		var watering_tile_position = []
 		var building_tile_position = []
-
 		match mode:
 			modes.DESTROY:
 				collision.destroy_collision_check()
 				if check:
 					match collision.destroy_collision_check():
 						0:
-							tilemap.set_cells_terrain_connect(
-							collision.ground_layer,
-							[tile_mouse_pos],
-							collision.ground_terrain_set,
-							-1)
+							tilemap.set_cells_terrain_connect(collision.ground_layer,[tile_mouse_pos],collision.ground_terrain_set,-1)
 						1:
-							tilemap.set_cells_terrain_connect(
-							collision.farming_layer,
-							[tile_mouse_pos],
-							collision.farming_terrain_set,
-							-1)
+							tilemap.set_cells_terrain_connect(collision.farming_layer,[tile_mouse_pos],collision.farming_terrain_set,-1)
 						2:
-							tilemap.set_cells_terrain_connect(
-							collision.watering_layer,
-							[tile_mouse_pos],
-							collision.watering_terrain_set,
-							-1)
+							tilemap.set_cells_terrain_connect(collision.watering_layer,[tile_mouse_pos],collision.watering_terrain_set,-1)
 						3:
-							tilemap.erase_cell(
-								collision.seeds_layer,
-								tile_mouse_pos
-							)
-							farming.plant_destroy(
-								tilemap.map_to_local(
-									tile_mouse_pos
-									)
-								)
+							tilemap.erase_cell(collision.seeds_layer,tile_mouse_pos)
+							farming.plant_destroy(tilemap.map_to_local(tile_mouse_pos))
 						4:
-							tilemap.erase_cell(
-								collision.seeds_layer,
-								tile_mouse_pos
-							)
-							farming.plant_destroy(
-								tilemap.map_to_local(
-									tile_mouse_pos
-									)
-								)
+							tilemap.erase_cell(collision.seeds_layer,tile_mouse_pos)
+							farming.plant_destroy(tilemap.map_to_local(tile_mouse_pos))
 				check = false
 
 			modes.FARMING:
@@ -118,12 +90,7 @@ func _process(_delta):
 				if check:
 					if collision.farming_collision_check():
 						farming_tile_position.append(tile_mouse_pos)
-						tilemap.set_cells_terrain_connect(
-							collision.farming_layer,
-							farming_tile_position,
-							collision.farming_terrain_set,
-							collision.terrain
-							)
+						tilemap.set_cells_terrain_connect(collision.farming_layer,farming_tile_position,collision.farming_terrain_set,collision.terrain)
 				check = false
 
 			modes.WATERING:
@@ -131,12 +98,7 @@ func _process(_delta):
 				if check:
 					if collision.watering_collision_check():
 						watering_tile_position.append(tile_mouse_pos)
-						tilemap.set_cells_terrain_connect(
-							collision.watering_layer,
-							watering_tile_position,
-							collision.watering_terrain_set,
-							collision.terrain
-							)
+						tilemap.set_cells_terrain_connect(collision.watering_layer,watering_tile_position,collision.watering_terrain_set,collision.terrain)
 				check = false
 
 			modes.PLANTING:
@@ -154,28 +116,28 @@ func _process(_delta):
 					hud.state(false)
 					mode = modes.NOTHING
 					visible = false
-
 				check = false
 
 			modes.BUILD:
 				var blueprint = Blueprints.new().content[building_id]
-
+				var data_resources = {}
 				collision.building_collision_check(building_node_layer)
 				if blueprint.has("resource"):
 					for resource in blueprint["resource"]:
 						var required_amount = blueprint["resource"][resource]
 						var available_amount = inventory.get_item_amount(BuildingMaterials.new().resources[resource])
 						if available_amount >= required_amount:
-							if check:
-								inventory.subject_item(BuildingMaterials.new().resources[resource], required_amount)
 								building_tile_position.append(tile_mouse_pos)
-								buildings.build(tile_mouse_pos, building_node, building_node_layer, building_shadow)
-								continue
+								data_resources[resource] = {}
+								data_resources[resource]["amount"] = blueprint["resource"][resource]
 						else:
-							hud.state(false)
-							mode = modes.NOTHING
-							visible = false
-				
+							reset_grid()
+				if check:
+					var blueprints = Blueprints.new()
+					if blueprints.content.has(building_id):
+						buildings.build(tile_mouse_pos, building_node, building_node_layer, building_shadow)
+						if blueprints.content[building_id].has("resource"):
+							inventory.subject_item(data_resources)
 				check = false
 
 			modes.TERRAIN_SET:
@@ -183,12 +145,7 @@ func _process(_delta):
 				if check:
 					if collision.terrain_collision_check(terrain_layer):
 						ground_tile_position.append(tile_mouse_pos)
-						tilemap.set_cells_terrain_connect(
-							terrain_layer,
-							ground_tile_position,
-							terrain_set,
-							collision.terrain
-							)
+						tilemap.set_cells_terrain_connect(terrain_layer,ground_tile_position,terrain_set,collision.terrain)
 				check = false
 
 			modes.UPGRADE:
@@ -200,6 +157,11 @@ func _process(_delta):
 		mode = modes.NOTHING
 		visible = false
 		check = false
+
+func reset_grid() -> void:
+	hud.state(false)
+	mode = modes.NOTHING
+	visible = false
 
 func change_sprite(sprite:bool):
 	if sprite:

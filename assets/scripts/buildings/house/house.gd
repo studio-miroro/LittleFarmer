@@ -5,6 +5,7 @@ extends Node2D
 @onready var tip = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
 @onready var pause = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
+@onready var tilemap:Node2D = get_node("/root/" + main_scene + "/Tilemap")
 @onready var grid = get_node("/root/" + main_scene + "/Buildings/Grid") 
 @onready var player = get_node("/root/" + main_scene + "/Camera")
 @onready var fume = get_node("/root/" + main_scene + "/Buildings/House/Fume")
@@ -31,7 +32,10 @@ var object:Dictionary = {
 		
 	}
 }
+
 func _ready():
+	var test:Vector2i = Vector2i(18, 4)
+	position = tilemap.map_to_local(test)
 	update()
 
 func update():
@@ -88,7 +92,10 @@ func check_sprite(key:String) -> void:
 
 func get_data():
 	if object.has(level):
-		return {"level": level}
+		return {
+			"level": level,
+			"position": tilemap.local_to_map(position),
+			}
 
 func load_data(obj_level:int) -> void:
 	self.level = obj_level

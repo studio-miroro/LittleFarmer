@@ -28,6 +28,7 @@ var content: Dictionary = {
 			"node" = {
 				"source" = load("res://assets/nodes/buildings/mailbox.tscn"),
 				"shadow" = load("res://assets/resources/buildings/mailbox/shadow.png"),
+				"node.name" = "Object_",
 				"layer" = 4,
 			},
 		},
