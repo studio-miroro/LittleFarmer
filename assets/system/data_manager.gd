@@ -1,7 +1,6 @@
 extends Node
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-
 @onready var cycle:Node2D = get_node("/root/" + main_scene + "/Cycle")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
 @onready var player:Node2D = get_node("/root/" + main_scene + "/Camera")
@@ -16,7 +15,7 @@ extends Node
 @onready var plant:PackedScene = load("res://assets/nodes/farming/plant.tscn")
 @onready var language:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
 
-var planted:int
+var object_count:int
 var paths:Dictionary = {
 	game = "user://game.json",
 	farm = "user://farm.json",
@@ -28,6 +27,7 @@ var paths:Dictionary = {
 	inventory = "user://inventory.json",
 	mailbox = "user://letters.json",
 }
+
 func _ready():
 	if main_scene == "Farm":
 		if GameLoader.mode:
@@ -149,9 +149,9 @@ func create_nodes(parent:Node2D, node:PackedScene, positions) -> void:
 		for position in positions:
 			var object = node.instantiate()
 			if position is Vector2:
-				planted +=1
-				object.name = "plant_" + str(planted)
-				var object_name = "plant_" + str(planted)
+				object_count +=1
+				object.name = "plant_" + str(object_count)
+				var object_name = "plant_" + str(object_count)
 				object.global_position = tilemap.map_to_local(position)
 				object.z_index = 6
 				if object.has_method("check_node"):
@@ -167,7 +167,7 @@ func remove_all_child(parent: Node):
 	for child in parent.get_children():
 		parent.remove_child(child)
 		child.queue_free()
-	planted = 0
+	object_count = 0
 	
 func erase_cells(layer: int) -> void:
 	var used_cells = tilemap.get_used_cells(layer)
