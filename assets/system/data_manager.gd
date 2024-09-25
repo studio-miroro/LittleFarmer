@@ -313,6 +313,7 @@ func get_content(content:String) -> Dictionary:
 			return {
 				"blueprints": craft.get_blueprints()
 			}
+			
 		"mailbox":
 			return mailbox.get_letters()
 
