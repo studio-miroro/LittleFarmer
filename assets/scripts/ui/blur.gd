@@ -35,4 +35,5 @@ func blur(bluring:bool) -> void:
 	if bluring:
 		if has_node("/root/" + main_scene + "/Buildings/"):
 			for nodes in get_node("/root/" + main_scene + "/Buildings/").get_children():
-				nodes.change_sprite(false)
+				if nodes.has_method("_change_sprite"):
+					nodes._change_sprite(false)
