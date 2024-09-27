@@ -18,7 +18,7 @@ extends Control
 
 var index:int
 var menu:bool = false
-var access:Array[int] = [1,2,3]
+var access:Array[int]
 
 var items:Object = Items.new()
 var blueprints:Object = Blueprints.new()
@@ -26,10 +26,10 @@ var materials:Object = BuildingMaterials.new()
 
 func _ready():
 	check_window()
-	reset_data()
-	remove_invalid_blueprints()
+	_reset_data()
+	_remove_invalid_blueprints()
 
-func remove_invalid_blueprints():
+func _remove_invalid_blueprints():
 	var items_to_remove = []
 	for i in access:
 		if !blueprints.content.has(i):
@@ -56,8 +56,8 @@ func open() -> void:
 	pause.other_menu = true
 	blur.blur(true)
 	anim.play("open")
-	start_info()
-	delete_all_blueprints()
+	_start_info()
+	_delete_all_blueprints()
 	check_blueprints()
 	
 func close() -> void:
@@ -65,22 +65,14 @@ func close() -> void:
 	pause.other_menu = false
 	blur.blur(false)
 	anim.play("close")
-	delete_all_blueprints()
-
-func start_info() -> void:
-	var start_caption = tr("startinfo_header.craft")
-	var start_description = tr("startinfo_description.craft")
-	caption.text = start_caption
-	description.text = start_description
-	time_create.text = ""
-	button.visible = false
+	_delete_all_blueprints()
 
 func check_blueprints() -> void:
 	if menu:
 		for id in access:
-			create_item(id)
+			_create_item(id)
 
-func create_item(id) -> void:
+func _create_item(id) -> void:
 	var item = blueprint.instantiate()
 	if item.check_node(id):
 		container.add_child(item)
@@ -88,7 +80,7 @@ func create_item(id) -> void:
 	else:
 		data.debug("Cannot load node. Invalid index: " + str(id), "error")
 
-func delete_all_blueprints() -> void:
+func _delete_all_blueprints() -> void:
 	for child in container.get_children():
 		container.remove_child(child)
 		child.queue_free()
@@ -171,11 +163,11 @@ func check_blueprint_type(id) -> String:
 	return "???"
 
 func check_material(id, key) -> void:
-	if resource(key) != null:
+	if _resource(key) != null:
 		if check_items(key) != null:
 			if typeof(blueprints.content[id]["resource"][key]) != TYPE_STRING:
-				resources.text = resources.text + "\n• " + str(resource(key)) + " (" + str(check_items(key)) + "/" + str(round(blueprints.content[index]["resource"][key])) + ")"
-				check_button(id, key)
+				resources.text = resources.text + "\n• " + str(_resource(key)) + " (" + str(check_items(key)) + "/" + str(round(blueprints.content[index]["resource"][key])) + ")"
+				_check_button(id, key)
 			else:
 				data.debug("The key '" + str(key) + "' does not blueprints an integer or float: " + str(typeof(blueprints.content[index]["resource"][key])), "error")
 		else:
@@ -183,7 +175,7 @@ func check_material(id, key) -> void:
 	else:
 		data.debug("Invalid material: " + str(key), "error")
 
-func check_button(id, key = null) -> void:
+func _check_button(id, key = null) -> void:
 	if blueprints.content[id].has("resource"):
 		if blueprints.content[id]["resource"].has(key):
 			if check_items(key) >= blueprints.content[id]["resource"][key]:
@@ -193,7 +185,7 @@ func check_button(id, key = null) -> void:
 		else:
 			button.disabled = false
 
-func resource(key) -> Variant:
+func _resource(key) -> Variant:
 	if key in materials.resources:
 		if items.content[materials.resources[key]].has("caption"):
 			return items.content[materials.resources[key]]["caption"]
@@ -209,10 +201,17 @@ func get_blueprints() -> Array:
 	return access
 
 func blueprints_load(content:int) -> void:
-	access.clear()
 	access.append(content)
 
-func reset_data() -> void:
+func _start_info() -> void:
+	var start_caption = tr("startinfo_header.craft")
+	var start_description = tr("startinfo_description.craft")
+	caption.text = start_caption
+	description.text = start_description
+	time_create.text = ""
+	button.visible = false
+
+func _reset_data() -> void:
 	caption.text = ""
 	description.text = ""
 	resources.visible = false
