@@ -15,3 +15,4 @@ res://assets/resources/ui/sign/sign_menu.tscn
 res://assets/nodes/ui/pause/options/options.tscn
 res://assets/nodes/ui/inventory/inventory.tscn
 res://assets/scripts/ui/inventory/items.gd
+res://assets/scripts/ui/inventory/inventory.gd

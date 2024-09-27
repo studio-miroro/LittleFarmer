@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://15vmrkth71wi"]
 
-[ext_resource type="Script" path="res://assets/scripts/buildings/mailbox/letter.gd" id="1_objys"]
+[ext_resource type="Script" path="res://assets/scripts/ui/mail/letter.gd" id="1_objys"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="1_qx1y6"]
 
 [node name="Letter" type="Control"]

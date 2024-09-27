@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bo0md5dxqtqql"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/main menu/buttons/new_game.gd" id="1_16hh2"]
+[ext_resource type="Script" path="res://assets/scripts/ui/main_menu/buttons/new_game.gd" id="1_16hh2"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="1_njtai"]
 
 [node name="NewGame" type="Control"]

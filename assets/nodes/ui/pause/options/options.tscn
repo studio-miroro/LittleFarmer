@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://bhadiamik4ev0"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/pause/options/options.gd" id="1_cadvs"]
-[ext_resource type="PackedScene" uid="uid://dybd07h5qsf68" path="res://assets/nodes/ui/windows/pause/options/button_language.tscn" id="2_602an"]
-[ext_resource type="PackedScene" uid="uid://chy8mp78juife" path="res://assets/nodes/ui/windows/pause/options/sections/button_sound.tscn" id="2_k6ubo"]
-[ext_resource type="PackedScene" uid="uid://bgd5qkw1nr3g5" path="res://assets/nodes/ui/windows/pause/options/button_back.tscn" id="2_l1i8k"]
-[ext_resource type="PackedScene" uid="uid://cpuncssqc5l2m" path="res://assets/nodes/ui/windows/pause/options/sections/button_graphic.tscn" id="3_60aow"]
-[ext_resource type="PackedScene" uid="uid://ddfcb2whryuw4" path="res://assets/nodes/ui/windows/pause/options/sections/button_control.tscn" id="4_40bg4"]
+[ext_resource type="PackedScene" uid="uid://dybd07h5qsf68" path="res://assets/nodes/ui/pause/options/button_language.tscn" id="2_602an"]
+[ext_resource type="PackedScene" uid="uid://chy8mp78juife" path="res://assets/nodes/ui/pause/options/sections/button_sound.tscn" id="2_k6ubo"]
+[ext_resource type="PackedScene" uid="uid://bgd5qkw1nr3g5" path="res://assets/nodes/ui/pause/options/button_back.tscn" id="2_l1i8k"]
+[ext_resource type="PackedScene" uid="uid://cpuncssqc5l2m" path="res://assets/nodes/ui/pause/options/sections/button_graphic.tscn" id="3_60aow"]
+[ext_resource type="PackedScene" uid="uid://ddfcb2whryuw4" path="res://assets/nodes/ui/pause/options/sections/button_control.tscn" id="4_40bg4"]
 
 [sub_resource type="Animation" id="Animation_sgo1o"]
 length = 0.001

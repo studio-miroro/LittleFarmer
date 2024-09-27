@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cwtsqme5qki8s"]
 
-[ext_resource type="Script" path="res://assets/scripts/buildings/mailbox/mail.gd" id="1_nrqxv"]
-[ext_resource type="Script" path="res://assets/nodes/ui/windows/mail/button_get.gd" id="3_j40v4"]
+[ext_resource type="Script" path="res://assets/scripts/ui/mail/mail.gd" id="1_nrqxv"]
+[ext_resource type="Script" path="res://assets/scripts/ui/mail/button_get.gd" id="3_j40v4"]
 [ext_resource type="PackedScene" uid="uid://do4e681e4p00n" path="res://assets/nodes/ui/inventory/slot.tscn" id="3_qvooa"]
 
 [sub_resource type="Animation" id="Animation_c0gri"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://balcl5dqa5cvp"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/main menu/buttons/countinue_game.gd" id="1_r0gew"]
+[ext_resource type="Script" path="res://assets/scripts/ui/main_menu/buttons/countinue_game.gd" id="1_r0gew"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_g8f1x"]
 
 [node name="LoadGame" type="Control"]

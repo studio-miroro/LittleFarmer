@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dt0da1fsbcrkd"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/main menu/buttons/quit.gd" id="1_5wnwh"]
+[ext_resource type="Script" path="res://assets/scripts/ui/main_menu/buttons/quit.gd" id="1_5wnwh"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="1_kytnh"]
 
 [node name="QuitGame" type="Control"]
