@@ -1,14 +1,14 @@
 extends Control
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var manager:Node2D = get_node("/root/" + main_scene)
+@onready var data:Node2D = get_node("/root/" + main_scene)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var notice:Control = get_node("/root/" + main_scene + "/User Interface/System/Notifications")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
-@onready var blueprint:PackedScene = load("res://assets/nodes/ui/windows/craft/blueprint.tscn")
 @onready var container:GridContainer = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting/Panel/HBoxContainer/Items/GridContainer")
 @onready var build_button:Button = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting/Panel/HBoxContainer/Info/VBoxContainer/Button/Craft")
+@onready var blueprint:PackedScene = load("res://assets/nodes/ui/craft/blueprint.tscn")
 @onready var caption:Label = $Panel/HBoxContainer/Info/VBoxContainer/Caption/ObjectCaption
 @onready var description:Label = $Panel/HBoxContainer/Info/VBoxContainer/Description/ObjectDescription
 @onready var resources:Label = $Panel/HBoxContainer/Info/VBoxContainer/Resources/ObjectResources
@@ -18,7 +18,7 @@ extends Control
 
 var index:int
 var menu:bool = false
-var access:Array[int] = []
+var access:Array[int] = [1,2,3]
 
 var items:Object = Items.new()
 var blueprints:Object = Blueprints.new()
@@ -37,7 +37,7 @@ func remove_invalid_blueprints():
 	if items_to_remove != []:
 		for item in items_to_remove:
 			access.erase(item)
-		print_debug("\n"+str(manager.get_system_datetime()) + " INFO: Due to inventory overflow, an item with the following ID was destroyed: " + str(items_to_remove))
+		data.debug("Due to inventory overflow, an item with the following ID was destroyed: " + str(items_to_remove), "info")
 	
 func _process(_delta):
 	if !pause.paused\
@@ -86,7 +86,7 @@ func create_item(id) -> void:
 		container.add_child(item)
 		item.set_data(id)
 	else:
-		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Cannot load node. Invalid index: " + str(id))
+		data.debug("Cannot load node. Invalid index: " + str(id), "error")
 
 func delete_all_blueprints() -> void:
 	for child in container.get_children():
@@ -104,9 +104,9 @@ func get_data(id):
 			else:
 				caption.text = ""
 				caption.visible = false
-				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The 'caption' key has a non-string type. Variant.type: " + str(typeof(blueprints.content[index]["caption"])))
+				data.debug("The 'caption' key has a non-string type. Variant.type: " + str(typeof(blueprints.content[index]["caption"]), "error"))
 		else:
-			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The object does not have the 'caption' key.")
+			data.debug("The object does not have the 'caption' key.", "error")
 			description.visible = false
 			
 		if blueprints.content[id].has("description"):
@@ -114,10 +114,10 @@ func get_data(id):
 				description.text = blueprints.content[id]["description"] + "\n"
 				description.visible = true
 			else:
-				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The 'description' key has a non-string type. Variant.type: " + str(typeof(blueprints.content[index]["description"])))
+				data.debug("The 'description' key has a non-string type. Variant.type: " + str(typeof(blueprints.content[index]["description"])), "error")
 				description.visible = false
 		else:
-			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The object does not have the 'description' key.")
+			data.debug("The object does not have the 'description' key.", "error")
 			description.visible = false
 		
 		if blueprints.content[id].has("resource"):
@@ -144,20 +144,16 @@ func get_data(id):
 				else:
 					time_create.visible = false
 			else:
-				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The 'time' key has a non-integer type. Variant.type: " + str(typeof(blueprints.content[id]["time"])))
+				data.debug("The 'time' key has a non-integer type. Variant.type: " + str(typeof(blueprints.content[id]["time"])), "error")
 				time_create.visible = false
 		else:
-			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The object does not have the 'time' key.")
+			data.debug("The object does not have the 'time' key.", "error")
 			time_create.visible = false
 		
 		button.text = check_blueprint_type(id)
 		button.visible = true
 	else:
 		button.visible = false
-
-func blueprints_load(data:int) -> void:
-	access.clear()
-	access.append(data)
 
 func check_blueprint_type(id) -> String:
 	if blueprints.content.has(id):
@@ -181,11 +177,11 @@ func check_material(id, key) -> void:
 				resources.text = resources.text + "\n• " + str(resource(key)) + " (" + str(check_items(key)) + "/" + str(round(blueprints.content[index]["resource"][key])) + ")"
 				check_button(id, key)
 			else:
-				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The key '" + str(key) + "' does not blueprints an integer or float: " + str(typeof(blueprints.content[index]["resource"][key])))
+				data.debug("The key '" + str(key) + "' does not blueprints an integer or float: " + str(typeof(blueprints.content[index]["resource"][key])), "error")
 		else:
-			push_warning("The '" + str(key)+ "' material cannot be returned as a string. This material will not be taken into account.")
+			data.debug("The '" + str(key)+ "' material cannot be returned as a string. This material will not be taken into account.", "warning")
 	else:
-		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Invalid material: " + str(key))
+		data.debug("Invalid material: " + str(key), "error")
 
 func check_button(id, key = null) -> void:
 	if blueprints.content[id].has("resource"):
@@ -211,6 +207,10 @@ func check_items(key) -> Variant:
 
 func get_blueprints() -> Array:
 	return access
+
+func blueprints_load(content:int) -> void:
+	access.clear()
+	access.append(content)
 
 func reset_data() -> void:
 	caption.text = ""
