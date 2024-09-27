@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/cursor.tscn" id="1_ea6rj"]
 [ext_resource type="PackedScene" uid="uid://bq4qdj61kxktg" path="res://assets/nodes/ui/main menu/logotype.tscn" id="1_qiujb"]
-[ext_resource type="Script" path="res://assets/scripts/ui/main menu/menu.gd" id="1_xofh6"]
+[ext_resource type="Script" path="res://assets/scripts/ui/main_menu/menu.gd" id="1_xofh6"]
 [ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="2_1ou3c"]
 [ext_resource type="PackedScene" uid="uid://balcl5dqa5cvp" path="res://assets/nodes/ui/main menu/buttons/countinue_buttons.tscn" id="2_d5qf6"]
 [ext_resource type="PackedScene" uid="uid://bo0md5dxqtqql" path="res://assets/nodes/ui/main menu/buttons/new_buttons.tscn" id="3_vkh6h"]
-[ext_resource type="Script" path="res://assets/scripts/ui/main menu/background.gd" id="4_4tfic"]
+[ext_resource type="Script" path="res://assets/scripts/ui/main_menu/background.gd" id="4_4tfic"]
 [ext_resource type="PackedScene" uid="uid://dt0da1fsbcrkd" path="res://assets/nodes/ui/main menu/buttons/quit_buttons.tscn" id="4_lwcr4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_d56hu"]
