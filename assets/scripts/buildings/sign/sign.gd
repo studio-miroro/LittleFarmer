@@ -11,6 +11,7 @@ extends Node2D
 @onready var icon:TextureRect = $TextureRect
 @onready var sprite:Sprite2D = $Sprite2D
 
+var items = Items.new()
 var max_distance:int = 250
 var open_menu:bool = false
 var object:Dictionary = {
@@ -29,7 +30,6 @@ func _ready():
 		data.debug("The specified key is missing.", "error")
 
 func set_sign_sprite(target_sprite):
-	var items = Items.new()
 	if items.content[target_sprite].has("icon"):
 		icon.texture = items.content[target_sprite]["icon"]
 	else:
