@@ -2,7 +2,7 @@ import os
 import shutil
 
 import_dir = "./.import"
-extensions = [".cfg", ".tscn-", ".tmp", ".save", ".dmp"]
+extensions = [".cfg", ".tscn-", ".tmp", ".save", ".dmp", ".ctex"]
 protected_files = [
     "global_script_class_cache.cfg", 
     "project_metadata.cfg", 
