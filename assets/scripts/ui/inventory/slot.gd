@@ -5,6 +5,8 @@ extends Control
 @onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var mailbox:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox")
+@onready var signmenu:Control = get_node("/root/" + main_scene + "/User Interface/BuildingsMenu/SignMenu")
+@onready var buildings:Node2D = get_node("/root/" + main_scene + "/Buildings")
 @onready var icon:TextureRect = $Button/Icon
 @onready var amount_label:Label = $Button/Amount
 
@@ -49,8 +51,20 @@ func _on_button_mouse_entered():
 	if mailbox.menu:
 		if item.content.has(id):
 			if item.content[id].has("caption"):
+				var item_amount:String = tr("x")
 				tip.tooltip(
-					item.content[id]["caption"] + " [" + str(amount) + "шт]"
+					item.content[id]["caption"] + " [" + item_amount + str(amount) + "]"
+					)
+			else:
+				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'caption' key is missing.")
+		else:
+			push_warning("Invalid item ID: " + str(id))
+
+	if signmenu.menu:
+		if item.content.has(id):
+			if item.content[id].has("caption"):
+				tip.tooltip(
+					item.content[id]["caption"]
 					)
 			else:
 				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'caption' key is missing.")
@@ -58,8 +72,17 @@ func _on_button_mouse_entered():
 			push_warning("Invalid item ID: " + str(id))
 
 func _on_button_mouse_exited():
-	if mailbox.menu:
+	if mailbox.menu\
+	|| signmenu.menu:
 		tip.tooltip("")
 
 func _on_button_pressed():
-	inventory.get_data(id)
+	if inventory.visible:
+			inventory.get_data(id)
+
+	if signmenu.visible:
+		for i in buildings.get_children():
+			if i.name == signmenu.sign_name:
+				print(id)
+				i.set_sign_sprite(int(id))
+				signmenu._close()
