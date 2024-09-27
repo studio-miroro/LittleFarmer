@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://dj1b5aexd5fug" path="res://assets/resources/farming/crops.png" id="14_l5qkb"]
 [ext_resource type="PackedScene" uid="uid://dnx4bgw5l7ktf" path="res://assets/resources/ui/sign/sign_menu.tscn" id="14_rpwfj"]
 [ext_resource type="Texture2D" uid="uid://c4b4pkekg047e" path="res://assets/resources/nature/ground road.png" id="15_skd4g"]
-[ext_resource type="Script" path="res://assets/scripts/buildings/grid/movement.gd" id="16_jqh5x"]
+[ext_resource type="Script" path="res://assets/scripts/tilemap.gd" id="16_jqh5x"]
 [ext_resource type="Script" path="res://assets/scripts/world/nature/shadow.gd" id="17_ubdm4"]
 [ext_resource type="Texture2D" uid="uid://cvsn1ntefp3ks" path="res://assets/resources/buildings/animal stall/shadow.png" id="19_cqicb"]
 [ext_resource type="Texture2D" uid="uid://duwrjdqcjgs2t" path="res://assets/resources/buildings/house/level-1/shadow.png" id="20_vd7ux"]
@@ -1847,8 +1847,10 @@ explosiveness = 1.0
 fixed_fps = 60
 
 [node name="Grid" parent="Buildings" instance=ExtResource("32_nkvxm")]
+z_index = 4
 
 [node name="Silo" parent="Buildings" instance=ExtResource("33_8j4he")]
+z_index = 4
 position = Vector2(152, 2)
 
 [node name="Storage" parent="Buildings" instance=ExtResource("34_67pno")]
@@ -1856,6 +1858,7 @@ z_index = 4
 position = Vector2(360, 19)
 
 [node name="Index Plate" parent="Buildings" instance=ExtResource("45_loqmw")]
+z_index = 4
 position = Vector2(616, 89)
 
 [node name="Farming" type="Node2D" parent="."]
