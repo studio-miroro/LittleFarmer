@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var manager = get_node("/root/" + main_scene)
+@onready var data = get_node("/root/" + main_scene)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
 @onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
@@ -11,6 +11,7 @@ extends Node2D
 @onready var sprite:Sprite2D = $Sprite2D
 @onready var timer:Timer = $Timer
 
+var crops:Object = Crops.new()
 var plantID:int
 var condition:int = phases.PLANTED
 var fertilizer:int = fertilizers.NOTHING
@@ -18,7 +19,6 @@ var degree:int
 
 enum phases {PLANTED,GROWING,INCREASED,DEAD}
 enum fertilizers {NOTHING, COMPOST, HUMUS, MANURE}
-var crops:Object = Crops.new()
 
 func _process(_delta):
 	if pause.paused:
@@ -43,20 +43,18 @@ func set_fertilizer(type:int) -> void:
 			
 func check(id:int,pos:Vector2i) -> void:
 	if !pause.paused:
-		if collision.check_cell(pos, collision.farming_layer)\
+		if collision.check_cell(pos, collision.farmland_layer)\
 		and !collision.check_cell(pos, collision.watering_layer)\
 		and condition != phases.DEAD:
 			self.condition = phases.PLANTED
-			await get_tree().create_timer(
-					crops.crops["check_watering"]
-				).timeout
+			await get_tree().create_timer(crops.crops["check_watering"]).timeout
 			if degree < crops.crops[plantID]["mortality"]:
 				degree += 1
 			else:
 				self.condition = phases.DEAD
 			check(id,pos)
 
-		elif collision.check_cell(pos, collision.farming_layer)\
+		elif collision.check_cell(pos, collision.farmland_layer)\
 		and collision.check_cell(pos, collision.watering_layer)\
 		and condition != phases.DEAD:
 			self.condition = phases.GROWING
@@ -92,21 +90,21 @@ func growth() -> void:
 
 func get_data() -> Dictionary:
 	return {
-		"plantID": self.plantID,
-		"degree": self.degree,
-		"condition": self.condition,
-		"fertilizer": self.fertilizer,
-		"region_rect.x": self.sprite.region_rect.position.x,
-		"region_rect.y": self.sprite.region_rect.position.y,
+		"plantID": plantID,
+		"degree": degree,
+		"condition": condition,
+		"fertilizer": fertilizer,
+		"region_rect.x": sprite.region_rect.position.x,
+		"region_rect.y": sprite.region_rect.position.y,
 		"growth_level": sprite.level,
 		"position": tilemap.local_to_map(global_position),
 	}
 
 func set_data(id:int, conditionID:int, degreeID:int, fertilizerID:int, region_rect_x:int, region_rect_y:int, level:int, pos:Vector2i) -> void:
-	self.plantID = id
-	self.condition = conditionID
-	self.degree = degreeID
-	self.fertilizer = fertilizerID
+	plantID = id
+	condition = conditionID
+	degree = degreeID
+	fertilizer = fertilizerID
 	sprite.region_rect.position.x = region_rect_x
 	sprite.region_rect.position.y = region_rect_y
 	sprite.level = level
@@ -116,24 +114,24 @@ func set_data(id:int, conditionID:int, degreeID:int, fertilizerID:int, region_re
 func get_condition(condition_type:int) -> String:
 	match condition_type:
 		0:
-			return "Посажено"
+			return tr("condition.planted")
 		1:
-			return "Процветает"
+			return tr("condition.thriving")
 		2:
-			return "Выросло"
+			return tr("condition.grown")
 		3:
-			return "Погибло"
+			return tr("condition.died")
 		_:
 			return ""
 
 func get_fertilizer(fertilizer_type:int) -> String:
 	match fertilizer_type:
 		1:
-			return "Компост"
+			return tr("fertilizer.compost")
 		2:
-			return "Перегной"
+			return tr("fertilizer.humus")
 		3:
-			return "Навоз"
+			return tr("fertilizer.manure")
 		_:
 			return ""
 
@@ -144,10 +142,12 @@ func _on_collision_mouse_entered() -> void:
 			if crops.crops[plantID].has("caption"):
 				if typeof(crops.crops[plantID]["caption"]) == TYPE_STRING:
 					if fertilizer != fertilizers.NOTHING:
+						var plant_status = tr("plant_status")
+						var fertilized_plant = tr("fertilizer")
 						tip.tooltip(
 							crops.crops[plantID]["caption"] +"\n"+
-							"Состояние: " + get_condition(condition) +"\n"+
-							"Удобрено: " + get_fertilizer(fertilizer)
+							str(plant_status) + ": " + str(get_condition(condition)) +"\n"+
+							str(fertilized_plant) + ": " + str(get_fertilizer(fertilizer))
 						)
 					else:
 						tip.tooltip(
@@ -155,14 +155,14 @@ func _on_collision_mouse_entered() -> void:
 							"Состояние: " + get_condition(condition)
 						)
 				else:
-					print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The 'caption' element is not a string type. Variant.type: " + str(typeof(crops.crops[plantID]["caption"])))
+					data.debug("The 'caption' element is not a string type. Variant.type: " + str(typeof(crops.crops[plantID]["caption"])), "error")
 			else:
-				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The 'caption' element is missing.")
+				data.debug("The 'caption' element is missing.", "error")
 		else:
-			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Invalid ID: " + str(plantID))
+			data.debug("Invalid ID: " + str(plantID), "error")
 		
 func _on_collision_mouse_exited() -> void:
-	if !pause.paused:
+	if !blur.state:
 		tip.tooltip()
 
 func check_node() -> bool:
