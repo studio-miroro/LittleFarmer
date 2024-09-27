@@ -32,7 +32,6 @@ func set_sign_sprite(target_sprite):
 	var items = Items.new()
 	if items.content[target_sprite].has("icon"):
 		icon.texture = items.content[target_sprite]["icon"]
-		print(items.content[target_sprite]["icon"])
 	else:
 		data.debug("The object does not have the 'description' key", "error")
 

@@ -83,6 +83,5 @@ func _on_button_pressed():
 	if signmenu.visible:
 		for i in buildings.get_children():
 			if i.name == signmenu.sign_name:
-				print(id)
 				i.set_sign_sprite(int(id))
 				signmenu._close()
