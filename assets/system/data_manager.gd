@@ -16,7 +16,7 @@ extends Node
 @onready var language:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
 
 var object_count:int
-var paths:Dictionary = {
+const paths:Dictionary = {
 	game = "user://game.json",
 	farm = "user://farm.json",
 	world = "user://world.json",
@@ -29,6 +29,7 @@ var paths:Dictionary = {
 }
 
 func _ready():
+	#gameload()
 	if main_scene == "Farm":
 		if GameLoader.mode:
 			gameload()
@@ -79,7 +80,7 @@ func file_load(path_file) -> Dictionary:
 		var parse_result = JSON.parse_string(json_string)
 		return parse_result
 	else:
-		print_debug(str(get_system_datetime()) + "ERROR: file not found: ", path_file)
+		debug("ERROR: file not found: " + str(path_file), "ERROR")
 		return {}
 		
 func get_key(path_file:String, key:String, group:String = ""):
@@ -158,12 +159,12 @@ func create_nodes(parent:Node2D, node:PackedScene, positions) -> void:
 					parent.add_child(object)
 					farm_load(object, object_name, position)
 				else:
-					print_debug(str(get_system_datetime()) + "ERROR: Cannot load node.")
+					debug("Cannot load node.", "error")
 			else:
-				print_debug(str(get_system_datetime()) + "ERROR: Variable position is not of type Vector2")
+				debug("Variable position is not of type Vector2.", "error")
 
 func remove_all_child(parent: Node):
-	erase_cells(collision.seeds_layer)
+	erase_cells(collision.seed_layer)
 	for child in parent.get_children():
 		parent.remove_child(child)
 		child.queue_free()
@@ -183,11 +184,11 @@ func get_children_data(parent: Node) -> Dictionary:
 	return data_dict
 
 func plant_load():
-	create_terrain(0, collision.ground_layer, paths.vectors, "road", collision.ground_terrain_set, collision.terrain)
-	create_terrain(0, collision.farming_layer, paths.vectors, "farmlands", collision.farming_terrain_set, collision.terrain)
+	create_terrain(0, collision.road_layer, paths.vectors, "road", collision.ground_terrain_set, collision.terrain)
+	create_terrain(0, collision.farmland_layer, paths.vectors, "farmlands", collision.farming_terrain_set, collision.terrain)
 	create_terrain(0, collision.watering_layer, paths.vectors, "waterings", collision.watering_terrain_set, collision.terrain)
-	create_terrain(1, collision.seeds_layer, paths.vectors, "plants", 0, 0)
-	create_nodes(farming, plant, create_terrain(2, collision.seeds_layer, paths.vectors, "plants", -1, -1))
+	create_terrain(1, collision.seed_layer, paths.vectors, "plants", 0, 0)
+	create_nodes(farming, plant, create_terrain(2, collision.seed_layer, paths.vectors, "plants", -1, -1))
 
 func farm_load(object:Node2D, object_name:String, position:Vector2i):
 	var id = get_key(paths.farm, "plantID", object_name)
@@ -207,21 +208,21 @@ func farm_load(object:Node2D, object_name:String, position:Vector2i):
 	and growth_level != null:
 		object.set_data(id, condition, degree, fertilizer, rect_x, rect_y, growth_level, position)
 	else:
-		print_debug(str(get_system_datetime()) + "ERROR: Data missing for node: " + object_name)
+		debug("Data missing for node: " + str(object_name), "error")
 
 func terrains_remove() -> void:
-	if collision.get_used_cells(collision.ground_layer) != []:
+	if collision.get_used_cells(collision.road_layer) != []:
 		tilemap.set_cells_terrain_connect(
-			collision.ground_layer,
-			collision.get_used_cells(collision.ground_layer),
+			collision.road_layer,
+			collision.get_used_cells(collision.road_layer),
 			collision.ground_terrain_set,
 			-1
 		)
 		
-	if collision.get_used_cells(collision.farming_layer) != []:
+	if collision.get_used_cells(collision.farmland_layer) != []:
 		tilemap.set_cells_terrain_connect(
-			collision.farming_layer,
-			collision.get_used_cells(collision.farming_layer),
+			collision.farmland_layer,
+			collision.get_used_cells(collision.farmland_layer),
 			collision.farming_terrain_set,
 			-1
 		)
@@ -262,9 +263,18 @@ func buildings_load() -> void:
 		if file_load(paths.buildings)[content].has("level"):
 			buildings.build_content(content, file_load(paths.buildings)[content]["level"])
 
-func get_system_datetime() -> String:
+func debug(content:String, type:String = "INFO") -> void:
 	var system_datetime = Time.get_datetime_dict_from_system()
-	return "["+str(system_datetime["year"])+"-"+str(system_datetime["month"])+"-"+str(system_datetime["day"])+" "+str(system_datetime["hour"])+":"+str(system_datetime["minute"])+":"+str(system_datetime["second"])+"]"
+	var datetime:String = "["+str(system_datetime["year"])+"-"+str(system_datetime["month"])+"-"+str(system_datetime["day"])+" "+str(system_datetime["hour"])+":"+str(system_datetime["minute"])+":"+str(system_datetime["second"])+"]"
+	match type:
+		"info":
+			print(str(datetime) + " INFO: " + str(content))
+		"error":
+			print(str(datetime) + " ERROR: " + str(content))
+		"warning":
+			print(str(datetime) + " WARNING: " + str(content))
+		_:
+			print(str(datetime) + " " + str(content))
 
 func get_content(content:String) -> Dictionary:
 	match content:
@@ -294,8 +304,8 @@ func get_content(content:String) -> Dictionary:
 			
 		"vectors":
 			return {
-				"road": collision.get_used_cells(collision.ground_layer),
-				"farmlands": collision.get_used_cells(collision.farming_layer),
+				"road": collision.get_used_cells(collision.road_layer),
+				"farmlands": collision.get_used_cells(collision.farmland_layer),
 				"waterings": collision.get_used_cells(collision.watering_layer),	
 				"plants": get_position_children(farming),
 			}
