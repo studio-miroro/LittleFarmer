@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var manager = get_node("/root/" + main_scene)
+@onready var data = get_node("/root/" + main_scene)
 @onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
 @onready var hud:Control = get_node("/root/" + main_scene + "/User Interface/Hud")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
@@ -26,12 +26,8 @@ var plantID
 
 var building_id
 var building_node
-var building_node_layer:int
 var building_shadow:CompressedTexture2D
-
-var terrain_layer:int
 var terrain_set:int
-
 var upgrade
 #
 
@@ -72,9 +68,9 @@ func _process(_delta):
 				if check:
 					match collision.destroy_collision_check():
 						0:
-							tilemap.set_cells_terrain_connect(collision.ground_layer,[tile_mouse_pos],collision.ground_terrain_set,-1)
+							tilemap.set_cells_terrain_connect(collision.road_layer,[tile_mouse_pos],collision.ground_terrain_set,-1)
 						1:
-							tilemap.set_cells_terrain_connect(collision.farming_layer,[tile_mouse_pos],collision.farming_terrain_set,-1)
+							tilemap.set_cells_terrain_connect(collision.farmland_layer,[tile_mouse_pos],collision.farming_terrain_set,-1)
 						2:
 							tilemap.set_cells_terrain_connect(collision.watering_layer,[tile_mouse_pos],collision.watering_terrain_set,-1)
 						3:
@@ -90,7 +86,7 @@ func _process(_delta):
 				if check:
 					if collision.farming_collision_check():
 						farming_tile_position.append(tile_mouse_pos)
-						tilemap.set_cells_terrain_connect(collision.farming_layer,farming_tile_position,collision.farming_terrain_set,collision.terrain)
+						tilemap.set_cells_terrain_connect(collision.farmland_layer,farming_tile_position,collision.farming_terrain_set,collision.terrain)
 				check = false
 
 			modes.WATERING:
@@ -111,7 +107,7 @@ func _process(_delta):
 									inventory.subject_item(inventory_item, 1)
 									farming.crop(plantID, tile_mouse_pos)
 								else:
-									print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The numerical ID (" + str(plantID) + ") of this crop is missing in the main file crops.gd")
+									data.debug("The numerical ID (" + str(plantID) + ") of this crop is missing in the main file crops.gd", "error")
 				else:
 					hud.state(false)
 					mode = modes.NOTHING
@@ -121,7 +117,7 @@ func _process(_delta):
 			modes.BUILD:
 				var blueprint = Blueprints.new().content[building_id]
 				var data_resources = {}
-				collision.building_collision_check(building_node_layer)
+				collision.building_collision_check(collision.building_layer)
 				if blueprint.has("resource"):
 					for resource in blueprint["resource"]:
 						var required_amount = blueprint["resource"][resource]
@@ -135,17 +131,17 @@ func _process(_delta):
 				if check:
 					var blueprints = Blueprints.new()
 					if blueprints.content.has(building_id):
-						buildings.build(tile_mouse_pos, building_node, building_node_layer, building_shadow)
+						buildings.build(tile_mouse_pos, building_id, building_node, collision.building_layer, building_shadow)
 						if blueprints.content[building_id].has("resource"):
 							inventory.subject_item(data_resources)
 				check = false
 
 			modes.TERRAIN_SET:
-				collision.terrain_collision_check(terrain_layer)
+				collision.terrain_collision_check(collision.road_layer)
 				if check:
-					if collision.terrain_collision_check(terrain_layer):
+					if collision.terrain_collision_check(collision.road_layer):
 						ground_tile_position.append(tile_mouse_pos)
-						tilemap.set_cells_terrain_connect(terrain_layer,ground_tile_position,terrain_set,collision.terrain)
+						tilemap.set_cells_terrain_connect(collision.road_layer,ground_tile_position,terrain_set,collision.terrain)
 				check = false
 
 			modes.UPGRADE:
