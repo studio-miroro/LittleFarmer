@@ -35,11 +35,11 @@ func _input(event):
 	and open_menu:
 		mailbox.open()
 
-func change_sprite(type:bool) -> void:
+func _change_sprite(type:bool) -> void:
 	if type:
 		var distance = round(global_position.distance_to(player.global_position))
 		if grid.mode == grid.modes.NOTHING and distance < max_distance:
-			check_sprite("hover")
+			_check_sprite("hover")
 			if object.has("caption")\
 			and object.has("description"):
 				tip.tooltip(
@@ -50,11 +50,11 @@ func change_sprite(type:bool) -> void:
 			else:
 				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Check the 'caption', 'description' elements.")
 	else:
-		check_sprite("default")
+		_check_sprite("default")
 		tip.tooltip("")
 		open_menu = false
 	
-func check_sprite(key:String) -> void:
+func _check_sprite(key:String) -> void:
 	if object.has(key):
 		if typeof(object[key]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
 			sprite.texture = object[key]
@@ -65,7 +65,7 @@ func check_sprite(key:String) -> void:
 
 func _on_area_2d_mouse_entered() -> void:
 	if !blur.state:
-		change_sprite(true)
+		_change_sprite(true)
 
 func _on_area_2d_mouse_exited() -> void:
-	change_sprite(false)
+	_change_sprite(false)

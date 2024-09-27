@@ -57,11 +57,11 @@ func update():
 	else:
 		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Index " + str(level) + " is not in the dictionary.")
 
-func change_sprite(type:bool):
+func _change_sprite(type:bool):
 	if type:
 		var distance = round(global_position.distance_to(player.global_position))
 		if grid.mode == grid.modes.NOTHING and distance < max_distance:
-			check_sprite("hover")
+			_check_sprite("hover")
 			var level_text = tr("object.level")
 			tip.tooltip(
 				str(object[level]["caption"]) + "\n" +
@@ -70,11 +70,11 @@ func change_sprite(type:bool):
 				)
 			menu = true
 	else:
-		check_sprite("default")
+		_check_sprite("default")
 		tip.tooltip("")
 		menu = false
 
-func check_sprite(key:String):
+func _check_sprite(key:String):
 	if object.has(level):
 		if object[level].has(key):
 			if typeof(object[level][key]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
@@ -96,7 +96,7 @@ func load_data(obj_level:int) -> void:
 
 func _on_area_2d_mouse_entered():
 	if !blur.state:
-		change_sprite(true)
+		_change_sprite(true)
 
 func _on_area_2d_mouse_exited():
-	change_sprite(false)
+	_change_sprite(false)

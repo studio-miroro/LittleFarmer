@@ -36,21 +36,21 @@ var object:Dictionary = {
 func _ready():
 	var test:Vector2i = Vector2i(18, 4)
 	position = tilemap.map_to_local(test)
-	update()
+	_update()
 
-func update():
+func _update():
 	if object.has(level):
 		if object[level].has("default"):
 			sprite.texture = object[level]["default"]
-			check_key("fume")
-			check_key("ext")
+			_check_key("fume")
+			_check_key("ext")
 				
 		else:
 			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: There is no key at index " + str(level) + ".")
 	else:
 		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Index " + str(level) + " is not in the dictionary.")
 
-func check_key(key:String) -> void:
+func _check_key(key:String) -> void:
 	match key:
 		"fume":
 			fume.emitting = object[level].has(key)
@@ -63,11 +63,11 @@ func check_key(key:String) -> void:
 				else:
 					ext.visible = false
 
-func change_sprite(type:bool) -> void:
+func _change_sprite(type:bool) -> void:
 	if type:
 		var distance = round(global_position.distance_to(player.global_position))
 		if grid.mode == grid.modes.NOTHING and distance < max_distance:
-			check_sprite("hover")
+			_check_sprite("hover")
 			var level_text = tr("object.level")
 			tip.tooltip(
 				str(object[level]["caption"]) + "\n" +
@@ -75,10 +75,10 @@ func change_sprite(type:bool) -> void:
 				str(level_text) + str(level)
 				)
 	else:
-		check_sprite("default")
+		_check_sprite("default")
 		tip.tooltip("")
 
-func check_sprite(key:String) -> void:
+func _check_sprite(key:String) -> void:
 	if object.has(level):
 		if object[level].has(key):
 			if typeof(object[level][key]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
@@ -99,11 +99,11 @@ func get_data():
 
 func load_data(obj_level:int) -> void:
 	self.level = obj_level
-	update()
+	_update()
 
 func _on_area_2d_mouse_entered() -> void:
 	if !blur.state:
-		change_sprite(true)
+		_change_sprite(true)
 
 func _on_area_2d_mouse_exited() -> void:
-	change_sprite(false)
+	_change_sprite(false)
