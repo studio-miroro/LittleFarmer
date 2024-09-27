@@ -16,3 +16,11 @@ res://assets/nodes/ui/pause/options/options.tscn
 res://assets/nodes/ui/inventory/inventory.tscn
 res://assets/scripts/ui/inventory/items.gd
 res://assets/scripts/ui/inventory/inventory.gd
+res://assets/nodes/ui/craft/blueprint.tscn
+res://assets/nodes/ui/craft/menu.tscn
+res://assets/scripts/ui/craft/building_materials.gd
+res://assets/scripts/buildings/grid/collision.gd
+res://assets/scripts/buildings/grid/grid.gd
+res://assets/system/data_manager.gd
+res://assets/scripts/buildings/grid/movement.gd
+res://assets/scripts/tilemap.gd

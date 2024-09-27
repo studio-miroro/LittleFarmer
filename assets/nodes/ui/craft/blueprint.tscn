@@ -39,6 +39,7 @@ theme_override_constants/margin_bottom = 0
 layout_mode = 2
 texture = ExtResource("2_stk0w")
 expand_mode = 2
+stretch_mode = 5
 
 [node name="Caption" type="Label" parent="Button/HBoxContainer"]
 layout_mode = 2
