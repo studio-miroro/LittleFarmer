@@ -200,12 +200,12 @@ func farm_load(object:Node2D, object_name:String, position:Vector2i):
 	var growth_level = get_key(paths.farm, "growth_level", object_name)
 
 	if id != null\
-	and condition != null\
-	and degree != null\
-	and fertilizer != null\
-	and rect_x != null\
-	and rect_y != null\
-	and growth_level != null:
+	&& condition != null\
+	&& degree != null\
+	&& fertilizer != null\
+	&& rect_x != null\
+	&& rect_y != null\
+	&& growth_level != null:
 		object.set_data(id, condition, degree, fertilizer, rect_x, rect_y, growth_level, position)
 	else:
 		debug("Data missing for node: " + str(object_name), "error")
