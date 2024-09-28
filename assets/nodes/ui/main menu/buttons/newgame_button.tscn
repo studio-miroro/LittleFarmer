@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://assets/scripts/ui/main_menu/buttons/new_game.gd" id="1_16hh2"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="1_njtai"]
 
-[node name="NewGame" type="Control"]
+[node name="NewGameButton" type="Control"]
 custom_minimum_size = Vector2(148, 183)
 layout_mode = 3
 anchors_preset = 15
@@ -56,7 +56,7 @@ vertical_scroll_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "game.new"
+text = "menu.new"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

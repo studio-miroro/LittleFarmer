@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://assets/scripts/ui/main_menu/buttons/quit.gd" id="1_5wnwh"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="1_kytnh"]
 
-[node name="QuitGame" type="Control"]
+[node name="QuitButton" type="Control"]
 custom_minimum_size = Vector2(148, 183)
 layout_mode = 3
 anchors_preset = 15
@@ -56,7 +56,7 @@ vertical_scroll_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "game.quit"
+text = "menu.quit"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

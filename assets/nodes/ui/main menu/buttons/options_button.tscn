@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://balcl5dqa5cvp"]
+[gd_scene load_steps=3 format=3 uid="uid://cgehtjp2rfkc2"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/main_menu/buttons/countinue_game.gd" id="1_r0gew"]
-[ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_g8f1x"]
+[ext_resource type="Script" path="res://assets/scripts/ui/main_menu/buttons/options_button.gd" id="1_4stmm"]
+[ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_xh4rx"]
 
-[node name="LoadGame" type="Control"]
+[node name="OptionsButton" type="Control"]
 custom_minimum_size = Vector2(148, 183)
 layout_mode = 3
 anchors_preset = 15
@@ -11,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_r0gew")
+script = ExtResource("1_4stmm")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
@@ -36,7 +36,7 @@ theme_override_constants/margin_bottom = 5
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("2_g8f1x")
+texture = ExtResource("2_xh4rx")
 expand_mode = 2
 stretch_mode = 5
 
@@ -56,7 +56,7 @@ vertical_scroll_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "game.countinue"
+text = "menu.options"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
