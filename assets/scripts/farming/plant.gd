@@ -27,37 +27,37 @@ func _process(_delta):
 		timer.set_paused(false)
 
 func plant(id:int) -> void:
-	self.plantID = id
+	plantID = id
 	sprite.rect(id)
 	
 func set_fertilizer(type:int) -> void:
 	match type:
 		0:
-			self.fertilizer = fertilizers.NOTHING
+			fertilizer = fertilizers.NOTHING
 		1:
-			self.fertilizer = fertilizers.COMPOST
+			fertilizer = fertilizers.COMPOST
 		2:
-			self.fertilizer = fertilizers.HUMUS
+			fertilizer = fertilizers.HUMUS
 		3:
-			self.fertilizer = fertilizers.MANURE
+			fertilizer = fertilizers.MANURE
 			
 func check(id:int,pos:Vector2i) -> void:
 	if !pause.paused:
 		if collision.check_cell(pos, collision.farmland_layer)\
 		and !collision.check_cell(pos, collision.watering_layer)\
 		and condition != phases.DEAD:
-			self.condition = phases.PLANTED
+			condition = phases.PLANTED
 			await get_tree().create_timer(crops.crops["check_watering"]).timeout
 			if degree < crops.crops[plantID]["mortality"]:
 				degree += 1
 			else:
-				self.condition = phases.DEAD
+				condition = phases.DEAD
 			check(id,pos)
 
 		elif collision.check_cell(pos, collision.farmland_layer)\
 		and collision.check_cell(pos, collision.watering_layer)\
 		and condition != phases.DEAD:
-			self.condition = phases.GROWING
+			condition = phases.GROWING
 			set_fertilizer(randi_range(0,3))
 			growth()
 
