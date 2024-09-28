@@ -1,8 +1,8 @@
 extends Node
 
 class_name Items
+const maximum = 9999
 var content:Dictionary = {
-	"max": 9999,
 	1: {
 		"caption": tr("log.caption"),
 		"description": tr("log.description"),
