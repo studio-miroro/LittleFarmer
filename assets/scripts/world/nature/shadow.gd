@@ -2,28 +2,29 @@ extends CanvasGroup
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 @onready var tilemap:Node2D = get_node("/root/" + main_scene + "/Tilemap")
-@onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
+@onready var collision:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
 @onready var timer:Timer = $CloudTimer
 @export var sprites:Array = [
-	preload("res://assets/resources/nature/clouds/cloud_0.png"),
-	preload("res://assets/resources/nature/clouds/cloud_1.png"),
-	preload("res://assets/resources/nature/clouds/cloud_2.png"),
-	preload("res://assets/resources/nature/clouds/cloud_3.png"),
-	preload("res://assets/resources/nature/clouds/cloud_4.png"),
-	preload("res://assets/resources/nature/clouds/cloud_5.png"),
-	preload("res://assets/resources/nature/clouds/cloud_6.png"),
-	preload("res://assets/resources/nature/clouds/cloud_7.png"),
-	preload("res://assets/resources/nature/clouds/cloud_8.png"),
-	preload("res://assets/resources/nature/clouds/cloud_9.png"),
-	preload("res://assets/resources/nature/clouds/cloud_10.png")
+	load("res://assets/resources/nature/clouds/cloud_0.png"),
+	load("res://assets/resources/nature/clouds/cloud_1.png"),
+	load("res://assets/resources/nature/clouds/cloud_2.png"),
+	load("res://assets/resources/nature/clouds/cloud_3.png"),
+	load("res://assets/resources/nature/clouds/cloud_4.png"),
+	load("res://assets/resources/nature/clouds/cloud_5.png"),
+	load("res://assets/resources/nature/clouds/cloud_6.png"),
+	load("res://assets/resources/nature/clouds/cloud_7.png"),
+	load("res://assets/resources/nature/clouds/cloud_8.png"),
+	load("res://assets/resources/nature/clouds/cloud_9.png"),
+	load("res://assets/resources/nature/clouds/cloud_10.png")
 ]
 
-var node:PackedScene = preload("res://assets/nodes/nature/cloud.tscn")
+var node:PackedScene = load("res://assets/nodes/nature/cloud.tscn")
 var max_distance:float = 600
 
 func cloud_spawn() -> void:
 	var distance = round(global_position.distance_to(get_node("/root/" + main_scene + "/Camera").global_position))
-	if !pause.paused\
+	if !blur.state\
 	and distance < max_distance:
 		var cloud:Node2D = node.instantiate()
 		var texture_id:int = randi() % sprites.size()
@@ -40,7 +41,7 @@ func cloud_pos(object):
 	object.set_position(Vector2(random_x, random_y))
 
 func _on_cloud_timer_timeout():
-	if !pause.paused:
+	if !blur.state:
 		timer.wait_time = randi_range(30,240)
 		cloud_spawn()
 
@@ -52,4 +53,5 @@ func create_shadow(tile_mouse_pos:Vector2i, shadow_texture:CompressedTexture2D):
 
 	shadow.texture = shadow_texture
 	shadow.set_position(target_vector)
+	shadow.z_index = collision.shadow_layer
 	add_child(shadow)
