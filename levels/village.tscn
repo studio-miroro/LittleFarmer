@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b8eteio2464wo" path="res://assets/nodes/ui/camera.tscn" id="19_d0ijy"]
 [ext_resource type="Script" path="res://assets/scripts/world/nature/time.gd" id="20_kglot"]
 [ext_resource type="Texture2D" uid="uid://cxqw4nldap880" path="res://assets/resources/nature/cycle-gradient.tres" id="21_1knak"]
-[ext_resource type="Script" path="res://assets/scripts/world/nature/clouds.gd" id="22_gqq13"]
+[ext_resource type="Script" path="res://assets/scripts/world/nature/shadow.gd" id="22_gqq13"]
 [ext_resource type="Texture2D" uid="uid://dewhtah3uhtg7" path="res://assets/resources/buildings/storage/level-2/shadow.png" id="23_2mfby"]
 [ext_resource type="Texture2D" uid="uid://cvsn1ntefp3ks" path="res://assets/resources/buildings/animal stall/shadow.png" id="24_u8wf3"]
 [ext_resource type="Texture2D" uid="uid://duwrjdqcjgs2t" path="res://assets/resources/buildings/house/level-1/shadow.png" id="25_p4kqd"]
@@ -32,7 +32,6 @@
 [ext_resource type="PackedScene" uid="uid://c06vvkgkvvlfq" path="res://assets/nodes/buildings/animal stall.tscn" id="31_kamc5"]
 [ext_resource type="PackedScene" uid="uid://d0hq20gmqku1b" path="res://assets/nodes/buildings/storage.tscn" id="32_3aixo"]
 [ext_resource type="Texture2D" uid="uid://kcdto5fme037" path="res://assets/resources/nature/tree.png" id="32_ofkp1"]
-
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jvamn"]
 texture = ExtResource("2_8dg41")

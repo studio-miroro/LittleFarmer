@@ -1755,7 +1755,6 @@ script = ExtResource("16_jqh5x")
 self_modulate = Color(0, 0, 0, 0.192157)
 z_index = 10
 script = ExtResource("17_ubdm4")
-sprites = null
 
 [node name="CloudTimer" type="Timer" parent="Shadow"]
 autostart = true
