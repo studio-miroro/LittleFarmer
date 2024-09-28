@@ -1,7 +1,7 @@
 extends Control
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var manager = get_node("/root/" + main_scene)
+@onready var data = get_node("/root/" + main_scene)
 @onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
 @onready var mailbox:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox")
@@ -28,10 +28,10 @@ func set_data(index, item_amount) -> void:
 				icon.visible = true
 			else:
 				icon.visible = false
-				print_debug(str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The key stores a non-Compressed 2D Texture. Variant.type: " + str(typeof(item.content[id]["icon"])))
+				data.debug("[ID: "+str(index)+"] The key stores a non-Compressed 2D Texture. Variant.type: " + str(typeof(item.content[id]["icon"])), "error")
 		else:
 			icon.visible = false
-			print_debug(str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The object does not have the 'icon' key.")
+			data.debug("[ID: "+str(index)+"] The object does not have the 'icon' key.", "error")
 		
 		if typeof(amount) == TYPE_INT and amount > 0:
 			if amount > 1:
@@ -42,34 +42,34 @@ func set_data(index, item_amount) -> void:
 			else:
 				amount_label.visible = false
 		else:
-			print_debug(str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The object does not have the 'icon' key.")
+			data.debug("[ID: "+str(index)+"] The object does not have the 'icon' key.", "error")
 			amount_label.visible = false
 	else:
-		print_debug(str(manager.get_system_datetime()) + " ERROR: Invalid index: " + str(index))
+		data.debug("Invalid index: " + str(index), "error")
 
 func _on_button_mouse_entered():
 	if mailbox.menu:
-		if item.content.has(id):
-			if item.content[id].has("caption"):
+		if item.content.has(int(id)):
+			if item.content[int(id)].has("caption"):
 				var item_amount:String = tr("x")
 				tip.tooltip(
-					item.content[id]["caption"] + " [" + item_amount + str(amount) + "]"
+					item.content[int(id)]["caption"] + " [" + item_amount + str(amount) + "]"
 					)
 			else:
-				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'caption' key is missing.")
+				print_debug("The 'caption' key is missing.", "error")
 		else:
-			push_warning("Invalid item ID: " + str(id))
+			data.debug("Invalid item ID: " + str(id))
 
 	if signmenu.menu:
-		if item.content.has(id):
-			if item.content[id].has("caption"):
+		if item.content.has(int(id)):
+			if item.content[int(id)].has("caption"):
 				tip.tooltip(
-					item.content[id]["caption"]
+					item.content[int(id)]["caption"]
 					)
 			else:
-				print_debug(str(manager.get_system_datetime()) + " ERROR: The 'caption' key is missing.")
+				data.debug("The 'caption' key is missing.", "error")
 		else:
-			push_warning("Invalid item ID: " + str(id))
+			data.debug("Invalid item ID: " + str(id), "warning")
 
 func _on_button_mouse_exited():
 	if mailbox.menu\
