@@ -12,6 +12,7 @@ extends Control
 
 var sign_name
 var menu:bool = false
+var items = Items.new()
 
 func _ready():
 	_set_header()
@@ -35,10 +36,11 @@ func _set_header() -> void:
 	header.text = header_ + ":"
 
 func _create_all_items() -> void:
-	for item in inventory.inventory_items:
-		var slot_ = slot.instantiate()
-		container.add_child(slot_)
-		slot_.set_data(item, 1)
+	for item in items.content:
+		if items.content.has(item):
+			var slot_ = slot.instantiate()
+			container.add_child(slot_)
+			slot_.set_data(item, 1)
 
 func _remove_all_items() -> void:
 	for item in container.get_children():
