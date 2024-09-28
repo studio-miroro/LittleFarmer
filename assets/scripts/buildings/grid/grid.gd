@@ -131,7 +131,7 @@ func _process(_delta):
 				if check:
 					var blueprints = Blueprints.new()
 					if blueprints.content.has(building_id):
-						buildings.build(tile_mouse_pos, building_id, building_node, collision.building_layer, building_shadow)
+						buildings.build(tile_mouse_pos, building_id, building_node, building_shadow)
 						if blueprints.content[building_id].has("resource"):
 							inventory.subject_item(data_resources)
 				check = false

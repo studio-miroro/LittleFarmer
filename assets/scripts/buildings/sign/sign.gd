@@ -30,10 +30,13 @@ func _ready():
 		data.debug("The specified key is missing.", "error")
 
 func set_sign_sprite(target_sprite):
-	if items.content[target_sprite].has("icon"):
-		icon.texture = items.content[target_sprite]["icon"]
+	if items.content.has(target_sprite):
+		if items.content[target_sprite].has("icon"):
+			icon.texture = items.content[target_sprite]["icon"]
+		else:
+			data.debug("The object does not have the 'description' key", "error")
 	else:
-		data.debug("The object does not have the 'description' key", "error")
+		data.debug("Invalid index: " + str(target_sprite), "error")
 
 func _input(event):
 	if event is InputEventMouseButton\
