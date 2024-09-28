@@ -21,17 +21,19 @@ func _process(_delta):
 	else:
 		if value > min_blur:
 			value = value - speed
-
 	background.material.set_shader_parameter("lod", value)
 
 func blur(bluring:bool) -> void:
 	self.state = bluring
-	
-	hud.state(bluring)
-	tooltip.tooltip()
-	camera.switch = bluring
-	zoom.change_zoom = !bluring
 
+	if has_node("/root/" + main_scene + "/User Interface/Hud"):
+		hud.state(bluring)
+	if has_node("/root/" + main_scene + "/User Interface/System/Tooltip"):
+		tooltip.tooltip()
+	if has_node("/root/" + main_scene + "/Camera"):
+		camera.switch = bluring
+	if has_node("/root/" + main_scene + "/Camera/Camera2D"):
+		zoom.change_zoom = !bluring
 	if bluring:
 		if has_node("/root/" + main_scene + "/Buildings/"):
 			for nodes in get_node("/root/" + main_scene + "/Buildings/").get_children():
