@@ -23,17 +23,17 @@ func build_content(build_name:String, level:int) -> void:
 			else:
 				data.debug("The '" + str(building.name) + "' node does not have the 'load_data' method.", "error")
 
-func build(tile_mouse_pos:Vector2i, building_id:int, building_node:PackedScene, building_layer:int, node_shadow:CompressedTexture2D) -> void:
+func build(tile_mouse_pos:Vector2i, building_id:int, building_node:PackedScene, node_shadow:CompressedTexture2D) -> void:
 	var shadow_group:CanvasGroup = get_node("/root/" + main_scene + "/Shadow")
-	var node:Node2D = building_node.instantiate()
+	var building:Node2D = building_node.instantiate()
 	var blueprints = Blueprints.new()
-	if !collision.building_collision_check(building_layer):
-		tilemap.set_cell(building_layer, tile_mouse_pos, 0, Vector2i(0,3))
-		node.set_position(tilemap.map_to_local(tile_mouse_pos))
-		node.z_index = 6
-		add_child(node)
+	if !collision.building_collision_check(collision.building_layer):
+		tilemap.set_cell(collision.building_layer, tile_mouse_pos, 0, Vector2i(0,3))
+		building.set_position(tilemap.map_to_local(tile_mouse_pos))
+		building.z_index = collision.building_layer
+		add_child(building)
 		shadow_group.create_shadow(tile_mouse_pos, node_shadow)
 		if blueprints.content[building_id]["type"]["node"].has("name"):
-			node.name = blueprints.content[building_id]["type"]["node"]["name"] + "_1"
+			building.name = blueprints.content[building_id]["type"]["node"]["name"] + "_1"
 		else:
-			node.name = "untitled_object_1"
+			building.name = "untitled_object_1"
