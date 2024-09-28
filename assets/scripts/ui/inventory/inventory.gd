@@ -277,8 +277,8 @@ func check_amount(index) -> void:
 	var items = Items.new()
 	if inventory.has(index):
 		if inventory.has("amount"):
-			if inventory["amount"] > items.content["max"]:
-				inventory["amount"] = items.content["max"]
+			if inventory["amount"] > items.maximum:
+				inventory["amount"] = items.maximum
 			if inventory["amount"] <= 0:
 				remove_item(index)
 		else:
