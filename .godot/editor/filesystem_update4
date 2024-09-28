@@ -1,26 +1,20 @@
-res://assets/scripts/ui/craft/buildings.gd
-res://assets/scripts/ui/craft/craft.gd
-res://assets/scripts/ui/blur.gd
-res://assets/scripts/ui/inventory/slot.gd
-res://assets/scripts/ui/sign_menu.gd
-res://assets/scripts/farming/farming.gd
-res://assets/scripts/buildings/sign/sign.gd
-res://assets/scripts/farming/plant.gd
-res://assets/scripts/buildings/mailbox/mailbox.gd
-res://assets/scripts/ui/craft/blueprints.gd
-res://levels/farm.tscn
+res://levels/main.tscn
 res://assets/resources/nature/cycle-gradient.tres
-res://assets/nodes/buildings/sign.tscn
-res://assets/resources/ui/sign/sign_menu.tscn
-res://assets/nodes/ui/pause/options/options.tscn
-res://assets/nodes/ui/inventory/inventory.tscn
-res://assets/scripts/ui/inventory/items.gd
-res://assets/scripts/ui/inventory/inventory.gd
-res://assets/nodes/ui/craft/blueprint.tscn
-res://assets/nodes/ui/craft/menu.tscn
-res://assets/scripts/ui/craft/building_materials.gd
-res://assets/scripts/buildings/grid/collision.gd
+res://assets/scripts/ui/pause/options/buttons/language.gd
+res://assets/scripts/ui/pause/options/buttons/save_options.gd
+res://assets/scripts/ui/main_menu/menu.gd
+res://assets/scripts/ui/main_menu/buttons/quit.gd
+res://assets/scripts/ui/pause/options/sections/sounds.gd
+res://assets/scripts/ui/main_menu/buttons/countinue_game.gd
+res://assets/scripts/ui/blur.gd
+res://assets/scripts/ui/main_menu/buttons/options_button.gd
+res://assets/scripts/ui/main_menu/buttons/new_game.gd
+res://assets/scripts/ui/pause/options/options.gd
+res://assets/nodes/ui/main menu/buttons/countinuegame_button.tscn
+res://assets/nodes/ui/main menu/buttons/newgame_button.tscn
+res://assets/nodes/ui/main menu/buttons/quit_button.tscn
+res://assets/nodes/ui/main menu/buttons/options_button.tscn
+res://assets/scripts/farming/plant.gd
 res://assets/scripts/buildings/grid/grid.gd
-res://assets/system/data_manager.gd
-res://assets/scripts/buildings/grid/movement.gd
-res://assets/scripts/tilemap.gd
+res://assets/scripts/farming/growth.gd
+res://assets/scripts/farming/farming.gd
