@@ -1,20 +1,31 @@
-res://levels/main.tscn
-res://assets/resources/nature/cycle-gradient.tres
-res://assets/scripts/ui/pause/options/buttons/language.gd
-res://assets/scripts/ui/pause/options/buttons/save_options.gd
-res://assets/scripts/ui/main_menu/menu.gd
-res://assets/scripts/ui/main_menu/buttons/quit.gd
-res://assets/scripts/ui/pause/options/sections/sounds.gd
-res://assets/scripts/ui/main_menu/buttons/countinue_game.gd
-res://assets/scripts/ui/blur.gd
-res://assets/scripts/ui/main_menu/buttons/options_button.gd
-res://assets/scripts/ui/main_menu/buttons/new_game.gd
-res://assets/scripts/ui/pause/options/options.gd
-res://assets/nodes/ui/main menu/buttons/countinuegame_button.tscn
-res://assets/nodes/ui/main menu/buttons/newgame_button.tscn
-res://assets/nodes/ui/main menu/buttons/quit_button.tscn
-res://assets/nodes/ui/main menu/buttons/options_button.tscn
-res://assets/scripts/farming/plant.gd
-res://assets/scripts/buildings/grid/grid.gd
-res://assets/scripts/farming/growth.gd
 res://assets/scripts/farming/farming.gd
+res://assets/scripts/ui/cursor.gd
+res://assets/scripts/ui/test/hud.gd
+res://assets/scripts/ui/test/button_crafting.gd
+res://assets/scripts/ui/mail/mail.gd
+res://assets/scripts/ui/inventory/inventory.gd
+res://assets/scripts/ui/mail/receiving_button.gd
+res://assets/scripts/mail.gd
+res://assets/system/data_manager.gd
+res://assets/scripts/ui/craft/craft.gd
+res://assets/scripts/ui/feedback/notifications/notice.gd
+res://assets/scripts/ui/feedback/notifications/notifications.gd
+res://levels/farm.tscn
+res://assets/resources/nature/cycle-gradient.tres
+res://assets/scripts/world/nature/time.gd
+res://assets/camera/zoom.gd
+res://assets/scripts/user_interface/interactive/_buildings/sign_menu.gd
+res://assets/scripts/user_interface/interactive/pause/options/buttons/saving_options.gd
+res://assets/scripts/user_interface/interactive/_buildings/grid/grid.collision.gd
+res://assets/scripts/buildings/building_system.gd
+res://assets/scripts/user_interface/interactive/inventory/slot.gd
+res://assets/scripts/user_interface/interactive/_buildings/grid/grid.gd
+res://assets/scripts/buildings/storage/storage.gd
+res://assets/scripts/user_interface/interactive/inventory/inventory.gd
+res://assets/scripts/user_interface/interactive/craft/craft.gd
+res://assets/scripts/user_interface/interactive/inventory/items.gd
+res://assets/scripts/world/nature/light.gd
+res://levels/main.tscn
+res://assets/scripts/user_interface/_main_menu/menu.gd
+res://assets/scripts/user_interface/_main_menu/background.gd
+res://assets/scripts/user_interface/hud/elements/clock.gd

@@ -2,9 +2,9 @@ extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 @onready var data = get_node("/root/" + main_scene)
-@onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
-@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
-@onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
+@onready var pause:Control = get_node("/root/" + main_scene + "/UI/Windows/Pause")
+@onready var blur:Control = get_node("/root/" + main_scene + "/UI/GUI/Blur")
+@onready var tip:Control = get_node("/root/" + main_scene + "/UI/GUI/Tooltip")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
 @onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
 @onready var collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")

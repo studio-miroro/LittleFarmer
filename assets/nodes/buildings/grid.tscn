@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://w1fmwa12i36k"]
 
-[ext_resource type="Script" path="res://assets/scripts/buildings/grid/grid.gd" id="1_4uigv"]
+[ext_resource type="Script" path="res://assets/scripts/user_interface/interactive/_buildings/grid/grid.gd" id="1_4uigv"]
 [ext_resource type="Texture2D" uid="uid://dbas6kc4l6swb" path="res://assets/resources/buildings/grid/default.png" id="2_j2paw"]
-[ext_resource type="Script" path="res://assets/scripts/buildings/grid/collision.gd" id="3_123wc"]
+[ext_resource type="Script" path="res://assets/scripts/user_interface/interactive/_buildings/grid/grid.collision.gd" id="3_123wc"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x3oaj"]
 size = Vector2(14, 14)

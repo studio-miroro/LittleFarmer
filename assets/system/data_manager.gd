@@ -4,16 +4,16 @@ extends Node
 @onready var cycle:Node2D = get_node("/root/" + main_scene + "/Cycle")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
 @onready var player:Node2D = get_node("/root/" + main_scene + "/Camera")
-@onready var balance:Control = get_node("/root/" + main_scene + "/User Interface/Hud/Main/Indicators/Balance")
-@onready var inventory:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Inventory")
-@onready var craft:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Crafting")
-@onready var mailbox:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Mailbox")
-@onready var buildings:Node2D = get_node("/root/" + main_scene + "/Buildings")
+@onready var balance:Control = get_node("/root/" + main_scene + "/UI/GUI/Hud/Main/Indicators/Balance")
+@onready var inventory:Control = get_node("/root/" + main_scene + "/UI/Windows/Inventory")
+@onready var craft:Control = get_node("/root/" + main_scene + "/UI/Windows/Crafting")
+@onready var mailbox:Control = get_node("/root/" + main_scene + "/UI/Windows/Mailbox")
+@onready var buildings:Node = get_node("/root/" + main_scene + "/Buildings")
 @onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
 @onready var collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
 @onready var farming:Node2D = get_node("/root/" + main_scene + "/Farming")
 @onready var plant:PackedScene = load("res://assets/nodes/farming/plant.tscn")
-@onready var language:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
+@onready var language:Control = get_node("/root/" + main_scene + "/UI/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
 
 var object_count:int
 const paths:Dictionary = {

@@ -1,0 +1,264 @@
+[gd_scene load_steps=20 format=3 uid="uid://c50737uagx074"]
+
+[ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_8w4wf"]
+[ext_resource type="Script" path="res://assets/scripts/user_interface/hud/hud.gd" id="2_sl7o8"]
+[ext_resource type="PackedScene" uid="uid://d2wxohp87kgqx" path="res://assets/nodes/user_interface/hud/elements/balance.tscn" id="3_1mhl6"]
+[ext_resource type="PackedScene" uid="uid://dlpc7fxunbs1g" path="res://assets/nodes/user_interface/hud/elements/clock.tscn" id="4_cpqpu"]
+[ext_resource type="PackedScene" uid="uid://i5wr18nbfkhb" path="res://assets/nodes/user_interface/hud/elements/instruments/button_destroy.tscn" id="5_ef4gh"]
+[ext_resource type="PackedScene" uid="uid://d0607ns0r4vi3" path="res://assets/nodes/user_interface/hud/elements/instruments/button_farming.tscn" id="6_vhups"]
+[ext_resource type="PackedScene" uid="uid://cxywm6titpfsh" path="res://assets/nodes/user_interface/hud/elements/instruments/button_watering.tscn" id="7_wtt3c"]
+[ext_resource type="PackedScene" uid="uid://l6ae7lhb78yw" path="res://assets/nodes/user_interface/hud/elements/instruments/button_crafting.tscn" id="8_340to"]
+[ext_resource type="Script" path="res://assets/scripts/user_interface/hud/elements/scene_caption.gd" id="9_jpol3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbeot"]
+shader = ExtResource("1_8w4wf")
+
+[sub_resource type="LabelSettings" id="LabelSettings_6tlru"]
+font_size = 18
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.180392)
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="Animation" id="Animation_b10bj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xl2hk"]
+resource_name = "hide"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_state"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_r7y87"]
+resource_name = "show"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_state"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ehbeg"]
+_data = {
+"RESET": SubResource("Animation_b10bj"),
+"hide": SubResource("Animation_xl2hk"),
+"show": SubResource("Animation_r7y87")
+}
+
+[sub_resource type="Animation" id="Animation_188c6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_euhjk"]
+resource_name = "hide"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"window"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_f8ho1"]
+resource_name = "show"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"window"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wmd0c"]
+_data = {
+"RESET": SubResource("Animation_188c6"),
+"hide": SubResource("Animation_euhjk"),
+"show": SubResource("Animation_f8ho1")
+}
+
+[node name="Head-up Display" type="Control"]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_lbeot")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_sl7o8")
+
+[node name="Main" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Indicators" type="HBoxContainer" parent="Main"]
+layout_mode = 2
+
+[node name="Balance" parent="Main/Indicators" instance=ExtResource("3_1mhl6")]
+layout_mode = 2
+
+[node name="Clock" parent="Main/Indicators" instance=ExtResource("4_cpqpu")]
+layout_mode = 2
+
+[node name="Instruments" type="HBoxContainer" parent="Main"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+alignment = 2
+
+[node name="Destroy" parent="Main/Instruments" instance=ExtResource("5_ef4gh")]
+layout_mode = 2
+
+[node name="Farming" parent="Main/Instruments" instance=ExtResource("6_vhups")]
+layout_mode = 2
+
+[node name="Watering" parent="Main/Instruments" instance=ExtResource("7_wtt3c")]
+layout_mode = 2
+
+[node name="Crafting" parent="Main/Instruments" instance=ExtResource("8_340to")]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="AreaName" type="MarginContainer" parent="Main"]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("9_jpol3")
+
+[node name="Label" type="Label" parent="Main/AreaName"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 8
+text = "AREA.NAME"
+label_settings = SubResource("LabelSettings_6tlru")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Main/AreaName"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Main/AreaName"]
+libraries = {
+"": SubResource("AnimationLibrary_ehbeg")
+}
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wmd0c")
+}
+
+[connection signal="timeout" from="Main/AreaName/Timer" to="Main/AreaName" method="_on_timer_timeout"]

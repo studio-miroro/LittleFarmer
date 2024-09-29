@@ -1,47 +1,22 @@
-[gd_scene load_steps=62 format=3 uid="uid://4vypwfxar3e"]
+[gd_scene load_steps=34 format=3 uid="uid://4vypwfxar3e"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_ieipv"]
 [ext_resource type="Script" path="res://assets/system/data_manager.gd" id="2_880lm"]
-[ext_resource type="PackedScene" uid="uid://dmrj3nbdfyut" path="res://assets/nodes/ui/tooltip.tscn" id="2_otbj1"]
-[ext_resource type="PackedScene" uid="uid://3w6lj8hrhrxx" path="res://assets/nodes/ui/blackout.tscn" id="3_1lalu"]
-[ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/cursor.tscn" id="3_b52oi"]
-[ext_resource type="PackedScene" uid="uid://cyl6jw0huwvk6" path="res://assets/nodes/ui/pause/pause.tscn" id="4_yubjk"]
-[ext_resource type="PackedScene" uid="uid://bpmceytvqnc7d" path="res://assets/nodes/ui/craft/menu.tscn" id="5_v6eft"]
-[ext_resource type="PackedScene" uid="uid://c50737uagx074" path="res://assets/nodes/ui/hud/hud.tscn" id="5_wan5o"]
-[ext_resource type="PackedScene" uid="uid://cwtsqme5qki8s" path="res://assets/nodes/ui/mail/mail.tscn" id="7_5top8"]
-[ext_resource type="PackedScene" uid="uid://cjkwsdkyksvs3" path="res://assets/nodes/ui/inventory/inventory.tscn" id="7_8hp1e"]
-[ext_resource type="PackedScene" uid="uid://bhadiamik4ev0" path="res://assets/nodes/ui/pause/options/options.tscn" id="8_rn4ps"]
-[ext_resource type="Script" path="res://assets/scripts/world/nature/time.gd" id="8_yhpsj"]
-[ext_resource type="PackedScene" uid="uid://c16oacn0qg214" path="res://assets/nodes/ui/blur.tscn" id="9_ccti6"]
-[ext_resource type="Texture2D" uid="uid://cxqw4nldap880" path="res://assets/resources/nature/cycle-gradient.tres" id="9_e2igt"]
-[ext_resource type="PackedScene" uid="uid://b8eteio2464wo" path="res://assets/nodes/ui/camera.tscn" id="10_cdmdm"]
+[ext_resource type="PackedScene" uid="uid://boitxnv4ptxu6" path="res://assets/nodes/user_interface/user_interface.tscn" id="3_08vb8"]
+[ext_resource type="PackedScene" uid="uid://b8eteio2464wo" path="res://assets/nodes/player.tscn" id="10_cdmdm"]
 [ext_resource type="Texture2D" uid="uid://b66gdyd27b6v8" path="res://assets/resources/nature/grass.png" id="11_f64k1"]
-[ext_resource type="PackedScene" uid="uid://cipgdxgpuslcv" path="res://assets/nodes/ui/notifications/notifications.tscn" id="12_034tr"]
 [ext_resource type="Texture2D" uid="uid://bf8an67t7ykhk" path="res://assets/resources/farming/farmland.png" id="12_n5h5x"]
 [ext_resource type="Texture2D" uid="uid://b0pyequa6wol7" path="res://assets/resources/farming/watering.png" id="13_mqvhx"]
 [ext_resource type="Texture2D" uid="uid://dj1b5aexd5fug" path="res://assets/resources/farming/crops.png" id="14_l5qkb"]
-[ext_resource type="PackedScene" uid="uid://dnx4bgw5l7ktf" path="res://assets/resources/ui/sign/sign_menu.tscn" id="14_rpwfj"]
 [ext_resource type="Texture2D" uid="uid://c4b4pkekg047e" path="res://assets/resources/nature/ground road.png" id="15_skd4g"]
-[ext_resource type="Script" path="res://assets/scripts/tilemap.gd" id="16_jqh5x"]
-[ext_resource type="Script" path="res://assets/scripts/world/nature/shadow.gd" id="17_ubdm4"]
-[ext_resource type="Texture2D" uid="uid://cvsn1ntefp3ks" path="res://assets/resources/buildings/animal stall/shadow.png" id="19_cqicb"]
-[ext_resource type="Texture2D" uid="uid://duwrjdqcjgs2t" path="res://assets/resources/buildings/house/level-1/shadow.png" id="20_vd7ux"]
-[ext_resource type="Texture2D" uid="uid://0f10j8vd2h4t" path="res://assets/resources/buildings/mailbox/shadow.png" id="21_d271e"]
-[ext_resource type="Texture2D" uid="uid://qfktaby7ay6k" path="res://assets/resources/buildings/silo/level-1/shadow.png" id="22_2ky2k"]
-[ext_resource type="Texture2D" uid="uid://d3hjp3y2ylfmh" path="res://assets/resources/nature/shadow.png" id="23_geqd5"]
-[ext_resource type="Texture2D" uid="uid://dc2pao6crly1w" path="res://assets/resources/buildings/storage/level-1/shadow.png" id="24_gndvr"]
-[ext_resource type="Script" path="res://assets/scripts/world/nature/light.gd" id="24_ymcwy"]
-[ext_resource type="Texture2D" uid="uid://bmm3sn5q3j181" path="res://assets/resources/nature/light.webp" id="25_hw4t0"]
-[ext_resource type="Script" path="res://assets/scripts/world/nature/pointlight.gd" id="26_f4a71"]
-[ext_resource type="Texture2D" uid="uid://kcdto5fme037" path="res://assets/resources/nature/tree.png" id="27_p6cot"]
+[ext_resource type="Script" path="res://assets/scripts/world/tilemap.gd" id="16_jqh5x"]
 [ext_resource type="PackedScene" uid="uid://b6yctk4o25kkc" path="res://assets/nodes/buildings/mailbox.tscn" id="28_pepi0"]
 [ext_resource type="PackedScene" uid="uid://c06vvkgkvvlfq" path="res://assets/nodes/buildings/animal stall.tscn" id="29_1mqwf"]
 [ext_resource type="PackedScene" uid="uid://dkff5xvqcxcdu" path="res://assets/nodes/buildings/house.tscn" id="30_tx0gn"]
-[ext_resource type="Texture2D" uid="uid://bvw4vbklgj45l" path="res://assets/resources/buildings/tablet/shadow.png" id="30_whhom"]
 [ext_resource type="Texture2D" uid="uid://1r8kos7xjwxc" path="res://assets/resources/buildings/house/smoke.png" id="31_8anwe"]
 [ext_resource type="PackedScene" uid="uid://w1fmwa12i36k" path="res://assets/nodes/buildings/grid.tscn" id="32_nkvxm"]
 [ext_resource type="PackedScene" uid="uid://dj3jsnuixqgv8" path="res://assets/nodes/buildings/silo.tscn" id="33_8j4he"]
-[ext_resource type="Script" path="res://assets/scripts/ui/craft/buildings.gd" id="33_25htm"]
+[ext_resource type="Script" path="res://assets/scripts/buildings/building_system.gd" id="33_25htm"]
 [ext_resource type="PackedScene" uid="uid://d0hq20gmqku1b" path="res://assets/nodes/buildings/storage.tscn" id="34_67pno"]
 [ext_resource type="Script" path="res://assets/scripts/farming/farming.gd" id="35_q8rfs"]
 [ext_resource type="Script" path="res://assets/scripts/world/teleports.gd" id="43_511qs"]
@@ -1634,18 +1609,6 @@ sources/2 = SubResource("TileSetAtlasSource_iu2c7")
 sources/3 = SubResource("TileSetAtlasSource_s1spb")
 sources/5 = SubResource("TileSetAtlasSource_kh751")
 
-[sub_resource type="Animation" id="Animation_3pdwo"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_2yp3r"]
-resource_name = "light"
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_d780l"]
-_data = {
-"RESET": SubResource("Animation_3pdwo"),
-"light": SubResource("Animation_2yp3r")
-}
-
 [sub_resource type="Curve" id="Curve_jdrmm"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1e-05, 1), 0.0, 0.0, 0, 0, Vector2(0.494118, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
@@ -1672,64 +1635,12 @@ y_sort_enabled = true
 material = SubResource("ShaderMaterial_h27nr")
 script = ExtResource("2_880lm")
 
-[node name="User Interface" type="CanvasLayer" parent="."]
-
-[node name="Cursor" parent="User Interface" instance=ExtResource("3_b52oi")]
-
-[node name="Blackout" parent="User Interface" instance=ExtResource("3_1lalu")]
-
-[node name="Blur" parent="User Interface" instance=ExtResource("9_ccti6")]
-
-[node name="Hud" parent="User Interface" instance=ExtResource("5_wan5o")]
-z_as_relative = false
-mouse_filter = 2
-
-[node name="Windows" type="Node" parent="User Interface"]
-
-[node name="Pause" parent="User Interface/Windows" instance=ExtResource("4_yubjk")]
-z_index = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="Options" parent="User Interface/Windows" instance=ExtResource("8_rn4ps")]
-
-[node name="Inventory" parent="User Interface/Windows" instance=ExtResource("7_8hp1e")]
-
-[node name="Crafting" parent="User Interface/Windows" instance=ExtResource("5_v6eft")]
-
-[node name="Mailbox" parent="User Interface/Windows" instance=ExtResource("7_5top8")]
-
-[node name="System" type="Node" parent="User Interface"]
-
-[node name="Tooltip" parent="User Interface/System" instance=ExtResource("2_otbj1")]
-z_index = 1
-offset_top = 720.0
-offset_bottom = 720.0
-
-[node name="Notifications" parent="User Interface/System" instance=ExtResource("12_034tr")]
-offset_left = -6.0
-offset_top = 3.0
-offset_right = -6.0
-offset_bottom = 3.0
-mouse_filter = 2
-
-[node name="BuildingsMenu" type="Node" parent="User Interface"]
-
-[node name="SignMenu" parent="User Interface/BuildingsMenu" instance=ExtResource("14_rpwfj")]
+[node name="UI" parent="." instance=ExtResource("3_08vb8")]
 
 [node name="Camera" parent="." instance=ExtResource("10_cdmdm")]
 z_index = 1
 z_as_relative = false
 position = Vector2(263, 86)
-
-[node name="Cycle" type="CanvasModulate" parent="."]
-script = ExtResource("8_yhpsj")
-gradient_texture = ExtResource("9_e2igt")
 
 [node name="Tilemap" type="TileMap" parent="."]
 material = SubResource("ShaderMaterial_7fouv")
@@ -1751,72 +1662,7 @@ layer_5/name = "buildings"
 layer_5/tile_data = PackedInt32Array()
 script = ExtResource("16_jqh5x")
 
-[node name="Shadow" type="CanvasGroup" parent="."]
-self_modulate = Color(0, 0, 0, 0.192157)
-z_index = 10
-script = ExtResource("17_ubdm4")
-
-[node name="CloudTimer" type="Timer" parent="Shadow"]
-autostart = true
-
-[node name="StorageShadow" type="Sprite2D" parent="Shadow"]
-position = Vector2(360, 27)
-texture = ExtResource("24_gndvr")
-
-[node name="StorageShadow2" type="Sprite2D" parent="Shadow"]
-position = Vector2(360, 27)
-texture = ExtResource("24_gndvr")
-
-[node name="StockShadow" type="Sprite2D" parent="Shadow"]
-position = Vector2(203, 27)
-texture = ExtResource("19_cqicb")
-
-[node name="HouseShadow" type="Sprite2D" parent="Shadow"]
-position = Vector2(301, 59)
-texture = ExtResource("20_vd7ux")
-
-[node name="MailboxShadow" type="Sprite2D" parent="Shadow"]
-position = Vector2(264, 61)
-texture = ExtResource("21_d271e")
-
-[node name="Shadow3" type="Sprite2D" parent="Shadow"]
-position = Vector2(151, 26)
-texture = ExtResource("22_2ky2k")
-
-[node name="Shadow2" type="Sprite2D" parent="Shadow"]
-position = Vector2(249, 25)
-texture = ExtResource("23_geqd5")
-
-[node name="Sprite2D" type="Sprite2D" parent="Shadow"]
-position = Vector2(617, 95)
-texture = ExtResource("30_whhom")
-
-[node name="Light" type="Node2D" parent="."]
-z_index = 6
-script = ExtResource("24_ymcwy")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Light"]
-libraries = {
-"": SubResource("AnimationLibrary_d780l")
-}
-
-[node name="PointLight2D" type="PointLight2D" parent="Light"]
-visible = false
-z_index = 5
-position = Vector2(293, 61)
-color = Color(0.85098, 0.34902, 0, 1)
-energy = 0.0
-texture = ExtResource("25_hw4t0")
-script = ExtResource("26_f4a71")
-
-[node name="Nature" type="Node2D" parent="."]
-
-[node name="Tree" type="Sprite2D" parent="Nature"]
-z_index = 4
-position = Vector2(248, 0)
-texture = ExtResource("27_p6cot")
-
-[node name="Buildings" type="Node2D" parent="."]
+[node name="Buildings" type="Node" parent="."]
 script = ExtResource("33_25htm")
 
 [node name="Mailbox" parent="Buildings" instance=ExtResource("28_pepi0")]
@@ -1874,6 +1720,5 @@ script = ExtResource("43_511qs")
 position = Vector2(624, 104)
 shape = SubResource("RectangleShape2D_hhb1c")
 
-[connection signal="timeout" from="Shadow/CloudTimer" to="Shadow" method="_on_cloud_timer_timeout"]
 [connection signal="mouse_entered" from="Teleports/Village/Area2D" to="Teleports/Village" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Teleports/Village/Area2D" to="Teleports/Village" method="_on_area_2d_mouse_exited"]

@@ -2,10 +2,10 @@ extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 @onready var manager = get_node("/root/" + main_scene)
-@onready var tip:Control = get_node("/root/" + main_scene + "/User Interface/System/Tooltip")
-@onready var pause:Control = get_node("/root/" + main_scene + "/User Interface/Windows/Pause")
+@onready var tip:Control = get_node("/root/" + main_scene + "/UI/GUI/Tooltip")
+@onready var pause:Control = get_node("/root/" + main_scene + "/UI/Windows/Pause")
 @onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid") 
-@onready var blur:Control = get_node("/root/" + main_scene + "/User Interface/Blur")
+@onready var blur:Control = get_node("/root/" + main_scene + "/UI/GUI/Blur")
 @onready var player:CharacterBody2D = get_node("/root/" + main_scene + "/Camera")
 @onready var sprite:Sprite2D = $Sprite2D
 
