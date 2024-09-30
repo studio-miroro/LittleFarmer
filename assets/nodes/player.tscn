@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b8eteio2464wo"]
+[gd_scene load_steps=6 format=3 uid="uid://b8eteio2464wo"]
 
 [ext_resource type="Script" path="res://assets/scripts/player/player_movement.gd" id="1_6ghsa"]
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_7c5dj"]
@@ -7,168 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pktnx"]
 shader = ExtResource("1_7c5dj")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bbjm7"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u072u"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d3x7d"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ho87o"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ttoi1"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0n2l2"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q7hth"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7vqp1"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6m65l"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ho3as"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dp401"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x3elf"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tpfmq"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6bnjh"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fml8t"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j8o6e"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rou48"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mjg4q"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s0hlr"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pr1ti"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4d6f0"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wxaus"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_equ4i"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4d0eo"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_p8d8c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_bbjm7")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_u072u")
-}],
-"loop": true,
-"name": &"idle_down",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_d3x7d")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_ho87o")
-}],
-"loop": true,
-"name": &"idle_left",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_ttoi1")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_0n2l2")
-}],
-"loop": true,
-"name": &"idle_right",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_q7hth")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_7vqp1")
-}],
-"loop": true,
-"name": &"idle_up",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_6m65l")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_ho3as")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_dp401")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_x3elf")
-}],
-"loop": true,
-"name": &"run_down",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_tpfmq")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_6bnjh")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_fml8t")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_j8o6e")
-}],
-"loop": true,
-"name": &"run_left",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_rou48")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_mjg4q")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_s0hlr")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_pr1ti")
-}],
-"loop": true,
-"name": &"run_right",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_4d6f0")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_wxaus")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_equ4i")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_4d0eo")
-}],
-"loop": true,
-"name": &"run_up",
-"speed": 5.0
-}]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chqfy"]
 
 [node name="Player" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_pktnx")
@@ -182,10 +21,7 @@ limit_smoothed = true
 position_smoothing_enabled = true
 script = ExtResource("3_kqeun")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-z_index = 2
-y_sort_enabled = true
-sprite_frames = SubResource("SpriteFrames_p8d8c")
-animation = &"idle_down"
-offset = Vector2(1, 0)
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_chqfy")
