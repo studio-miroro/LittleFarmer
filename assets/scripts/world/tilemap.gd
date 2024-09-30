@@ -2,7 +2,7 @@ extends TileMap
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 @onready var data = get_node("/root/" + main_scene)
-@onready var blur:Control = get_node("/root/" + main_scene + "/UI/GUI/Blur")
+@onready var blur:Control = get_node("/root/" + main_scene + "/UI/Decorative/Blur")
 @onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
 
 func _process(_delta):
