@@ -8,7 +8,7 @@ extends Button
 @onready var inventory:Control = get_node("/root/" + main_scene + "/UI/Interactive/Inventory")
 @onready var craft:Control = get_node("/root/" + main_scene + "/UI/Interactive/Crafting")
 @onready var blur:Control = get_node("/root/" + main_scene + "/UI/Decorative/Blur")
-@onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
+@onready var grid:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid")
 
 var items:Object = Items.new()
 var blueprints:Object = Blueprints.new()
