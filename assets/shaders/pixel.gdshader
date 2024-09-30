@@ -13,7 +13,6 @@ vec4 texturePointSmooth(sampler2D smp, vec2 uv, vec2 pixel_size)
 	return textureGrad(smp, uv + uv_dxy_pixels * pixel_size, ddx, ddy);
 }
 
-void fragment()
-{
+void fragment() {
 	COLOR = texturePointSmooth(TEXTURE, UV, TEXTURE_PIXEL_SIZE);
 }
