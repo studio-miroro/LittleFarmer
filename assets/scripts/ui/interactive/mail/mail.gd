@@ -6,7 +6,7 @@ extends Control
 @onready var notice:Control = get_node("/root/"+main+"/UI/Feedback/Notifications")
 @onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
 @onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
-@onready var storage:Node2D = get_node("/root/"+main+"/Buildings/Storage")
+@onready var storage:Node2D = get_node("/root/"+main+"/ConstructionManager/Storage")
 @onready var balance:Control = get_node("/root/"+main+"/UI/Hud/Main/Indicators/Balance")
 @onready var button_script:Button = get_node("/root/"+main+"/UI/Windows/Mailbox/Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems")
 @onready var letter_node:PackedScene = load("res://assets/nodes/ui/interactive/mail/letter.tscn")
@@ -211,12 +211,13 @@ func create_letters(dictionary:Dictionary, node:PackedScene, parent:VBoxContaine
 					pass
 
 func _update_letter_icon(object, letter_icon, status:String) -> void:
-	if status == "readed":
-		letter_icon.texture = object.sprites["readed"]
-	if status == "unread":
-		letter_icon.texture = object.sprites["unread"]
-	else:
-		pass
+	match status:
+		"readed":
+			letter_icon.texture = object.sprites["readed"]
+		"unread":
+			letter_icon.texture = object.sprites["unread"]
+		_:
+			data.debug("Invalid letter status: "+str(status),"error")
 
 func delete_letters(parent:VBoxContainer) -> void:
 	for child in parent.get_children():
