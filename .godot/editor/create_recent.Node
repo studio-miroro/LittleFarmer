@@ -1,3 +1,6 @@
+CollisionShape2D
+Area2D
+CanvasGroup
 Node
 Node2D
 AnimationPlayer
@@ -10,5 +13,3 @@ TextureRect
 Button
 ScrollContainer
 Panel
-VBoxContainer
-GridContainer
