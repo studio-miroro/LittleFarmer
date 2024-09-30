@@ -1,5 +1,6 @@
 extends Node
 
+class_name FileSystem
 class FileSystem:
 	static func create_directory(file_path:String) -> void:
 		var error = DirAccess.make_dir_recursive_absolute(file_path)
