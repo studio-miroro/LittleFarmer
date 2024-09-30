@@ -2,9 +2,9 @@ extends Node2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 @onready var data = get_node("/root/" + main_scene)
-@onready var pause:Control = get_node("/root/" + main_scene + "/UI/Windows/Pause")
-@onready var blur:Control = get_node("/root/" + main_scene + "/UI/GUI/Blur")
-@onready var tip:Control = get_node("/root/" + main_scene + "/UI/GUI/Tooltip")
+@onready var pause:Control = get_node("/root/" + main_scene + "/UI/Interactive/Pause")
+@onready var blur:Control = get_node("/root/" + main_scene + "/UI/Decorative/Blur")
+@onready var tip:Control = get_node("/root/" + main_scene + "/UI/Feedback/Tooltip")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
 @onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
 @onready var collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
@@ -141,8 +141,8 @@ func _on_collision_mouse_entered() -> void:
 		if crops.crops.has(plantID):
 			if crops.crops[plantID].has("caption"):
 				if typeof(crops.crops[plantID]["caption"]) == TYPE_STRING:
+					var plant_status = tr("plant_status")
 					if fertilizer != fertilizers.NOTHING:
-						var plant_status = tr("plant_status")
 						var fertilized_plant = tr("fertilizer")
 						tip.tooltip(
 							crops.crops[plantID]["caption"] +"\n"+
@@ -152,7 +152,7 @@ func _on_collision_mouse_entered() -> void:
 					else:
 						tip.tooltip(
 							crops.crops[plantID]["caption"] +"\n"+
-							"Состояние: " + get_condition(condition)
+							str(plant_status) + ": " + str(get_condition(condition))
 						)
 				else:
 					data.debug("The 'caption' element is not a string type. Variant.type: " + str(typeof(crops.crops[plantID]["caption"])), "error")
