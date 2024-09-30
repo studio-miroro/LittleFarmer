@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://0kdnm5aauxvw"]
 
-[ext_resource type="Script" path="res://assets/scripts/buildings/sign/sign.gd" id="1_c3eto"]
+[ext_resource type="Script" path="res://assets/scripts/construction/buildings/sign.gd" id="1_c3eto"]
 [ext_resource type="Texture2D" uid="uid://cnfvwixmidxmo" path="res://assets/resources/buildings/sign/sign_0.png" id="2_rec4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rpyc"]
