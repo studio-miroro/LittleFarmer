@@ -1,10 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://4vypwfxar3e"]
+[gd_scene load_steps=35 format=3 uid="uid://4vypwfxar3e"]
 
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="1_ieipv"]
 [ext_resource type="Script" path="res://assets/system/gamedata.gd" id="2_880lm"]
 [ext_resource type="PackedScene" uid="uid://boitxnv4ptxu6" path="res://assets/nodes/ui/ui.tscn" id="3_08vb8"]
 [ext_resource type="PackedScene" uid="uid://b8eteio2464wo" path="res://assets/nodes/player.tscn" id="10_cdmdm"]
 [ext_resource type="Texture2D" uid="uid://b66gdyd27b6v8" path="res://assets/resources/world/landscape/grass.png" id="11_f64k1"]
+[ext_resource type="PackedScene" uid="uid://bwlehntoq3tyf" path="res://assets/nodes/world/shadow.tscn" id="11_goxrj"]
 [ext_resource type="Texture2D" uid="uid://bf8an67t7ykhk" path="res://assets/resources/farming/farmland.png" id="12_n5h5x"]
 [ext_resource type="Texture2D" uid="uid://b0pyequa6wol7" path="res://assets/resources/farming/watering.png" id="13_mqvhx"]
 [ext_resource type="Texture2D" uid="uid://dj1b5aexd5fug" path="res://assets/resources/farming/crops.png" id="14_l5qkb"]
@@ -16,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://1r8kos7xjwxc" path="res://assets/resources/buildings/house/smoke.png" id="31_8anwe"]
 [ext_resource type="PackedScene" uid="uid://w1fmwa12i36k" path="res://assets/nodes/buildings/grid.tscn" id="32_nkvxm"]
 [ext_resource type="PackedScene" uid="uid://dj3jsnuixqgv8" path="res://assets/nodes/buildings/silo.tscn" id="33_8j4he"]
-[ext_resource type="Script" path="res://assets/scripts/construction/building.gd" id="33_25htm"]
+[ext_resource type="Script" path="res://assets/scripts/construction/construct.gd" id="33_25htm"]
 [ext_resource type="PackedScene" uid="uid://d0hq20gmqku1b" path="res://assets/nodes/buildings/storage.tscn" id="34_67pno"]
 [ext_resource type="Script" path="res://assets/scripts/farming/farming.gd" id="35_q8rfs"]
 [ext_resource type="Script" path="res://assets/scripts/world/teleports.gd" id="43_511qs"]
@@ -1637,12 +1638,13 @@ script = ExtResource("2_880lm")
 
 [node name="UI" parent="." instance=ExtResource("3_08vb8")]
 
-[node name="Camera" parent="." instance=ExtResource("10_cdmdm")]
+[node name="Player" parent="." instance=ExtResource("10_cdmdm")]
 z_index = 1
 z_as_relative = false
 position = Vector2(263, 86)
 
 [node name="Tilemap" type="TileMap" parent="."]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_7fouv")
 tile_set = SubResource("TileSet_tdmf8")
 collision_visibility_mode = 2
@@ -1668,24 +1670,26 @@ layer_5/z_index = 5
 layer_5/tile_data = PackedInt32Array()
 script = ExtResource("16_jqh5x")
 
-[node name="Buildings" type="Node2D" parent="."]
+[node name="ShadowManager" parent="." instance=ExtResource("11_goxrj")]
+
+[node name="ConstructionManager" type="Node2D" parent="."]
 y_sort_enabled = true
 script = ExtResource("33_25htm")
 
-[node name="Mailbox" parent="Buildings" instance=ExtResource("28_pepi0")]
+[node name="Mailbox" parent="ConstructionManager" instance=ExtResource("28_pepi0")]
 z_index = 4
 position = Vector2(264, 56)
 
-[node name="Animal Stall" parent="Buildings" instance=ExtResource("29_1mqwf")]
+[node name="Animal Stall" parent="ConstructionManager" instance=ExtResource("29_1mqwf")]
 z_index = 4
 position = Vector2(200, 3)
 
-[node name="House" parent="Buildings" instance=ExtResource("30_tx0gn")]
+[node name="House" parent="ConstructionManager" instance=ExtResource("30_tx0gn")]
 z_index = 4
 z_as_relative = false
 position = Vector2(296, 72)
 
-[node name="Fume" type="GPUParticles2D" parent="Buildings/House"]
+[node name="Fume" type="GPUParticles2D" parent="ConstructionManager/House"]
 z_index = 5
 texture_filter = 1
 position = Vector2(12, -16)
@@ -1698,22 +1702,22 @@ speed_scale = 4.0
 explosiveness = 1.0
 fixed_fps = 60
 
-[node name="Grid" parent="Buildings" instance=ExtResource("32_nkvxm")]
+[node name="Grid" parent="ConstructionManager" instance=ExtResource("32_nkvxm")]
 z_index = 4
 
-[node name="Silo" parent="Buildings" instance=ExtResource("33_8j4he")]
+[node name="Silo" parent="ConstructionManager" instance=ExtResource("33_8j4he")]
 z_index = 4
 position = Vector2(152, 2)
 
-[node name="Storage" parent="Buildings" instance=ExtResource("34_67pno")]
+[node name="Storage" parent="ConstructionManager" instance=ExtResource("34_67pno")]
 z_index = 4
 position = Vector2(360, 19)
 
-[node name="Index Plate" parent="Buildings" instance=ExtResource("45_loqmw")]
+[node name="Index Plate" parent="ConstructionManager" instance=ExtResource("45_loqmw")]
 z_index = 4
 position = Vector2(616, 89)
 
-[node name="Farming" type="Node2D" parent="."]
+[node name="FarmingManager" type="Node2D" parent="."]
 script = ExtResource("35_q8rfs")
 
 [node name="Teleports" type="Node" parent="."]
