@@ -1,13 +1,13 @@
 extends Control
 
-@onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var manager = get_node("/root/" + main_scene)
-@onready var pause:Control = get_node("/root/" + main_scene + "/UI/Interactive/Pause")
-@onready var blur:Control = get_node("/root/" + main_scene + "/UI/Decorative/Blur")
-@onready var build:Control = get_node("/root/" + main_scene + "/UI/Interactive/Crafting")
-@onready var mailbox:Control = get_node("/root/" + main_scene + "/UI/Interactive/Mailbox")
-@onready var storage:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Storage")
-@onready var grid:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid")
+@onready var main:String = str(get_tree().root.get_child(1).name)
+@onready var data:Node2D = get_node("/root/"+main)
+@onready var pause:Control = get_node("/root/"+main+"/UI/Interactive/Pause")
+@onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
+@onready var build:Control = get_node("/root/"+main+"/UI/Interactive/Crafting")
+@onready var mailbox:Control = get_node("/root/"+main+"/UI/Interactive/Mailbox")
+@onready var storage:Node2D = get_node("/root/"+main+"/ConstructionManager/Storage")
+@onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
 @onready var node:PackedScene = load("res://assets/nodes/ui/interactive/inventory/slot.tscn")
 @onready var anim:AnimationPlayer = $Animation
 
@@ -64,7 +64,7 @@ func check_inventory():
 		for item in inventory_items:
 			inventory_items.erase(item)
 			break
-			print_debug("\n"+str(manager.get_system_datetime()) + " INFO: Due to inventory overflow, an item with the following ID was destroyed: " + str(item))
+			data.debug("Due to inventory overflow, an item with the following ID was destroyed: " + str(item), "info")
 
 func _process(_delta):
 	if !blur.state:
@@ -74,8 +74,8 @@ func _process(_delta):
 		if (Input.is_action_just_pressed("pause") && menu) or (Input.is_action_just_pressed("inventory") && menu):
 			close()
 
-func load_content(data:Dictionary) -> void:
-	inventory_items = data
+func load_content(content:Dictionary) -> void:
+	inventory_items = content
 
 func open() -> void:
 	menu = true
@@ -106,9 +106,9 @@ func get_data(index) -> void:
 					icon.texture = item.content[int(index)]["icon"]
 				else:
 					icon.visible = false
-					print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The key stores a non-Compressed 2D Texture.")
+					data.debug("[ID: "+str(index)+"] The key stores a non-Compressed 2D Texture.", "error")
 			else:
-				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The object does not have the 'icon' key.")
+				data.debug("[ID: "+str(index)+"] The object does not have the 'icon' key.", "error")
 				icon.visible = false
 
 			if item.content[int(index)].has("caption"):
@@ -117,9 +117,9 @@ func get_data(index) -> void:
 					caption.text = item.content[int(index)]["caption"]
 				else:
 					caption.visible = false
-					print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The 'caption' key has a non-string type.")
+					data.debug("[ID: "+str(index)+"] The 'caption' key has a non-string type.", "error")
 			else:
-				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The object does not have the 'caption' key.")
+				data.debug("[ID: "+str(index)+"] The object does not have the 'caption' key.", "error")
 				caption.visible = false
 
 			if item.content[int(index)].has("description"):
@@ -128,10 +128,10 @@ func get_data(index) -> void:
 					description.text = item.content[int(index)]["description"]
 				else:
 					description.visible = false
-					print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The 'description' key has a non-string type.")
+					data.debug("[ID: "+str(index)+"] The 'description' key has a non-string type.", "error")
 			else:
-				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The object does not have the 'description' key.")
 				description.visible = false
+				data.debug("[ID: "+str(index)+"] The object does not have the 'description' key.", "error")
 
 			if item.content[int(index)].has("specifications"):
 				if item.content[int(index)].get("specifications") != {}:
@@ -141,7 +141,7 @@ func get_data(index) -> void:
 						get_specifications(int(index), i)
 				else:
 					specifications.visible = false
-					push_warning(str(manager.get_system_datetime()) + "ERROR: [ID: "+str(index)+"] The 'specifications' key is empty.")
+					data.debug("[ID: "+str(index)+"] The 'specifications' key is empty.", "error")
 			else:
 				specifications.visible = false
 
@@ -153,11 +153,11 @@ func get_data(index) -> void:
 					check_item_type(item.content[int(index)]["type"])
 				else:
 					type.visible = false
-					print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The 'type' key has a non-string type.")
+					data.debug("[ID: "+str(index)+"] The 'type' key has a non-string type.", "error")
 			else:
-				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The object does not have the 'type' key.")
+				data.debug("The object does not have the 'type' key.", "error")
 		else:
-			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The object does not have the 'type' key.")
+			data.debug("The object does not have the 'type' key.", "error")
 
 func reset_data() -> void:
 	icon.visible = false
@@ -194,22 +194,22 @@ func item_create(id) -> void:
 			slot.set_data(id, inventory_items[id]["amount"])
 		else:
 			remove_item(id)
-			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Invalid item index: " + str(id))
+			data.debug("Invalid item index: " + str(id), "error")
 
 func update_string_capacity() -> void:
-	if has_node("/root/" + main_scene + "/ConstructionManager"):
-		if has_node("/root/" + main_scene + "/ConstructionManager/Storage"):
+	if has_node("/root/"+main+"/ConstructionManager"):
+		if has_node("/root/"+main+"/ConstructionManager/Storage"):
 			if storage.object[storage.level].has("slots"):
 				var text = tr("storage.capacity")
 				list.text = text + " " + str(get_all_items()) + "/" + str(storage.object[storage.level]["slots"])
 				list.visible = true
 			else:
-				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The 'slots' element does not exist.")
+				data.debug("The 'slots' element does not exist.", "error")
 				list.visible = false
 		else:
-			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: In the parent of 'ConstructionManager'  there is no child node 'Storage'")
+			data.debug("In the parent of 'ConstructionManager'  there is no child node 'Storage'", "error")
 	else:
-		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: There is no parent of 'ConstructionManager' in the '" + main_scene + "' scene")
+		data.debug("There is no parent of 'ConstructionManager' in the '"+main+"' scene", "error")
 
 func get_all_items() -> int:
 	var items = Items.new()
@@ -221,7 +221,7 @@ func get_all_items() -> int:
 					item += 1
 		return item
 	else:
-		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Cannot load parent.")
+		data.debug("Cannot load parent.", "error")
 		return 0
 
 func add_item(id, amount:int = 0) -> void:
@@ -298,7 +298,7 @@ func get_specifications(index, i) -> void:
 	if typeof(items.content[index]["specifications"][i]) == TYPE_STRING and specifications.text is String:
 		specifications.text = specifications.text + "\n• " + get_tip(i) + ": "+ items.content[index]["specifications"][i]
 	else:
-		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: [ID: "+str(index)+"] The '"+ str(i) +"' element is not a string.")
+		data.debug("[ID: "+str(index)+"] The '"+ str(i) +"' element is not a string.", "error")
 
 
 func get_tip(tip:String) -> String:
@@ -335,9 +335,9 @@ func _on_button_pressed():
 					grid.mode = grid.modes.PLANTING
 					grid.visible = true
 				else:
-					print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The 'crop' key does not exist")
+					data.debug("The 'crop' key does not exist", "error")
 			else:
-				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The numerical ID (" + item_index + ") of this crop is missing in the main file crops.gd")
+				data.debug("The numerical ID (" + item_index + ") of this crop is missing in the main file crops.gd", "error")
 		_:
 			pass
 

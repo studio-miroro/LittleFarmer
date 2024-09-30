@@ -6,7 +6,7 @@ var content: Dictionary = {
 		"caption" = "Тропинка",
 		"description" = "",
 		"time" = 1,
-		"icon" = load("res://assets/resources/buildings/grid/default.png"),
+		"icon" = load("res://assets/resources/ui/hud/grid/default.png"),
 		"type" = {
 			"terrain" = {
 				"terrain_set" = 2,
@@ -35,7 +35,7 @@ var content: Dictionary = {
 		"caption" = "Деревянный дом",
 		"description" = "Улучшение для дома.",
 		"time" = 1,
-		"icon" = load("res://Assets/Resources/Buildings/House/Level-2/object_0.png"),
+		"icon" = load("res://assets/resources/buildings/house/level_2/object_0.png"),
 		"resource" = {
 			"plank" = 75,
 			},

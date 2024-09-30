@@ -7,6 +7,7 @@ extends Control
 @onready var mailbox:Control = get_node("/root/" + main_scene + "/UI/Interactive/Mailbox")
 @onready var signmenu:Control = get_node("/root/" + main_scene + "/UI/Interactive/BuildingsMenu/SignMenu")
 @onready var buildings:Node = get_node("/root/" + main_scene + "/ConstructionManager")
+@onready var blur:Control = get_node("/root/" + main_scene + "/UI/Decorative/Blur")
 @onready var icon:TextureRect = $Button/Icon
 @onready var amount_label:Label = $Button/Amount
 
@@ -77,7 +78,8 @@ func _on_button_pressed():
 			inventory.get_data(id)
 
 	if signmenu.visible:
-		for i in buildings.get_children():
-			if i.name == signmenu.sign_name:
-				i.set_sign_sprite(int(id))
-				signmenu._close()
+		if blur.state:
+			for i in buildings.get_children():
+				if i.name == signmenu.sign_name:
+					i.set_sign_sprite(int(id))
+					signmenu._close()

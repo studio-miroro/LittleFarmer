@@ -1,8 +1,9 @@
 extends Area2D
 
-@onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
-@onready var grid:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid")
+@onready var main:String = str(get_tree().root.get_child(1).name)
+@onready var data:Node2D = get_node("/root/"+main)
+@onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
+@onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
 
 const can_place_seed_custom_data:String = "can_place_seeds"
 const can_place_dirt_custom_data:String = "can_place_dirt"
@@ -123,8 +124,7 @@ func check_custom_data(tile_mouse:Vector2, custom_data_layer:String, layer:int) 
 func check_cell(mouse:Vector2, current_tile:int) -> bool:
 	if tilemap.get_cell_source_id(current_tile, mouse) == -1:
 		return false
-	else:
-		return true
+	return true
 
 func get_used_cells(layer:int) -> Array:
 	return tilemap.get_used_cells(layer)

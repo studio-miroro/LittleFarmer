@@ -40,9 +40,10 @@ func set_sign_sprite(target_sprite):
 
 func _input(event):
 	if event is InputEventMouseButton\
-	and event.button_index == MOUSE_BUTTON_LEFT\
-	and event.is_pressed()\
-	and open_menu:
+	&& event.button_index == MOUSE_BUTTON_LEFT\
+	&& event.is_pressed()\
+	&& !blur.state\
+	&& open_menu:
 		sign_menu._open(name)
 
 func _change_sprite(type:bool) -> void:
