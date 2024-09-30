@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpiwaxqj35wqy"
-path="res://.godot/imported/object_1.png-9bde5c02d3f8d9861ab54772829eed23.ctex"
+uid="uid://qfktaby7ay6k"
+path="res://.godot/imported/shadow.png-f062be551445ae779086d07352d2fe32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/resources/buildings/silo/level-1/object_1.png"
-dest_files=["res://.godot/imported/object_1.png-9bde5c02d3f8d9861ab54772829eed23.ctex"]
+source_file="res://assets/resources/buildings/silo/level_1/shadow.png"
+dest_files=["res://.godot/imported/shadow.png-f062be551445ae779086d07352d2fe32.ctex"]
 
 [params]
 

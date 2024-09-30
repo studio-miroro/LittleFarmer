@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvsn1ntefp3ks"
-path="res://.godot/imported/shadow.png-e460a4c519454d1a68cf7f42be8831b9.ctex"
+uid="uid://dc2pao6crly1w"
+path="res://.godot/imported/shadow.png-422826296bb1e3969ec9dc76e9bb5855.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/resources/buildings/animal stall/shadow.png"
-dest_files=["res://.godot/imported/shadow.png-e460a4c519454d1a68cf7f42be8831b9.ctex"]
+source_file="res://assets/resources/buildings/storage/level_1/shadow.png"
+dest_files=["res://.godot/imported/shadow.png-422826296bb1e3969ec9dc76e9bb5855.ctex"]
 
 [params]
 

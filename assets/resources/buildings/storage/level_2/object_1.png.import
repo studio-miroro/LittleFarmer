@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwbqo6itkhbxi"
-path="res://.godot/imported/object_0.png-1a4bf6f9941cb9e91a6b93d1e7c057ed.ctex"
+uid="uid://crny8awbl3ev"
+path="res://.godot/imported/object_1.png-acb17894deeb5e48bcab2b2b385c727e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/resources/buildings/animal stall/object_0.png"
-dest_files=["res://.godot/imported/object_0.png-1a4bf6f9941cb9e91a6b93d1e7c057ed.ctex"]
+source_file="res://assets/resources/buildings/storage/level_2/object_1.png"
+dest_files=["res://.godot/imported/object_1.png-acb17894deeb5e48bcab2b2b385c727e.ctex"]
 
 [params]
 
