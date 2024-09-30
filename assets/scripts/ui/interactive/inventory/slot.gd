@@ -6,7 +6,7 @@ extends Control
 @onready var inventory:Control = get_node("/root/" + main_scene + "/UI/Interactive/Inventory")
 @onready var mailbox:Control = get_node("/root/" + main_scene + "/UI/Interactive/Mailbox")
 @onready var signmenu:Control = get_node("/root/" + main_scene + "/UI/Interactive/BuildingsMenu/SignMenu")
-@onready var buildings:Node = get_node("/root/" + main_scene + "/Buildings")
+@onready var buildings:Node = get_node("/root/" + main_scene + "/ConstructionManager")
 @onready var icon:TextureRect = $Button/Icon
 @onready var amount_label:Label = $Button/Amount
 

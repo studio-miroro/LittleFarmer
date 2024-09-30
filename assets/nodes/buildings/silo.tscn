@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/scripts/construction/buildings/silo.gd" id="1_e2jn4"]
 [ext_resource type="Shader" path="res://assets/shaders/pixel.gdshader" id="2_2xiro"]
-[ext_resource type="Texture2D" uid="uid://cp0xrur0sy6ro" path="res://assets/resources/buildings/silo/level-1/object_0.png" id="3_bm7ch"]
+[ext_resource type="Texture2D" uid="uid://cp0xrur0sy6ro" path="res://assets/resources/buildings/silo/level_1/object_0.png" id="3_bm7ch"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w7n0p"]
 shader = ExtResource("2_2xiro")

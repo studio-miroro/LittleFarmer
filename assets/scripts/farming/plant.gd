@@ -6,8 +6,8 @@ extends Node2D
 @onready var blur:Control = get_node("/root/" + main_scene + "/UI/Decorative/Blur")
 @onready var tip:Control = get_node("/root/" + main_scene + "/UI/Feedback/Tooltip")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
-@onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
-@onready var collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
+@onready var grid:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid")
+@onready var collision:Area2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid/GridCollision")
 @onready var sprite:Sprite2D = $Sprite2D
 @onready var timer:Timer = $Timer
 

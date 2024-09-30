@@ -6,9 +6,9 @@ extends Node2D
 @onready var pause:Control = get_node("/root/"+main+"/UI/Interactive/Pause")
 @onready var mailbox:Control = get_node("/root/"+main+"/UI/Interactive/Mailbox")
 @onready var tip:Control = get_node("/root/"+main+"/UI/Feedback/Tooltip")
-@onready var building:Node2D = get_node("/root/"+main+"/Buildings")
-@onready var player:CharacterBody2D = get_node("/root/"+main+"/Camera")
-@onready var grid:Node2D = get_node("/root/"+main+"/Buildings/Grid")
+@onready var building:Node2D = get_node("/root/"+main+"/ConstructionManager")
+@onready var player:CharacterBody2D = get_node("/root/"+main+"/Player")
+@onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
 @onready var sprite:Sprite2D = $Sprite2D
 
 var open_menu:bool = false

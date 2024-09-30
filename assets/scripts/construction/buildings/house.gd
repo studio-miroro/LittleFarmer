@@ -5,11 +5,11 @@ extends Node2D
 @onready var pause:Control = get_node("/root/"+main+ "/UI/Inveractive/Pause")
 @onready var tip:Control = get_node("/root/"+main+ "/UI/Feedback/Tooltip")
 @onready var blur:Control = get_node("/root/"+main+ "/UI/Decorative/Blur")
-@onready var building:Node2D = get_node("/root/"+main+"/Buildings")
+@onready var building:Node2D = get_node("/root/"+main+"/ConstructionManager")
 @onready var tilemap:Node2D = get_node("/root/"+main+ "/Tilemap")
-@onready var player:CharacterBody2D = get_node("/root/"+main+ "/Camera")
-@onready var grid:Node2D = get_node("/root/"+main+ "/Buildings/Grid") 
-@onready var fume:GPUParticles2D = get_node("/root/"+main+ "/Buildings/House/Fume")
+@onready var player:CharacterBody2D = get_node("/root/"+main+ "/Player")
+@onready var grid:Node2D = get_node("/root/"+main+ "/ConstructionManager/Grid") 
+@onready var fume:GPUParticles2D = get_node("/root/"+main+ "/ConstructionManager/House/Fume")
 @onready var ext:Sprite2D = $Sprite2D_2
 @onready var sprite:Sprite2D = $Sprite2D
 

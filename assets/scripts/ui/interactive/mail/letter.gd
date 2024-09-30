@@ -33,6 +33,6 @@ func _update_letter_icon() -> void:
 			_:
 				data.debug("", "error")
 
-func _on_button_pressed():
+func _on_button_pressed() -> void:
 	mail.get_data(index)
 	_update_letter_icon()

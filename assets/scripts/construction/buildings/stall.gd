@@ -5,9 +5,9 @@ extends Node2D
 @onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
 @onready var pause:Control = get_node("/root/"+main+"/UI/Inveractive/Pause")
 @onready var tip:Control = get_node("/root/"+main+"/UI/Feedback/Tooltip")
-@onready var building:Node2D = get_node("/root/"+main+"/Buildings")
-@onready var player:CharacterBody2D = get_node("/root/"+main+"/Camera")
-@onready var grid:Node2D = get_node("/root/"+main+"/Buildings/Grid") 
+@onready var building:Node2D = get_node("/root/"+main+"/ConstructionManager")
+@onready var player:CharacterBody2D = get_node("/root/"+main+"/Player")
+@onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid") 
 @onready var sprite:Sprite2D = $Sprite2D
 
 var level:int = 1
@@ -15,8 +15,8 @@ var object:Dictionary = {
 	1: {
 		"caption" = tr("animalstall.caption"),
 		"description" = tr("animalstall.description"),
-		"default" = load("res://assets/resources/buildings/animal stall/object_0.png"),
-		"hover" = load("res://assets/resources/buildings/animal stall/object_1.png"),
+		"default" = load("res://assets/resources/buildings/stall/object_0.png"),
+		"hover" = load("res://assets/resources/buildings/stall/object_1.png"),
 	},
 }
 

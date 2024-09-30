@@ -6,8 +6,8 @@ extends Control
 @onready var blur:Control = get_node("/root/" + main_scene + "/UI/Decorative/Blur")
 @onready var build:Control = get_node("/root/" + main_scene + "/UI/Interactive/Crafting")
 @onready var mailbox:Control = get_node("/root/" + main_scene + "/UI/Interactive/Mailbox")
-@onready var storage:Node2D = get_node("/root/" + main_scene + "/Buildings/Storage")
-@onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
+@onready var storage:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Storage")
+@onready var grid:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid")
 @onready var node:PackedScene = load("res://assets/nodes/ui/interactive/inventory/slot.tscn")
 @onready var anim:AnimationPlayer = $Animation
 
@@ -197,8 +197,8 @@ func item_create(id) -> void:
 			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: Invalid item index: " + str(id))
 
 func update_string_capacity() -> void:
-	if has_node("/root/" + main_scene + "/Buildings"):
-		if has_node("/root/" + main_scene + "/Buildings/Storage"):
+	if has_node("/root/" + main_scene + "/ConstructionManager"):
+		if has_node("/root/" + main_scene + "/ConstructionManager/Storage"):
 			if storage.object[storage.level].has("slots"):
 				var text = tr("storage.capacity")
 				list.text = text + " " + str(get_all_items()) + "/" + str(storage.object[storage.level]["slots"])
@@ -207,9 +207,9 @@ func update_string_capacity() -> void:
 				print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: The 'slots' element does not exist.")
 				list.visible = false
 		else:
-			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: In the parent of 'Buildings'  there is no child node 'Storage'")
+			print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: In the parent of 'ConstructionManager'  there is no child node 'Storage'")
 	else:
-		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: There is no parent of 'Buildings' in the '" + main_scene + "' scene")
+		print_debug("\n"+str(manager.get_system_datetime()) + " ERROR: There is no parent of 'ConstructionManager' in the '" + main_scene + "' scene")
 
 func get_all_items() -> int:
 	var items = Items.new()

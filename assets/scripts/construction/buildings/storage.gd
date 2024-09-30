@@ -7,8 +7,8 @@ class_name Storage
 @onready var pause:Control = get_node("/root/"+main+"/UI/Interactive/Pause")
 @onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
 @onready var tip:Control = get_node("/root/"+main+"/UI/Feedback/Tooltip")
-@onready var grid:Node2D = get_node("/root/"+main+"/Buildings/Grid") 
-@onready var player:CharacterBody2D = get_node("/root/"+main+"/Camera")
+@onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid") 
+@onready var player:CharacterBody2D = get_node("/root/"+main+"/Player")
 #@onready var shadow:Sprite2D = get_node("/root/"+main+"/Shadow/StorageShadow")
 @onready var sprite:Sprite2D = $Sprite2D
 
@@ -20,17 +20,17 @@ var object:Dictionary = {
 		"caption" = tr("storage_lvl1.caption"),
 		"description" = tr("storage_lvl1.description"),
 		"slots" = 12,
-		"default" = load("res://Assets/Resources/Buildings/Storage/Level-1/object_0.png"),
-		"hover" = load("res://Assets/Resources/Buildings/Storage/Level-1/object_1.png"),
-		"shadow" = load("res://Assets/Resources/Buildings/Storage/Level-1/shadow.png"),
+		"default" = load("res://assets/resources/buildings/storage/level_1/object_0.png"),
+		"hover" = load("res://assets/resources/buildings/storage/level_1/object_1.png"),
+		"shadow" = load("res://assets/resources/buildings/storage/level_1/shadow.png"),
 	},
 	2: {
 		"caption" = tr("storage_lvl2.caption"),
 		"description" = tr("storage_lvl2.description"),
 		"slots" = 24,
-		"default" = load("res://Assets/Resources/Buildings/Storage/Level-2/object_0.png"),
-		"hover" = load("res://Assets/Resources/Buildings/Storage/Level-2/object_1.png"),
-		"shadow" = load("res://Assets/Resources/Buildings/Storage/Level-2/shadow.png"),
+		"default" = load("res://assets/resources/buildings/storage/level_2/object_0.png"),
+		"hover" = load("res://assets/resources/buildings/storage/level_2/object_1.png"),
+		"shadow" = load("res://assets/resources/buildings/storage/level_2/shadow.png"),
 	},
 }
 

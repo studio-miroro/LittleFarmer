@@ -1,15 +1,15 @@
 extends Node2D
 
-@onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var data = get_node("/root/" + main_scene)
-@onready var pause:Control = get_node("/root/" + main_scene + "/UI/Interactive/Pause")
-@onready var hud:Control = get_node("/root/" + main_scene + "/UI/HUD/GameHud")
-@onready var inventory:Control = get_node("/root/" + main_scene + "/UI/Interactive/Inventory")
-@onready var blur:Control = get_node("/root/" + main_scene + "/UI/Decorative/Blur")
-@onready var building:Node2D = get_node("/root/" + main_scene + "/Buildings")
-@onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
-@onready var farming:Node2D = get_node("/root/" + main_scene + "/Farming")
-@onready var farm:Node2D = get_node("/root/" + main_scene + "/")
+@onready var main:String = str(get_tree().root.get_child(1).name)
+@onready var data:Node2D = get_node("/root/"+main)
+@onready var pause:Control = get_node("/root/"+main+"/UI/Interactive/Pause")
+@onready var hud:Control = get_node("/root/"+main+"/UI/HUD/GameHud")
+@onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
+@onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
+@onready var building:Node2D = get_node("/root/"+main+"/ConstructionManager")
+@onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
+@onready var farming:Node2D = get_node("/root/"+main+"/Farming")
+@onready var farm:Node2D = get_node("/root/"+main+"/")
 
 @onready var grid:Sprite2D = $Sprite2D
 @onready var collision:Area2D = $GridCollision
@@ -49,7 +49,7 @@ func _input(event):
 		and event.button_index == MOUSE_BUTTON_RIGHT\
 		and event.is_pressed()\
 		and visible:
-			reset_grid()
+			_reset_grid()
 			check = false
 
 func _process(_delta):
@@ -127,11 +127,11 @@ func _process(_delta):
 								data_resources[resource] = {}
 								data_resources[resource]["amount"] = blueprint["resource"][resource]
 						else:
-							reset_grid()
+							_reset_grid()
 				if check:
 					var blueprints = Blueprints.new()
 					if blueprints.content.has(building_id):
-						building.build(tile_mouse_pos, building_id, building_node, building_shadow)
+						building.construct(building_id, building_node, building_shadow, tile_mouse_pos)
 						if blueprints.content[building_id].has("resource"):
 							inventory.subject_item(data_resources)
 				check = false
@@ -154,7 +154,7 @@ func _process(_delta):
 		visible = false
 		check = false
 
-func reset_grid() -> void:
+func _reset_grid() -> void:
 	hud.state(false)
 	mode = modes.NOTHING
 	visible = false

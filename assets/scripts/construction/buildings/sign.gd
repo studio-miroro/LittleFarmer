@@ -6,8 +6,8 @@ extends Node2D
 @onready var pause:Control = get_node("/root/"+main+"/UI/Interactive/Pause")
 @onready var sign_menu:Control = get_node("/root/"+main+"/UI/Interactive/BuildingsMenu/SignMenu")
 @onready var tip:Control = get_node("/root/"+main+"/UI/Feedback/Tooltip")
-@onready var grid:Node2D = get_node("/root/"+main+"/Buildings/Grid")
-@onready var player:CharacterBody2D = get_node("/root/"+main+"/Camera")
+@onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
+@onready var player:CharacterBody2D = get_node("/root/"+main+"/Player")
 @onready var icon:TextureRect = $TextureRect
 @onready var sprite:Sprite2D = $Sprite2D
 

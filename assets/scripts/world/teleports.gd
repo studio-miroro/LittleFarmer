@@ -1,9 +1,9 @@
 extends Node2D
 
-@onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var data = get_node("/root/" + main_scene)
-@onready var blackout:Control = get_node("/root/" + main_scene + "/UI/GUI/Blackout")
-@onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
+@onready var main:String = str(get_tree().root.get_child(1).name)
+@onready var data:Node2D = get_node("/root/"+main)
+@onready var blackout:Control = get_node("/root/"+main+"/UI/Decorative/Blackout")
+@onready var grid:Node2D = get_node("/root/"+main+ "/ConstructionManager/Grid")
 
 var teleporting:bool
 
@@ -17,7 +17,7 @@ func _input(event) -> void:
 
 func teleport() -> void:
 	blackout.blackout(true)
-	match main_scene:
+	match main:
 		"Farm":
 			var path:String = "res://levels/village.tscn"
 			data.gamesave()
@@ -32,7 +32,7 @@ func teleport() -> void:
 			blackout.change_scene(path)
 
 		_:
-			data.debug("Pizda")
+			data.debug("Unknown name of the game scene: "+str(main), "error")
 
 func _on_area_2d_mouse_entered():
 	teleporting = true

@@ -2,7 +2,7 @@ extends Area2D
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
-@onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
+@onready var grid:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid")
 
 const can_place_seed_custom_data:String = "can_place_seeds"
 const can_place_dirt_custom_data:String = "can_place_dirt"
