@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var main:String = str(get_tree().root.get_child(1).name)
-@onready var data:Node2D = get_node("/root/"+main)
+@onready var data:Node = get_node("/root/"+main)
 @onready var pause:Control = get_node("/root/"+main+"/UI/Interactive/Pause")
 @onready var hud:Control = get_node("/root/"+main+"/UI/HUD/GameHud")
 @onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
@@ -9,7 +9,6 @@ extends Node2D
 @onready var building:Node2D = get_node("/root/"+main+"/ConstructionManager")
 @onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
 @onready var farming:Node2D = get_node("/root/"+main+"/FarmingManager")
-@onready var farm:Node2D = get_node("/root/"+main+"/")
 
 @onready var grid:Sprite2D = $Sprite2D
 @onready var collision:Area2D = $GridCollision
@@ -37,7 +36,8 @@ func _ready():
 	visible = false
 	
 func _input(event):
-	if !blur.state and mode != modes.NOTHING:
+	if !blur.state\
+	&& mode != modes.NOTHING:
 		hud.state(true)
 		if event is InputEventMouseButton\
 		and event.button_index == MOUSE_BUTTON_LEFT\
@@ -53,8 +53,8 @@ func _input(event):
 			check = false
 
 func _process(_delta):
-	if !blur.state\
-	and visible\
+	#if !blur.state\
+	if visible\
 	and mode != modes.NOTHING:
 		var mouse_pos:Vector2 = get_global_mouse_position()
 		var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
@@ -67,8 +67,6 @@ func _process(_delta):
 				collision.destroy_collision_check()
 				if check:
 					match collision.destroy_collision_check():
-						0:
-							tilemap.set_cells_terrain_connect(collision.road_layer,[tile_mouse_pos],collision.ground_terrain_set,-1)
 						1:
 							tilemap.set_cells_terrain_connect(collision.farmland_layer,[tile_mouse_pos],collision.farming_terrain_set,-1)
 						2:
