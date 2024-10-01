@@ -7,8 +7,8 @@ extends Control
 @onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
 @onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
 @onready var storage:Node2D = get_node("/root/"+main+"/ConstructionManager/Storage")
-@onready var balance:Control = get_node("/root/"+main+"/UI/Hud/Main/Indicators/Balance")
-@onready var button_script:Button = get_node("/root/"+main+"/UI/Windows/Mailbox/Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems")
+@onready var balance:Control = get_node("/root/"+main+"/UI/HUD/GameHud/Main/Indicators/Balance")
+@onready var button_script:Button = get_node("/root/"+main+"/UI/Interactive/Mailbox/Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems")
 @onready var letter_node:PackedScene = load("res://assets/nodes/ui/interactive/mail/letter.tscn")
 @onready var slot:PackedScene = inventory.node
 

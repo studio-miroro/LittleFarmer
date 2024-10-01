@@ -8,7 +8,7 @@ extends Node2D
 @onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
 @onready var building:Node2D = get_node("/root/"+main+"/ConstructionManager")
 @onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
-@onready var farming:Node2D = get_node("/root/"+main+"/Farming")
+@onready var farming:Node2D = get_node("/root/"+main+"/FarmingManager")
 @onready var farm:Node2D = get_node("/root/"+main+"/")
 
 @onready var grid:Sprite2D = $Sprite2D

@@ -1,14 +1,14 @@
 extends TileMap
 
-@onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var data = get_node("/root/" + main_scene)
-@onready var blur:Control = get_node("/root/" + main_scene + "/UI/Decorative/Blur")
-@onready var grid:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid")
+@onready var main:String = str(get_tree().root.get_child(1).name)
+@onready var data:Node2D = get_node("/root/"+main)
+@onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
+@onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
 
 func _process(_delta):
 	if !blur.state:
-		if has_node("/root/" + main_scene + "/ConstructionManager"):
-			if has_node("/root/" + main_scene + "/ConstructionManager/Grid"):
+		if has_node("/root/"+main+"/ConstructionManager"):
+			if has_node("/root/"+main+"/ConstructionManager/Grid"):
 				if grid.mode != grid.modes.NOTHING:
 					grid_movement()
 
