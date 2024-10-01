@@ -1,11 +1,11 @@
-extends Node
+extends Node2D
 
-@onready var main:String = str(get_tree().root.get_child(1).name)
-@onready var data:Node2D = get_node("/root/"+main)
+@onready var main = str(get_tree().root.get_child(1).name)
+@onready var data = get_node("/root/"+main)
 @onready var inventory:Control = get_node("/root/"+main+"/User Interface/Windows/Inventory")
 @onready var buildings:Node = get_node("/root/"+main+"/ConstructionManager")
 @onready var shadows:Node = get_node("/root/"+main+"/ShadowManager")
-@onready var tilemap:Node2D = get_node("/root/"+main+"/Tilemap")
+@onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
 @onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
 @onready var collision:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid/GridCollision")
 const max_distance:int = 250
