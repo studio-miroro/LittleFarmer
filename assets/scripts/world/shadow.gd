@@ -6,6 +6,9 @@ extends Node
 @onready var collision:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid/GridCollision")
 @onready var canvas:CanvasGroup = $CanvasGroup
 
+const alpha:float = .25
+const color:Color = Color(0,0,0,alpha)
+
 func create_shadow(shadow_name:String, shadow_texture:CompressedTexture2D, shadow_position:Vector2i) -> void:
     if shadow_name == "":
         shadow_name = "shadow"
@@ -15,3 +18,4 @@ func create_shadow(shadow_name:String, shadow_texture:CompressedTexture2D, shado
     shadow.position = tilemap.map_to_local(shadow_position)
     shadow.z_index = collision.shadow_layer
     canvas.add_child(shadow)
+    canvas.modulate = color
