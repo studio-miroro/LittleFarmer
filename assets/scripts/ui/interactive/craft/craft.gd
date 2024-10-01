@@ -194,8 +194,10 @@ func _resource(key) -> Variant:
 
 func check_items(key) -> Variant:
 	if key in materials.resources:
-		if inventory.inventory_items.has(materials.resources[key]):
-			return inventory.inventory_items[materials.resources[key]]["amount"]
+		if inventory.inventory_items.has(int(materials.resources[key])):
+			return inventory.inventory_items[int(materials.resources[key])]["amount"]
+		elif inventory.inventory_items.has(str(materials.resources[key])):
+			return inventory.inventory_items[str(materials.resources[key])]["amount"]
 	return 0
 
 func get_blueprints() -> Array:
