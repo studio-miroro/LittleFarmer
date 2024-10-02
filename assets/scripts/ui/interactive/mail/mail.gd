@@ -39,9 +39,6 @@ func _ready():
 	check_window()
 	reset_data()
 	delete_letters(letters_container)
-	letter(
-		"Welcome!"
-		)
 
 func letter(header:String, description:String = "", author:String = "", money:int = 0, items:Dictionary = {}) -> void:
 	var key = letters.size() + 1
@@ -190,7 +187,12 @@ func check_letter_item(check:int, letterID, dictionary:Dictionary):
 		2:
 			for key in dictionary[letterID]["items"].keys():
 				if item.content.has(int(key)):
-					inventory.add_item(int(key), int(dictionary[letterID]["items"][key]["amount"]))
+					if inventory.inventory_items.has(int(key)):
+						inventory.add_item(int(key), int(dictionary[letterID]["items"][key]["amount"]))
+					elif inventory.inventory_items.has(str(key)):
+						inventory.add_item(str(key), int(dictionary[letterID]["items"][key]["amount"]))
+					else:
+						inventory.add_item(int(key), int(dictionary[letterID]["items"][key]["amount"]))
 				else:
 					data.debug("Incorrect subject ID ("+str(key)+"): Such a subject does not exist in the main subject dictionary.", "error")
 
