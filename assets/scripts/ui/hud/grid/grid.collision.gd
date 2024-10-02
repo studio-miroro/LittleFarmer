@@ -1,7 +1,7 @@
 extends Area2D
 
-@onready var main:String = str(get_tree().root.get_child(1).name)
-@onready var data:Node2D = get_node("/root/"+main)
+@onready var main = str(get_tree().root.get_child(1).name)
+@onready var data = get_node("/root/"+main)
 @onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
 @onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
 
@@ -25,13 +25,7 @@ const terrain:int = 0
 func destroy_collision_check() -> int:
 	var mouse_pos: Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
-	if check_cell(tile_mouse_pos, road_layer)\
-	and !check_cell(tile_mouse_pos, farmland_layer)\
-	and !check_cell(tile_mouse_pos, watering_layer)\
-	and !check_cell(tile_mouse_pos, seed_layer):
-		grid.change_sprite(false)
-		return 0
-	elif check_cell(tile_mouse_pos, farmland_layer)\
+	if check_cell(tile_mouse_pos, farmland_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer)\
 	and !check_cell(tile_mouse_pos, seed_layer):
 		grid.change_sprite(false)
