@@ -1,18 +1,21 @@
 extends Node2D
 
-@onready var main:String = str(get_tree().root.get_child(1).name)
-@onready var data:Node2D = get_node("/root/"+main)
-@onready var pause:Control = get_node("/root/"+main+ "/UI/Inveractive/Pause")
-@onready var tip:Control = get_node("/root/"+main+ "/UI/Feedback/Tooltip")
-@onready var blur:Control = get_node("/root/"+main+ "/UI/Decorative/Blur")
+@onready var main = str(get_tree().root.get_child(1).name)
+@onready var data = get_node("/root/"+main)
+@onready var pause:Control = get_node("/root/"+main+"/UI/Inveractive/Pause")
+@onready var tip:Control = get_node("/root/"+main+"/UI/Feedback/Tooltip")
+@onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
+@onready var canvas:CanvasGroup = get_node("/root/"+main+"/ShadowManager/CanvasGroup")
+@onready var collision:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid/GridCollision")
 @onready var building:Node2D = get_node("/root/"+main+"/ConstructionManager")
-@onready var tilemap:Node2D = get_node("/root/"+main+ "/Tilemap")
-@onready var player:CharacterBody2D = get_node("/root/"+main+ "/Player")
-@onready var grid:Node2D = get_node("/root/"+main+ "/ConstructionManager/Grid") 
-@onready var fume:GPUParticles2D = get_node("/root/"+main+ "/ConstructionManager/House/Fume")
+@onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid") 
+@onready var tilemap:Node2D = get_node("/root/"+main+"/Tilemap")
+@onready var player:CharacterBody2D = get_node("/root/"+main+"/Player")
+@onready var fume:GPUParticles2D = $GPUParticles2D
 @onready var ext:Sprite2D = $Sprite2D_2
 @onready var sprite:Sprite2D = $Sprite2D
 
+const name_:String = "House"
 var level:int = 1
 var object:Dictionary = {
 	1: {
@@ -20,6 +23,7 @@ var object:Dictionary = {
 		"description" = tr("house_lvl1.description"),
 		"default" = load("res://assets/resources/buildings/house/level_1/object_0.png"),
 		"hover" = load("res://assets/resources/buildings/house/level_1/object_1.png"),
+		"shadow" = load(""),
 	},
 	2: {
 		"caption" = tr("house_lvl2.caption"),
@@ -29,16 +33,17 @@ var object:Dictionary = {
 		"hover" = load("res://assets/resources/buildings/house/level_2/object_1.png"),
 		"ext_default" = load("res://assets/resources/buildings/house/level_2/ext_0.png"),
 		"ext_hover"= load("res://assets/resources/buildings/house/level_2/ext_1.png"),
-		
+		"shadow" = load(""),
 	}
 }
 
 func _ready():
-	var test:Vector2i = Vector2i(18, 4)
-	position = tilemap.map_to_local(test)
-	_update()
+	#var test:Vector2i = Vector2i(18, 2)
+	#position = tilemap.map_to_local(test)
+	_shadow_create()
+	update()
 
-func _update():
+func update():
 	if object.has(level):
 		if object[level].has("default"):
 			sprite.texture = object[level]["default"]
@@ -49,6 +54,25 @@ func _update():
 			data.debug("There is no key at index " + str(level), "error")
 	else:
 		data.debug("Index " + str(level) + " is not in the dictionary.", "error")
+
+func _shadow_create() -> void:
+	if object.has(level):
+		if object[level].has("shadow"):
+			if typeof(object[level]["shadow"]) == TYPE_OBJECT && object[level]["shadow"] is CompressedTexture2D:
+				var position_x = tilemap.local_to_map(position.x)
+				var position_y = tilemap.local_to_map(position.y)
+				var target_position = Vector2i(position_x, position_y)
+				canvas.create_shadow("storage_shadow", object[level]["shadow"], target_position)
+				#var shadow = Sprite2D.new()
+				#shadow.texture = object[level]["shadow"]
+				#shadow.z_index = collision.shadow_layer
+				#canvas.add_child(shadow)
+			else:
+				data.debug("It is not possible to create a game shadow of an object because the sprite is not of the 'CompressedTexture2D' type.", "error")
+		else:
+			data.debug("The 'shadow' key with index level "+str(level)+" is missing.", "error")
+	else:
+		data.debug("Invalid level index: "+str(level), "error")
 
 func _check_key(key:String) -> void:
 	match key:
@@ -107,4 +131,4 @@ func get_data() -> Dictionary:
 
 func load_data(obj_level:int) -> void:
 	self.level = obj_level
-	_update()
+	update()

@@ -1,6 +1,5 @@
 extends Node2D
 
-class_name Storage
 @onready var main:String = str(get_tree().root.get_child(1).name)
 @onready var data:Node2D = get_node("/root/"+main)
 @onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
@@ -8,12 +7,13 @@ class_name Storage
 @onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
 @onready var tip:Control = get_node("/root/"+main+"/UI/Feedback/Tooltip")
 @onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid") 
+@onready var buildings:Node2D = get_node("/root/"+main+"/ConstructionManager")
 @onready var player:CharacterBody2D = get_node("/root/"+main+"/Player")
 #@onready var shadow:Sprite2D = get_node("/root/"+main+"/Shadow/StorageShadow")
 @onready var sprite:Sprite2D = $Sprite2D
 
+const name_:String = "Storage"
 var menu:bool = false
-var max_distance:int = 250
 var level:int = 1
 var object:Dictionary = {
 	1: {
@@ -60,7 +60,7 @@ func update():
 func _change_sprite(type:bool):
 	if type:
 		var distance = round(global_position.distance_to(player.global_position))
-		if grid.mode == grid.modes.NOTHING and distance < max_distance:
+		if grid.mode == grid.modes.NOTHING and distance < buildings.max_distance:
 			_check_sprite("hover")
 			var level_text = tr("object.level")
 			tip.tooltip(
