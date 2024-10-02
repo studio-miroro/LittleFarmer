@@ -6,8 +6,8 @@ extends Control
 @onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
 @onready var build:Control = get_node("/root/"+main+"/UI/Interactive/Crafting")
 @onready var mailbox:Control = get_node("/root/"+main+"/UI/Interactive/Mailbox")
-@onready var storage:Node2D = get_node("/root/"+main+"/ConstructionManager/Storage")
 @onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
+@onready var storage:Node2D = get_node("/root/"+main+"/ConstructionManager/Storage")
 @onready var node:PackedScene = load("res://assets/nodes/ui/interactive/inventory/slot.tscn")
 @onready var anim:AnimationPlayer = $Animation
 
@@ -25,27 +25,14 @@ extends Control
 @onready var list:Label = $Panel/StorageItemList
 
 var menu:bool = false
-var inventory_items:Dictionary = {
-	1:{"amount":20},
-	2:{"amount":20},
-	3:{"amount":20},
-	12:{"amount":25},
-	13:{"amount":25},
-	14:{"amount":25},
-	15:{"amount":25},
-}
-
 var item_index
 var button_index:int
-enum item_type {
-	NOTHING,
-	SEEDS,
-}
+enum item_type {NOTHING, SEEDS}
+var inventory_items:Dictionary = {}
 
 func _ready():
 	check_window()
 	reset_data()
-	check_inventory()
 
 func inventory_update():
 	#var items = Items.new()
@@ -59,12 +46,13 @@ func inventory_update():
 			inventory_items.erase(i)
 
 func check_inventory():
-	var max_slots = storage.object[storage.level]["slots"]
-	while inventory_items.size() > max_slots:
-		for item in inventory_items:
-			inventory_items.erase(item)
-			break
-			data.debug("Due to inventory overflow, an item with the following ID was destroyed: " + str(item), "info")
+	if has_node("/root/"+main+"/ConstructionManager/Storage"):
+		var max_slots = storage.object[storage.level]["slots"]
+		while inventory_items.size() > max_slots:
+			for item in inventory_items:
+				inventory_items.erase(item)
+				break
+				data.debug("Due to inventory overflow, an item with the following ID was destroyed: " + str(item), "info")
 
 func _process(_delta):
 	if !blur.state:
@@ -85,6 +73,7 @@ func open() -> void:
 	create_all_items()
 	update_string_capacity()
 	inventory_update()
+	check_inventory()
 
 func close() -> void:
 	menu = false
@@ -231,33 +220,33 @@ func add_item(id, amount:int = 0) -> void:
 		inventory_items[id] = {"amount": amount}
 		
 func subject_item(id, item_amount:int = 1) -> void:
-	match typeof(id):
-		TYPE_INT:
-			if item_amount != 0:
-				for key in inventory_items:
-					if id == key:
-						inventory_items[id]["amount"] -= item_amount 
-						check_amount(id)
-			else:
-				pass # print_debug
+	if typeof(id) == TYPE_INT || typeof(id) == TYPE_STRING:
+		if item_amount != 0:
+			for key in inventory_items:
+				if id == key:
+					inventory_items[id]["amount"] -= item_amount 
+					check_amount(id)
 
-		TYPE_DICTIONARY:
-			var materials = BuildingMaterials.new()
-			var resources_id = []
-			var amounts = []
+	if typeof(id) == TYPE_DICTIONARY:
+		var materials = BuildingMaterials.new()
+		var resources_id = []
+		var amounts = []
 
-			for item in id:
-				if id[item].has("amount"):
-					if id[item]["amount"] > 0:
-						resources_id.append(materials.resources[item])
-						amounts.append(id[item]["amount"])
+		for item in id:
+			if id[item].has("amount"):
+				if id[item]["amount"] > 0:
+					resources_id.append(materials.resources[item])
+					amounts.append(id[item]["amount"])
 
-			for item_id in resources_id:
-				if inventory_items.has(item_id):
-					inventory_items[item_id]["amount"] -= amounts[item_id-1]
-					check_amount(item_id)
-		_:
-			pass # print_debug
+		for item_id in resources_id:
+			if inventory_items.has(int(item_id)):
+				inventory_items[int(item_id)]["amount"] -= amounts[int(item_id)-1]
+				check_amount(int(item_id))
+			elif inventory_items.has(str(item_id)):
+				inventory_items[str(item_id)]["amount"] -= amounts[int(item_id)-1]
+				check_amount(str(item_id))
+	else:
+		data.debug("Incorrect item type: "+str(typeof(id)), "info")
 
 func remove_item(id) -> void:
 	for key in inventory_items:
@@ -265,9 +254,14 @@ func remove_item(id) -> void:
 			inventory_items.erase(key)
 
 func get_item_amount(item_id) -> int:
-	if inventory_items.has(item_id) and inventory_items[item_id].has("amount"):
-		if inventory_items[item_id]["amount"] > 0:
-			return inventory_items[item_id]["amount"]
+	if inventory_items.has(int(item_id)):
+		if inventory_items[int(item_id)].has("amount"):
+			if inventory_items[int(item_id)]["amount"] > 0:
+				return inventory_items[int(item_id)]["amount"]
+	elif inventory_items.has(str(item_id)):
+		if inventory_items[str(item_id)].has("amount"):
+			if inventory_items[str(item_id)]["amount"] > 0:
+				return inventory_items[str(item_id)]["amount"]
 	return 0
 
 func check_item_amount(id) -> bool:
