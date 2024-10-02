@@ -15,20 +15,17 @@ extends Node2D
 @onready var default:CompressedTexture2D = load("res://assets/resources/ui/hud/grid/default.png")
 @onready var error:CompressedTexture2D = load("res://assets/resources/ui/hud/grid/error.png")
 
-enum modes {NOTHING, DESTROY, FARMING, PLANTING, WATERING, BUILD, TERRAIN_SET, UPGRADE}
-var mode:int = modes.NOTHING
 var check:bool = false
+var mode:int = modes.NOTHING
+enum modes {NOTHING, DESTROY, FARMING, PLANTING, WATERING, BUILD, TERRAIN_SET, UPGRADE}
 
-#
 var inventory_item
 var plantID
-
 var building_id
 var building_node
 var building_shadow:CompressedTexture2D
 var terrain_set:int
 var upgrade
-#
 
 func _ready():
 	z_index = 10
@@ -53,9 +50,9 @@ func _input(event):
 			check = false
 
 func _process(_delta):
-	#if !blur.state\
-	if visible\
-	and mode != modes.NOTHING:
+	if !blur.state\
+	&& visible\
+	&& mode != modes.NOTHING:
 		var mouse_pos:Vector2 = get_global_mouse_position()
 		var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 		var ground_tile_position = []
@@ -113,25 +110,27 @@ func _process(_delta):
 				check = false
 
 			modes.BUILD:
-				var blueprint = Blueprints.new().content[building_id]
+				var blueprint = Blueprints.new()
+				var materials = BuildingMaterials.new()
 				var data_resources = {}
-				collision.building_collision_check(collision.building_layer)
-				if blueprint.has("resource"):
-					for resource in blueprint["resource"]:
-						var required_amount = blueprint["resource"][resource]
-						var available_amount = inventory.get_item_amount(BuildingMaterials.new().resources[resource])
+				collision.building_collision_check()
+				if blueprint.content[building_id].has("resource"):
+					for resource in blueprint.content[building_id]["resource"]:
+						var required_amount = blueprint.content[building_id]["resource"][resource]
+						var available_amount = inventory.get_item_amount(materials.resources[resource])
 						if available_amount >= required_amount:
 								building_tile_position.append(tile_mouse_pos)
 								data_resources[resource] = {}
-								data_resources[resource]["amount"] = blueprint["resource"][resource]
+								data_resources[resource]["amount"] = blueprint.content[building_id]["resource"][resource]
 						else:
 							_reset_grid()
+
 				if check:
-					var blueprints = Blueprints.new()
-					if blueprints.content.has(building_id):
-						building.construct(building_id, building_node, building_shadow, tile_mouse_pos)
-						if blueprints.content[building_id].has("resource"):
-							inventory.subject_item(data_resources)
+					if grid.texture != error:
+						if blueprint.content.has(building_id):
+							building.construct(building_id, building_node, building_shadow, tile_mouse_pos)
+							if blueprint.content[building_id].has("resource"):
+								inventory.subject_item(data_resources)
 				check = false
 
 			modes.TERRAIN_SET:

@@ -100,13 +100,14 @@ func terrain_collision_check(terrain_layer) -> bool:
 		grid.change_sprite(true)
 		return false
 
-func building_collision_check(node_layer) -> bool:
+func building_collision_check() -> bool:
 	var mouse_pos:Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
-
-	var is_collision = check_cell(tile_mouse_pos, node_layer)
-	grid.change_sprite(is_collision)
-	return is_collision
+	if !check_cell(tile_mouse_pos, building_layer-1):
+		grid.change_sprite(false)
+		return false
+	grid.change_sprite(true)
+	return true
 
 func check_custom_data(tile_mouse:Vector2, custom_data_layer:String, layer:int) -> bool:
 	var tiledata = tilemap.get_cell_tile_data(layer, tile_mouse)
