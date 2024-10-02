@@ -5,11 +5,11 @@ extends Node2D
 @onready var pause:Control = get_node("/root/"+main+"/UI/Inveractive/Pause")
 @onready var tip:Control = get_node("/root/"+main+"/UI/Feedback/Tooltip")
 @onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
-@onready var canvas:CanvasGroup = get_node("/root/"+main+"/ShadowManager/CanvasGroup")
+@onready var canvas:Node = get_node("/root/"+main+"/ShadowManager")
 @onready var collision:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid/GridCollision")
 @onready var building:Node2D = get_node("/root/"+main+"/ConstructionManager")
 @onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid") 
-@onready var tilemap:Node2D = get_node("/root/"+main+"/Tilemap")
+@onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
 @onready var player:CharacterBody2D = get_node("/root/"+main+"/Player")
 @onready var fume:GPUParticles2D = $GPUParticles2D
 @onready var ext:Sprite2D = $Sprite2D_2
@@ -23,7 +23,7 @@ var object:Dictionary = {
 		"description" = tr("house_lvl1.description"),
 		"default" = load("res://assets/resources/buildings/house/level_1/object_0.png"),
 		"hover" = load("res://assets/resources/buildings/house/level_1/object_1.png"),
-		"shadow" = load(""),
+		"shadow" = load("res://assets/resources/buildings/house/level_1/shadow.png"),
 	},
 	2: {
 		"caption" = tr("house_lvl2.caption"),
@@ -38,10 +38,8 @@ var object:Dictionary = {
 }
 
 func _ready():
-	#var test:Vector2i = Vector2i(18, 2)
-	#position = tilemap.map_to_local(test)
-	_shadow_create()
 	update()
+	_shadow_create()
 
 func update():
 	if object.has(level):
@@ -59,14 +57,9 @@ func _shadow_create() -> void:
 	if object.has(level):
 		if object[level].has("shadow"):
 			if typeof(object[level]["shadow"]) == TYPE_OBJECT && object[level]["shadow"] is CompressedTexture2D:
-				var position_x = tilemap.local_to_map(position.x)
-				var position_y = tilemap.local_to_map(position.y)
-				var target_position = Vector2i(position_x, position_y)
-				canvas.create_shadow("storage_shadow", object[level]["shadow"], target_position)
-				#var shadow = Sprite2D.new()
-				#shadow.texture = object[level]["shadow"]
-				#shadow.z_index = collision.shadow_layer
-				#canvas.add_child(shadow)
+				var vector2i_position = tilemap.local_to_map(position)
+				var target_position = Vector2i(vector2i_position.x, vector2i_position.y+1)
+				canvas.create_shadow("house_shadow", object[level]["shadow"], target_position)
 			else:
 				data.debug("It is not possible to create a game shadow of an object because the sprite is not of the 'CompressedTexture2D' type.", "error")
 		else:
@@ -105,7 +98,7 @@ func _change_sprite(type:bool) -> void:
 func _check_sprite(key:String) -> void:
 	if object.has(level):
 		if object[level].has(key):
-			if typeof(object[level][key]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
+			if typeof(object[level][key]) == TYPE_OBJECT && object[level][key] is CompressedTexture2D:
 				sprite.texture = object[level][key]
 			else:
 				data.debug("The specified sprite cannot be installed.", "error")
