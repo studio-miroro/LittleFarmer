@@ -1,7 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bo0md5dxqtqql"]
+[gd_scene load_steps=9 format=3 uid="uid://bo0md5dxqtqql"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/interactive/_main_menu/buttons/new_game.gd" id="1_16hh2"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="1_njtai"]
+[ext_resource type="FontFile" uid="uid://bemolumdj4t5f" path="res://assets/fonts/moloko.otf" id="3_75rts"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_p22ex"]
+font = ExtResource("3_75rts")
+font_size = 30
 
 [sub_resource type="Animation" id="Animation_7w10q"]
 length = 0.001
@@ -138,7 +143,8 @@ vertical_scroll_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "menu.new"
+text = "mm_newgame"
+label_settings = SubResource("LabelSettings_p22ex")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

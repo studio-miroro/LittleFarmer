@@ -1,7 +1,27 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgehtjp2rfkc2"]
+[gd_scene load_steps=9 format=3 uid="uid://cgehtjp2rfkc2"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/interactive/_main_menu/buttons/options_button.gd" id="1_4stmm"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_xh4rx"]
+[ext_resource type="FontFile" uid="uid://bemolumdj4t5f" path="res://assets/fonts/moloko.otf" id="3_3mc1m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ouoin"]
+font = ExtResource("3_3mc1m")
+font_size = 30
+
+[sub_resource type="Animation" id="Animation_jpdut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_tltws"]
 resource_name = "hide"
@@ -61,21 +81,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"_check_window"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_jpdut"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_druje"]
@@ -138,7 +143,8 @@ vertical_scroll_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "menu.options"
+text = "mm_options"
+label_settings = SubResource("LabelSettings_ouoin")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

@@ -1,7 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://balcl5dqa5cvp"]
+[gd_scene load_steps=9 format=3 uid="uid://balcl5dqa5cvp"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/interactive/_main_menu/buttons/countinue_game.gd" id="1_r0gew"]
 [ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_g8f1x"]
+[ext_resource type="FontFile" uid="uid://bemolumdj4t5f" path="res://assets/fonts/moloko.otf" id="3_g4voj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_me5b3"]
+font = ExtResource("3_g4voj")
+font_size = 30
 
 [sub_resource type="Animation" id="Animation_yxec7"]
 length = 0.001
@@ -138,7 +143,8 @@ vertical_scroll_mode = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "menu.countinue"
+text = "mm_countinue"
+label_settings = SubResource("LabelSettings_me5b3")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://coers8ktfq5yt"]
+[gd_scene load_steps=24 format=3 uid="uid://coers8ktfq5yt"]
 
 [ext_resource type="PackedScene" uid="uid://ddp2h6ryjofvt" path="res://assets/nodes/ui/hud/cursor.tscn" id="1_ea6rj"]
 [ext_resource type="PackedScene" uid="uid://bq4qdj61kxktg" path="res://assets/nodes/ui/interactive/_main_menu/logotype.tscn" id="1_qiujb"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dt0da1fsbcrkd" path="res://assets/nodes/ui/interactive/_main_menu/buttons/quit_button.tscn" id="4_lwcr4"]
 [ext_resource type="PackedScene" uid="uid://cgehtjp2rfkc2" path="res://assets/nodes/ui/interactive/_main_menu/buttons/options_button.tscn" id="8_o28hd"]
 [ext_resource type="PackedScene" uid="uid://bhadiamik4ev0" path="res://assets/nodes/ui/interactive/options/options.tscn" id="10_4nrqg"]
+[ext_resource type="FontFile" uid="uid://bemolumdj4t5f" path="res://assets/fonts/moloko.otf" id="10_v6uy2"]
+[ext_resource type="PackedScene" uid="uid://crwx0dq1nd41a" path="res://assets/nodes/ui/_main_menu/credits.tscn" id="13_nxpwq"]
 
 [sub_resource type="Animation" id="Animation_o0n8d"]
 length = 0.001
@@ -107,6 +109,8 @@ _data = {
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_d56hu"]
+font = ExtResource("10_v6uy2")
+font_size = 30
 
 [sub_resource type="Animation" id="Animation_74pgs"]
 length = 0.001
@@ -189,6 +193,9 @@ _data = {
 "version_string_hide": SubResource("Animation_ub5b7"),
 "version_string_show": SubResource("Animation_8gjff")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ow011"]
+size = Vector2(265, 84)
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_xofh6")
@@ -298,8 +305,19 @@ libraries = {
 "": SubResource("AnimationLibrary_ambvr")
 }
 
+[node name="Area2D" type="Area2D" parent="Canvas/MainMenu/Main/Credits"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Canvas/MainMenu/Main/Credits/Area2D"]
+position = Vector2(1097.5, 578)
+shape = SubResource("RectangleShape2D_ow011")
+
 [node name="Options" type="Node" parent="Canvas"]
 
 [node name="Blur" parent="Canvas/Options" instance=ExtResource("2_3s3hi")]
 
 [node name="Options" parent="Canvas/Options" instance=ExtResource("10_4nrqg")]
+
+[node name="Credits" parent="Canvas/Options" instance=ExtResource("13_nxpwq")]
+
+[connection signal="mouse_entered" from="Canvas/MainMenu/Main/Credits/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Canvas/MainMenu/Main/Credits/Area2D" to="." method="_on_area_2d_mouse_exited"]
