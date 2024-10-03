@@ -26,7 +26,6 @@ func _process(_delta):
 
 func blur(bluring:bool) -> void:
 	self.state = bluring
-
 	if has_node("/root/"+main+"/UI/HUD/GameHud"):
 		hud.state(bluring)
 	if has_node("/root/"+main+"/UI/Feedback/Tooltip"):
@@ -40,5 +39,3 @@ func blur(bluring:bool) -> void:
 			for nodes in get_node("/root/"+main+"/ConstructionManager/").get_children():
 				if nodes.has_method("_change_sprite"):
 					nodes._change_sprite(false)
-		else:
-			data.debug("Invalid parent: 'ConstructionManager'", "error")

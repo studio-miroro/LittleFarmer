@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var main:String = str(get_tree().root.get_child(1).name)
-@onready var tilemap:Node2D = get_node("/root/"+main+"/Tilemap")
+@onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
 @onready var collision:Area2D = get_node("/root/"+main+"/ConstructionManager/Grid/GridCollision")
 @onready var node:PackedScene = load("res://assets/nodes/farming/plant.tscn")
 

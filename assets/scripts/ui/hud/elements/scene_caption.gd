@@ -1,7 +1,7 @@
 extends MarginContainer
 
-@onready var main:String = str(get_tree().root.get_child(1).name)
-@onready var manager:Node2D = get_node("/root/"+main)
+@onready var main = str(get_tree().root.get_child(1).name)
+@onready var data = get_node("/root/"+main)
 @onready var anim:AnimationPlayer = $AnimationPlayer
 @onready var label:Label = $Label
 @onready var timer:Timer = $Timer

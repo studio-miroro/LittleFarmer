@@ -21,3 +21,9 @@ func background() -> void:
 
 func get_time() -> String:
 	return Time.get_time_string_from_system(false)
+
+func get_gametime_status() -> String:
+	if range(morning, evening).has(int(get_time().left(2))):
+		return "light"
+	else:
+		return "dark"

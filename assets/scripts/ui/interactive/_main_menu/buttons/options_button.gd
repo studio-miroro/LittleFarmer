@@ -1,10 +1,10 @@
 extends Control
 
-@onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var menu:Node2D = get_node("/root/" + main_scene)
-@onready var blur:Control = get_node("/root/" + main_scene +"/Canvas/Options/Blur")
-@onready var blackout:Control = get_node("/root/" + main_scene +"/Canvas/MainMenu/Blackout")
-@onready var options:Control = get_node("/root/" + main_scene +"/Canvas/Options/Options")
+@onready var main = str(get_tree().root.get_child(1).name)
+@onready var menu:Node2D = get_node("/root/"+main)
+@onready var blur:Control = get_node("/root/"+main+"/Canvas/Options/Blur")
+@onready var blackout:Control = get_node("/root/"+main+"/Canvas/MainMenu/Blackout")
+@onready var options:Control = get_node("/root/"+main+"/Canvas/Options/Options")
 @onready var sprite:TextureRect = $VBoxContainer/Sprite/ButtonSprite
 @onready var caption:Label = $VBoxContainer/Label/Scroll/Label
 @onready var anim:AnimationPlayer = $AnimationPlayer

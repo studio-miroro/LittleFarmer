@@ -11,7 +11,6 @@ position = Vector2(-8, -19)
 script = ExtResource("1_oykw7")
 
 [node name="Area2D" type="Area2D" parent="."]
-z_as_relative = false
 position = Vector2(8, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -19,7 +18,7 @@ position = Vector2(-8, -16.3125)
 shape = SubResource("RectangleShape2D_djas3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 4
+z_index = 5
 position = Vector2(0, -8)
 texture = ExtResource("2_fss1w")
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwlehntoq3tyf"]
 
-[ext_resource type="Script" path="res://assets/scripts/world/shadows.gd" id="1_btic6"]
+[ext_resource type="Script" path="res://assets/scripts/world/shadow.gd" id="1_btic6"]
 
 [node name="ShadowManager" type="Node"]
 script = ExtResource("1_btic6")

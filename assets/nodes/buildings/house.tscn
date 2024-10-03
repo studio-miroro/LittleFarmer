@@ -16,29 +16,29 @@ size = Vector2(372.713, 479.202)
 
 [node name="House" type="Node2D"]
 material = SubResource("ShaderMaterial_dobrp")
-position = Vector2(-18, 0)
 script = ExtResource("2_71141")
 
 [node name="Area2D" type="Area2D" parent="."]
 z_as_relative = false
 material = SubResource("ShaderMaterial_dnuuj")
+position = Vector2(0, 7)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(5.96046e-08, -29)
+position = Vector2(3.55271e-15, -8)
 scale = Vector2(0.0939061, 0.0939061)
 shape = SubResource("RectangleShape2D_lj4nn")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = 4
-z_as_relative = false
-position = Vector2(0, -36)
+position = Vector2(0, -8)
 texture = ExtResource("3_g5uuc")
 
 [node name="Sprite2D_2" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(32, -21)
 texture = ExtResource("4_8kqi4")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
