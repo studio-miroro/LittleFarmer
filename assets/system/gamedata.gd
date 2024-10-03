@@ -1,19 +1,19 @@
 extends Node
 
 @onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var cycle:Node2D = get_node("/root/" + main_scene + "/Cycle")
+#@onready var cycle:Node2D = get_node("/root/" + main_scene + "/Cycle")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
-@onready var player:Node2D = get_node("/root/" + main_scene + "/Camera")
-@onready var balance:Control = get_node("/root/" + main_scene + "/UI/GUI/Hud/Main/Indicators/Balance")
-@onready var inventory:Control = get_node("/root/" + main_scene + "/UI/Windows/Inventory")
-@onready var craft:Control = get_node("/root/" + main_scene + "/UI/Windows/Crafting")
-@onready var mailbox:Control = get_node("/root/" + main_scene + "/UI/Windows/Mailbox")
-@onready var buildings:Node = get_node("/root/" + main_scene + "/Buildings")
-@onready var grid:Node2D = get_node("/root/" + main_scene + "/Buildings/Grid")
-@onready var collision:Area2D = get_node("/root/" + main_scene + "/Buildings/Grid/GridCollision")
-@onready var farming:Node2D = get_node("/root/" + main_scene + "/Farming")
+@onready var player:Node2D = get_node("/root/" + main_scene + "/Player")
+@onready var balance:Control = get_node("/root/" + main_scene + "/UI/HUD/GameHud/Main/Indicators/Balance")
+@onready var inventory:Control = get_node("/root/" + main_scene + "/UI/Interactive/Inventory")
+@onready var craft:Control = get_node("/root/" + main_scene + "/UI/Interactive/Crafting")
+@onready var mailbox:Control = get_node("/root/" + main_scene + "/UI/Interactive/Mailbox")
+@onready var buildings:Node = get_node("/root/" + main_scene + "/ConstructionManager")
+@onready var grid:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid")
+@onready var collision:Area2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid/GridCollision")
+@onready var farming:Node2D = get_node("/root/" + main_scene + "/FarmingManager")
 @onready var plant:PackedScene = load("res://assets/nodes/farming/plant.tscn")
-@onready var language:Control = get_node("/root/" + main_scene + "/UI/Windows/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
+@onready var language:Control = get_node("/root/" + main_scene + "/UI/Interactive/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
 
 var object_count:int
 const paths:Dictionary = {
@@ -29,13 +29,12 @@ const paths:Dictionary = {
 }
 
 func _ready():
-	#gameload()
+	gameload()
 	if main_scene == "Farm":
 		if GameLoader.mode:
 			gameload()
 			GameLoader.loading(false)
 		else:
-			# StartTutorial()
 			pass
 	else:
 		time_load()
@@ -236,13 +235,14 @@ func terrains_remove() -> void:
 		)
 
 func time_load() -> void:
-	cycle.year = get_key(paths.world, "year", "time")
-	cycle.month = get_key(paths.world, "month", "time")
-	cycle.week = get_key(paths.world, "week", "time")
-	cycle.day = get_key(paths.world, "day", "time")
-	cycle.hour = get_key(paths.world, "hour", "time")
-	cycle.minute = get_key(paths.world, "minute", "time")
-	cycle.timeload(get_key(paths.world, "cycle", "time"))
+	pass
+	#cycle.year = get_key(paths.world, "year", "time")
+	#cycle.month = get_key(paths.world, "month", "time")
+	#cycle.week = get_key(paths.world, "week", "time")
+	#cycle.day = get_key(paths.world, "day", "time")
+	#cycle.hour = get_key(paths.world, "hour", "time")
+	#cycle.minute = get_key(paths.world, "minute", "time")
+	#cycle.timeload(get_key(paths.world, "cycle", "time"))
 
 func balance_load() -> void:
 	balance.money = get_key(paths.player, "balance")
@@ -292,13 +292,13 @@ func get_content(content:String) -> Dictionary:
 		"nature":
 			return {
 				"time": {
-					"year": cycle.year,
-					"month": cycle.month,
-					"week": cycle.week,
-					"day": cycle.day,
-					"hour": cycle.hour,
-					"minute": cycle.minute,
-					"cycle": cycle.get_time()
+					#"year": cycle.year,
+					#"month": cycle.month,
+					#"week": cycle.week,
+					#"day": cycle.day,
+					#"hour": cycle.hour,
+					#"minute": cycle.minute,
+					#"cycle": cycle.get_time()
 				}
 			}
 			
