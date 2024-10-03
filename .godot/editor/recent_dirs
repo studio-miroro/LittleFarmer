@@ -1,15 +1,17 @@
+res://
+res://assets/nodes/ui/_main_menu
+res://assets/fonts
+res://assets/scripts
+res://assets/nodes/farming
+res://assets/nodes/buildings
 res://assets/nodes/world
 res://assets/resources/ui/interactive/mail/icons
-res://
 res://assets/scripts/world/nature
-res://assets/resources/buildings/animal stall
 res://assets/scripts/ui
 res://assets/resources/buildings/sign
 res://assets/scripts/ui/hud/elements
 res://assets/nodes/ui/hud/elements
-res://assets/nodes/buildings
 res://assets/scripts/ui/hud
-res://assets/resources/buildings/storage/level-1
 res://levels
 res://assets/nodes/ui
 res://assets
