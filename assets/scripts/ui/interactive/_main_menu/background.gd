@@ -9,10 +9,10 @@ const evening:int = 18
 const morning:int = 7
 
 func _ready():
-	background(get_time())
+	background()
 
-func background(time:String) -> void:
-	if range(morning, evening).has(int(time.left(2))):
+func background() -> void:
+	if range(morning, evening).has(int(get_time().left(2))):
 		color = light
 		version.modulate = dark
 	else:
