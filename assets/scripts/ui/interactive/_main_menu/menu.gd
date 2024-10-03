@@ -1,5 +1,9 @@
 extends Node2D
 
+@onready var main = str(get_tree().root.get_child(1).name)
+@onready var blur:Control = get_node("/root/"+main+"/Canvas/Options/Blur")
+@onready var credits:Control = $Canvas/Options/Credits
+
 @onready var game_logotype:Control = $Canvas/MainMenu/Main/Buttons/Logotype/Logotype
 @onready var version:Label = $Canvas/MainMenu/Main/Credits/Version
 @onready var background:ColorRect = $Canvas/MainMenu/Background
@@ -10,14 +14,16 @@ extends Node2D
 @onready var newgame_button = $Canvas/MainMenu/Main/Buttons/ButtonsContainer/HBoxContainer/NewGameMargin/NewGameButton
 @onready var options_button = $Canvas/MainMenu/Main/Buttons/ButtonsContainer/HBoxContainer/OptionsMargin/OptionsButton
 @onready var quit_button = $Canvas/MainMenu/Main/Buttons/ButtonsContainer/HBoxContainer/QuitMargin/QuitButton
+@onready var font:Font = load("res://assets/fonts/moloko.otf")
 
 var clicked:bool = true
+var credits_status:bool = false
 var version_string_state:bool
 var logotype_state:bool
 
 func _ready():
 	var app_version = ProjectSettings.get_setting("application/config/version")
-	var copyright = "© Studio Miroro"
+	var copyright = "(C) Studio Miroro"
 	version.text = "v" + app_version + "\n" + copyright
 	change_button_state(false)
 	blackout.visible = true
@@ -25,6 +31,15 @@ func _ready():
 	blackout.blackout(false, 4)
 	await get_tree().create_timer(0.25).timeout
 	clicked = false
+
+func _input(event):
+	if event is InputEventMouseButton\
+	&& event.button_index == MOUSE_BUTTON_LEFT\
+	&& event.is_pressed()\
+	&& !blur.state\
+	&& !clicked\
+	&& credits_status:
+		credits.open()
 
 func change_button_state(state:bool) -> void:
 	countinue_button.buttons_state(state)
@@ -69,3 +84,9 @@ func _check_logo_state() -> void:
 
 func _check_string_state() -> void:
 	version.visible = version_string_state
+
+func _on_area_2d_mouse_entered():
+	credits_status = true
+
+func _on_area_2d_mouse_exited():
+	credits_status = false
