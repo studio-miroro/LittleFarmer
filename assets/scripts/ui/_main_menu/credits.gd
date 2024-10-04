@@ -3,6 +3,7 @@ extends Control
 @onready var main:String = str(get_tree().root.get_child(1).name)
 @onready var menu:Node2D = get_node("/root/"+main)
 @onready var blur:Control = get_node("/root/"+main+"/Canvas/Options/Blur")
+@onready var scroll:ScrollContainer = $Panel/Main/ScrollContainer
 @onready var anim:AnimationPlayer = $AnimationPlayer
 var status:bool = false
 
@@ -15,6 +16,7 @@ func open() -> void:
 	status = true
 	menu.clicked = true
 	menu.change_button_state(true)
+	scroll.scroll_vertical = 0
 
 func close() -> void:
 	anim.play("close")
