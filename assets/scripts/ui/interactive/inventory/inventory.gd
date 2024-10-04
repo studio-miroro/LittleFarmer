@@ -35,7 +35,6 @@ func _ready():
 	reset_data()
 
 func inventory_update():
-	#var items = Items.new()
 	var remove_items = []
 	for item in inventory_items:
 		if inventory_items[item]["amount"] == 0:
@@ -245,8 +244,6 @@ func subject_item(id, item_amount:int = 1) -> void:
 			elif inventory_items.has(str(item_id)):
 				inventory_items[str(item_id)]["amount"] -= amounts[int(item_id)-1]
 				check_amount(str(item_id))
-	else:
-		data.debug("Incorrect item type: "+str(typeof(id)), "info")
 
 func remove_item(id) -> void:
 	for key in inventory_items:
