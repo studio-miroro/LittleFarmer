@@ -14,6 +14,7 @@ extends Control
 
 @onready var letters_container:VBoxContainer = $Panel/HBoxContainer/LettersScroll/VBoxContainer
 @onready var content_container:VBoxContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer
+@onready var items_hbox:HBoxContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer
 @onready var items_container:GridContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer/Items/GridContainer
 @onready var items_block:MarginContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items
 @onready var animation:AnimationPlayer = $AnimationPlayer
@@ -66,7 +67,6 @@ func get_data(letterID:int) -> void:
 	self.index = check_letterID(letterID)
 	if letters.has(index):
 		letter_delete_items(items_container)
-
 		if letters[index].has("status"):
 			if letters[index]["status"] == "unread":
 				letters[index]["status"] = "readed"
@@ -93,7 +93,7 @@ func get_data(letterID:int) -> void:
 
 		if letters[index].has("author"):
 			if typeof(letters[index]["author"]) == TYPE_STRING:
-				author_label.text = "— " + letters[index]["author"]
+				author_label.text = "- " + letters[index]["author"]
 				author_label.visible = true
 			else:
 				data.debug("The 'author' is not a string.", "error")
@@ -107,33 +107,38 @@ func get_data(letterID:int) -> void:
 			if letters[index]["items"] != {} || letters[index]["money"] != 0:
 				button.text = tr("get_all_items.mail")
 
-				for i in letters[index]["items"]:
-					if typeof(letters[index]["items"][i]) == TYPE_DICTIONARY && letters[index]["items"][i].has("amount"):
-						if letters[index]["items"][i]["amount"] > 0:
-							letter_create_items(
-								int(i), 
-								int(letters[index]["items"][i]["amount"]), 
-								items_container, 
-								slot
-							)
-						else:
-							letters[index]["items"][i].erase(index)
-
-				if !letters[index]["items"].has("collected"):		
-					if storage.object.has(storage.level):
-						if storage.object[storage.level].has("slots"):
-							if storage.object[storage.level]["slots"] - inventory.get_all_items() >= get_letter_items():
-								button_script.state(false)
+				if letters[index]["items"] != {}:
+					items_hbox.visible = true
+					for i in letters[index]["items"]:
+						if typeof(letters[index]["items"][i]) == TYPE_DICTIONARY\
+						&& letters[index]["items"][i].has("amount"):
+							if letters[index]["items"][i]["amount"] > 0:
+								letter_create_items(
+									int(i), 
+									int(letters[index]["items"][i]["amount"]), 
+									items_container, 
+									slot
+								)
 							else:
-								button_script.state(true)
-						else:
-							data.debug("", "error")
-					else:
-						data.debug("", "error")
+								letters[index]["items"][i].erase(index)
 
-					button.visible = true
+					if !letters[index]["items"].has("collected"):		
+						if storage.object.has(storage.level):
+							if storage.object[storage.level].has("slots"):
+								if storage.object[storage.level]["slots"] - inventory.get_all_items() >= get_letter_items():
+									button_script.state(false)
+								else:
+									button_script.state(true)
+							else:
+								data.debug("It is impossible to get the 'slots' key from the object", "error")
+						else:
+							data.debug("It is impossible to get the 'level' key from the object", "error")
+
+						button.visible = true
+					else:
+						button.visible = false
 				else:
-					button.visible = false
+					items_hbox.visible = false
 
 			if letters[index]["money"] > 0:
 				var nested = tr("nested.letter")
@@ -146,10 +151,8 @@ func get_data(letterID:int) -> void:
 				var attached_items = tr("attached_items.letter")
 				attached_items_label.text = attached_items + ":"
 				attached_items_label.visible = true
-
 		else:
 			items_block.visible = false
-
 	else:
 		data.debug("Invalid index: " + str(index), "error")
 
@@ -157,7 +160,6 @@ func check_letterID(letterID):
 	for i in letters:
 		if typeof(i) == TYPE_INT:
 			return int(letterID)
-
 		if typeof(i) == TYPE_STRING:
 			return str(letterID)
 		else:
@@ -182,8 +184,7 @@ func check_letter_item(check:int, letterID, dictionary:Dictionary):
 				for key in dictionary[letterID]["items"]:
 					if item.content.has(int(key)):
 						return true
-					else:
-						return false
+			return false
 				
 		2:
 			for key in dictionary[letterID]["items"].keys():
@@ -211,7 +212,10 @@ func create_letters(dictionary:Dictionary, node:PackedScene, parent:VBoxContaine
 					var letter_icon = object.icon
 					_update_letter_icon(object, letter_icon, "readed")
 				_:
-					pass
+					data.debug("Invalid letter status: "+str(letters[i]["status"]),"error")
+		else:
+			letters[i]["status"] = "unread"
+			data.debug("The 'status' key was created for the letter with the index: "+str(i),"info")
 
 func _update_letter_icon(object, letter_icon, status:String) -> void:
 	match status:
