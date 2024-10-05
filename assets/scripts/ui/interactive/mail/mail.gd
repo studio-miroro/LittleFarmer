@@ -136,15 +136,16 @@ func get_data(letterID:int) -> void:
 					button.visible = false
 
 			if letters[index]["money"] > 0:
-				var nested_str = tr("Вложение")
-				var money_str = tr("монет")
+				var nested = tr("nested.letter")
+				var money = tr("money.letter")
 				if letters[index]["money"] > balance.maximum:
 					letters[index]["money"] = balance.maximum
-				fixedItems_label.text = nested_str + ": " + str(balance.format(letters[index]["money"])) + " " + money_str
-				fixedItems_label.visible = true
+				attached_items_label.text = nested + ": " + str(balance.format(letters[index]["money"])) + " " + money
+				attached_items_label.visible = true
 			else:
-				fixedItems_label.text = tr("Прикрепленные предметы") + ":"
-				fixedItems_label.visible = true
+				var attached_items = tr("attached_items.letter")
+				attached_items_label.text = attached_items + ":"
+				attached_items_label.visible = true
 
 		else:
 			items_block.visible = false
