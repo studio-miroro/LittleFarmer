@@ -7,9 +7,9 @@ extends Control
 
 func _on_button_pressed() -> void:
 	if !pause.lock:
-		if has_node("/root/"+main+"/ConstructionManager"):
-			if has_node("/root/"+main+"/ConstructionManager/Grid"):
-				if !blur.state:
-					grid.mode = grid.modes.DESTROY
-					grid.visible = true
+		if has_node("/root/"+main+"/ConstructionManager")\
+		&& has_node("/root/"+main+"/ConstructionManager/Grid"):
+			if !blur.state:
+				grid.mode = grid.modes.DESTROY
+				grid.visible = true
 
