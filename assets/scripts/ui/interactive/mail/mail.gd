@@ -104,8 +104,8 @@ func get_data(letterID:int) -> void:
 		and (letters[index]["items"] != {} or letters[index]["money"] != 0):
 			items_block.visible = true
 
-			if letters[index]["items"] != {}:
-				button.text = tr("Забрать")
+			if letters[index]["items"] != {} || letters[index]["money"] != 0:
+				button.text = tr("get_all_items.mail")
 
 				for i in letters[index]["items"]:
 					if typeof(letters[index]["items"][i]) == TYPE_DICTIONARY && letters[index]["items"][i].has("amount"):
