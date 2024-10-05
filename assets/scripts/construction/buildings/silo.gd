@@ -51,7 +51,7 @@ func _change_sprite(type:bool):
 func _check_sprite(key:String):
 	if object.has(level):
 		if object[level].has(key):
-			if typeof(object[level][key]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
+			if object[level][key] is CompressedTexture2D:
 				sprite.texture = object[level][key]
 			else:
 				data.debug("The specified sprite cannot be installed.", "error")

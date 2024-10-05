@@ -46,7 +46,7 @@ func update() -> void:
 
 func _shadow_create() -> void:
 	if object.has("shadow"):
-		if typeof(object["shadow"]) == TYPE_OBJECT && object["shadow"] is CompressedTexture2D:
+		if object["shadow"] is CompressedTexture2D:
 			var vector2i_position = tilemap.local_to_map(position)
 			var target_position = Vector2i(vector2i_position.x, vector2i_position.y)
 			canvas.create_shadow("mailbox_shadow", object["shadow"], target_position)
@@ -76,7 +76,7 @@ func _change_sprite(type:bool) -> void:
 	
 func _check_sprite(key:String) -> void:
 	if object.has(key):
-		if typeof(object[key]) == TYPE_OBJECT && object[key] is CompressedTexture2D:
+		if object[key] is CompressedTexture2D:
 			sprite.texture = object[key]
 		else:
 			data.debug("The specified sprite cannot be installed", "error")

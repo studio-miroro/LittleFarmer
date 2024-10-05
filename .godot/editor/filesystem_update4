@@ -19,3 +19,7 @@ res://assets/scripts/ui/interactive/mail/mail.gd
 res://assets/scripts/ui/decorative/blackout.gd
 res://assets/scripts/construction/buildings/tablet.gd
 res://assets/scripts/construction/buildings/house.gd
+res://assets/scripts/construction/buildings/stall.gd
+res://assets/scripts/construction/buildings/silo.gd
+res://assets/scripts/construction/buildings/mailbox.gd
+res://assets/scripts/construction/buildings/storage.gd

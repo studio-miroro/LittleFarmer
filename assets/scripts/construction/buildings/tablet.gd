@@ -19,7 +19,7 @@ var object:Dictionary = {
 
 func _ready():
 	if object.has("default"):
-		if typeof(object["default"]) == TYPE_OBJECT and sprite.texture is CompressedTexture2D:
+		if object["default"] is CompressedTexture2D:
 			sprite.texture = object["default"]
 		else:
 			data.debug("The specified sprite cannot be installed.", "error")

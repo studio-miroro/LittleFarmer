@@ -56,7 +56,7 @@ func update():
 func _shadow_create() -> void:
 	if object.has(level):
 		if object[level].has("shadow"):
-			if typeof(object[level]["shadow"]) == TYPE_OBJECT && object[level]["shadow"] is CompressedTexture2D:
+			if object[level]["shadow"] is CompressedTexture2D:
 				var vector2i_position = tilemap.local_to_map(position)
 				var target_position = Vector2i(vector2i_position.x, vector2i_position.y+1)
 				canvas.create_shadow("house_shadow", object[level]["shadow"], target_position)
@@ -74,8 +74,7 @@ func _check_key(key:String) -> void:
 			fume.visible = object[level].has(key)
 		"ext":
 			if object[level].has("ext_default"):
-				if (typeof(object[level]["ext_default"]) and typeof(object[level]["ext_hover"]) == TYPE_OBJECT)\
-				and ext.texture is CompressedTexture2D:
+				if (object[level]["ext_default"] && object[level]["ext_hover"]) is CompressedTexture2D:
 					ext.visible = true
 				else:
 					ext.visible = false
@@ -98,7 +97,7 @@ func _change_sprite(type:bool) -> void:
 func _check_sprite(key:String) -> void:
 	if object.has(level):
 		if object[level].has(key):
-			if typeof(object[level][key]) == TYPE_OBJECT && object[level][key] is CompressedTexture2D:
+			if object[level][key] is CompressedTexture2D:
 				sprite.texture = object[level][key]
 			else:
 				data.debug("The specified sprite cannot be installed.", "error")
