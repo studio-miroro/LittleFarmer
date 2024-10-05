@@ -20,7 +20,7 @@ func set_data(index, item_amount) -> void:
 	if item.content.has(int(id)):
 		self.amount = item_amount
 		if item.content[int(id)].has("icon"):
-			if typeof(item.content[int(id)]["icon"]) == TYPE_OBJECT:
+			if item.content[int(id)]["icon"] is CompressedTexture2D:
 				icon.texture = item.content[int(id)]["icon"]
 				icon.visible = true
 			else:
@@ -35,7 +35,7 @@ func set_data(index, item_amount) -> void:
 				amount_label.visible = true
 				if amount > item.maximum:
 					amount = item.maximum
-				amount_label.text = str(amount)
+				amount_label.text = "x"+str(amount)
 			else:
 				amount_label.visible = false
 		else:
