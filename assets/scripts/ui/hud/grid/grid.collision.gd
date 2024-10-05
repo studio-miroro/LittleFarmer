@@ -13,7 +13,7 @@ const ground_layer:int = 0
 const road_layer:int = 1
 const farmland_layer:int = 2
 const watering_layer:int = 3
-const seed_layer:int = 4
+const crops_layer:int = 4
 const shadow_layer:int = 5
 const building_layer:int = 6
 
@@ -27,22 +27,22 @@ func destroy_collision_check() -> int:
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 	if check_cell(tile_mouse_pos, farmland_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer)\
-	and !check_cell(tile_mouse_pos, seed_layer):
+	and !check_cell(tile_mouse_pos, crops_layer):
 		grid.change_sprite(false)
 		return 1
 	elif check_cell(tile_mouse_pos, farmland_layer)\
 	and check_cell(tile_mouse_pos, watering_layer)\
-	and !check_cell(tile_mouse_pos, seed_layer):
+	and !check_cell(tile_mouse_pos, crops_layer):
 		grid.change_sprite(false)
 		return 2
 	elif check_cell(tile_mouse_pos, farmland_layer)\
 	and check_cell(tile_mouse_pos, watering_layer)\
-	and check_cell(tile_mouse_pos, seed_layer):
+	and check_cell(tile_mouse_pos, crops_layer):
 		grid.change_sprite(false)
 		return 3
 	elif check_cell(tile_mouse_pos, farmland_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer)\
-	and check_cell(tile_mouse_pos, seed_layer):
+	and check_cell(tile_mouse_pos, crops_layer):
 		grid.change_sprite(false)
 		return 4
 	else:
@@ -76,12 +76,12 @@ func planting_collision_check() -> bool:
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 	if check_cell(tile_mouse_pos, farmland_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer)\
-	and !check_cell(tile_mouse_pos, seed_layer):
+	and !check_cell(tile_mouse_pos, crops_layer):
 		grid.change_sprite(false)
 		return true
 	elif check_cell(tile_mouse_pos, farmland_layer)\
 	and check_cell(tile_mouse_pos, watering_layer)\
-	and !check_cell(tile_mouse_pos, seed_layer):
+	and !check_cell(tile_mouse_pos, crops_layer):
 		grid.change_sprite(false)
 		return true
 	else:

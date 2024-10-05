@@ -13,7 +13,7 @@ func crop(id:int, pos:Vector2i):
 	
 	if collision.check_cell(pos, collision.farmland_layer)\
 	&& !collision.check_cell(pos, collision.watering_layer):
-		tilemap.set_cell(collision.seed_layer,pos,source_id,atlas_coords)
+		tilemap.set_cell(collision.crops_layer,pos,source_id,atlas_coords)
 		plant.set_position(tilemap.map_to_local(mouse_position))
 		add_child(plant)
 		plant.z_index = 6
@@ -21,7 +21,7 @@ func crop(id:int, pos:Vector2i):
 		plant.plant(id)
 		plant.check(id,pos)
 	else:
-		tilemap.set_cell(collision.seed_layer,pos,source_id,atlas_coords)
+		tilemap.set_cell(collision.crops_layer,pos,source_id,atlas_coords)
 		plant.set_position(tilemap.map_to_local(mouse_position))
 		add_child(plant)
 		plant.z_index = 6
