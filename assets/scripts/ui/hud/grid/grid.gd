@@ -17,7 +17,7 @@ extends Node2D
 
 var check:bool = false
 var mode:int = modes.NOTHING
-enum modes {NOTHING, DESTROY, FARMING, PLANTING, WATERING, BUILD, TERRAIN_SET, UPGRADE}
+enum modes {NOTHING, DESTROY, FARMING, PLANTING, WATERING, HARVESTING, BUILD, TERRAIN_SET, UPGRADE}
 
 var inventory_item
 var plantID
@@ -69,10 +69,10 @@ func _process(_delta):
 						2:
 							tilemap.set_cells_terrain_connect(collision.watering_layer,[tile_mouse_pos],collision.watering_terrain_set,-1)
 						3:
-							tilemap.erase_cell(collision.seed_layer,tile_mouse_pos)
+							tilemap.erase_cell(collision.crops_layer,tile_mouse_pos)
 							farming.plant_destroy(tilemap.map_to_local(tile_mouse_pos))
 						4:
-							tilemap.erase_cell(collision.seed_layer,tile_mouse_pos)
+							tilemap.erase_cell(collision.crops_layer,tile_mouse_pos)
 							farming.plant_destroy(tilemap.map_to_local(tile_mouse_pos))
 				check = false
 
@@ -93,12 +93,13 @@ func _process(_delta):
 				check = false
 
 			modes.PLANTING:
+				var crops = Crops.new()
 				collision.planting_collision_check()
 				if inventory.check_item_amount(inventory_item):
 					if check:
 						if inventory.get_item_amount(inventory_item) > 0:
 							if collision.planting_collision_check():
-								if Crops.new().crops.has(plantID):
+								if crops.crops.has(plantID):
 									inventory.subject_item(inventory_item, 1)
 									farming.crop(plantID, tile_mouse_pos)
 								else:
@@ -108,6 +109,9 @@ func _process(_delta):
 					mode = modes.NOTHING
 					visible = false
 				check = false
+
+			modes.HARVESTING:
+				pass
 
 			modes.BUILD:
 				var blueprint = Blueprints.new()
