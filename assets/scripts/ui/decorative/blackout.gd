@@ -1,5 +1,7 @@
 extends Control
 
+@onready var main = str(get_tree().root.get_child(1).name)
+@onready var data = get_node("/root/"+main)
 @onready var background:ColorRect = $ColorRect
 @onready var anim:AnimationPlayer = $Animation
 
@@ -22,26 +24,33 @@ func change_color(colouring:Color, default_clear_color:bool = false):
 		if default_clear_color:
 			RenderingServer.set_default_clear_color(colouring)
 	else:
-		push_error("The variable 'coloring' is not a type of 'Color'.")
+		if data.has_method("debug"):
+			data.debug("The variable 'coloring' is not a type of 'Color'.", "error")
 
-func change_scene(path:String) -> void:
+func change_scene(path:String) -> bool:
 	if path != "":
 		await get_tree().create_timer(1.25).timeout
 		var result = get_tree().change_scene_to_file(path)
 		
 		if result == OK:
-			pass
+			return true
 		else:
 			match result:
 				ERR_CANT_OPEN:
-					push_warning("Can't open the scene file.")
+					if data.has_method("debug"):
+						data.debug("Can't open the scene file.", "error")
 				ERR_FILE_NOT_FOUND:
-					push_warning("Scene file not found.")
+						data.debug("Scene file not found.", "error")
 				ERR_INVALID_DATA:
-					push_warning("Invalid scene file format.")
+					if data.has_method("debug"):
+						data.debug("Invalid scene file format.", "error")
 				ERR_FILE_CORRUPT:
-					push_warning("Scene file is corrupt.")
+					if data.has_method("debug"):
+						data.debug("Scene file is corrupt.", "error")
 				ERR_UNAVAILABLE:
-					push_warning("The scene is unavailable.")
+					if data.has_method("debug"):
+						data.debug("The scene is unavailable.", "error")
 				_:
-					push_warning("An unknown error occurred: ", result)
+					if data.has_method("debug"):
+						data.debug("An unknown error occurred: " + str(result), "error")
+	return false

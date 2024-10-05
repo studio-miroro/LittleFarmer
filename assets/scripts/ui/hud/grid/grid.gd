@@ -19,6 +19,8 @@ var check:bool = false
 var mode:int = modes.NOTHING
 enum modes {NOTHING, DESTROY, FARMING, PLANTING, WATERING, HARVESTING, BUILD, TERRAIN_SET, UPGRADE}
 
+var crops = Crops.new()
+
 var inventory_item
 var plantID
 var building_id
@@ -93,7 +95,6 @@ func _process(_delta):
 				check = false
 
 			modes.PLANTING:
-				var crops = Crops.new()
 				collision.planting_collision_check()
 				if inventory.check_item_amount(inventory_item):
 					if check:
@@ -111,7 +112,8 @@ func _process(_delta):
 				check = false
 
 			modes.HARVESTING:
-				pass
+				collision.harvesting_collision_check()
+				
 
 			modes.BUILD:
 				var blueprint = Blueprints.new()

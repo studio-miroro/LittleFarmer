@@ -212,10 +212,10 @@ func create_letters(dictionary:Dictionary, node:PackedScene, parent:VBoxContaine
 					var letter_icon = object.icon
 					_update_letter_icon(object, letter_icon, "readed")
 				_:
-					data.debug("Invalid letter status: "+str(letters[i]["status"]),"error")
+					data.debug("Invalid letter status: "+str(letters[i]["status"]), "error")
 		else:
 			letters[i]["status"] = "unread"
-			data.debug("The 'status' key was created for the letter with the index: "+str(i),"info")
+			data.debug("The 'status' key was created for the letter with the index: "+str(i), "info")
 
 func _update_letter_icon(object, letter_icon, status:String) -> void:
 	match status:

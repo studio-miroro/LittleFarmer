@@ -23,7 +23,7 @@ const ground_terrain_set:int = 2
 const terrain:int = 0
 
 func destroy_collision_check() -> int:
-	var mouse_pos: Vector2 = get_global_mouse_position()
+	var mouse_pos:Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 	if check_cell(tile_mouse_pos, farmland_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer)\
@@ -50,7 +50,7 @@ func destroy_collision_check() -> int:
 		return -1
 		
 func farming_collision_check() -> bool:
-	var mouse_pos: Vector2 = get_global_mouse_position()
+	var mouse_pos:Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 	if check_custom_data(tile_mouse_pos, can_place_dirt_custom_data, road_layer)\
 	and !check_cell(tile_mouse_pos, farmland_layer):
@@ -61,7 +61,7 @@ func farming_collision_check() -> bool:
 		return false
 		
 func watering_collision_check() -> bool:
-	var mouse_pos: Vector2 = get_global_mouse_position()
+	var mouse_pos:Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 	if check_custom_data(tile_mouse_pos, can_place_seed_custom_data, farmland_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer):
@@ -72,7 +72,7 @@ func watering_collision_check() -> bool:
 		return false
 
 func planting_collision_check() -> bool:
-	var mouse_pos: Vector2 = get_global_mouse_position()
+	var mouse_pos:Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 	if check_cell(tile_mouse_pos, farmland_layer)\
 	and !check_cell(tile_mouse_pos, watering_layer)\
@@ -88,8 +88,18 @@ func planting_collision_check() -> bool:
 		grid.change_sprite(true)
 		return false
 	
+func harvesting_collision_check() -> bool:
+	var mouse_pos:Vector2 = get_global_mouse_position()
+	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
+	if check_cell(tile_mouse_pos, crops_layer):
+		grid.change_sprite(false)
+		return true
+	else:
+		grid.change_sprite(true)
+		return false
+
 func terrain_collision_check(terrain_layer) -> bool:
-	var mouse_pos: Vector2 = get_global_mouse_position()
+	var mouse_pos:Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
 	
 	#if check_custom_data(tile_mouse_pos, can_place_seed_custom_data, farmland_layer)\
@@ -103,11 +113,15 @@ func terrain_collision_check(terrain_layer) -> bool:
 func building_collision_check() -> bool:
 	var mouse_pos:Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
-	if !check_cell(tile_mouse_pos, building_layer-1):
+	if check_cell(tile_mouse_pos, building_layer-1):
+		grid.change_sprite(true)
+		return true
+	elif check_cell(tile_mouse_pos, farmland_layer):
+		grid.change_sprite(true)
+		return true
+	else:
 		grid.change_sprite(false)
 		return false
-	grid.change_sprite(true)
-	return true
 
 func check_custom_data(tile_mouse:Vector2, custom_data_layer:String, layer:int) -> bool:
 	var tiledata = tilemap.get_cell_tile_data(layer, tile_mouse)
