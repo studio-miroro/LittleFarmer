@@ -3,7 +3,7 @@ extends Control
 @onready var icon:TextureRect = $Margin/HBoxContainer/Icon/TextureRect
 @onready var text:Label = $Margin/HBoxContainer2/Label/Label
 
-const maximum:int = 999999999
+const maximum:int = 999_999_999
 const minimum:int = 0
 var money:int = 0
 
@@ -16,12 +16,12 @@ func set_money(amount:int = 0) -> void:
 	balance_update()
 
 func add_money(amount:int = 0) -> void:
-	if amount > 0 and amount <= maximum:
+	if amount > 0 && amount <= maximum:
 		self.money += amount
 		balance_update()
 
 func remove_money(amount:int = 0) -> void:
-	if amount > 0 and amount <= maximum:
+	if amount > 0 && amount <= maximum:
 		self.money -= amount
 		balance_update()
 
@@ -55,7 +55,5 @@ func format(number:int) -> String:
 					result = separator + result
 					
 			return result
-		else:
-			return "999,999,999"
-	else:
-		return "0"
+		return "999,999,999"
+	return "0"
