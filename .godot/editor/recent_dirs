@@ -1,7 +1,9 @@
+res://assets/resources/world/landscape
+res://
+res://levels
 res://assets/fonts
 res://assets/scripts/ui/hud/instruments
 res://assets/shaders
-res://
 res://assets/nodes/ui/_main_menu
 res://assets/scripts
 res://assets/nodes/farming
@@ -14,7 +16,6 @@ res://assets/resources/buildings/sign
 res://assets/scripts/ui/hud/elements
 res://assets/nodes/ui/hud/elements
 res://assets/scripts/ui/hud
-res://levels
 res://assets/nodes/ui
 res://assets
 res://assets/resources

@@ -1,3 +1,6 @@
+AnimationPlayer
+AnimationTree
+TileMap
 Control
 Sprite2D
 TextureRect
@@ -10,5 +13,3 @@ ScrollContainer
 Button
 CollisionShape2D
 Area2D
-GPUParticles2D
-CanvasGroup
