@@ -54,7 +54,7 @@ func letter(header:String, description:String = "", author:String = "", money:in
 		if items != {}:
 			check_all_keys(key, items)
 
-func check_all_keys(id:int, dictionary:Dictionary) -> void:
+func check_all_keys(id, dictionary:Dictionary) -> void:
 	for key in dictionary.keys():
 		if !dictionary[key].has("amount"):
 			if !letters[id]["items"].has(key):
@@ -63,8 +63,8 @@ func check_all_keys(id:int, dictionary:Dictionary) -> void:
 		else:
 			letters[id]["items"][key] = dictionary[key]
 
-func get_data(letterID:int) -> void:
-	self.index = check_letterID(letterID)
+func get_data(letterID) -> void:
+	index = check_letterID(letterID)
 	if letters.has(index):
 		letter_delete_items(items_container)
 		if letters[index].has("status"):
@@ -202,7 +202,7 @@ func create_letters(dictionary:Dictionary, node:PackedScene, parent:VBoxContaine
 	for i in dictionary:
 		var object = node.instantiate()
 		parent.add_child(object)
-		object.set_data(int(i), dictionary[i]["header"])
+		object.set_data(i, dictionary[i]["header"])
 		if letters[i].has("status"):
 			match letters[i]["status"]:
 				"unread":
