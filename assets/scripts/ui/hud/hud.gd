@@ -6,24 +6,63 @@ extends Control
 @onready var crafting:Control = get_node("/root/"+main+"/UI/Interactive/Crafting")
 @onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
 @onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
-@onready var anim:AnimationPlayer = $Animation
+@onready var anim:AnimationPlayer = $AnimationHud
 
-var hud:bool
+var hud:bool	
 
-func hud_hide():
-	anim.play("hide")
+func state(hud_state:bool, context:String) -> void:
+	if hud_state:
+		match context:
+			"all":
+				hud_all_hide()
+			"tools":
+				tools_hide()
+			"balance":
+				balance_hide()
+			"clocks":
+				clock_hide()
+	else:
+		match context:
+			"all":
+				hud_all_show()
+			"tools":
+				tools_show()
+			"balance":
+				balance_show()
+			"clocks":
+				clock_show()
+
+func hud_all_hide() -> void:
+	anim.play("hide_all")
 	hud = false
 	
-func hud_show():
-	anim.play("show")
+func hud_all_show() -> void:
+	anim.play("show_all")
 	hud = true
 
-func state(hud_state:bool):
-	match hud_state:
-		true:
-			hud_hide()
-		false:
-			hud_show()
+func tools_hide() -> void:
+	if !hud:
+		pass
 
-func window():
+func tools_show() -> void:
+	if !hud:
+		pass
+
+func balance_hide() -> void:
+	if !hud:
+		pass
+
+func balance_show() -> void:
+	if !hud:
+		pass
+
+func clock_hide() -> void:
+	if !hud:
+		pass
+
+func clock_show() -> void:
+	if !hud:
+		pass
+
+func window() -> void:
 	visible = hud
