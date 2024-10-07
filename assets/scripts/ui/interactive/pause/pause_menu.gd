@@ -25,7 +25,7 @@ func _ready():
 	zoom.change_zoom = true
 	blackout.blackout(false)
 	await get_tree().create_timer(0.25).timeout
-	hud.hud_show()
+	hud.state(false, "all")
 	player.switch = false
 	player.check_switch()
 	lock = false
@@ -48,7 +48,7 @@ func open() -> void:
 	paused = true
 	anim.play("open")
 	blur.blur(true)
-	hud.hud_hide()
+	hud.state(true, "all")
 	player.check_switch()
 	version.text = "v"+str(ProjectSettings.get_setting("application/config/version"))
 
@@ -59,7 +59,7 @@ func close() -> void:
 	paused = false
 	anim.play("close")
 	blur.blur(false)
-	hud.hud_show()
+	hud.state(false, "all")
 	player.check_switch()
 
 func _check_window() -> void:
