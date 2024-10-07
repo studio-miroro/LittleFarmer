@@ -1,8 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://cwtsqme5qki8s"]
+[gd_scene load_steps=12 format=3 uid="uid://cwtsqme5qki8s"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/interactive/mail/mail.gd" id="1_nrqxv"]
+[ext_resource type="FontFile" uid="uid://cpc3j0oldmlwt" path="res://assets/fonts/klyakson.otf" id="2_8vwjq"]
+[ext_resource type="FontFile" uid="uid://bemolumdj4t5f" path="res://assets/fonts/moloko.otf" id="2_kjrkq"]
 [ext_resource type="Script" path="res://assets/scripts/ui/interactive/mail/receiving_button.gd" id="3_j40v4"]
-[ext_resource type="PackedScene" uid="uid://do4e681e4p00n" path="res://assets/nodes/ui/interactive/inventory/slot.tscn" id="3_qvooa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4hccq"]
+font = ExtResource("2_8vwjq")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_22b0u"]
+font = ExtResource("2_8vwjq")
+font_size = 22
+
+[sub_resource type="LabelSettings" id="LabelSettings_moxsf"]
+font = ExtResource("2_8vwjq")
+font_size = 20
 
 [sub_resource type="Animation" id="Animation_c0gri"]
 length = 0.001
@@ -165,7 +178,7 @@ size_flags_horizontal = 6
 [node name="LetterHeader" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
+theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 5
 
@@ -173,7 +186,8 @@ theme_override_constants/margin_bottom = 5
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 theme_override_constants/outline_size = 1
-theme_override_font_sizes/font_size = 20
+text = "Letter header"
+label_settings = SubResource("LabelSettings_4hccq")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -181,7 +195,7 @@ autowrap_mode = 3
 [node name="MainContent" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
@@ -190,17 +204,23 @@ clip_contents = true
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 15
+text = "Long Content"
+label_settings = SubResource("LabelSettings_22b0u")
 autowrap_mode = 3
 
 [node name="Author" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_right = 15
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="Author" type="Label" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Author"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 15
+text = "Author"
+label_settings = SubResource("LabelSettings_moxsf")
+autowrap_mode = 3
 
 [node name="Items" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer"]
 layout_mode = 2
@@ -223,6 +243,10 @@ theme_override_constants/margin_right = 10
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/LabelContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kjrkq")
+theme_override_font_sizes/font_size = 26
+text = "ФЫВфывфыв"
+autowrap_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer"]
 layout_mode = 2
@@ -239,9 +263,6 @@ theme_override_constants/margin_bottom = 5
 layout_mode = 2
 columns = 4
 
-[node name="Slot" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer/Items/GridContainer" instance=ExtResource("3_qvooa")]
-layout_mode = 2
-
 [node name="ButtonContainer" type="MarginContainer" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
@@ -252,6 +273,8 @@ theme_override_constants/margin_bottom = 10
 [node name="GetItems" type="Button" parent="Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_kjrkq")
+theme_override_font_sizes/font_size = 33
 text = "get_items.mail"
 text_overrun_behavior = 3
 script = ExtResource("3_j40v4")
