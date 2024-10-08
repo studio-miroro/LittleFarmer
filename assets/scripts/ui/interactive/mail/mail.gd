@@ -7,7 +7,7 @@ extends Control
 @onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
 @onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
 @onready var storage:Node2D = get_node("/root/"+main+"/ConstructionManager/Storage")
-@onready var balance:Control = get_node("/root/"+main+"/UI/HUD/GameHud/Main/Indicators/Balance")
+@onready var balance:Control = get_node("/root/"+main+"/UI/HUD/GameHud/Main/Bars/Balance")
 @onready var button_script:Button = get_node("/root/"+main+"/UI/Interactive/Mailbox/Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems")
 @onready var letter_node:PackedScene = load("res://assets/nodes/ui/interactive/mail/letter.tscn")
 @onready var slot:PackedScene = inventory.node
@@ -104,9 +104,8 @@ func get_data(letterID) -> void:
 		and (letters[index]["items"] != {} or letters[index]["money"] != 0):
 			items_block.visible = true
 
-			if letters[index]["items"] != {} || letters[index]["money"] != 0:
+			if (letters[index]["items"] != {} || letters[index]["money"] != 0):
 				button.text = tr("get_all_items.mail")
-
 				if letters[index]["items"] != {}:
 					items_hbox.visible = true
 					for i in letters[index]["items"]:
@@ -122,23 +121,20 @@ func get_data(letterID) -> void:
 							else:
 								letters[index]["items"][i].erase(index)
 
-					if !letters[index]["items"].has("collected"):		
-						if storage.object.has(storage.level):
-							if storage.object[storage.level].has("slots"):
-								if storage.object[storage.level]["slots"] - inventory.get_all_items() >= get_letter_items():
-									button_script.state(false)
-								else:
-									button_script.state(true)
+				if !letters[index].has("collected"):
+					button.visible = true
+					if storage.object.has(storage.level):
+						if storage.object[storage.level].has("slots"):
+							if storage.object[storage.level]["slots"] - inventory.get_all_items() >= get_letter_items():
+								button_script.state(false)
 							else:
-								data.debug("It is impossible to get the 'slots' key from the object", "error")
+								button_script.state(true)
 						else:
-							data.debug("It is impossible to get the 'level' key from the object", "error")
-
-						button.visible = true
+							data.debug("It is impossible to get the 'slots' key from the object", "error")
 					else:
-						button.visible = false
+						data.debug("It is impossible to get the 'level' key from the object", "error")
 				else:
-					items_hbox.visible = false
+					button.visible = false
 
 			if letters[index]["money"] > 0:
 				var nested = tr("nested.letter")
@@ -174,7 +170,7 @@ func get_all_items(id, dictionary:Dictionary) -> void:
 	if dictionary[id].has("money"):
 		balance.add_money(dictionary[id]["money"])
 
-	dictionary[id]["items"]["collected"] = true
+	dictionary[id]["collected"] = true
 	button.visible = false
 
 func check_letter_item(check:int, letterID, dictionary:Dictionary):
