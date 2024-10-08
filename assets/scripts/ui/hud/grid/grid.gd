@@ -37,7 +37,7 @@ func _ready():
 func _input(event):
 	if !blur.state\
 	&& mode != modes.NOTHING:
-		hud.state(true)
+		hud.state(true, "all")
 		if event is InputEventMouseButton\
 		and event.button_index == MOUSE_BUTTON_LEFT\
 		and event.is_pressed()\
@@ -158,7 +158,7 @@ func _process(_delta):
 		check = false
 
 func _reset_grid() -> void:
-	hud.state(false)
+	hud.state(false, "all")
 	mode = modes.NOTHING
 	visible = false
 

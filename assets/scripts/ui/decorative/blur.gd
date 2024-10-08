@@ -27,7 +27,7 @@ func _process(_delta):
 func blur(bluring:bool) -> void:
 	self.state = bluring
 	if has_node("/root/"+main+"/UI/HUD/GameHud"):
-		hud.state(bluring)
+		hud.state(bluring, "all")
 	if has_node("/root/"+main+"/UI/Feedback/Tooltip"):
 		tooltip.tooltip()
 	if has_node("/root/"+main+"/Player"):
