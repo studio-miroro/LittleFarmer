@@ -4,7 +4,7 @@ extends Node
 #@onready var cycle:Node2D = get_node("/root/" + main_scene + "/Cycle")
 @onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
 @onready var player:Node2D = get_node("/root/" + main_scene + "/Player")
-@onready var balance:Control = get_node("/root/" + main_scene + "/UI/HUD/GameHud/Main/Indicators/Balance")
+@onready var balance:Control = get_node("/root/" + main_scene + "/UI/HUD/GameHud/Main/Bars/Balance")
 @onready var inventory:Control = get_node("/root/" + main_scene + "/UI/Interactive/Inventory")
 @onready var craft:Control = get_node("/root/" + main_scene + "/UI/Interactive/Crafting")
 @onready var mailbox:Control = get_node("/root/" + main_scene + "/UI/Interactive/Mailbox")
@@ -29,7 +29,6 @@ const paths:Dictionary = {
 }
 
 func _ready():
-	gameload()
 	if main_scene == "Farm":
 		if GameLoader.mode:
 			gameload()
@@ -163,7 +162,7 @@ func create_nodes(parent:Node2D, node:PackedScene, positions) -> void:
 				debug("Variable position is not of type Vector2.", "error")
 
 func remove_all_child(parent: Node):
-	erase_cells(collision.seed_layer)
+	erase_cells(collision.crops_layer)
 	for child in parent.get_children():
 		parent.remove_child(child)
 		child.queue_free()
@@ -186,8 +185,8 @@ func plant_load():
 	create_terrain(0, collision.road_layer, paths.vectors, "road", collision.ground_terrain_set, collision.terrain)
 	create_terrain(0, collision.farmland_layer, paths.vectors, "farmlands", collision.farming_terrain_set, collision.terrain)
 	create_terrain(0, collision.watering_layer, paths.vectors, "waterings", collision.watering_terrain_set, collision.terrain)
-	create_terrain(1, collision.seed_layer, paths.vectors, "plants", 0, 0)
-	create_nodes(farming, plant, create_terrain(2, collision.seed_layer, paths.vectors, "plants", -1, -1))
+	create_terrain(1, collision.crops_layer, paths.vectors, "plants", 0, 0)
+	create_nodes(farming, plant, create_terrain(2, collision.crops_layer, paths.vectors, "plants", -1, -1))
 
 func farm_load(object:Node2D, object_name:String, position:Vector2i):
 	var id = get_key(paths.farm, "plantID", object_name)
