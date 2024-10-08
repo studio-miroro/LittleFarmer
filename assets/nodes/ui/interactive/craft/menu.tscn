@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://assets/scripts/ui/interactive/craft/craft.gd" id="1_bnylh"]
 [ext_resource type="PackedScene" uid="uid://cps3s5crjjsv1" path="res://assets/nodes/ui/interactive/craft/blueprint.tscn" id="2_km2qd"]
-[ext_resource type="Script" path="res://assets/scripts/ui/interactive/craft/button_crafting.gd" id="3_ip6ve"]
+[ext_resource type="Script" path="res://assets/scripts/ui/interactive/craft/crafting.gd" id="3_ip6ve"]
 
 [sub_resource type="Animation" id="Animation_bduf1"]
 length = 0.001
