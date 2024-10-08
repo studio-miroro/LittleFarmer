@@ -222,9 +222,14 @@ func subject_item(id, item_amount:int = 1) -> void:
 	if typeof(id) == TYPE_INT || typeof(id) == TYPE_STRING:
 		if item_amount != 0:
 			for key in inventory_items:
-				if id == key:
-					inventory_items[id]["amount"] -= item_amount 
-					check_amount(id)
+				if typeof(id) == TYPE_INT:
+					if id == int(key):
+						inventory_items[id]["amount"] -= item_amount 
+						check_amount(id)
+				elif typeof(id) == TYPE_STRING:
+					if id == str(key):
+						inventory_items[id]["amount"] -= item_amount 
+						check_amount(id)
 
 	if typeof(id) == TYPE_DICTIONARY:
 		var materials = BuildingMaterials.new()
