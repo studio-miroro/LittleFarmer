@@ -1,14 +1,14 @@
 extends Button
 
-@onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var data:Node2D = get_node("/root/" + main_scene)
-@onready var pause:Control = get_node("/root/" + main_scene + "/UI/Interactive/Pause")
-@onready var notice:Control = get_node("/root/" + main_scene + "/UI/Feedback/Notifications")
-@onready var hud:Control = get_node("/root/" + main_scene + "/UI/HUD/GameHud")
-@onready var inventory:Control = get_node("/root/" + main_scene + "/UI/Interactive/Inventory")
-@onready var craft:Control = get_node("/root/" + main_scene + "/UI/Interactive/Crafting")
-@onready var blur:Control = get_node("/root/" + main_scene + "/UI/Decorative/Blur")
-@onready var grid:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid")
+@onready var main = str(get_tree().root.get_child(1).name)
+@onready var data = get_node("/root/"+main)
+@onready var pause:Control = get_node("/root/"+main+"/UI/Interactive/Pause")
+@onready var notice:Control = get_node("/root/"+main+"/UI/Feedback/Notifications")
+@onready var hud:Control = get_node("/root/"+main+"/UI/HUD/GameHud")
+@onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
+@onready var craft:Control = get_node("/root/"+main+"/UI/Interactive/Crafting")
+@onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
+@onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
 
 var items:Object = Items.new()
 var blueprints:Object = Blueprints.new()
@@ -33,7 +33,7 @@ func start_building(index) -> void:
 				grid.mode = grid.modes.TERRAIN_SET
 				grid.visible = true
 				craft.close()
-				hud.state(true)
+				hud.state(true, "all")
 			else:
 				data.debug("The key element is missing - 'terrain_set'", "error")
 				reset_grid_data(target_array[0])
@@ -47,7 +47,7 @@ func start_building(index) -> void:
 					grid.mode = grid.modes.BUILD
 					grid.visible = true
 					craft.close()
-					hud.state(true)
+					hud.state(true, "all")
 				else:
 					data.debug("The key element is missing - 'shadow'", "error")
 					reset_grid_data(target_array[0])
