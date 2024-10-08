@@ -118,7 +118,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_euhjk"]
-resource_name = "hide"
+resource_name = "hide_all"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -148,7 +148,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_f8ho1"]
-resource_name = "show"
+resource_name = "show_all"
 length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -180,8 +180,8 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wmd0c"]
 _data = {
 "RESET": SubResource("Animation_188c6"),
-"hide": SubResource("Animation_euhjk"),
-"show": SubResource("Animation_f8ho1")
+"hide_all": SubResource("Animation_euhjk"),
+"show_all": SubResource("Animation_f8ho1")
 }
 
 [node name="Head-up Display" type="Control"]
@@ -208,36 +208,42 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="Indicators" type="HBoxContainer" parent="Main"]
+[node name="Bars" type="HBoxContainer" parent="Main"]
 layout_mode = 2
 
-[node name="Balance" parent="Main/Indicators" instance=ExtResource("3_1mhl6")]
+[node name="Balance" parent="Main/Bars" instance=ExtResource("3_1mhl6")]
 layout_mode = 2
 
-[node name="Clock" parent="Main/Indicators" instance=ExtResource("4_cpqpu")]
+[node name="Clock" parent="Main/Bars" instance=ExtResource("4_cpqpu")]
 layout_mode = 2
 
-[node name="Instruments" type="HBoxContainer" parent="Main"]
+[node name="AnimationBars" type="AnimationPlayer" parent="Main/Bars"]
+root_node = NodePath("../../..")
+
+[node name="Tools" type="HBoxContainer" parent="Main"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 alignment = 2
 
-[node name="Destroy" parent="Main/Instruments" instance=ExtResource("5_ef4gh")]
+[node name="Destroy" parent="Main/Tools" instance=ExtResource("5_ef4gh")]
 layout_mode = 2
 
-[node name="Farming" parent="Main/Instruments" instance=ExtResource("6_vhups")]
+[node name="Farming" parent="Main/Tools" instance=ExtResource("6_vhups")]
 layout_mode = 2
 
-[node name="Watering" parent="Main/Instruments" instance=ExtResource("7_wtt3c")]
+[node name="Watering" parent="Main/Tools" instance=ExtResource("7_wtt3c")]
 layout_mode = 2
 
-[node name="Harvesting" parent="Main/Instruments" instance=ExtResource("8_1dg2r")]
+[node name="Harvesting" parent="Main/Tools" instance=ExtResource("8_1dg2r")]
 layout_mode = 2
 
-[node name="Crafting" parent="Main/Instruments" instance=ExtResource("8_340to")]
+[node name="Crafting" parent="Main/Tools" instance=ExtResource("8_340to")]
 layout_mode = 2
 size_flags_horizontal = 10
+
+[node name="AnimationTools" type="AnimationPlayer" parent="Main/Tools"]
+root_node = NodePath("../../..")
 
 [node name="AreaName" type="MarginContainer" parent="Main"]
 layout_mode = 2
@@ -260,7 +266,7 @@ libraries = {
 "": SubResource("AnimationLibrary_ehbeg")
 }
 
-[node name="Animation" type="AnimationPlayer" parent="."]
+[node name="AnimationHud" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_wmd0c")
 }
