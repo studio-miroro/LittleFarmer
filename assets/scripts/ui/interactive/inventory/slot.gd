@@ -1,13 +1,13 @@
 extends Control
 
-@onready var main_scene = str(get_tree().root.get_child(1).name)
-@onready var data = get_node("/root/" + main_scene)
-@onready var tip:Control = get_node("/root/" + main_scene + "/UI/Feedback/Tooltip")
-@onready var inventory:Control = get_node("/root/" + main_scene + "/UI/Interactive/Inventory")
-@onready var mailbox:Control = get_node("/root/" + main_scene + "/UI/Interactive/Mailbox")
-@onready var signmenu:Control = get_node("/root/" + main_scene + "/UI/Interactive/BuildingsMenu/SignMenu")
-@onready var buildings:Node = get_node("/root/" + main_scene + "/ConstructionManager")
-@onready var blur:Control = get_node("/root/" + main_scene + "/UI/Decorative/Blur")
+@onready var main = str(get_tree().root.get_child(1).name)
+@onready var data = get_node("/root/"+main)
+@onready var tip:Control = get_node("/root/"+main+"/UI/Feedback/Tooltip")
+@onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
+@onready var mailbox:Control = get_node("/root/"+main+"/UI/Interactive/Mailbox")
+@onready var signmenu:Control = get_node("/root/"+main+"/UI/Interactive/BuildingsMenu/SignMenu")
+@onready var buildings:Node = get_node("/root/"+main+"/ConstructionManager")
+@onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
 @onready var icon:TextureRect = $Button/Icon
 @onready var amount_label:Label = $Button/Amount
 
@@ -25,7 +25,7 @@ func set_data(index, item_amount) -> void:
 				icon.visible = true
 			else:
 				icon.visible = false
-				data.debug("[ID: "+str(index)+"] The key stores a non-Compressed 2D Texture. Variant.type: " + str(typeof(item.content[id]["icon"])), "error")
+				data.debug("[ID: "+str(index)+"] The key stores a non-Compressed 2D Texture.", "error")
 		else:
 			icon.visible = false
 			data.debug("[ID: "+str(index)+"] The object does not have the 'icon' key.", "error")
