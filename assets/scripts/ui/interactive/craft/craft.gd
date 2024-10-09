@@ -206,6 +206,9 @@ func get_blueprints() -> Array:
 func blueprints_load(content:int) -> void:
 	access.append(content)
 
+func blueprints_clear() -> void:
+	access.clear()
+
 func _start_info() -> void:
 	var start_caption = tr("startinfo_header.craft")
 	var start_description = tr("startinfo_description.craft")

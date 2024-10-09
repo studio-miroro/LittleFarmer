@@ -29,6 +29,7 @@ const paths:Dictionary = {
 }
 
 func _ready():
+	gameload()
 	if main_scene == "Farm":
 		if GameLoader.mode:
 			gameload()
@@ -251,6 +252,7 @@ func inventory_load() -> void:
 	inventory.load_content(file_load(paths.inventory))
 
 func craft_load() -> void:
+	craft.blueprints_clear()
 	for i in get_key(paths.crafting, "blueprints"):
 		craft.blueprints_load(int(i))
 
