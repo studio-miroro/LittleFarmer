@@ -1,7 +1,7 @@
 extends Control
 
 @onready var container:VBoxContainer = $MarginContainer/VBoxContainer
-@onready var node:PackedScene = load("res://assets/nodes/ui/system/notifications/notice.tscn")
+@onready var node:PackedScene = load("res://assets/nodes/ui/feedback/notifications/notice.tscn")
 
 const maximum:int = 8
 
@@ -10,7 +10,7 @@ func create_notice(text:String, type = "") -> void:
 	if all_notices(container) < maximum:
 		if text != "":
 			container.add_child(notice)
-			notice.notice(type, text)
+			notice.notice(text, type)
 
 func all_notices(parent) -> int:
 	var items:int = 0
