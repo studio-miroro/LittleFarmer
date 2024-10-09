@@ -3,7 +3,10 @@ extends Area2D
 @onready var main = str(get_tree().root.get_child(1).name)
 @onready var data = get_node("/root/"+main)
 @onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
+@onready var farming:Node2D = get_node("/root/"+main+"/FarmingManager")
 @onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
+
+var crops = Crops.new()
 
 const can_place_seed_custom_data:String = "can_place_seeds"
 const can_place_dirt_custom_data:String = "can_place_dirt"
@@ -91,7 +94,8 @@ func planting_collision_check() -> bool:
 func harvesting_collision_check() -> bool:
 	var mouse_pos:Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
-	if check_cell(tile_mouse_pos, crops_layer):
+	if check_cell(tile_mouse_pos, crops_layer)\
+	&& get_plant(tile_mouse_pos):
 		grid.change_sprite(false)
 		return true
 	else:
@@ -101,8 +105,6 @@ func harvesting_collision_check() -> bool:
 func terrain_collision_check(terrain_layer) -> bool:
 	var mouse_pos:Vector2 = get_global_mouse_position()
 	var tile_mouse_pos = tilemap.local_to_map(mouse_pos)
-	
-	#if check_custom_data(tile_mouse_pos, can_place_seed_custom_data, farmland_layer)\
 	if !check_cell(tile_mouse_pos, terrain_layer):
 		grid.change_sprite(false)
 		return true
@@ -123,12 +125,25 @@ func building_collision_check() -> bool:
 		grid.change_sprite(false)
 		return false
 
+
+func get_plant(mouse_position:Vector2i) -> bool:
+	for plant in farming.get_children():
+		if mouse_position == tilemap.local_to_map(plant.position):
+			if plant.condition == plant.phases.GROWED:
+				return true
+	return false
+
+func get_plant_id(mouse_position:Vector2i) -> int:
+	for plant in farming.get_children():
+		if tilemap.local_to_map(mouse_position) == tilemap.local_to_map(plant.position):
+			return plant.plantID
+	return 0
+
 func check_custom_data(tile_mouse:Vector2, custom_data_layer:String, layer:int) -> bool:
 	var tiledata = tilemap.get_cell_tile_data(layer, tile_mouse)
 	if tiledata:
 		return tiledata.get_custom_data(custom_data_layer)
-	else:
-		return false
+	return false
 
 func check_cell(mouse:Vector2, current_tile:int) -> bool:
 	if tilemap.get_cell_source_id(current_tile, mouse) == -1:

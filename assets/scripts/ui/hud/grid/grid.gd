@@ -3,10 +3,12 @@ extends Node2D
 @onready var main:String = str(get_tree().root.get_child(1).name)
 @onready var data:Node = get_node("/root/"+main)
 @onready var pause:Control = get_node("/root/"+main+"/UI/Interactive/Pause")
+@onready var notifications:Control = get_node("/root/"+main+"/UI/Feedback/Notifications")
 @onready var hud:Control = get_node("/root/"+main+"/UI/HUD/GameHud")
 @onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
 @onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
 @onready var building:Node2D = get_node("/root/"+main+"/ConstructionManager")
+@onready var storage:Node2D = get_node("/root/"+main+"/ConstructionManager/Storage")
 @onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
 @onready var farming:Node2D = get_node("/root/"+main+"/FarmingManager")
 
@@ -28,6 +30,8 @@ var building_node
 var building_shadow:CompressedTexture2D
 var terrain_set:int
 var upgrade
+
+var crop_growed:bool
 
 func _ready():
 	z_index = 10
@@ -102,18 +106,35 @@ func _process(_delta):
 							if collision.planting_collision_check():
 								if crops.crops.has(plantID):
 									inventory.subject_item(inventory_item, 1)
-									farming.crop(plantID, tile_mouse_pos)
+									farming.create_plant(plantID, tile_mouse_pos)
 								else:
 									data.debug("The numerical ID (" + str(plantID) + ") of this crop is missing in the main file crops.gd", "error")
 				else:
-					hud.state(false)
-					mode = modes.NOTHING
-					visible = false
+					_reset_grid()
 				check = false
 
 			modes.HARVESTING:
 				collision.harvesting_collision_check()
-				
+				if check:
+					if grid.texture != error:
+						var plant_id = collision.get_plant_id(tilemap.map_to_local(tile_mouse_pos))
+						if crops.crops.has(plant_id):
+							if storage.object[storage.level]["slots"] - inventory.get_all_items() != 0:
+								var crop_caption:String = crops.crops[plant_id]["caption"]
+								var crop_item:int = crops.crops[plant_id]["item"]
+								var crop_productivity:Array = crops.crops[plant_id]["productivity"]
+								var target_productivity:int = randi_range(crop_productivity[0], crop_productivity[1])
+								var notice_content:String = "+"+str(target_productivity)+" "+str(crop_caption)
+
+								tilemap.erase_cell(collision.crops_layer, tile_mouse_pos)
+								farming.plant_destroy(tilemap.map_to_local(tile_mouse_pos))
+								inventory.add_item(crop_item, target_productivity)
+								notifications.create_notice(notice_content)
+							else:
+								notifications.create_notice("error")
+						else:
+							data.debug("", "error")
+				check = false
 
 			modes.BUILD:
 				var blueprint = Blueprints.new()
@@ -130,7 +151,6 @@ func _process(_delta):
 								data_resources[resource]["amount"] = blueprint.content[building_id]["resource"][resource]
 						else:
 							_reset_grid()
-
 				if check:
 					if grid.texture != error:
 						if blueprint.content.has(building_id):
