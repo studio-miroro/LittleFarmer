@@ -311,15 +311,16 @@ func get_tip(tip:String) -> String:
 			return ""
 
 func check_item_type(i_type:String) -> void:
-	match i_type:
-		"seeds":
-			var plant_text = tr("plant_seeds.inventory_button")
-			button_index = item_type.SEEDS
-			button.text = plant_text
-			button.visible = true
-		_:
-			button_index = item_type.NOTHING
-			button.visible = false
+	if main == "Farm":
+		match i_type:
+			"seeds":
+				var plant_text = tr("plant_seeds.inventory_button")
+				button_index = item_type.SEEDS
+				button.text = plant_text
+				button.visible = true
+			_:
+				button_index = item_type.NOTHING
+				button.visible = false
 
 func _on_button_pressed():
 	var items = Items.new().content
