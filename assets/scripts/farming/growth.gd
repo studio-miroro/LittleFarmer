@@ -21,7 +21,7 @@ func _ready():
 func _process(_delta):
 	if plant.plantID != 0:
 		if level == crops.crops[plant.plantID]["growth_level"]\
-		and plant.condition != plant.phases.INCREASED:
+		and plant.condition != plant.phases.GROWED:
 			plant_increased()
 	else:
 		data.debug("Invalid variable index: " + str(plant.plantID), "error")
@@ -44,5 +44,5 @@ func _on_timer_timeout() -> void:
 		plant_increased()
 
 func plant_increased():
-	plant.condition = plant.phases.INCREASED
+	plant.condition = plant.phases.GROWED
 	timer.stop()

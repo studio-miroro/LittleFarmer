@@ -5,7 +5,7 @@ extends Node2D
 @onready var collision:Area2D = get_node("/root/"+main+"/ConstructionManager/Grid/GridCollision")
 @onready var node:PackedScene = load("res://assets/nodes/farming/plant.tscn")
 
-func crop(id:int, pos:Vector2i):
+func create_plant(id:int, pos:Vector2i) -> void:
 	var plant = node.instantiate()
 	var mouse_position = tilemap.local_to_map(get_global_mouse_position())
 	var atlas_coords = Vector2i(0,3)
@@ -29,7 +29,7 @@ func crop(id:int, pos:Vector2i):
 		plant.plant(id)
 		plant.check(id,pos)
 
-func plant_destroy(target_position: Vector2):
+func plant_destroy(target_position: Vector2) -> void:
 	for child in get_children():
 		if child.position == target_position:
 			remove_child(child)

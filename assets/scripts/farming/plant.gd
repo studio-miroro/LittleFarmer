@@ -17,7 +17,7 @@ var condition:int = phases.PLANTED
 var fertilizer:int = fertilizers.NOTHING
 var degree:int
 
-enum phases {PLANTED,GROWING,INCREASED,DEAD}
+enum phases {PLANTED,GROWING,GROWED,DEAD}
 enum fertilizers {NOTHING, COMPOST, HUMUS, MANURE}
 
 func _process(_delta):
@@ -44,8 +44,8 @@ func set_fertilizer(type:int) -> void:
 func check(id:int,pos:Vector2i) -> void:
 	if !pause.paused:
 		if collision.check_cell(pos, collision.farmland_layer)\
-		and !collision.check_cell(pos, collision.watering_layer)\
-		and condition != phases.DEAD:
+		&& !collision.check_cell(pos, collision.watering_layer)\
+		&& condition != phases.DEAD:
 			condition = phases.PLANTED
 			await get_tree().create_timer(crops.crops["check_watering"]).timeout
 			if degree < crops.crops[plantID]["mortality"]:
@@ -55,8 +55,8 @@ func check(id:int,pos:Vector2i) -> void:
 			check(id,pos)
 
 		elif collision.check_cell(pos, collision.farmland_layer)\
-		and collision.check_cell(pos, collision.watering_layer)\
-		and condition != phases.DEAD:
+		&& collision.check_cell(pos, collision.watering_layer)\
+		&& condition != phases.DEAD:
 			condition = phases.GROWING
 			set_fertilizer(randi_range(0,3))
 			growth()
@@ -85,7 +85,7 @@ func growth() -> void:
 					crops.crops[plantID]["growth_rate"] * 0.792
 				)
 		timer.start()
-	if condition == phases.INCREASED:
+	if condition == phases.GROWED:
 		timer.stop()
 
 func get_data() -> Dictionary:
@@ -137,7 +137,7 @@ func get_fertilizer(fertilizer_type:int) -> String:
 
 func _on_collision_mouse_entered() -> void:
 	if !blur.state\
-	and grid.mode == grid.modes.NOTHING:
+	&& grid.mode == grid.modes.NOTHING:
 		if crops.crops.has(plantID):
 			if crops.crops[plantID].has("caption"):
 				if typeof(crops.crops[plantID]["caption"]) == TYPE_STRING:
