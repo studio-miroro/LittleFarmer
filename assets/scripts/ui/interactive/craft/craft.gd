@@ -92,7 +92,7 @@ func get_data(id):
 	button.id = id
 	if blueprints.content.has(int(index)):
 		if blueprints.content[int(index)].has("caption"):
-			if typeof(blueprints.content[int(index)]["caption"]) == TYPE_STRING and caption.text is String:
+			if blueprints.content[int(index)]["caption"] is String:
 				caption.text = str(blueprints.content[int(index)]["caption"])
 				caption.visible = true
 			else:
@@ -104,7 +104,7 @@ func get_data(id):
 			description.visible = false
 			
 		if blueprints.content[id].has("description"):
-			if typeof(blueprints.content[id]["description"]) == TYPE_STRING and description.text is String:
+			if blueprints.content[id]["description"] is String:
 				description.text = blueprints.content[id]["description"] + "\n"
 				description.visible = true
 			else:
@@ -119,18 +119,18 @@ func get_data(id):
 			resources.visible = true
 			resources.text = resources_label + ":"
 
+			get_all_required_items(id)
 			check_all_required_items(id)
 			if all_items:
 				button.disabled = false
 			else:
 				button.disabled = true
-
 		else:
 			resources.visible = false
 			button.disabled = false
 		
 		if blueprints.content[id].has("time"):
-			if typeof(blueprints.content[id]["time"]) == TYPE_INT and description.text is String:
+			if blueprints.content[id]["time"] is int:
 				if blueprints.content[id]["time"] > 0:
 					var creation_time_label = tr("creation_time.craft")
 					var creation_time_seconds = tr("time.craft")
