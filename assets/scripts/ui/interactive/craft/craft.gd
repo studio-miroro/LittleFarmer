@@ -180,6 +180,14 @@ func check_all_required_items(id) -> void:
 			all_items = false
 			break
 
+func get_all_required_items(id) -> void:
+	resources.text = ""
+	for resource in blueprints.content[id]["resource"]:
+		var required_amount = blueprints.content[id]["resource"][resource]
+		var available_amount = inventory.get_item_amount(materials.resources[resource])
+		var resource_caption = items.content[materials.resources[resource]]["caption"]
+		resources.text += "• " + str(resource_caption) + " (" + str(available_amount) + "/" + str(required_amount) + ")\n"
+
 func get_blueprints() -> Array:
 	return access
 
