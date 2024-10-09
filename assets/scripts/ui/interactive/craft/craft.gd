@@ -20,6 +20,7 @@ extends Control
 var index:int
 var menu:bool = false
 var access:Array[int] = [1,2,3]
+var all_items:bool
 
 var items:Object = Items.new()
 var blueprints:Object = Blueprints.new()
@@ -30,7 +31,7 @@ func _ready():
 	_reset_data()
 	_remove_invalid_blueprints()
 
-func _remove_invalid_blueprints():
+func _remove_invalid_blueprints() -> void:
 	var items_to_remove = []
 	for i in access:
 		if !blueprints.content.has(i):
@@ -38,7 +39,7 @@ func _remove_invalid_blueprints():
 	if items_to_remove != []:
 		for item in items_to_remove:
 			access.erase(item)
-		data.debug("Due to inventory overflow, an item with the following ID was destroyed: " + str(items_to_remove), "info")
+		data.debug("Unknown blueprints have been deleted: " + str(items_to_remove), "info")
 	
 func _process(_delta):
 	if !pause.paused\
@@ -117,12 +118,13 @@ func get_data(id):
 			var resources_label = tr("necessary_resources.craft")
 			resources.visible = true
 			resources.text = resources_label + ":"
-			
-			if blueprints.content[id].get("resource") != {}:
-				for i in blueprints.content[id]["resource"]:
-					check_material(id, i)
+
+			check_all_required_items(id)
+			if all_items:
+				button.disabled = false
 			else:
-				resources.visible = false
+				button.disabled = true
+
 		else:
 			resources.visible = false
 			button.disabled = false
@@ -163,42 +165,20 @@ func check_blueprint_type(id) -> String:
 					return ""
 	return "???"
 
-func check_material(id, key) -> void:
-	if _resource(key) != null:
-		if check_items(key) != null:
-			if typeof(blueprints.content[id]["resource"][key]) != TYPE_STRING:
-				resources.text = resources.text + "\n• " + str(_resource(key)) + " (" + str(check_items(key)) + "/" + str(round(blueprints.content[index]["resource"][key])) + ")"
-				_check_button(id, key)
-			else:
-				data.debug("The key '" + str(key) + "' does not blueprints an integer or float: " + str(typeof(blueprints.content[index]["resource"][key])), "error")
-		else:
-			data.debug("The '" + str(key)+ "' material cannot be returned as a string. This material will not be taken into account.", "warning")
-	else:
-		data.debug("Invalid material: " + str(key), "error")
-
-func _check_button(id, key = null) -> void:
-	if blueprints.content[id].has("resource"):
-		if blueprints.content[id]["resource"].has(key):
-			if check_items(key) >= blueprints.content[id]["resource"][key]:
-				button.disabled = false
-			else:
-				button.disabled = true
-		else:
-			button.disabled = false
-
-func _resource(key) -> Variant:
+func _get_resources(key) -> Variant:
 	if key in materials.resources:
 		if items.content[materials.resources[key]].has("caption"):
 			return items.content[materials.resources[key]]["caption"]
 	return null
 
-func check_items(key) -> Variant:
-	if key in materials.resources:
-		if inventory.inventory_items.has(int(materials.resources[key])):
-			return inventory.inventory_items[int(materials.resources[key])]["amount"]
-		elif inventory.inventory_items.has(str(materials.resources[key])):
-			return inventory.inventory_items[str(materials.resources[key])]["amount"]
-	return 0
+func check_all_required_items(id) -> void:
+	all_items = true
+	for resource in blueprints.content[id]["resource"]:
+		var required_amount = blueprints.content[id]["resource"][resource]
+		var available_amount = inventory.get_item_amount(materials.resources[resource])
+		if available_amount < required_amount:
+			all_items = false
+			break
 
 func get_blueprints() -> Array:
 	return access
@@ -212,14 +192,24 @@ func blueprints_clear() -> void:
 func _start_info() -> void:
 	var start_caption = tr("startinfo_header.craft")
 	var start_description = tr("startinfo_description.craft")
+
 	caption.text = start_caption
 	description.text = start_description
+	resources.text = ""
 	time_create.text = ""
+	caption.visible = true
+	description.visible = true
+	resources.visible = true
+	time_create.visible = true
 	button.visible = false
 
 func _reset_data() -> void:
 	caption.text = ""
 	description.text = ""
+	resources.text = ""
+	time_create.text = ""
+	caption.visible = false
+	description.visible = false
 	resources.visible = false
 	time_create.visible = false
 	button.visible = false
