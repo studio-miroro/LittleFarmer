@@ -1,5 +1,7 @@
 extends Control
 
+@onready var main = str(get_tree().root.get_child(1).name)
+@onready var data = get_node("/root/"+main)
 @onready var icon:TextureRect = $Main/Content/HBoxContainer/MarginIcon/Icon
 @onready var label:Label = $Main/Content/HBoxContainer/MarginLabel/Label
 @onready var anim:AnimationPlayer = $AnimationPlayer
@@ -21,8 +23,7 @@ func set_text(text:String) -> void:
 
 func set_icon(type) -> void:
 	if type != null:
-		if typeof(type) == TYPE_STRING\
-		and icons.has(type):
+		if typeof(type) == TYPE_STRING || icons.has(type):
 			icon.texture = icons[type]
 		else:
 			if typeof(type) == TYPE_OBJECT and icon.texture is CompressedTexture2D:
@@ -30,7 +31,7 @@ func set_icon(type) -> void:
 				icon.texture = type
 			else:
 				icon.visible = false
-				push_warning("")
+				data.debug("","warning")
 	else:
 		icon.visible = false
 
