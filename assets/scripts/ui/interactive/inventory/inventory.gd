@@ -213,10 +213,12 @@ func get_all_items() -> int:
 		return 0
 
 func add_item(id, amount:int = 0) -> void:
-	if inventory_items.has(id):
-		inventory_items[id]["amount"] += amount
+	if inventory_items.has(int(id)):
+		inventory_items[int(id)]["amount"] += amount
+	elif inventory_items.has(str(id)):
+		inventory_items[str(id)]["amount"] += amount
 	else:
-		inventory_items[id] = {"amount": amount}
+		inventory_items[int(id)] = {"amount": amount}
 		
 func subject_item(id, item_amount:int = 1) -> void:
 	if typeof(id) == TYPE_INT || typeof(id) == TYPE_STRING:
