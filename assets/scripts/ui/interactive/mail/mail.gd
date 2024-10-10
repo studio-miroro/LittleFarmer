@@ -12,12 +12,13 @@ extends Control
 @onready var letter_node:PackedScene = load("res://assets/nodes/ui/interactive/mail/letter.tscn")
 @onready var slot:PackedScene = inventory.node
 
+@onready var anim:AnimationPlayer = $AnimationPlayer
+@onready var content_scroll:ScrollContainer = $Panel/HBoxContainer/ContentScroll
 @onready var letters_container:VBoxContainer = $Panel/HBoxContainer/LettersScroll/VBoxContainer
 @onready var content_container:VBoxContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer
 @onready var items_hbox:HBoxContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer
 @onready var items_container:GridContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer/Items/GridContainer
 @onready var items_block:MarginContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items
-@onready var animation:AnimationPlayer = $AnimationPlayer
 @onready var header_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterHeader/Title
 @onready var description_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/MainContent/Text
 @onready var author_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Author/Author
@@ -65,6 +66,7 @@ func check_all_keys(id, dictionary:Dictionary) -> void:
 
 func get_data(letterID) -> void:
 	index = check_letterID(letterID)
+	content_scroll.scroll_vertical = 0
 	if letters.has(index):
 		letter_delete_items(items_container)
 		if letters[index].has("status"):
@@ -158,8 +160,6 @@ func check_letterID(letterID):
 			return int(letterID)
 		if typeof(i) == TYPE_STRING:
 			return str(letterID)
-		else:
-			return
 
 func get_all_items(id, dictionary:Dictionary) -> void:
 	if dictionary[id].has("items"):
@@ -181,7 +181,6 @@ func check_letter_item(check:int, letterID, dictionary:Dictionary):
 					if item.content.has(int(key)):
 						return true
 			return false
-				
 		2:
 			for key in dictionary[letterID]["items"].keys():
 				if item.content.has(int(key)):
@@ -262,7 +261,7 @@ func open() -> void:
 	menu = true
 	pause.other_menu = true
 	blur.blur(true)
-	animation.play("open")
+	anim.play("open")
 	create_letters(letters, letter_node, letters_container)
 	
 func close() -> void:
@@ -270,7 +269,7 @@ func close() -> void:
 	pause.other_menu = false
 	self.index = 0
 	blur.blur(false)
-	animation.play("close")
+	anim.play("close")
 	delete_letters(letters_container)
 
 func check_window() -> void:

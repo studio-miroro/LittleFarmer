@@ -44,6 +44,7 @@ func set_data(index, item_amount) -> void:
 	else:
 		data.debug("Invalid index: " + str(index), "error")
 
+
 func _on_button_mouse_entered():
 	if mailbox.menu:
 		if item.content.has(int(id)):
