@@ -45,15 +45,16 @@ func update() -> void:
 		data.debug("The specified key is missing.", "error")
 
 func _shadow_create() -> void:
-	if object.has("shadow"):
-		if object["shadow"] is CompressedTexture2D:
-			var vector2i_position = tilemap.local_to_map(position)
-			var target_position = Vector2i(vector2i_position.x, vector2i_position.y)
-			canvas.create_shadow("mailbox_shadow", object["shadow"], target_position)
+	if visible:
+		if object.has("shadow"):
+			if object["shadow"] is CompressedTexture2D:
+				var vector2i_position = tilemap.local_to_map(position)
+				var target_position = Vector2i(vector2i_position.x, vector2i_position.y)
+				canvas.create_shadow("mailbox_shadow", object["shadow"], target_position)
+			else:
+				data.debug("It is not possible to create a game shadow of an object because the sprite is not of the 'CompressedTexture2D' type.", "error")
 		else:
-			data.debug("It is not possible to create a game shadow of an object because the sprite is not of the 'CompressedTexture2D' type.", "error")
-	else:
-		data.debug("The 'shadow' element is missing", "error")
+			data.debug("The 'shadow' element is missing", "error")
 
 func _change_sprite(type:bool) -> void:
 	if type:
