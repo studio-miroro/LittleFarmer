@@ -1,19 +1,19 @@
 extends Node
 
-@onready var main_scene = str(get_tree().root.get_child(1).name)
-#@onready var cycle:Node2D = get_node("/root/" + main_scene + "/Cycle")
-@onready var tilemap:TileMap = get_node("/root/" + main_scene + "/Tilemap")
-@onready var player:Node2D = get_node("/root/" + main_scene + "/Player")
-@onready var balance:Control = get_node("/root/" + main_scene + "/UI/HUD/GameHud/Main/Bars/Balance")
-@onready var inventory:Control = get_node("/root/" + main_scene + "/UI/Interactive/Inventory")
-@onready var craft:Control = get_node("/root/" + main_scene + "/UI/Interactive/Crafting")
-@onready var mailbox:Control = get_node("/root/" + main_scene + "/UI/Interactive/Mailbox")
-@onready var buildings:Node = get_node("/root/" + main_scene + "/ConstructionManager")
-@onready var grid:Node2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid")
-@onready var collision:Area2D = get_node("/root/" + main_scene + "/ConstructionManager/Grid/GridCollision")
-@onready var farming:Node2D = get_node("/root/" + main_scene + "/FarmingManager")
+@onready var main = str(get_tree().root.get_child(1).name)
+#@onready var cycle:Node2D = get_node("/root/"+main+"/Cycle")
+@onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
+@onready var player:Node2D = get_node("/root/"+main+"/Player")
+@onready var balance:Control = get_node("/root/"+main+"/UI/HUD/GameHud/Main/Bars/Balance")
+@onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
+@onready var craft:Control = get_node("/root/"+main+"/UI/Interactive/Crafting")
+@onready var mailbox:Control = get_node("/root/"+main+"/UI/Interactive/Mailbox")
+@onready var buildings:Node = get_node("/root/"+main+"/ConstructionManager")
+@onready var grid:Node2D = get_node("/root/"+main+"/ConstructionManager/Grid")
+@onready var collision:Area2D = get_node("/root/"+main+"/ConstructionManager/Grid/GridCollision")
+@onready var farming:Node2D = get_node("/root/"+main+"/FarmingManager")
 @onready var plant:PackedScene = load("res://assets/nodes/farming/plant.tscn")
-@onready var language:Control = get_node("/root/" + main_scene + "/UI/Interactive/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
+@onready var language:Control = get_node("/root/"+main+"/UI/Interactive/Options/Panel/Main/HBoxContainer/VBoxContainer/VBoxContainer/Language")
 
 var object_count:int
 const paths:Dictionary = {
@@ -29,8 +29,7 @@ const paths:Dictionary = {
 }
 
 func _ready():
-	gameload()
-	if main_scene == "Farm":
+	if main == "Farm":
 		if GameLoader.mode:
 			gameload()
 			GameLoader.loading(false)
