@@ -5,7 +5,7 @@ extends Control
 
 const maximum:int = 99
 
-func create_notice(text:String, type = "") -> void:
+func create_notice(text:String, type:CompressedTexture2D) -> void:
 	var notice = node.instantiate()
 	if all_notices(container) < maximum:
 		if text != "":
