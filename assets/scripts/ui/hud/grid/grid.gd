@@ -14,8 +14,8 @@ extends Node2D
 
 @onready var grid:Sprite2D = $Sprite2D
 @onready var collision:Area2D = $GridCollision
-@onready var default:CompressedTexture2D = load("res://assets/resources/ui/hud/grid/default.png")
-@onready var error:CompressedTexture2D = load("res://assets/resources/ui/hud/grid/error.png")
+@onready var default:CompressedTexture2D = load("res://assets/resources/ui/interactive/hud/grid/default.png")
+@onready var error:CompressedTexture2D = load("res://assets/resources/ui/interactive/hud/grid/error.png")
 
 var check:bool = false
 var mode:int = modes.NOTHING
