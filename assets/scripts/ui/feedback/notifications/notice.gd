@@ -7,6 +7,10 @@ extends Control
 @onready var anim:AnimationPlayer = $AnimationPlayer
 @onready var time:Timer = $Timer
 
+var icons:Dictionary = {
+	"error" = load("res://assets/resources/ui/feedback/notifications/icons/error.png")
+}
+
 func notice(text:String, type = "") -> void:
 	set_text(text)
 	set_icon(type)
@@ -17,8 +21,11 @@ func set_text(text:String) -> void:
 	label.text = text
 
 func set_icon(type) -> void:
-	if type is CompressedTexture2D:
-		icon.texture = type
+	if type in icons:
+		icon.texture = icons[type]
+	else:
+		if type is CompressedTexture2D:
+			icon.texture = type
 
 func _on_timer_timeout() -> void:
 	anim.play("delete")
