@@ -2,7 +2,7 @@ extends CanvasModulate
 
 @onready var main:String = str(get_tree().root.get_child(1).name)
 @onready var pause:Control = get_node("/root/"+main+"/UI/Interactive/Pause")
-@export var gradient_texture: GradientTexture1D
+@export var gradient_texture:GradientTexture1D
 var time_passed:float = 420.0
 
 const real_seconds_per_game_minute:float = 8.0 / 10.0
