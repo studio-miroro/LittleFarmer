@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs6vy16ap4oih"
-path="res://.godot/imported/cursor_static.png-e03f840dada1907eca2f8b3ec50dc125.ctex"
+uid="uid://dbas6kc4l6swb"
+path="res://.godot/imported/default.png-4bcf141efa172fd22fe9f894844e9168.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/resources/ui/hud/cursor/cursor_static.png"
-dest_files=["res://.godot/imported/cursor_static.png-e03f840dada1907eca2f8b3ec50dc125.ctex"]
+source_file="res://assets/resources/ui/interactive/hud/grid/default.png"
+dest_files=["res://.godot/imported/default.png-4bcf141efa172fd22fe9f894844e9168.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

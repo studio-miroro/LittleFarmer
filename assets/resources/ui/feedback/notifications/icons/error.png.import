@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dajqdvx8nvfka"
-path="res://.godot/imported/error.png-52d4af3f2e58311811c8edca8d90ea5b.ctex"
+uid="uid://dkjw6g7xibpgh"
+path="res://.godot/imported/error.png-9744cc223db1cf246f674339e57083e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/resources/ui/hud/grid/error.png"
-dest_files=["res://.godot/imported/error.png-52d4af3f2e58311811c8edca8d90ea5b.ctex"]
+source_file="res://assets/resources/ui/feedback/notifications/icons/error.png"
+dest_files=["res://.godot/imported/error.png-9744cc223db1cf246f674339e57083e3.ctex"]
 
 [params]
 

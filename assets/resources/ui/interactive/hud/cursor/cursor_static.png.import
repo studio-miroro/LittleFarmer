@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://draket5tngyj3"
-path="res://.godot/imported/cursor_active.png-6bb91865e0f1b7e541f469d7b9c23bbd.ctex"
+uid="uid://bs6vy16ap4oih"
+path="res://.godot/imported/cursor_static.png-0d27396c0bf83e34d27390c579e34b19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/resources/ui/hud/cursor/cursor_active.png"
-dest_files=["res://.godot/imported/cursor_active.png-6bb91865e0f1b7e541f469d7b9c23bbd.ctex"]
+source_file="res://assets/resources/ui/interactive/hud/cursor/cursor_static.png"
+dest_files=["res://.godot/imported/cursor_static.png-0d27396c0bf83e34d27390c579e34b19.ctex"]
 
 [params]
 
