@@ -8,13 +8,14 @@ extends Control
 @onready var label:Label = $Main/Margin/HBoxContainer/Label/Label
 @onready var timer:Timer = $Timer
 
-const speed:int = 1
+const speed:float = 8
+
 var hour:int = 7
 var minute:int = 0
 var weekday:int = 0
 var weeks:Array[String] = [
-	tr("mon.clock"), tr("tue.clock"), tr("wed.clock"),
-	tr("thu.clock"), tr("fri.clock"), tr("sat.clock"),
+	tr("mon.clock"), tr("tue.clock"), tr("wed.clock"), 
+	tr("thu.clock"), tr("fri.clock"), tr("sat.clock"), 
 	tr("sun.clock")
 	]
 
@@ -23,16 +24,15 @@ func _ready():
 	timer.set_paused(false)
 	timer.start()
 	
-func _clock_update() -> void:
+func clock_update() -> void:
 	var time = str(hour) + ":" + str(minute) + "0"
-	label.text = str(_week_update()) + " " + str(time)
+	label.text = str(weeks[weekday]) + " " + str(time)
 
 func _week_update():
 	if weekday < weeks.size() - 1:
 		weekday += 1
 	else:
 		weekday = 0
-	return weeks[weekday]
 	
 func _on_timer_timeout():
 	if !pause.paused:
@@ -43,7 +43,9 @@ func _on_timer_timeout():
 			hour = hour + 1
 		if hour > 23:
 			hour = 0
-		_clock_update()
+			_week_update()
+		clock_update()
+
 
 func time_paused(status:bool) -> void:
 	timer.set_paused(status)
