@@ -4,9 +4,10 @@ extends CanvasModulate
 @onready var pause:Control = get_node("/root/"+main+"/UI/Interactive/Pause")
 @onready var clock:Control = get_node("/root/"+main+"/UI/HUD/GameHud/Main/Bars/Clock")
 @export var gradient_texture:GradientTexture1D
+
 const real_seconds_per_game_minute:float = 8.0 / 10.0
 const game_day_duration:float = 1440.0 
-const day_start:float = 360.0
+const day_start:float = 300.0
 const day_end:float = 1080.0
 
 @onready var time_passed:float = clock.hour * 60.0
@@ -21,7 +22,6 @@ func color_update():
         if gradient_texture && gradient_texture.gradient:
             var shifted_progress:float
             var value:float
-
             if time_passed >= day_start && time_passed < day_end:
                 shifted_progress = (time_passed - day_start) / (day_end - day_start)
                 value = 1.0 - shifted_progress
