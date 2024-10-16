@@ -2,7 +2,10 @@ extends Control
 
 @onready var main = str(get_tree().root.get_child(1).name)
 @onready var ui:CanvasLayer = get_node("/root/"+main+"/UI")
+
 @onready var hud:Control = get_node("/root/"+main+"/UI/HUD/GameHud")
+@onready var clock:Control = get_node("/root/"+main+"/UI/HUD/GameHud/Main/Bars/Clock")
+
 @onready var options:Control = get_node("/root/"+main+"/UI/Interactive/Options")
 @onready var blackout:Control = get_node("/root/"+main+"/UI/Decorative/Blackout")
 @onready var blur:Control = get_node("/root/"+main+"/UI/Decorative/Blur")
@@ -29,6 +32,7 @@ func _ready():
 	player.switch = false
 	player.check_switch()
 	lock = false
+	clock.clock_update()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("pause")\
