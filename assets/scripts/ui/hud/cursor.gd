@@ -4,8 +4,8 @@ enum states {DEFAULT}
 var state:int = states.DEFAULT
 var cursor:Dictionary = {
 	"default": {
-		"static": load("res://assets/resources/ui/hud/cursor/cursor_static.png"),
-		"active": load("res://assets/resources/ui/hud/cursor/cursor_active.png"),
+		"static": load("res://assets/resources/ui/interactive/hud/cursor/cursor_static.png"),
+		"active": load("res://assets/resources/ui/interactive/hud/cursor/cursor_active.png"),
 	},
 }
 
