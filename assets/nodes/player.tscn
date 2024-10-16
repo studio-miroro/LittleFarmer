@@ -8,6 +8,7 @@
 shader = ExtResource("1_7c5dj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chqfy"]
+size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
 material = SubResource("ShaderMaterial_pktnx")
