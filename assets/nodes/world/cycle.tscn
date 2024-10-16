@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cjxf5fki0vra2"]
 
 [ext_resource type="Script" path="res://assets/nodes/world/cycle.gd" id="1_co7er"]
-[ext_resource type="Texture2D" uid="uid://lna8yosfek6e" path="res://assets/resources/world/daynightcycle-gradient-texture.tres" id="2_osr56"]
+[ext_resource type="Texture2D" uid="uid://lna8yosfek6e" path="res://assets/resources/world/day-night.tres" id="2_osr56"]
 
 [node name="CanvasModulate" type="CanvasModulate"]
 script = ExtResource("1_co7er")
