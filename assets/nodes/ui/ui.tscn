@@ -26,7 +26,7 @@
 [node name="Cursor" parent="HUD" instance=ExtResource("7_6eima")]
 
 [node name="GameHud" parent="HUD" instance=ExtResource("10_046e5")]
-z_as_relative = false
+z_index = 1
 mouse_filter = 2
 
 [node name="Interactive" type="Node" parent="."]
@@ -61,8 +61,4 @@ offset_top = 720.0
 offset_bottom = 720.0
 
 [node name="Notifications" parent="Feedback" instance=ExtResource("12_3qrnm")]
-offset_left = -6.0
-offset_top = 3.0
-offset_right = -6.0
-offset_bottom = 3.0
 mouse_filter = 2
