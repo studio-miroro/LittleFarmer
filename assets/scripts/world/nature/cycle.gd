@@ -15,9 +15,9 @@ const day_end:float = 1080.0
 func _process(delta):
     time_passed += (delta / real_seconds_per_game_minute)
     time_passed = fmod(time_passed, game_day_duration)
-    color_update()
+    cycle()
 
-func color_update():
+func cycle():
     if !pause.paused:
         if gradient_texture && gradient_texture.gradient:
             var shifted_progress:float
