@@ -73,7 +73,7 @@ _data = {
 
 [node name="notice" type="Control"]
 modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(65, 65)
+custom_minimum_size = Vector2(65, 75)
 layout_mode = 3
 anchors_preset = 2
 anchor_top = 1.0
@@ -92,12 +92,11 @@ offset_bottom = -5.0
 grow_vertical = 0
 
 [node name="Panel" type="Panel" parent="Main"]
-custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="Content" type="MarginContainer" parent="Main"]
 layout_mode = 2
-theme_override_constants/margin_left = 0
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
@@ -107,24 +106,23 @@ layout_mode = 2
 
 [node name="MarginIcon" type="MarginContainer" parent="Main/Content/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 5
 
 [node name="Icon" type="TextureRect" parent="Main/Content/HBoxContainer/MarginIcon"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("2_oe23o")
-expand_mode = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="MarginLabel" type="MarginContainer" parent="Main/Content/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 5
 
 [node name="Label" type="Label" parent="Main/Content/HBoxContainer/MarginLabel"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "
-"
+vertical_alignment = 1
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
