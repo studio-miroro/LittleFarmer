@@ -37,4 +37,4 @@ func cycle():
             else:
                 value = (1.0 - sin(value * PI)) / 2.0
 
-            self.color = gradient_texture.gradient.sample(value)
+            color = gradient_texture.gradient.sample(value)
