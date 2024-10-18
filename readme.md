@@ -8,7 +8,7 @@
 
 ## Key Features
 
-#### 1. Freedom Of Action 
+#### 1. Freedom Of Action
 
 * **Open Farm World**: The player can freely move around the entire farm by controlling the camera. There is no fixed route or tasks, you can explore and interact with any elements.
 
