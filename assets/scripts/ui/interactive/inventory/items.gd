@@ -92,6 +92,14 @@ var content:Dictionary = {
 		"icon": load("res://assets/resources/ui/interactive/inventory/items/resources/aluminum_ingot.png"),
 	},
 	12: {
+		"caption": tr("amethyst.caption"),
+		"description": tr("amethyst.description"),
+		"type": "building_materials.type",
+		"purchase": 1,
+		"sale": 0,
+		"icon": load("res://assets/resources/ui/interactive/inventory/items/resources/nail.png"),
+	},
+	13: {
 		"caption": tr("carrot_packet.caption"),
 		"description": tr("carrot_packet.description"), # Маленькие семена для выращивания моркови. Посадите их на плодородной земле, поливайте и ждите урожая.
 		"specifications": {
@@ -105,7 +113,7 @@ var content:Dictionary = {
 		"crop": 1,
 		"icon": load("res://assets/resources/ui/interactive/inventory/items/seeds packets/packet_1.png"),
 	},
-	13: {
+	14: {
 		"caption": tr("potato_packet.caption"),
 		"description": tr("potato_packet.description"), # Эти семена помогут вырастить питательный картофель. Посадите их в землю, поливайте и наблюдайте за ростом.
 		"specifications": {
@@ -119,7 +127,7 @@ var content:Dictionary = {
 		"crop": 2,
 		"icon": load("res://assets/resources/ui/interactive/inventory/items/seeds packets/packet_2.png"),
 	},
-	14: {
+	15: {
 		"caption": tr("radish_packet.caption"),
 		"description": tr("radish_packet.description"), # Маленькие семена для быстрого выращивания хрустящего редиса. Посадите их, поливайте и ждите урожая.
 		"specifications": {
@@ -133,7 +141,7 @@ var content:Dictionary = {
 		"crop": 3,
 		"icon": load("res://assets/resources/ui/interactive/inventory/items/seeds packets/packet_3.png"),
 	},
-	15: {
+	16: {
 		"caption": tr("cabbage_packet.caption"),
 		"description": tr("radish_packet.description"), # Семена для выращивания плотной и сочной капусты. Посадите их в землю, поливайте и ждите зрелости.
 		"specifications": {
@@ -146,5 +154,37 @@ var content:Dictionary = {
 		"sale": 0,
 		"crop": 4,
 		"icon": load("res://assets/resources/ui/interactive/inventory/items/seeds packets/packet_4.png"),
+	},
+	17: {
+		"caption": tr("carrot_crop.caption"),
+		"description": tr("carrot_crop.description"),
+		"type": "crop",
+		"purchase": 1,
+		"sale": 100,
+		"icon": load("res://assets/resources/ui/interactive/inventory/items/crops/carrot.png"),
+	},
+	18: {
+		"caption": tr("potato_crop.caption"),
+		"description": tr("potato_crop.description"),
+		"type": "crop",
+		"purchase": 1,
+		"sale": 100,
+		"icon": load("res://assets/resources/ui/interactive/inventory/items/crops/potato.png"),
+	},
+	19: {
+		"caption": tr("radish_crop.caption"),
+		"description": tr("radish_crop.description"),
+		"type": "crop",
+		"purchase": 1,
+		"sale": 100,
+		"icon": load("res://assets/resources/ui/interactive/inventory/items/crops/radish.png"),
+	},
+	20: {
+		"caption": tr("cabbage_crop.caption"),
+		"description": tr("cabbage_crop.description"),
+		"type": "crop",
+		"purchase": 1,
+		"sale": 100,
+		"icon": load("res://assets/resources/ui/interactive/inventory/items/crops/cabbage.png"),
 	},
 }
