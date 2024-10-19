@@ -244,7 +244,7 @@ func time_load() -> void:
 		get_key(paths.world, "hour", "time"),
 		get_key(paths.world, "minute", "time")
 	)
-	cycle.set_cycle_value(get_key(paths.world, "cycle", "time"))
+	cycle.set_cycle_value()
 
 func balance_load() -> void:
 	balance.money = get_key(paths.player, "balance")

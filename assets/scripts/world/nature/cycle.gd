@@ -6,11 +6,11 @@ extends CanvasModulate
 @export var gradient_texture:GradientTexture1D
 
 const real_seconds_per_game_minute:float = 8.0 / 10.0
-const game_day_duration:float = 1440.0 
+const game_day_duration:float = 1440.0
 const day_start:float = 300.0
 const day_end:float = 1080.0
 
-@onready var time_passed:float = clock.hour * 60.0
+@onready var time_passed:float = clock.hour * 60.0 + clock.minute
 
 var value:float
 
@@ -32,7 +32,7 @@ func cycle() -> void:
                     shifted_progress = (time_passed + game_day_duration - day_end) / (day_start + game_day_duration - day_end)
                 else:
                     shifted_progress = (time_passed - day_end) / (day_start + game_day_duration - day_end)
-                value = shifted_progress 
+                value = shifted_progress
 
             if time_passed >= day_start && time_passed < day_end:
                 value = (sin(value * PI) + 1.0) / 2.0
@@ -41,9 +41,8 @@ func cycle() -> void:
 
             color = gradient_texture.gradient.sample(value)
 
-func set_cycle_value(cycle_value:float) -> void:
-    time_passed = clock.hour * 60.0
-    value = cycle_value
+func set_cycle_value() -> void:
+    time_passed = clock.hour * 60.0 + clock.minute
 
 func get_cycle_value() -> float:
     return value
