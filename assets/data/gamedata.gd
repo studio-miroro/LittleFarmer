@@ -266,7 +266,7 @@ func buildings_load() -> void:
 func debug(content:String, type:String = "INFO") -> void:
 	var system_datetime = Time.get_datetime_dict_from_system()
 	var datetime:String = "["+str(system_datetime["year"])+"-"+str(system_datetime["month"])+"-"+str(system_datetime["day"])+" "+str(system_datetime["hour"])+":"+str(system_datetime["minute"])+":"+str(system_datetime["second"])+"]"
-	match type:
+	match type.to_lower():
 		"info":
 			print(str(datetime) + " INFO: " + str(content))
 		"error":
