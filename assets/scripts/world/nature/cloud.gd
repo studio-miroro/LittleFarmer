@@ -8,7 +8,7 @@ extends Sprite2D
 @onready var life:Timer = $LifeCycle
 
 const speed:float = 24.256
-const max_distance:int = 525
+const max_distance:int = 500
 
 func _ready():
 	life.wait_time = randi_range(2*clock.speed,10*clock.speed)
@@ -32,5 +32,6 @@ func _on_life_cycle_timeout() -> void:
 
 func _life_cycle_end() -> void:
 	shadow.all_clouds -= 1
+	life.stop()
 	remove_child(self)
 	queue_free()
