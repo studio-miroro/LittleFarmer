@@ -23,6 +23,5 @@ func _on_timeout():
 		var random_sprite = randi() % clouds.size()
 		canvas.create_cloud(clouds[random_sprite])
 		wait_time = randi_range(0.25*clock.speed, 2*clock.speed)
-		print(wait_time)
 	else:
 		data.debug("The 'CanvasGroup' node is missing.", "error")
