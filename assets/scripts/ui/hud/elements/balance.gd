@@ -7,6 +7,9 @@ const maximum:int = 999_999_999
 const minimum:int = 0
 var money:int = 0
 
+func _ready():
+	icon.texture = load("res://assets/resources/ui/interactive/hud/balance.png")
+
 func balance_update() -> void:
 	check_balance(money)
 	text.text = format(money)
