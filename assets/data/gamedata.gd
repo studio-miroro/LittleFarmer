@@ -301,7 +301,6 @@ func get_content(content:String) -> Dictionary:
 					"day": clock.day,
 					"hour": clock.hour,
 					"minute": clock.minute,
-					"cycle": cycle.get_cycle_value()
 				}
 			}
 			

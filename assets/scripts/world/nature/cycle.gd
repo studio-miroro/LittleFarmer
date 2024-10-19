@@ -42,7 +42,4 @@ func cycle() -> void:
             color = gradient_texture.gradient.sample(value)
 
 func set_cycle_value() -> void:
-    time_passed = clock.hour * 60.0 + clock.minute
-
-func get_cycle_value() -> float:
-    return value
+    time_passed = (clock.hour * 60.0) + clock.minute
