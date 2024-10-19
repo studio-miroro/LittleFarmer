@@ -12,16 +12,18 @@ const day_end:float = 1080.0
 
 @onready var time_passed:float = clock.hour * 60.0
 
-func _process(delta):
-    time_passed += (delta / real_seconds_per_game_minute)
-    time_passed = fmod(time_passed, game_day_duration)
-    cycle()
+var value:float
 
-func cycle():
+func _process(delta):
+    if !pause.paused:
+        time_passed += (delta / real_seconds_per_game_minute)
+        time_passed = fmod(time_passed, game_day_duration)
+        cycle()
+
+func cycle() -> void:
     if !pause.paused:
         if gradient_texture && gradient_texture.gradient:
             var shifted_progress:float
-            var value:float
             if time_passed >= day_start && time_passed < day_end:
                 shifted_progress = (time_passed - day_start) / (day_end - day_start)
                 value = 1.0 - shifted_progress
@@ -38,3 +40,10 @@ func cycle():
                 value = (1.0 - sin(value * PI)) / 2.0
 
             color = gradient_texture.gradient.sample(value)
+
+func set_cycle_value(cycle_value:float) -> void:
+    time_passed = clock.hour * 60.0
+    value = cycle_value
+
+func get_cycle_value() -> float:
+    return value

@@ -10,9 +10,13 @@ extends Control
 
 const speed:float = 8
 
-var hour:int = 7
+var year:int = 1
+var month:int = 1
+var week:int = 1
+var day:int = 1
+var hour:int = 17
 var minute:int = 0
-var weekday:int = 0
+
 var weeks:Array[String] = [
 	tr("mon.clock"), tr("tue.clock"), tr("wed.clock"), 
 	tr("thu.clock"), tr("fri.clock"), tr("sat.clock"), 
@@ -26,13 +30,13 @@ func _ready():
 	
 func clock_update() -> void:
 	var time = str(hour) + ":" + str(minute) + "0"
-	label.text = str(weeks[weekday]) + " " + str(time)
+	label.text = str(weeks[day]) + " " + str(time)
 
 func _week_update():
-	if weekday < weeks.size() - 1:
-		weekday += 1
+	if day < weeks.size() - 1:
+		day += 1
 	else:
-		weekday = 0
+		day = 0
 	
 func _on_timer_timeout():
 	if !pause.paused:
@@ -56,3 +60,11 @@ func time_state(status:bool) -> void:
 			timer.stop()
 		false:
 			timer.start()
+
+func set_clock_value(year_value:int, month_value:int, week_value:int, day_value:int, hour_value:int, minute_value:int) -> void:
+	year = year_value
+	month = month_value
+	week = week_value
+	day = day_value
+	hour = hour_value
+	minute = minute_value

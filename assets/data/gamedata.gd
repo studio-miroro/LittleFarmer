@@ -1,7 +1,8 @@
 extends Node
 
 @onready var main = str(get_tree().root.get_child(1).name)
-#@onready var cycle:Node2D = get_node("/root/"+main+"/Cycle")
+@onready var clock:Control = get_node("/root/"+main+"/UI/HUD/GameHud/Main/Bars/Clock")
+@onready var cycle:Node2D = get_node("/root/"+main+"/Day-Night Cycle")
 @onready var tilemap:TileMap = get_node("/root/"+main+"/Tilemap")
 @onready var player:Node2D = get_node("/root/"+main+"/Player")
 @onready var balance:Control = get_node("/root/"+main+"/UI/HUD/GameHud/Main/Bars/Balance")
@@ -29,6 +30,7 @@ const paths:Dictionary = {
 }
 
 func _ready():
+	gameload()
 	if main == "Farm":
 		if GameLoader.mode:
 			gameload()
@@ -234,14 +236,15 @@ func terrains_remove() -> void:
 		)
 
 func time_load() -> void:
-	pass
-	#cycle.year = get_key(paths.world, "year", "time")
-	#cycle.month = get_key(paths.world, "month", "time")
-	#cycle.week = get_key(paths.world, "week", "time")
-	#cycle.day = get_key(paths.world, "day", "time")
-	#cycle.hour = get_key(paths.world, "hour", "time")
-	#cycle.minute = get_key(paths.world, "minute", "time")
-	#cycle.timeload(get_key(paths.world, "cycle", "time"))
+	clock.set_clock_value(
+		get_key(paths.world, "year", "time"),
+		get_key(paths.world, "month", "time"),
+		get_key(paths.world, "week", "time"),
+		get_key(paths.world, "day", "time"),
+		get_key(paths.world, "hour", "time"),
+		get_key(paths.world, "minute", "time")
+	)
+	cycle.set_cycle_value(get_key(paths.world, "cycle", "time"))
 
 func balance_load() -> void:
 	balance.money = get_key(paths.player, "balance")
@@ -292,13 +295,13 @@ func get_content(content:String) -> Dictionary:
 		"nature":
 			return {
 				"time": {
-					#"year": cycle.year,
-					#"month": cycle.month,
-					#"week": cycle.week,
-					#"day": cycle.day,
-					#"hour": cycle.hour,
-					#"minute": cycle.minute,
-					#"cycle": cycle.get_time()
+					"year": clock.year,
+					"month": clock.month,
+					"week": clock.week,
+					"day": clock.day,
+					"hour": clock.hour,
+					"minute": clock.minute,
+					"cycle": cycle.get_cycle_value()
 				}
 			}
 			
