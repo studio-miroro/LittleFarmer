@@ -30,7 +30,6 @@ const paths:Dictionary = {
 }
 
 func _ready():
-	gameload()
 	if main == "Farm":
 		if GameLoader.mode:
 			gameload()
