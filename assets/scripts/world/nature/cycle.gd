@@ -10,7 +10,7 @@ const game_day_duration:float = 1440.0
 const day_start:float = 300.0
 const day_end:float = 1080.0
 
-@onready var time_passed:float = clock.hour * 60.0 + clock.minute
+@onready var time_passed:float = clock.hour * 60.0
 
 var value:float
 
@@ -40,6 +40,12 @@ func cycle() -> void:
                 value = (1.0 - sin(value * PI)) / 2.0
 
             color = gradient_texture.gradient.sample(value)
+            print("Time: ", clock.hour, ":", clock.minute, "0 | ", "Gradient value: ", str(value).left(14), " | Time passed: ", str(time_passed).left(6))
+            
+func set_cycle_value(cycle_value:float) -> void:
+    value = cycle_value
+    time_passed = clock.hour * 60.0
 
-func set_cycle_value() -> void:
-    time_passed = (clock.hour * 60.0) + clock.minute
+func get_cycle_value() -> float:
+    return value
+    
