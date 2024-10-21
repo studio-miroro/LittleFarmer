@@ -135,7 +135,7 @@ func _process(_delta):
 							else:
 								notifications.create_notice("error")
 						else:
-							data.debug("", "error")
+							data.debug("Index ", plant_id, " does not exist in the main 'crops' dictionary", "error")
 				check = false
 
 			modes.BUILD:
