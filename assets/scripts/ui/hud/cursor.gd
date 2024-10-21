@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var main:String = str(get_tree().root.get_child(1).name)
+@onready var tooltip:Control = get_node("/root/"+main+"/UI/Feedback/Tooltip")
+
 enum states {DEFAULT}
 var state:int = states.DEFAULT
 var cursor:Dictionary = {
