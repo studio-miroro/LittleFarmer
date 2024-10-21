@@ -5,6 +5,8 @@ extends Control
 @onready var hud:Control = get_node("/root/"+main+"/UI/Decorative/Hud")
 @onready var tip:Control = get_node("/root/"+main+"/UI/Feedback/Tooltip")
 @onready var cycle:CanvasModulate = get_node("/root/"+main+"/Cycle")
+@onready var sprite:CompressedTexture2D = load("res://assets/resources/ui/interactive/hud/clock.png")
+@onready var icon:TextureRect = $Main/Margin/HBoxContainer/Icon/TextureRect
 @onready var label:Label = $Main/Margin/HBoxContainer/Label/Label
 @onready var timer:Timer = $Timer
 
@@ -14,7 +16,7 @@ var year:int = 1
 var month:int = 1
 var week:int = 1
 var day:int = 1
-var hour:int = 17
+var hour:int = 7
 var minute:int = 0
 
 var weeks:Array[String] = [
@@ -24,6 +26,7 @@ var weeks:Array[String] = [
 	]
 
 func _ready():
+	icon.texture = sprite
 	timer.wait_time = speed
 	timer.set_paused(false)
 	timer.start()
