@@ -1,5 +1,6 @@
 extends Control
 
+@onready var sprite:CompressedTexture2D = load("res://assets/resources/ui/interactive/hud/balance.png")
 @onready var icon:TextureRect = $Margin/HBoxContainer/Icon/TextureRect
 @onready var text:Label = $Margin/HBoxContainer2/Label/Label
 
@@ -8,7 +9,7 @@ const minimum:int = 0
 var money:int = 0
 
 func _ready():
-	icon.texture = load("res://assets/resources/ui/interactive/hud/balance.png")
+	icon.texture = sprite
 
 func balance_update() -> void:
 	check_balance(money)
