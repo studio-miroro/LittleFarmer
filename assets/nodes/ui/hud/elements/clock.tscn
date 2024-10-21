@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlpc7fxunbs1g"]
+[gd_scene load_steps=2 format=3 uid="uid://dlpc7fxunbs1g"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/hud/elements/clock.gd" id="1_kunbj"]
-[ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_17403"]
 
 [node name="Clock" type="Control"]
 custom_minimum_size = Vector2(225, 0)
@@ -39,15 +38,16 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Main/Margin/HBoxContainer/Icon"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("2_17403")
-expand_mode = 1
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Label" type="MarginContainer" parent="Main/Margin/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/margin_left = 25
+theme_override_constants/margin_left = 15
 
 [node name="Label" type="Label" parent="Main/Margin/HBoxContainer/Label"]
 layout_mode = 2

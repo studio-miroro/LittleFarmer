@@ -112,7 +112,7 @@ theme_override_constants/margin_right = 5
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("2_oe23o")
-expand_mode = 1
+expand_mode = 2
 stretch_mode = 5
 
 [node name="MarginLabel" type="MarginContainer" parent="Main/Content/HBoxContainer"]
