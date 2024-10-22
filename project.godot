@@ -21,7 +21,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GameLoader="*res://assets/system/gameloader.gd"
+GameLoader="*res://assets/data/gameloader.gd"
 
 [display]
 
