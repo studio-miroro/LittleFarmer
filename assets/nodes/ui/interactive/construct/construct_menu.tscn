@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bpmceytvqnc7d"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/interactive/craft/craft.gd" id="1_4nfi1"]
-[ext_resource type="PackedScene" uid="uid://cps3s5crjjsv1" path="res://assets/nodes/ui/interactive/craft/blueprint.tscn" id="2_504i5"]
-[ext_resource type="Script" path="res://assets/scripts/ui/interactive/craft/crafting.gd" id="3_mjewe"]
+[ext_resource type="Script" path="res://assets/scripts/ui/interactive/construct/construct.gd" id="1_mol3v"]
+[ext_resource type="PackedScene" uid="uid://cps3s5crjjsv1" path="res://assets/nodes/ui/interactive/construct/blueprint.tscn" id="2_qs4o7"]
+[ext_resource type="Script" path="res://assets/scripts/ui/interactive/construct/crafting.gd" id="3_v0d02"]
 
 [sub_resource type="Animation" id="Animation_bduf1"]
 length = 0.001
@@ -110,7 +110,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4nfi1")
+script = ExtResource("1_mol3v")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -127,13 +127,13 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="Panel"]
-offset_left = 324.0
+layout_mode = 0
+offset_left = 309.0
 offset_top = 16.0
 offset_right = 624.0
 offset_bottom = 368.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
-custom_minimum_size = Vector2(25, 25)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.025
@@ -156,89 +156,89 @@ horizontal_scroll_mode = 0
 custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 
-[node name="Item_BuildingMenu" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("2_504i5")]
+[node name="Item_BuildingMenu" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("2_qs4o7")]
 layout_mode = 2
 
 [node name="Info" type="ScrollContainer" parent="Panel/HBoxContainer"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(315, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Info"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(315, 0)
 layout_mode = 2
+size_flags_horizontal = 6
 
 [node name="Caption" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="ObjectCaption" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer/Caption"]
-custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "Object.name"
+text = "blueprint.caption"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Description" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_right = 15
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
 
 [node name="ObjectDescription" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer/Description"]
-custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Object.description"
+text = "blueprint.description"
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Resources" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 15
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="ObjectResources" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer/Resources"]
-custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Object.materials"
+text = "blueprint.resources"
 vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Time" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 15
+theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 5
 
 [node name="ObjectCreationTime" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer/Time"]
-custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
-text = "Object.creation_time"
+text = "blueprint.creation_time"
 vertical_alignment = 2
 
 [node name="Button" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 25
 
 [node name="Craft" type="Button" parent="Panel/HBoxContainer/Info/VBoxContainer/Button"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 4
-text = "Соорудить"
-script = ExtResource("3_mjewe")
+text = "construct.create"
+script = ExtResource("3_v0d02")
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 0

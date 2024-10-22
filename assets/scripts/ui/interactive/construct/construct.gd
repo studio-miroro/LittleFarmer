@@ -9,7 +9,7 @@ extends Control
 @onready var container:GridContainer = get_node("/root/"+main+"/UI/Interactive/Crafting/Panel/HBoxContainer/Items/GridContainer")
 @onready var build_button:Button = get_node("/root/"+main+"/UI/Interactive/Crafting/Panel/HBoxContainer/Info/VBoxContainer/Button/Craft")
 
-@onready var blueprint:PackedScene = load("res://assets/nodes/ui/interactive/craft/blueprint.tscn")
+@onready var blueprint:PackedScene = load("res://assets/nodes/ui/interactive/construct/blueprint.tscn")
 @onready var caption:Label = $Panel/HBoxContainer/Info/VBoxContainer/Caption/ObjectCaption
 @onready var description:Label = $Panel/HBoxContainer/Info/VBoxContainer/Description/ObjectDescription
 @onready var resources:Label = $Panel/HBoxContainer/Info/VBoxContainer/Resources/ObjectResources

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drwbxqpgt6lxf"
-path="res://.godot/imported/default.png-31549fe464cd0ed74d4f21ddec2056a1.ctex"
+path="res://.godot/imported/default.png-9882bfe656eb6558330b30ad46158b04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/resources/ui/interactive/craft/default.png"
-dest_files=["res://.godot/imported/default.png-31549fe464cd0ed74d4f21ddec2056a1.ctex"]
+source_file="res://assets/resources/ui/interactive/construct/default.png"
+dest_files=["res://.godot/imported/default.png-9882bfe656eb6558330b30ad46158b04.ctex"]
 
 [params]
 

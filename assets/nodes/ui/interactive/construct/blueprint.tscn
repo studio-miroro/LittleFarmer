@@ -1,17 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://cps3s5crjjsv1"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/interactive/craft/blueprint.gd" id="1_yf12q"]
-[ext_resource type="Texture2D" uid="uid://blip53ufv0jwb" path="res://icon.png" id="2_stk0w"]
+[ext_resource type="Script" path="res://assets/scripts/ui/interactive/construct/blueprint.gd" id="1_70af1"]
+[ext_resource type="Texture2D" uid="uid://drwbxqpgt6lxf" path="res://assets/resources/ui/interactive/construct/default.png" id="2_365nr"]
 
 [node name="Item_BuildingMenu" type="Control"]
-custom_minimum_size = Vector2(65, 65)
+custom_minimum_size = Vector2(280, 64)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_yf12q")
+script = ExtResource("1_70af1")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
@@ -37,13 +37,13 @@ theme_override_constants/margin_bottom = 0
 
 [node name="Icon" type="TextureRect" parent="Button/HBoxContainer/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("2_stk0w")
+texture = ExtResource("2_365nr")
 expand_mode = 2
 stretch_mode = 5
 
 [node name="Caption" type="Label" parent="Button/HBoxContainer"]
 layout_mode = 2
-text = "Object.caption"
+text = "blueprint.caption"
 vertical_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
