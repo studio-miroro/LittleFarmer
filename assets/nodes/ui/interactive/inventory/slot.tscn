@@ -1,15 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://do4e681e4p00n"]
+[gd_scene load_steps=3 format=3 uid="uid://do4e681e4p00n"]
 
 [ext_resource type="Script" path="res://assets/scripts/ui/interactive/inventory/slot.gd" id="1_4uk0b"]
-[ext_resource type="Texture2D" uid="uid://drwbxqpgt6lxf" path="res://assets/resources/ui/interactive/craft/default.png" id="1_k2yqa"]
-[ext_resource type="FontFile" uid="uid://bemolumdj4t5f" path="res://assets/fonts/moloko.otf" id="3_tw3si"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_p26sh"]
-font = ExtResource("3_tw3si")
-font_size = 30
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 0.196078)
-shadow_offset = Vector2(0, 2)
+[ext_resource type="Texture2D" uid="uid://drwbxqpgt6lxf" path="res://assets/resources/ui/interactive/construct/default.png" id="1_k2yqa"]
 
 [node name="Slot" type="Control"]
 custom_minimum_size = Vector2(64, 64)
@@ -40,7 +32,6 @@ layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
 text = "999"
-label_settings = SubResource("LabelSettings_p26sh")
 horizontal_alignment = 2
 vertical_alignment = 2
 
