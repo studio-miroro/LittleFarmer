@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bpmceytvqnc7d"]
 
-[ext_resource type="Script" path="res://assets/scripts/ui/interactive/craft/craft.gd" id="1_bnylh"]
-[ext_resource type="PackedScene" uid="uid://cps3s5crjjsv1" path="res://assets/nodes/ui/interactive/craft/blueprint.tscn" id="2_km2qd"]
-[ext_resource type="Script" path="res://assets/scripts/ui/interactive/craft/crafting.gd" id="3_ip6ve"]
+[ext_resource type="Script" path="res://assets/scripts/ui/interactive/craft/craft.gd" id="1_4nfi1"]
+[ext_resource type="PackedScene" uid="uid://cps3s5crjjsv1" path="res://assets/nodes/ui/interactive/craft/blueprint.tscn" id="2_504i5"]
+[ext_resource type="Script" path="res://assets/scripts/ui/interactive/craft/crafting.gd" id="3_mjewe"]
 
 [sub_resource type="Animation" id="Animation_bduf1"]
 length = 0.001
@@ -110,7 +110,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bnylh")
+script = ExtResource("1_4nfi1")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -126,6 +126,12 @@ offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Panel" type="Panel" parent="Panel"]
+offset_left = 324.0
+offset_top = 16.0
+offset_right = 624.0
+offset_bottom = 368.0
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
 custom_minimum_size = Vector2(25, 25)
 layout_mode = 1
@@ -134,12 +140,12 @@ anchor_left = 0.025
 anchor_top = 0.0416667
 anchor_right = 0.975
 anchor_bottom = 0.958333
-offset_left = 5.0
-offset_top = 4.0
-offset_right = -4.0
-offset_bottom = -4.0
+offset_left = 1.0
+offset_top = -1.33514e-05
+offset_bottom = 0.00012207
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="Items" type="ScrollContainer" parent="Panel/HBoxContainer"]
 layout_mode = 2
@@ -147,24 +153,28 @@ size_flags_horizontal = 2
 horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/Items"]
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 
-[node name="Item_BuildingMenu" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("2_km2qd")]
+[node name="Item_BuildingMenu" parent="Panel/HBoxContainer/Items/GridContainer" instance=ExtResource("2_504i5")]
 layout_mode = 2
 
 [node name="Info" type="ScrollContainer" parent="Panel/HBoxContainer"]
-custom_minimum_size = Vector2(275, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer/Info"]
-custom_minimum_size = Vector2(275, 0)
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 
 [node name="Caption" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
 
 [node name="ObjectCaption" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer/Caption"]
 custom_minimum_size = Vector2(0, 50)
@@ -177,6 +187,8 @@ autowrap_mode = 3
 
 [node name="Description" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
 
 [node name="ObjectDescription" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer/Description"]
 custom_minimum_size = Vector2(0, 50)
@@ -188,7 +200,9 @@ autowrap_mode = 3
 
 [node name="Resources" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 10
 
 [node name="ObjectResources" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer/Resources"]
@@ -201,7 +215,10 @@ autowrap_mode = 3
 
 [node name="Time" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 5
 
 [node name="ObjectCreationTime" type="Label" parent="Panel/HBoxContainer/Info/VBoxContainer/Time"]
 custom_minimum_size = Vector2(0, 30)
@@ -212,13 +229,16 @@ vertical_alignment = 2
 
 [node name="Button" type="MarginContainer" parent="Panel/HBoxContainer/Info/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
 [node name="Craft" type="Button" parent="Panel/HBoxContainer/Info/VBoxContainer/Button"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Соорудить"
-script = ExtResource("3_ip6ve")
+script = ExtResource("3_mjewe")
 
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 0
