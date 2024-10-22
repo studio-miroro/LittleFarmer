@@ -16,7 +16,7 @@ var year:int = 1
 var month:int = 1
 var week:int = 1
 var day:int = 1
-var hour:int = 7
+var hour:int = 6
 var minute:int = 0
 
 var weeks:Array[String] = [
@@ -64,7 +64,14 @@ func time_state(status:bool) -> void:
 		false:
 			timer.start()
 
-func set_clock_value(year_value:int, month_value:int, week_value:int, day_value:int, hour_value:int, minute_value:int) -> void:
+func set_clock_value(
+	year_value:int,
+	month_value:int,
+	week_value:int,
+	day_value:int,
+	hour_value:int,
+	minute_value:int
+	) -> void:
 	year = year_value
 	month = month_value
 	week = week_value
