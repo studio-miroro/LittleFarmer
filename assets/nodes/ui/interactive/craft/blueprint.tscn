@@ -15,7 +15,7 @@ script = ExtResource("1_yf12q")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_right = 288.0
+offset_right = 280.0
 offset_bottom = 64.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Button"]
@@ -24,7 +24,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 280.0
+offset_right = 270.0
 offset_bottom = -8.0
 grow_vertical = 2
 
