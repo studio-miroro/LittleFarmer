@@ -8,7 +8,7 @@ extends Control
 @onready var inventory:Control = get_node("/root/"+main+"/UI/Interactive/Inventory")
 @onready var storage:Node2D = get_node("/root/"+main+"/ConstructionManager/Storage")
 @onready var balance:Control = get_node("/root/"+main+"/UI/HUD/GameHud/Main/Bars/Balance")
-@onready var button_script:Button = get_node("/root/"+main+"/UI/Interactive/Mailbox/Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems")
+@onready var button_script:Button = get_node("/root/"+main+"/UI/Interactive/Mailbox/Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterItems/VBoxContainer/ButtonContainer/GetItems")
 @onready var letter_node:PackedScene = load("res://assets/nodes/ui/interactive/mail/letter.tscn")
 @onready var slot:PackedScene = inventory.node
 
@@ -16,14 +16,18 @@ extends Control
 @onready var content_scroll:ScrollContainer = $Panel/HBoxContainer/ContentScroll
 @onready var letters_container:VBoxContainer = $Panel/HBoxContainer/LettersScroll/VBoxContainer
 @onready var content_container:VBoxContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer
-@onready var items_hbox:HBoxContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer
-@onready var items_container:GridContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/HBoxContainer/Items/GridContainer
-@onready var items_block:MarginContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items
+@onready var items_hbox:HBoxContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterItems/VBoxContainer/HBoxContainer
+@onready var items_container:GridContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterItems/VBoxContainer/HBoxContainer/Items/GridContainer
+@onready var items_block:MarginContainer = $Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterItems
 @onready var header_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterHeader/Title
 @onready var description_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/MainContent/Text
 @onready var author_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Author/Author
 @onready var attached_items_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/LabelContainer/Label
 @onready var button:Button = $Panel/HBoxContainer/ContentScroll/VBoxContainer/Items/VBoxContainer/ButtonContainer/GetItems
+@onready var description_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterContent/Text
+@onready var author_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterAuthor/Author
+@onready var attached_items_label:Label = $Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterItems/VBoxContainer/LabelContainer/Label
+@onready var button:Button = $Panel/HBoxContainer/ContentScroll/VBoxContainer/LetterItems/VBoxContainer/ButtonContainer/GetItems
 
 var item:Object = Items.new()
 var menu:bool = false
@@ -139,14 +143,14 @@ func get_data(letterID) -> void:
 					button.visible = false
 
 			if letters[index]["money"] > 0:
-				var nested = tr("nested.letter")
-				var money = tr("money.letter")
+				var nested = tr("letter.nested")
+				var money = tr("letter.money")
 				if letters[index]["money"] > balance.maximum:
 					letters[index]["money"] = balance.maximum
 				attached_items_label.text = nested + ": " + str(balance.format(letters[index]["money"])) + " " + money
 				attached_items_label.visible = true
 			else:
-				var attached_items = tr("attached_items.letter")
+				var attached_items = tr("letter.attached_items")
 				attached_items_label.text = attached_items + ":"
 				attached_items_label.visible = true
 		else:
