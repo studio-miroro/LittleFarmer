@@ -9,7 +9,7 @@ extends Sprite2D
 @onready var life:Timer = $LifeCycle
 
 const speed:float = 24.256
-const max_distance:int = 400
+const max_distance:int = 500
 
 func _ready():
 	life.wait_time = randi_range(2*clock.speed,10*clock.speed)
