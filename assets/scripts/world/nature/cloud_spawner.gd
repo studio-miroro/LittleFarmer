@@ -4,24 +4,22 @@ extends Timer
 @onready var data:Node2D = get_node("/root/"+main)
 @onready var clock:Control = get_node("/root/"+main+"/UI/HUD/GameHud/Main/Bars/Clock")
 @onready var canvas:Node = get_node("/root/"+main+"/ShadowManager")
-var clouds:Array[CompressedTexture2D] = [
-	load("res://assets/resources/world/clouds/cloud_0.png"),
-	load("res://assets/resources/world/clouds/cloud_1.png"),
-	load("res://assets/resources/world/clouds/cloud_2.png"),
-	load("res://assets/resources/world/clouds/cloud_3.png"),
-	load("res://assets/resources/world/clouds/cloud_4.png"),
-	load("res://assets/resources/world/clouds/cloud_5.png"),
-	load("res://assets/resources/world/clouds/cloud_6.png"),
-	load("res://assets/resources/world/clouds/cloud_7.png"),
-	load("res://assets/resources/world/clouds/cloud_8.png"),
-	load("res://assets/resources/world/clouds/cloud_9.png"),
-	load("res://assets/resources/world/clouds/cloud_10.png"),
-] 
+const sprite_max:int = 20
+const sprite_min:int = 0
+
+var clouds:Array[CompressedTexture2D] = []
+var sprite_value:int = 0
+
+func _ready() -> void:
+	while clouds.size() < sprite_max:
+		sprite_value += 1
+		clouds.append(load("res://assets/resources/world/clouds/cloud_"+str(sprite_min)+".png"))
 
 func _on_timeout():
-	if has_node("/root/"+main+"/ShadowManager/CanvasGroup"):
-		var random_sprite = randi() % clouds.size()
-		canvas.create_cloud(clouds[random_sprite])
-		wait_time = randi_range(0.25*clock.speed, 2*clock.speed)
-	else:
-		data.debug("The 'CanvasGroup' node is missing.", "error")
+	if clouds != []:
+		if has_node("/root/"+main+"/ShadowManager/CanvasGroup"):
+			var random_sprite = randi() % clouds.size()
+			canvas.create_cloud(clouds[random_sprite])
+			wait_time = 1#randi_range(0.25*clock.speed, 2*clock.speed)
+		else:
+			data.debug("The 'CanvasGroup' node is missing.", "error")
